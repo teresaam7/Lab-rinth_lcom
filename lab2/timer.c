@@ -27,18 +27,28 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   uint8_t controlWords[] = {TIMER_SEL0, TIMER_SEL1, TIMER_SEL2};
   uint8_t sTimers[] = {TIMER_0, TIMER_1, TIMER_2};
 
-  for (int i = 0; i < 3; ++i) {
-      if (timer == i) {
-          controlWord |= controlWords[i];
-          sTimer = sTimers[i];
-          break;
-      }
+  switch (timer) {  
+    case 0: 
+      controlWord |= controlWords[0];
+      sTimer = sTimers[0];
+      break;
+    case 1:
+      controlWord |= controlWords[1];
+      sTimer = sTimers[1];
+      break;
+    case 2:
+      controlWord |= controlWords[2];
+      sTimer = sTimers[2];
+      break;
+    default:
+      return 1;
   }
-  if (sTimer == 0 || util_sys_outb(TIMER_CTRL, controlWord) != 0)  {
+  
+  if (sTimer == 0 || sys_outb(TIMER_CTRL, controlWord) != 0)  {
       return 1;
   }
 
-  if (util_sys_outb(sTimer, msb) != 0 || util_sys_outb(sTimer, lsb) != 0) {
+  if (sys_outb(sTimer, msb) != 0 || sys_outb(sTimer, lsb) != 0) {
     return 1;
   }
 
@@ -64,22 +74,23 @@ void (timer_int_handler)() {
   printf("%s is not yet implemented!\n", __func__);
 }
 
-int timer_get_conf(uint8_t timer, uint8_t *st) {
-    if (st == NULL || timer < 0 || timer > 2) {
-      return 1;
-    }
-    uint8_t rbcom = (TIMER_RB_CMD | TIMER_RB_COUNT_ | TIMER_RB_SEL(timer)); // read back command
+int (timer_get_conf)(uint8_t timer, uint8_t *st) {
+  if (st == NULL || timer < 0 || timer > 2) {
+    return 1;
+  }
 
-    if (util_sys_outb(TIMER_CTRL, rbcom) != 0) {
-        return 1; 
-    }
+  uint8_t rbcom = (TIMER_RB_CMD | TIMER_RB_COUNT_ | TIMER_RB_SEL(timer)); 
 
-    int port = TIMER_0 + timer;
-    if (util_sys_inb(port, st) != 0) {
-        return 1; 
-    }
+  if (sys_outb(TIMER_CTRL, rbcom) != 0){
+    return 1;
+  }
+ 
+  int port = TIMER_0 + timer;
 
-    return 0; 
+  if (util_sys_inb(port,st) != 0){
+    return 1;
+  } 
+  return 0;
 }
 
 
@@ -116,6 +127,5 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
 
   if (timer_print_config(timer, field, controlWord) != 0) return 1;
   return 0;
-
-  return 0;
 }
+
