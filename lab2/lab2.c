@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+int extern counter;
+
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -43,8 +45,12 @@ int(timer_test_time_base)(uint8_t timer, uint32_t freq) {
 int(timer_test_int)(uint8_t time) {
   int ipc_status;
   message msg;
-
-  while (1) {
+  int r;
+  uint8_t irq_set;
+  if (timer_subscribe_int(&irq_set) != 0){
+    return 0;
+  }
+  while (time >0) {
 
       if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
           printf("driver_receive falhou com código: %d", r);
@@ -54,7 +60,12 @@ int(timer_test_int)(uint8_t time) {
           switch (_ENDPOINT_P(msg.m_source)) {
               case HARDWARE: 
                   if (msg.m_notify.interrupts & irq_set) { 
-                    
+                    timer_int_handler(); 
+                    int clock = counter % 60;
+                    if(clock==0){
+                      timer_print_elapsed_time();
+                      time--;
+                   }
                   }
                   break;
               default:
