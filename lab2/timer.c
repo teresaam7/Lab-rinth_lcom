@@ -5,73 +5,75 @@
 
 #include "i8254.h"
 
-int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
-  uint8_t msb, lsb;
-  if ( timer < 0 || timer > 2 || freq > TIMER_FREQ ) {
-      return 1;
-  }
 
-  uint8_t controlWord;
-  if (timer_get_conf(timer, &controlWord) != 0) {
+int hookId = 0;
+int counter = 0;
+
+int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
+  if (freq > TIMER_FREQ || freq < 19) {
+     return 1;
+  }
+  uint8_t control;
+  if (timer_get_conf(timer, &control) != 0) {
     return 1;
   } 
 
-  controlWord = (controlWord & 0x0F) | TIMER_LSB_MSB; 
+  control = (control & 0x0F) | TIMER_LSB_MSB; 
 
-  uint32_t INIT_VALUE = TIMER_FREQ / freq;
+  uint32_t initialValue = TIMER_FREQ / freq;
+  uint8_t MSB, LSB;
+  util_get_MSB(initialValue, &MSB);
+  util_get_LSB(initialValue, &LSB);
 
-  util_get_MSB(INIT_VALUE, &msb);
-  util_get_LSB(INIT_VALUE, &lsb);
+  uint8_t controlWords[] = {TIMER_SEL0, TIMER_SEL1, TIMER_SEL2};
 
   uint8_t sTimer;      
-  uint8_t controlWords[] = {TIMER_SEL0, TIMER_SEL1, TIMER_SEL2};
-  uint8_t sTimers[] = {TIMER_0, TIMER_1, TIMER_2};
-
   switch (timer) {  
     case 0: 
-      controlWord |= controlWords[0];
-      sTimer = sTimers[0];
+      control |= controlWords[0];
+      sTimer = TIMER_0;
       break;
     case 1:
-      controlWord |= controlWords[1];
-      sTimer = sTimers[1];
+      control |= controlWords[1];
+      sTimer = TIMER_1;
       break;
     case 2:
-      controlWord |= controlWords[2];
-      sTimer = sTimers[2];
+      control |= controlWords[2];
+      sTimer = TIMER_2;
       break;
     default:
       return 1;
   }
-  
-  if (sTimer == 0 || sys_outb(TIMER_CTRL, controlWord) != 0)  {
-      return 1;
-  }
 
-  if (sys_outb(sTimer, msb) != 0 || sys_outb(sTimer, lsb) != 0) {
+  if (sys_outb(TIMER_CTRL, control) != 0) return 1;
+  if (sys_outb(sTimer, LSB) != 0) return 1;
+  if (sys_outb(sTimer, MSB) != 0) return 1;
+
+  return 0;
+}
+
+int (timer_subscribe_int)(uint8_t *bit_no) {
+  if (!bit_no) {
+    return 1;
+  } 
+  *bit_no = BIT(hookId);
+  if (sys_irqsetpolicy(TIMER0_IRQ,IRQ_REENABLE, &hookId) != 0) {
     return 1;
   }
 
   return 0;
 }
 
-int (timer_subscribe_int)(uint8_t *bit_no) {
-    /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
-
-  return 1;
-}
-
 int (timer_unsubscribe_int)() {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  if (sys_irqrmpolicy( &hookId) != 0) {
+    return 1;
+  }
 
-  return 1;
+  return 0;
 }
 
 void (timer_int_handler)() {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  counter++;
 }
 
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
