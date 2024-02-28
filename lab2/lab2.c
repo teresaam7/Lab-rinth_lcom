@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+extern int counter;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -44,7 +45,44 @@ int(timer_test_time_base)(uint8_t timer, uint32_t freq) {
 }
 
 int(timer_test_int)(uint8_t time) {
-  
+  int r;
+  message msg;
+  int ipc_status;
+
+  uint8_t irq_set = 0;
+  if (timer_subscribe_int(&irq_set) != 0)
+    return 1;
+
+  while ( time > 0 ) { 
+    /* Get a request message */
+    if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+      printf("driver_receive failed with: %d", r);
+      continue;
+    }
+
+    if (is_ipc_notify(ipc_status)) {   /* received notification */
+      switch (_ENDPOINT_P(msg.m_source)) {
+        case HARDWARE:   /* hardware interrupt notification */			
+          if (msg.m_notify.interrupts & irq_set) {   // subscribed interrupt -> irq_set has a bit 1 where the interrupt is in
+            timer_int_handler();
+            if (counter >= 60) {
+              timer_print_elapsed_time();
+              counter = 0;
+              time--;
+            }
+          }
+          break;
+
+        default:
+          break; /* no other notifications expected: do nothing */	
+      }
+    } else { /* received a standard message, not a notification */
+         /* no standard messages expected: do nothing */
+    }
+ }
+
+ if (timer_unsubscribe_int() != 0)
+    return 1;
 
   return 0;
 }
