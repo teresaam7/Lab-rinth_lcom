@@ -5,30 +5,46 @@
 
 #include "i8254.h"
 
+int hook_id = 0;
+int counter = 0;
+
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
-  //uint32_t init_val = TIMER_FREQ / freq;
+  /*
+  uint8_t ctrl_word;   // Control Word - configuration command
+  if (util_sys_inb(timer, &ctrl_word) != 0) 
+    return 1;
+
+  uint32_t init_val = TIMER_FREQ / freq;
+
+
+  if (sys_outb(TIMER_CTRL, ctrl_word) != 0) 
+    return 1;
+  
+  return 0;
+  */
   return 1;
 }
 
 int (timer_subscribe_int)(uint8_t *bit_no) {
-    /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  if (bit_no == NULL)
+    return 1;
+  *bit_no = BIT(hook_id);
+  
+  if (sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id) != 0) 
+    return 1;
 
-  return 1;
+  return 0;
 }
 
 int (timer_unsubscribe_int)() {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
-
-  return 1;
+  if (sys_irqrmpolicy(&hook_id) != 0)
+    return 1;
+  
+  return 0;
 }
 
 void (timer_int_handler)() {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  counter++;
 }
 
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
@@ -53,31 +69,30 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
 int (timer_display_conf)(uint8_t timer, uint8_t st,
                         enum timer_status_field field) {
   union timer_status_field_val tsf_val;
+  uint8_t mode;   // Não é possível criar variáveis dentro do switch
 
   switch (field) {
     case tsf_all:
       tsf_val.byte = st;
       break;
 
-    /*
     case tsf_initial:
-      uint8_t init = (st >> 4) & 0x03;  //11
-      if (init == 1) tsf_val.in_mode = LSB_only;
-      else if (init == 2) tsf_val.in_mode = MSB_only;
-      else if (init == 3) tsf_val.in_mode = MSB_after_LSB;
+      mode = (st >> 4) & 0x03;  //11
+      if (mode == 1) tsf_val.in_mode = LSB_only;
+      else if (mode == 2) tsf_val.in_mode = MSB_only;
+      else if (mode == 3) tsf_val.in_mode = MSB_after_LSB;
       else tsf_val.in_mode = INVAL_val;
       break;
 
     case tsf_mode:
-      uint8_t mode = (st >> 1) & 0x07;  //111
+      mode = (st >> 1) & 0x07;  //111
       if (mode == 6) tsf_val.count_mode = 2;
       else if (mode == 7) tsf_val.count_mode = 3;
       else tsf_val.count_mode = mode;
       break; 
-    */
-
+    
     case tsf_base:
-      tsf_val.bcd = st & TIMER_BCD;   //bit 0 -> 0x01
+      tsf_val.bcd = st & 0x01;   //bit 0
       break;
 
     default:
