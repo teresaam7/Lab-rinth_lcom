@@ -9,20 +9,51 @@ int hook_id = 0;
 int counter = 0;
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
-  /*
-  uint8_t ctrl_word;   // Control Word - configuration command
-  if (util_sys_inb(timer, &ctrl_word) != 0) 
+  if (freq < 19 || freq > TIMER_FREQ) 
     return 1;
 
-  uint32_t init_val = TIMER_FREQ / freq;
+  uint8_t ctrl_word;   // Control Word - configuration command
+  if (timer_get_conf(timer, &ctrl_word) != 0) 
+    return 1;
 
+  ctrl_word = ctrl_word & 0x0F;   // Keep the 4 LS bits (mode and base)
+  ctrl_word = ctrl_word | TIMER_LSB_MSB;    // Set initialization mode
 
+  uint8_t addr_timer;
+  switch (timer) {  // Set the timer on the Control Word and store the adress
+    case 0:
+      addr_timer = TIMER_0;
+      break;
+
+    case 1:
+      ctrl_word = ctrl_word | TIMER_SEL1;
+      addr_timer = TIMER_1;
+      break;
+
+    case 2:
+      ctrl_word = ctrl_word | TIMER_SEL2;
+      addr_timer = TIMER_2;
+      break;
+
+    default: 
+      return 1;
+  }
+
+  // Set the control word to the control register -> set the value later
   if (sys_outb(TIMER_CTRL, ctrl_word) != 0) 
     return 1;
+
+  uint16_t init_val = TIMER_FREQ / freq;  // Initial value for the timer
+  uint8_t LSB_val; util_get_LSB(init_val, &LSB_val);
+  uint8_t MSB_val; util_get_MSB(init_val, &MSB_val);
   
+  // Load the initial value to the timer register - each byte at a time (LSB -> MSB)
+  if (sys_outb(addr_timer, LSB_val) != 0)
+    return 1;
+  if (sys_outb(addr_timer, MSB_val) != 0)
+    return 1;
+
   return 0;
-  */
-  return 1;
 }
 
 int (timer_subscribe_int)(uint8_t *bit_no) {

@@ -37,12 +37,16 @@ int(timer_test_read_config)(uint8_t timer, enum timer_status_field field) {
   return 0;
 }
 
-int(timer_test_time_base)(uint8_t timer, uint32_t freq) {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
 
-  return 1;
+int(timer_test_time_base)(uint8_t timer, uint32_t freq) {
+  if (timer < 0 || timer > 2 || freq < 19)
+    return 1;
+  
+  if (timer_set_frequency(timer, freq) != 0) return 1;
+
+  return 0;
 }
+
 
 int(timer_test_int)(uint8_t time) {
   int r;
@@ -50,8 +54,7 @@ int(timer_test_int)(uint8_t time) {
   int ipc_status;
 
   uint8_t irq_set = 0;
-  if (timer_subscribe_int(&irq_set) != 0)
-    return 1;
+  if (timer_subscribe_int(&irq_set) != 0) return 1;
 
   while ( time > 0 ) { 
     /* Get a request message */
@@ -81,8 +84,7 @@ int(timer_test_int)(uint8_t time) {
     }
  }
 
- if (timer_unsubscribe_int() != 0)
-    return 1;
+  if (timer_unsubscribe_int() != 0) return 1;
 
   return 0;
 }
