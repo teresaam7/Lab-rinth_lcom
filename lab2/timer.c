@@ -20,10 +20,10 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
 
   control = (control & 0x0F) | TIMER_LSB_MSB; 
 
-  uint32_t initialValue = TIMER_FREQ / freq;
+  uint32_t INIT_VAL = TIMER_FREQ / freq;
   uint8_t MSB, LSB;
-  util_get_MSB(initialValue, &MSB);
-  util_get_LSB(initialValue, &LSB);
+  util_get_MSB(INIT_VAL, &MSB);
+  util_get_LSB(INIT_VAL, &LSB);
 
   uint8_t controlWords[] = {TIMER_SEL0, TIMER_SEL1, TIMER_SEL2};
 
