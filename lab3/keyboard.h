@@ -13,7 +13,13 @@ int (keyboard_subscribe_int)(uint8_t *bit_no) ;
 
 int (keyboard_unsubscribe_int)();
 
+int (kbc_extract_scancode)();
+
 void (kbc_verify_scancode)();
+
+int (write_scancode)(uint8_t port, uint8_t command);
+
+int (restore_interrupts)();
 
 
 #endif

@@ -70,6 +70,24 @@ int (keyboard_unsubscribe_int)() {
   return 0;
 }
 
+int (kbc_extract_scancode)() {
+  uint8_t st = 0;
+  if(!(OBF & st)) {
+    return 1;
+  }
+
+  if (util_sys_inb(STAT_REG,&st)) {
+    return 1;
+  }
+
+  kbc_ih();
+  if(st & (PARITY | TIMEOUT)) {
+    return 1;
+  }
+
+  return 0;
+}
+
 void (kbc_verify_scancode)() {
     if (scancode == SCAN_1OF2) {
         bytes[0] = scancode;
@@ -92,5 +110,52 @@ void (kbc_verify_scancode)() {
             bytes[0] = scancode;
         }
     }
+}
+
+int (write_scancode)(uint8_t port, uint8_t command) {
+    uint8_t status;
+    uint8_t i = 10;
+
+    while (i) {
+        if (util_sys_inb(STAT_REG, &status) != 0){
+            printf("Error: Status not available!\n");
+            return 1;
+        }
+
+        if ((status & IBF) == 0){
+            if(sys_outb(port, command) != 0){
+                printf("Error: Could not write commandByte!\n");
+                return 1;
+            }
+
+            return 0;
+        }
+
+        tickdelay(micros_to_ticks(20000));
+        i--;
+    }
+    return 1;
+}
+
+int (restore_interrupts)() {
+    uint8_t command;
+
+    if (read_scancode(OUT_BUF, &command, 0) != 0) {
+        return 1;
+    } 
+    if (write_scancode(IN_CMD, R_CMD) != 0) {
+        return 1;
+    }         
+
+    command |= BIT(0);  
+
+    if (write_scancode(IN_CMD, W_CMD) != 0) {
+        return 1;
+    }   
+    if (write_scancode(W_CMD, command) != 0) {
+        return 1;
+    }
+
+    return 0;
 }
 

@@ -4,14 +4,18 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "I8042.h"
+
+#include "i8042.h"
+#include "i8254.h"
 #include "keyboard.h"
+#include "timer.c"
 
 extern uint8_t scancode;
 extern bool make; 
 extern uint8_t size; 
 extern uint8_t bytes[2];
 extern bool full_scancode;
+extern int counter;
 
 
 int main(int argc, char *argv[]) {
@@ -79,16 +83,73 @@ int(kbd_test_scan)() {
 }
 
 int(kbd_test_poll)() {
-  /* To be completed by the students */
-  printf("%s is not yet implemented!\n", __func__);
-
-  return 1;
+  while (scancode != BC_ESC ) {
+    if (read_scancode(OUT_BUF, &scancode, 0) == 0) {
+      kbd_print_scancode(!(scancode & MAKEORBREAK), scancode == SCAN_1OF2  ? 2 : 1, &scancode);
+    }   
+  }
+  return restore_interrupts();
 }
 
 int(kbd_test_timed_scan)(uint8_t n) {
-  /* To be completed by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  uint8_t timerBit = TIMER0_IRQ;
+  uint8_t kbdBit = KEYBOARD;
+  uint8_t wait = 0;
 
-  return 1;
+
+  int irq_set = BIT(TIMER0_IRQ);
+  int kbd_set = BIT(KEYBOARD);
+
+  if(timer_subscribe_int(&timerBit)){
+    return 1;
+  }
+
+  if(keyboard_subscribe_int(&kbdBit)){
+    return 1;
+  }
+
+  int ipc_status,r;
+  message msg;
+  while ((scancode != BC_ESC) && (wait != n)) {
+    // Get a request message
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+      printf("driver_receive failed with: %d", r);
+      continue;
+    }
+    if (is_ipc_notify(ipc_status)) { // received notification
+      switch (_ENDPOINT_P(msg.m_source)) {
+        case HARDWARE: // hardware interrupt notification
+          if(msg.m_notify.interrupts & irq_set){
+            timer_int_handler();
+            if (counter % 60 == 0)
+            {
+              wait++;
+            }
+            
+          }
+          if (msg.m_notify.interrupts & kbd_set) { // subscribed interrupt
+            wait = 0;
+            kbc_extract_scancode();
+            kbc_verify_scancode();
+            if (full_scancode){
+              kbd_print_scancode(make, size, bytes);
+            }
+          }
+          break;
+        default:
+          break; // no other notifications expected: do nothing
+      }
+    }
+    else { //received a standard message, not a notification
+      // no standard messages expected: do nothing
+    }
+  }
+  if(keyboard_unsubscribe_int()) {
+    return 1;
+  }
+  if(timer_unsubscribe_int()){
+    return 1;
+  }
+  return 0;
 }
 
