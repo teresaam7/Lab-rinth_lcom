@@ -92,23 +92,18 @@ int(kbd_test_poll)() {
 }
 
 int(kbd_test_timed_scan)(uint8_t n) {
-  uint8_t timerBit = TIMER0_IRQ;
-  uint8_t kbdBit = KEYBOARD;
+  uint8_t irq_set_timer, irq_set_kbc;
   uint8_t wait = 0;
 
-
-  int irq_set = BIT(TIMER0_IRQ);
-  int kbd_set = BIT(KEYBOARD);
-
-  if(timer_subscribe_int(&timerBit)){
+  if(timer_subscribe_int(&irq_set_timer) != 0){
     return 1;
   }
 
-  if(keyboard_subscribe_int(&kbdBit)){
+  if(keyboard_subscribe_int(&irq_set_kbc) != 0){
     return 1;
   }
 
-  int ipc_status,r;
+  int ipc_status, r;
   message msg;
   while ((scancode != BC_ESC) && (wait != n)) {
     // Get a request message
@@ -119,7 +114,7 @@ int(kbd_test_timed_scan)(uint8_t n) {
     if (is_ipc_notify(ipc_status)) { // received notification
       switch (_ENDPOINT_P(msg.m_source)) {
         case HARDWARE: // hardware interrupt notification
-          if(msg.m_notify.interrupts & irq_set){
+          if(msg.m_notify.interrupts & irq_set_timer){
             timer_int_handler();
             if (counter % 60 == 0)
             {
@@ -127,13 +122,14 @@ int(kbd_test_timed_scan)(uint8_t n) {
             }
             
           }
-          if (msg.m_notify.interrupts & kbd_set) { // subscribed interrupt
-            wait = 0;
-            kbc_extract_scancode();
+          if (msg.m_notify.interrupts & irq_set_kbc) { // subscribed interrupt
+            kbc_ih();
             kbc_verify_scancode();
-            if (full_scancode){
+            if (full_scancode) {
               kbd_print_scancode(make, size, bytes);
             }
+            wait = 0;
+            counter = 0;
           }
           break;
         default:
@@ -144,10 +140,10 @@ int(kbd_test_timed_scan)(uint8_t n) {
       // no standard messages expected: do nothing
     }
   }
-  if(keyboard_unsubscribe_int()) {
+  if(keyboard_unsubscribe_int() != 0) {
     return 1;
   }
-  if(timer_unsubscribe_int()){
+  if(timer_unsubscribe_int() != 0){
     return 1;
   }
   return 0;

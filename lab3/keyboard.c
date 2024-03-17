@@ -70,24 +70,6 @@ int (keyboard_unsubscribe_int)() {
   return 0;
 }
 
-int (kbc_extract_scancode)() {
-  uint8_t st = 0;
-  if(!(OBF & st)) {
-    return 1;
-  }
-
-  if (util_sys_inb(STAT_REG,&st)) {
-    return 1;
-  }
-
-  kbc_ih();
-  if(st & (PARITY | TIMEOUT)) {
-    return 1;
-  }
-
-  return 0;
-}
-
 void (kbc_verify_scancode)() {
     if (scancode == SCAN_1OF2) {
         bytes[0] = scancode;
