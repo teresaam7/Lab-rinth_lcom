@@ -16,6 +16,7 @@ extern uint8_t size;
 extern uint8_t bytes[2];
 extern bool full_scancode;
 extern int counter;
+extern uint32_t count_sysinb;
 
 
 int main(int argc, char *argv[]) {
@@ -139,6 +140,10 @@ int(kbd_test_timed_scan)(uint8_t n) {
   if(keyboard_unsubscribe_int() != 0) {
     return 1;
   }
+  if (kbd_print_no_sysinb(count_sysinb) != 0) {
+    return 1;
+  }
+    
   if(timer_unsubscribe_int() != 0){
     return 1;
   }
