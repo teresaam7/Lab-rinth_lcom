@@ -1,6 +1,11 @@
 {
     "files.associations": {
         "i8042.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "__bit_reference": "c",
+        "algorithm": "c",
+        "bitset": "c",
+        "chrono": "c",
+        "map": "c"
     }
 }

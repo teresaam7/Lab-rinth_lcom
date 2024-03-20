@@ -7,10 +7,10 @@
 #include "i8042.h"
 #include "keyboard.h"
 
+uint8_t i = 0;
+uint8_t bytes[2];
 extern uint8_t scancode;
 extern uint32_t count_sysinb;
-uint8_t bytes[2];
-uint8_t i = 0;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -67,13 +67,12 @@ int(kbd_test_scan)() {
             default:
                 break; /* no other notifications expected: do nothing */	
         }
-    } else { /* received a standard message, not a notification */
-        /* no standard messages expected: do nothing */
     }
   }
 
   if (keyboard_unsubscribe_int() != 0)
     return 1;
+
   if (kbd_print_no_sysinb(count_sysinb) != 0)
     return 1;
     
@@ -81,15 +80,9 @@ int(kbd_test_scan)() {
 }
 
 int(kbd_test_poll)() {
-  /* To be completed by the students */
-  printf("%s is not yet implemented!\n", __func__);
-
   return 1;
 }
 
 int(kbd_test_timed_scan)(uint8_t n) {
-  /* To be completed by the students */
-  printf("%s is not yet implemented!\n", __func__);
-
   return 1;
 }

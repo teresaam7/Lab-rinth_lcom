@@ -15,7 +15,7 @@
 
 #define SCAN_BREAK_ESC     0x81
 #define SCAN_TWO_B         0xE0    // first byte of two byte scancodes 
-#define MAKE_OR_BREAK      BIT(3)//0x08
+#define MAKE_OR_BREAK      BIT(7) 
 
 // #define scancode(code)(code&BIT(7))
 #endif

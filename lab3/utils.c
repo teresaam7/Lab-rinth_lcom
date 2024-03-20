@@ -16,6 +16,11 @@ int(util_get_MSB)(uint16_t val, uint8_t *msb) {
   return 0;
 }
 
+
+#ifdef LAB3
+int count_sysinb = 0;
+#endif
+
 int (util_sys_inb)(int port, uint8_t *value) {
   if (value == NULL) return 1;
   
@@ -23,6 +28,11 @@ int (util_sys_inb)(int port, uint8_t *value) {
   if (sys_inb(port, &temp) != 0)
     return 1;
 
+  #ifdef LAB3
+  count_sysinb++;
+  #endif
+
   *value = temp & 0xFF;
   return 0;
 }
+

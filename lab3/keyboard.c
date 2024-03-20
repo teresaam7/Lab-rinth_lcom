@@ -38,7 +38,7 @@ int (read_scancode)(uint8_t port, uint8_t* code) {
             return 1;
         }
         if (status & OBF)  {    // If the OutBuffer has a scancode (is full)
-            if (util_sys_inb(port, code) != 0) {
+            if (util_sys_inb(OUT_BUF, code) != 0) {
                 printf("Read error\n");
                 return 1;
             }
