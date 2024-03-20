@@ -80,8 +80,22 @@ int(kbd_test_scan)() {
 }
 
 int(kbd_test_poll)() {
-  return 1;
+  while (scancode != SCAN_BREAK_ESC) {
+    if (read_scancode(STATUS_REG, &scancode) != 0)
+      return 1;
+
+    if (scancode == SCAN_TWO_B) {
+      bytes[i] = scancode; i++;
+      continue;
+    }
+    bytes[i] = scancode;
+    kbd_print_scancode(!(scancode & MAKE_OR_BREAK), i == 0? 1: 2 , bytes);
+    i = 0;
+  }
+
+  return 0;
 }
+
 
 int(kbd_test_timed_scan)(uint8_t n) {
   return 1;
