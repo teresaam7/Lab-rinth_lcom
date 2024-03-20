@@ -10,12 +10,14 @@
 #include "keyboard.h"
 #include "timer.c"
 
+
 extern uint8_t scancode;
 extern bool make; 
 extern uint8_t size; 
 extern uint8_t bytes[2];
 extern bool full_scancode;
 extern int counter;
+extern int counter_sys;
 
 
 int main(int argc, char *argv[]) {
@@ -76,8 +78,9 @@ int(kbd_test_scan)() {
         /* no standard messages expected: do nothing */
     }
   }
-
-    
+  if (!kbd_print_no_sysinb(counter_sys)) {
+    return 1;
+  }
 
   return 0;
 }

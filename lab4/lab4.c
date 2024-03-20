@@ -4,6 +4,13 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#include "mouse.h"
+
+extern uint8_t current;
+extern uint8_t index; 
+extern struct packet mPacket;
+extern uint8_t mBytes[3]; 
+
 // Any header files included below this line should have been created by you
 
 int main(int argc, char *argv[]) {
@@ -32,9 +39,19 @@ int main(int argc, char *argv[]) {
 
 
 int (mouse_test_packet)(uint32_t cnt) {
-    /* To be completed */
-    printf("%s(%u): under construction\n", __func__, cnt);
+  int ipc_status;
+  message msg;
+
+  if(!timer_unsubscribe_int()) {
     return 1;
+  }
+  if(!mouse_unsubscribe_int()) {
+    return 1;
+  }
+  if(!keyboard_unsubscribe_int()) {
+    return 1;
+  }
+  return 0;
 }
 
 int (mouse_test_async)(uint8_t idle_time) {
