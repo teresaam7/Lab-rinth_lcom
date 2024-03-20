@@ -61,8 +61,8 @@ while(time>0) { /* You may want to use a different condition */
             case HARDWARE: /* hardware interrupt notification */				
                 if (msg.m_notify.interrupts & irq_set) { /* subscribed interrupt */
                   timer_int_handler();/* process it */
-                  int clock = counter % 60;
-                  if(clock == 0){
+                  int clock = counter % 60;   // no minix 1 segundo tem 60 ticks entao se isto der 0 sabemos que passou 1 segundo
+                  if(clock == 0){ //passou 1 segundo
                     timer_print_elapsed_time();
                     time--;
                   }
