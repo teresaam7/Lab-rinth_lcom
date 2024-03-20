@@ -6,11 +6,13 @@
 #include <stdint.h>
 #include "i8042.h"
 #include "keyboard.h"
+#include "timer.c"
 
 uint8_t i = 0;
 uint8_t bytes[2];
 extern uint8_t scancode;
-extern uint32_t count_sysinb;
+extern int count_sysinb;
+int count_ticks = 0; int count_sec = 0;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -98,5 +100,59 @@ int(kbd_test_poll)() {
 
 
 int(kbd_test_timed_scan)(uint8_t n) {
-  return 1;
+  uint8_t irq_set_timer = 0;
+  if (timer_subscribe_int(&irq_set_timer) != 0)
+    return 1;
+
+  uint8_t irq_set_keyboard = 0;
+  if (keyboard_subscribe_int(&irq_set_keyboard) != 0)
+    return 1;
+
+  int r;
+  message msg;
+  int ipc_status;
+  while ((scancode != SCAN_BREAK_ESC) && (count_sec < n)) { 
+    /* Get a request message. */
+    if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+        printf("driver_receive failed with: %d", r);
+        continue;
+    }
+    if (is_ipc_notify(ipc_status)) { /* received notification */
+        switch (_ENDPOINT_P(msg.m_source)) {
+            case HARDWARE: /* hardware interrupt notification */
+                if (msg.m_notify.interrupts & irq_set_timer) { /* subscribed interrupt */
+                  timer_int_handler();  // Não se deve mexer/reiniciar no counter -> utilizado em outros sitios
+                  count_ticks++;
+                  if (count_ticks%60 == 0) {
+                    count_ticks = 0;
+                    count_sec++;
+                  }
+                }
+                if (msg.m_notify.interrupts & irq_set_keyboard) { /* subscribed interrupt */
+                  count_ticks = 0; count_sec = 0;
+                  kbc_ih();
+                  if (scancode == SCAN_TWO_B) {
+                    bytes[i] = scancode; i++;
+                    continue;
+                  }
+                  bytes[i] = scancode;
+                  kbd_print_scancode(!(scancode & MAKE_OR_BREAK), i == 0? 1: 2 , bytes);
+                  i = 0;
+                }
+                break;
+            default:
+                break; /* no other notifications expected: do nothing */	
+        }
+    }
+  }
+
+  if (timer_unsubscribe_int() != 0)
+    return 1;
+  if (keyboard_unsubscribe_int() != 0)
+    return 1;
+
+  if (kbd_print_no_sysinb(count_sysinb) != 0)
+    return 1;
+    
+  return 0;
 }

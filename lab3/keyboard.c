@@ -2,22 +2,22 @@
 
 uint8_t scancode;
 uint32_t count_sysinb;
-int hook_id = 1;
+int hook_id_keyboard = 1;
 
 int (keyboard_subscribe_int)(uint8_t *bit_no) {
   if (bit_no == NULL)
     return 1;
-  *bit_no = BIT(hook_id);
+  *bit_no = BIT(hook_id_keyboard);
   
   int irq_line = 1;
-  if (sys_irqsetpolicy(irq_line, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id) != 0)
+  if (sys_irqsetpolicy(irq_line, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_keyboard) != 0)
     return 1;
 
   return 0;
 }
 
 int (keyboard_unsubscribe_int)() {
-  if (sys_irqrmpolicy(&hook_id) != 0)
+  if (sys_irqrmpolicy(&hook_id_keyboard) != 0)
     return 1;
   
   return 0;
