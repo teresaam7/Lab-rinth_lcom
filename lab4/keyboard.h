@@ -7,17 +7,6 @@
 
 int (read_scancode)(uint8_t port, uint8_t *out, uint8_t mouse);
 
-void (kbc_ih)() ; 	// Interrupt handler for the keyboard controller
-
-int (keyboard_subscribe_int)(uint8_t *bit_no) ;
-
-int (keyboard_unsubscribe_int)();
-
-void (kbc_verify_scancode)();
-
 int (write_scancode)(uint8_t port, uint8_t command);
-
-int (restore_interrupts)();
-
 
 #endif

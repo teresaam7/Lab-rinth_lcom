@@ -1,7 +1,7 @@
 #include "mouse.h"
 
 int hookIdMouse = 3;
-uint8_t current, index; 
+uint8_t current, bIndex = 0; 
 struct packet mPacket;
 uint8_t mBytes[3];   
 
@@ -29,22 +29,22 @@ int (mouse_unsubscribe_int)(){
 int (mouse_write)(uint8_t command) {
     int i = 10;
     uint8_t status;
-    while (i) {
-        if (write_scancode(W_CMD, &command, 0) != 0) {
+    do {
+        i--;
+        if (write_scancode(W_CMD, command) != 0) {
             return 1;
         } 
         if (write_scancode(IN_CMD, M_WRITE_BYTE) != 0) {
             return 1;
         } 
         tickdelay(micros_to_ticks(20000)); 
-        if (util_sys_inb(W_CMD, status) != 0) {
+        if (util_sys_inb(W_CMD, &status) != 0) {
             return 1;
         }
         if (status == ACK) {
             return 0;
         }  
-        i--;
-    }
+    } while (i && status != ACK);
 
     return 1;
 }
@@ -53,7 +53,7 @@ void (packet_contruction)() {
   int i = 0;
   while (i < 3) {
     mPacket.bytes[i] = mBytes[i];
-    --i;
+    ++i;
   }
 
   mPacket.lb = mBytes[0] & M_LB;                                                         // Byte 1 - lb
@@ -66,24 +66,15 @@ void (packet_contruction)() {
 }
 
 void (mouse_init) () {
-  if ((index > 0) || (index == 0 && (current & BYTE1))) {
-    mBytes[index] = current;
-    index++;
+  if ((bIndex == 0 && (current & BYTE1))) {
+    mBytes[bIndex] = current;
+    bIndex++;
+  }
+  else if (bIndex > 0) {
+    mBytes[bIndex] = current;
+    bIndex++;
   }
 }
 
-/*
-void mouse_sync_bytes() {
-    if (byte_index == 0 && (current_byte & FIRST_BYTE)) {
-        // Check if it's the first byte (CONTROL byte) and the third bit is active
-        mouse_bytes[byte_index] = current_byte; // Store the byte in the mouse_bytes array
-        byte_index++; // Increment the index for the next byte
-    }
-    else if (byte_index > 0) {
-        // If it's not the first byte and byte_index is greater than 0, it's likely X or Y displacement data
-        mouse_bytes[byte_index] = current_byte; // Store the byte in the mouse_bytes array
-        byte_index++; // Increment the index for the next byte
-    }
-}
 
-*/
+

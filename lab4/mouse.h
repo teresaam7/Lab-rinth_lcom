@@ -3,8 +3,8 @@
 
 #include <lcom/lcf.h>
 #include <stdint.h>
-#include "keyboard.c"
-#include "i8042.h"
+#include "keyboard.h"
+
 
 void (mouse_ih)(); 	// Interrupt handler for the mouse controller
 
@@ -19,3 +19,4 @@ void (packet_contruction)() ; //Constructs a packet from raw data
 void (mouse_init)();
 
 #endif
+
