@@ -1,1 +1,0 @@
-timer_print_config:mode timer = 2 count_mode = SQUARE WAVE MODE
