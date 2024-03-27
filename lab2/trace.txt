@@ -1,0 +1,24 @@
+@lcflib.a:2019, lcf_start
+  timer_test_read_config(timer, field)
+> timer_test_read_config(2, timer_status_field::mode)
+  @lab2.c:34, timer_test_read_config
+    timer_get_conf(timer, &config)
+  > timer_get_conf(2, addr: 0xeffff72b)
+    @timer.c:48, timer_get_conf
+      sys_outb(TIMER_CTRL, readbackcommand)
+    > sys_outb(0x43, 0xe8 = 0b11101000)
+    @utils.c:29, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x42, addr: 0xeffff610)
+    < sys_inb(0x42, addr: 0xeffff610 [0x86 = 0b10000110])
+  < timer_get_conf(2, addr: 0xeffff72b [0x86 = 0b10000110]) -> (ret: 0)
+  @lab2.c:37, timer_test_read_config
+    timer_display_conf(timer, config, field)
+  > timer_display_conf(2, 0x86 = 0b10000110, timer_status_field::mode)
+    @timer.c:91, timer_display_conf
+      timer_print_config(timer, field, status)
+    > timer_print_config(2, timer_status_field::mode, timer_status_field_val::count_mode = 3)
+      "timer_print_config:mode timer = 2 count_mode = SQUARE WAVE MODE"
+    < timer_print_config(...) -> (ret: 0)
+  < timer_display_conf(2, 0x86 = 0b10000110, timer_status_field::mode) -> (ret: 0)
+< timer_test_read_config(2, timer_status_field::mode) -> (ret: 0)
