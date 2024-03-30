@@ -6,6 +6,7 @@
         "algorithm": "c",
         "bitset": "c",
         "chrono": "c",
-        "map": "c"
+        "map": "c",
+        "stdio.h": "c"
     }
 }
