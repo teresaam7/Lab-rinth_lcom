@@ -12,24 +12,56 @@ uint8_t byte_mouse;
 uint8_t index_byte;
 struct packet packet_mouse;
 
-/*
-int (mouse_command)(uint8_t data_mode) {
-    
-    if (sys_outb(KBC_CMD, WRITE_BYTE_MOUSE) != 0)
-        return 1;
 
+int (write_kbc)(uint8_t port, uint8_t command) {
+    uint8_t status;
+    int attemps_count = 10;
+
+    while (attemps_count) {
+        if (util_sys_inb(STATUS_REG, &status) != 0) {
+            printf("Error reading status from KBC\n");
+            return 1;
+        }
+        
+        if (!(status & IBF)) {
+            if (sys_outb(port, command) != 0) {
+                printf("Error writing command to KBC\n");
+                return 1;
+            }
+
+            return 0;
+        }
+
+        tickdelay(micros_to_ticks(2000));
+        attemps_count--;
+    }
     return 1;
 }
 
 
-int (kbc_command)(uint8_t data_mode) {
-    
-    if (sys_outb(KBC_CMD, WRITE_BYTE_MOUSE) != 0)
-        return 1;
+int (write_mouse) (uint8_t command) {
+    uint8_t received_byte = NACK;
+    int attemps_count = 10;
+
+    while (attemps_count && (received_byte != ACK)) {
+        if (write_kbc(KBC_CMD, WRITE_BYTE_MOUSE) != 0)
+            return 1;
+        if (write_kbc(IN_BUF, command) != 0)
+            return 1;
+
+        tickdelay(micros_to_ticks(20000));
+
+        if (util_sys_inb(OUT_BUF, &received_byte) != 0)
+            return 1;
+            
+        attemps_count--;
+    }
+
+    if (received_byte == ACK)
+        return 0;
 
     return 1;
 }
-*/
 
 
 int (mouse_subscribe_int)(uint8_t* irq_set) {

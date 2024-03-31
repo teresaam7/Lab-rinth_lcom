@@ -5,7 +5,8 @@
 #include <lcom/lcf.h>
 #include "i8042.h"
 
-int (mouse_data_report)(uint8_t data_mode);
+int (write_kbc)(uint8_t port, uint8_t command);
+int (write_mouse) (uint8_t command);
 
 int (mouse_subscribe_int)(uint8_t* irq_set);
 int (mouse_unsubscribe_int)();

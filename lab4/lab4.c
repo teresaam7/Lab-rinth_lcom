@@ -35,9 +35,9 @@ int main(int argc, char *argv[]) {
 
 
 int (mouse_test_packet)(uint32_t cnt) {
-    //if (mouse_data_report(ENABLE_DATA_MODE) != 0)
-    //  return 1;
-    if (mouse_enable_data_reporting() != 0) return 1;
+    if (write_mouse(ENABLE_DATA_MODE) != 0)
+      return 1;
+    //if (mouse_enable_data_reporting() != 0) return 1;
 
     uint8_t irq_set_mouse;
     if (mouse_subscribe_int(&irq_set_mouse) != 0)
@@ -74,8 +74,8 @@ int (mouse_test_packet)(uint32_t cnt) {
       }
     }
 
-    //if (mouse_data_report(DISABLE_DATA_MODE) != 0)
-      //return 1;
+    if (write_mouse(DISABLE_DATA_MODE) != 0)
+      return 1;
 
     if (mouse_unsubscribe_int() != 0)
       return 1;
