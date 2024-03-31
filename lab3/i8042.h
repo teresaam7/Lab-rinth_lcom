@@ -12,11 +12,11 @@
 #define TIMEOUT    BIT(6) //Timeout error - invalid data
 #define PARITY     BIT(7) //Parity error - invalid data
 
-//slide 7
-#define STATUS_REG     0x64
-#define KBC_COMMANDS   0x64 //Commands to the KBC 
+//slide 7 e 17
+#define STATUS_REG     0x64  //Read the KBC state
+#define KBC_CMD_REG   0x64 //Commands to the KBC 
 #define IN_BUF       0x60 //Arguments of KBC commands
-#define OUT_BUF      0x60
+#define OUT_BUF      0x60 //Read scancodes or return values from KBC commands
 
 //slide 10
 #define BREAK_ESC    0x81

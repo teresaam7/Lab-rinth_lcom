@@ -71,7 +71,7 @@ int(timer_test_int)(uint8_t time) {
             case HARDWARE: /* hardware interrupt notification */				
                 if (msg.m_notify.interrupts & irq_set) { /* subscribed interrupt */
                     /* process it */
-                    timer_int_handler();
+                    timer_int_handler();//counter++
                     if(counter==60){
                       timer_print_elapsed_time();
                       counter = 0;
