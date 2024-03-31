@@ -4,10 +4,14 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <mouse.h>
+#include "timer.c"
 
 extern struct packet packet_mouse;
 extern uint8_t index_byte;
 uint32_t packets_count = 0;
+
+uint8_t time_count = 0;
+extern int counter;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -37,7 +41,6 @@ int main(int argc, char *argv[]) {
 int (mouse_test_packet)(uint32_t cnt) {
     if (write_mouse(ENABLE_DATA_MODE) != 0)
       return 1;
-    //if (mouse_enable_data_reporting() != 0) return 1;
 
     uint8_t irq_set_mouse;
     if (mouse_subscribe_int(&irq_set_mouse) != 0)
@@ -74,10 +77,10 @@ int (mouse_test_packet)(uint32_t cnt) {
       }
     }
 
-    if (write_mouse(DISABLE_DATA_MODE) != 0)
+    if (mouse_unsubscribe_int() != 0)
       return 1;
 
-    if (mouse_unsubscribe_int() != 0)
+    if (write_mouse(DISABLE_DATA_MODE) != 0)
       return 1;
 
     return 0;
@@ -85,9 +88,68 @@ int (mouse_test_packet)(uint32_t cnt) {
 
 
 int (mouse_test_async)(uint8_t idle_time) {
-    /* To be completed */
-    printf("%s(%u): under construction\n", __func__, idle_time);
-    return 1;
+    if (write_mouse(ENABLE_DATA_MODE) != 0)
+      return 1;
+
+    uint8_t irq_set_mouse;
+    if (mouse_subscribe_int(&irq_set_mouse) != 0)
+      return 1;
+
+    uint8_t irq_set_timer;
+    if (timer_subscribe_int(&irq_set_timer) != 0)
+      return 1;
+    
+    int r;
+    message msg;
+    int ipc_status;
+    int freq = sys_hz();
+    while (time_count < idle_time) { 
+      /* Get a request message. */
+      if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+        printf("driver_receive failed with: %d", r);
+        continue;
+      }
+      
+      if (is_ipc_notify(ipc_status)) { /* received notification */
+        switch (_ENDPOINT_P(msg.m_source)) {
+          case HARDWARE: /* hardware interrupt notification */
+            if (msg.m_notify.interrupts & irq_set_mouse) { /* process it */
+              mouse_ih();
+
+              if (index_byte == 3) {
+                store_bytes_packet();
+                mouse_print_packet(&packet_mouse);
+                packets_count++;
+                index_byte = 0;
+                counter = 0;
+                time_count = 0;
+              }
+            }
+            if (msg.m_notify.interrupts & irq_set_timer) {
+              timer_int_handler();
+              if (counter > freq) {
+                counter = 0;
+                time_count++;
+              } 
+            }
+            break;
+
+          default:
+            break; 
+        }
+      }
+    }
+
+    if (mouse_unsubscribe_int() != 0)
+      return 1;
+
+    if (timer_unsubscribe_int() != 0)
+      return 1;
+
+    if (write_mouse(DISABLE_DATA_MODE) != 0)
+      return 1;
+
+    return 0;
 }
 
 int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
