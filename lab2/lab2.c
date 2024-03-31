@@ -60,7 +60,7 @@ int(timer_test_int)(uint8_t time) {
  if(timer_subscribe_int(&irq_set)!=0){
   return 1;
  }
- while(time>0) { /* You may want to use a different condition */
+ while(time>0&&time<40) { /* You may want to use a different condition */
     /* Get a request message. */
     if((r=driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
         printf("driver_receive failed with: %d", r);

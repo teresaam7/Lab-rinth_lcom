@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "xutility": "c"
+        "xutility": "c",
+        "stdint.h": "c"
     }
 }
