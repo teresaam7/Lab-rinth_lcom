@@ -9,8 +9,11 @@ int (keyboard_subscribe_int)(uint8_t *bit_no);
 
 int (keyboard_unsubscribe_int)();
 
-int (read_scancode)(uint8_t port, uint8_t* code);
+int (read_kbc)(uint8_t port, uint8_t* code);
 
 void (kbc_ih)();
+
+int (write_comm)(uint8_t port, uint8_t comm);
+int (restore_int)();
 
 #endif

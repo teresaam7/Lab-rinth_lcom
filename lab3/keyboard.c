@@ -25,14 +25,14 @@ int (keyboard_unsubscribe_int)() {
 
 
 void (kbc_ih)() {
-    if (read_scancode(STATUS_REG, &scancode) != 0)
+    if (read_kbc(STATUS_REG, &scancode) != 0)
         printf("Read scancode error\n");   
 }
 
-int (read_scancode)(uint8_t port, uint8_t* code) {
-    int  i = 0;
+int (read_kbc)(uint8_t port, uint8_t* code) {
+    int count_attemps = 0;
     uint8_t status;
-    while (i < 10) {
+    while (count_attemps < 10) {
         if (util_sys_inb(port, &status) != 0) {
             printf("Status error\n");
             return 1;
@@ -57,8 +57,51 @@ int (read_scancode)(uint8_t port, uint8_t* code) {
             }
           return 0;   // Sucessfull read!
         }
-        tickdelay(micros_to_ticks(1000));
-        i++;
+        tickdelay(micros_to_ticks(10000));
+        count_attemps++;
     }
     return 1;   // Unsucessfull
+}
+
+
+int (write_comm)(uint8_t port, uint8_t comm) {
+  uint8_t status;
+  int count_attemps = 0;
+
+  while (count_attemps < 10) {
+    if (util_sys_inb(STATUS_REG, &status) != 0)
+      return 1;
+
+    if (!(status & IBF)) {
+      if (sys_outb(port, comm) != 0)
+        return 1;
+      
+      return 0;
+    }
+
+    tickdelay(micros_to_ticks(10000));
+    count_attemps++;
+  }
+
+  return 1;
+}
+
+
+int (restore_int)() {
+  if (write_comm(KBC_CMD, READ_COMM_BYTE) != 0)
+    return 1;
+
+  uint8_t command_byte;
+  if (read_kbc(OUT_BUF, &command_byte) != 0)
+    return 1;
+
+  command_byte = command_byte & ENABLE_INT_KEYBOARD;
+
+  if (write_comm(KBC_CMD, WRITE_COMM_BYTE) != 0)
+    return 1;
+
+  if (write_comm(IN_BUF, command_byte) != 0)
+    return 1;
+
+  return 0;
 }

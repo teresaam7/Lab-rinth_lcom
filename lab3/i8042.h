@@ -17,5 +17,8 @@
 #define SCAN_TWO_B         0xE0    // first byte of two byte scancodes 
 #define MAKE_OR_BREAK      BIT(7) 
 
-// #define scancode(code)(code&BIT(7))
+#define READ_COMM_BYTE          0x20
+#define WRITE_COMM_BYTE         0x60
+#define ENABLE_INT_KEYBOARD     BIT(0)
+
 #endif

@@ -83,7 +83,7 @@ int(kbd_test_scan)() {
 
 int(kbd_test_poll)() {
   while (scancode != SCAN_BREAK_ESC) {
-    if (read_scancode(STATUS_REG, &scancode) != 0)
+    if (read_kbc(STATUS_REG, &scancode) != 0)
       return 1;
 
     if (scancode == SCAN_TWO_B) {
@@ -94,6 +94,9 @@ int(kbd_test_poll)() {
     kbd_print_scancode(!(scancode & MAKE_OR_BREAK), i == 0? 1: 2 , bytes);
     i = 0;
   }
+
+  if (restore_int() != 0)
+    return 1;
 
   return 0;
 }

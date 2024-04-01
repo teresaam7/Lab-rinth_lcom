@@ -13,6 +13,16 @@ uint32_t packets_count = 0;
 uint8_t time_count = 0;
 extern int counter;
 
+typedef enum {
+  START,
+  UP_LINE,
+  VERTEX,
+  DOWN_LINE,
+  END
+} State;
+State state = START;
+
+
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
   lcf_set_language("EN-US");
@@ -152,10 +162,83 @@ int (mouse_test_async)(uint8_t idle_time) {
     return 0;
 }
 
+
+void (state_machine)() {
+
+  switch (state) {
+    case START:
+      o
+      break;
+
+    case UP_LINE:
+      o
+      break;
+
+    case VERTEX:
+      o
+      break;
+
+    case DOWN_LINE:
+      o
+      break;
+
+    case END:
+      o
+      break;
+
+    default: 
+      break;
+  }
+
+}
+
 int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
-    /* To be completed */
-    printf("%s: under construction\n", __func__);
-    return 1;
+    if (write_mouse(ENABLE_DATA_MODE) != 0)
+      return 1;
+
+    uint8_t irq_set_mouse;
+    if (mouse_subscribe_int(&irq_set_mouse) != 0)
+      return 1;
+    
+    int r;
+    message msg;
+    int ipc_status;
+    while ( state != END ) { 
+      /* Get a request message. */
+      if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+        printf("driver_receive failed with: %d", r);
+        continue;
+      }
+      
+      if (is_ipc_notify(ipc_status)) { /* received notification */
+        switch (_ENDPOINT_P(msg.m_source)) {
+          case HARDWARE: /* hardware interrupt notification */
+            if (msg.m_notify.interrupts & irq_set_mouse) { /* process it */
+              mouse_ih();
+
+              if (index_byte == 3) {
+                store_bytes_packet();
+                mouse_print_packet(&packet_mouse);
+                
+                packets_count++;
+                index_byte = 0;
+              }
+            }
+            break;
+
+          default:
+            break; 
+        }
+      }
+    }
+
+    if (mouse_unsubscribe_int() != 0)
+      return 1;
+
+    if (write_mouse(DISABLE_DATA_MODE) != 0)
+      return 1;
+
+    return 0;
 }
 
 int (mouse_test_remote)(uint16_t period, uint8_t cnt) {
