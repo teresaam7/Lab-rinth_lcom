@@ -30,7 +30,7 @@ int (read_scancode)(uint8_t port, uint8_t* code){
   uint8_t status;
   int i=0;
   while(i<10){ //limita o número de tentativas de leitura do scancode
-    if(util_sys_inb(port, &status)!=0){ //status=STATUS_REG
+    if(util_sys_inb(STATUS_REG, &status)!=0){ //status=STATUS_REG
       printf("Status error\n");
       return 1;
     }
@@ -65,4 +65,41 @@ void (kbc_ih)(){
   if(read_scancode(STATUS_REG, &scancode)!=0){
     printf("Read scancode error\n");
   }
+}
+
+int (write_KBC_command)(uint8_t port, uint8_t commandByte) {
+    uint8_t status;
+    uint8_t n=0;
+    while(n<10){
+        if(util_sys_inb(STATUS_REG, &status)!=0){
+          printf("Error: Status not available!\n");
+          return 1;
+        }
+       // printf("%d\n",status&BIT(0));
+        if((status&BIT(0))==0){
+            if(sys_outb(port, commandByte) != 0){
+                printf("Error: Could not write commandByte!\n");
+                return 1;
+            }
+            return 0;
+        }
+        tickdelay(micros_to_ticks(DELAY_US));
+        n++;
+    }
+    return 1;
+}
+
+int keyboard_restore(){
+  uint8_t commandByte;
+
+    if (write_KBC_command(KBC_CMD_REG,0x20)!=0) return 1; //avisar o i8042 da leitura     
+    if (read_scancode(OUT_BUF,&commandByte)!=0) return 1; //ler a configuração
+
+    //if bit(0)==1 enable interrupt on OBF, from keyboard
+    commandByte |= BIT(0);  
+
+    if (write_KBC_command(KBC_CMD_REG,0x60) != 0) return 1; //avisar o i8042 da escrita
+    if (write_KBC_command(OUT_BUF, commandByte) != 0) return 1; //escrever a configuração
+
+    return 0;
 }

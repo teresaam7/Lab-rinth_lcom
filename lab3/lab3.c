@@ -103,10 +103,10 @@ int(kbd_test_poll)() {
     i=0; 
   }
 
- /* if(kbd_print_no_sysinb(count_sysinb)!=0){ 
+  if(kbd_print_no_sysinb(count_sysinb)!=0){ 
     return 1;
-  }*/
-  return 0;
+  }
+  return keyboard_restore();
 }
 
 int(kbd_test_timed_scan)(uint8_t n) {
