@@ -13,41 +13,39 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   if (freq > TIMER_FREQ || freq < 19) {
      return 1;
   }
-  uint8_t control;
+  uint8_t control = 0x00;
   if (timer_get_conf(timer, &control) != 0) {
     return 1;
   } 
 
-  control = (control & 0x0F) | TIMER_LSB_MSB; 
+  control = (control & 0x0F) | TIMER_LSB_MSB;  // control = ((control & 0x0F ) | BIT(4) | BIT(5)); 
 
   uint32_t INIT_VAL = TIMER_FREQ / freq;
   uint8_t MSB, LSB;
   util_get_MSB(INIT_VAL, &MSB);
   util_get_LSB(INIT_VAL, &LSB);
 
-  uint8_t controlWords[] = {TIMER_SEL0, TIMER_SEL1, TIMER_SEL2};
+  // printf("The initial value is %d\n", INIT_VAL);
 
-  uint8_t sTimer;      
+  uint8_t controlWords[] = {TIMER_SEL0, TIMER_SEL1, TIMER_SEL2};
+     
   switch (timer) {  
     case 0: 
       control |= controlWords[0];
-      sTimer = TIMER_0;
       break;
     case 1:
       control |= controlWords[1];
-      sTimer = TIMER_1;
       break;
     case 2:
       control |= controlWords[2];
-      sTimer = TIMER_2;
       break;
     default:
       return 1;
   }
 
   if (sys_outb(TIMER_CTRL, control) != 0) return 1;
-  if (sys_outb(sTimer, LSB) != 0) return 1;
-  if (sys_outb(sTimer, MSB) != 0) return 1;
+  if (sys_outb(TIMER_0 + timer, LSB) != 0) return 1;
+  if (sys_outb(TIMER_0 +timer, MSB) != 0) return 1;
 
   return 0;
 }
@@ -81,7 +79,7 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
     return 1;
   }
 
-  uint8_t rbcom = (TIMER_RB_CMD | TIMER_RB_COUNT_ | TIMER_RB_SEL(timer)); 
+  uint8_t rbcom = (TIMER_RB_CMD | TIMER_RB_COUNT_ | TIMER_RB_SEL(timer)); // rbcm = (BIT(7) | BIT(6)) | BIT((timer)+1)
 
   if (sys_outb(TIMER_CTRL, rbcom) != 0){
     return 1;
@@ -92,13 +90,13 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
   if (util_sys_inb(port,st) != 0){
     return 1;
   } 
-  return 0;
+  return 0; 
 }
 
 
 int (timer_display_conf)(uint8_t timer, uint8_t st,
                         enum timer_status_field field) {
-  union  	timer_status_field_val controlWord;
+  union  timer_status_field_val controlWord;
 
   switch (field) {
     case tsf_all :
@@ -120,6 +118,7 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
       else if(st == 7) 
         controlWord.count_mode = 3;
       else controlWord.count_mode = st;
+      break;
     case tsf_base:
       controlWord.bcd = st & TIMER_BCD;
       break;
@@ -130,4 +129,5 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
   if (timer_print_config(timer, field, controlWord) != 0) return 1;
   return 0;
 }
+
 

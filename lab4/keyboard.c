@@ -25,7 +25,12 @@ int (read_scancode)(uint8_t port, uint8_t *out, uint8_t mouse) {
                 return 1;
             }
 
-            if ( ((status & AUX) & !mouse) || (!(status & AUX) & mouse)){
+            if ( ((status & AUX) != 0 )& !mouse){
+                printf("Mouse error\n");
+                return 1;
+            }
+
+            if ((!(status & AUX) !=0) & mouse) {
                 printf("Mouse error\n");
                 return 1;
             }

@@ -66,8 +66,8 @@ int(kbd_test_scan)() {
                 if (msg.m_notify.interrupts & irq_set) { /* subscribed interrupt */
                   kbc_ih();
                   kbc_verify_scancode();
-                  if (full_scancode) {
-                    kbd_print_scancode(make, size, bytes);
+                  if (full_scancode) {                   
+                    kbd_print_scancode(make, size, bytes);    // kbd_print_scancode(!(scancode & MAKE_CODE), scancode == TWO_BYTES ? 2 : 1, &scancode);
                   }
                 }
                 break;
@@ -77,6 +77,9 @@ int(kbd_test_scan)() {
     } else { /* received a standard message, not a notification */
         /* no standard messages expected: do nothing */
     }
+  }
+  if  (!keyboard_unsubscribe_int()) {
+    return 1;
   }
   if (!kbd_print_no_sysinb(counter_sys)) {
     return 1;

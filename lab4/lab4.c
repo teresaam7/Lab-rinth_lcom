@@ -61,8 +61,7 @@ int (mouse_test_packet)(uint32_t cnt) {
     return 1;
   }
 
-  while (cnt) { 
-
+  while (cnt > 0) { 
     if (driver_receive(ANY, &msg, &ipc_status) != 0){
       printf("Error");
       continue;
@@ -191,10 +190,10 @@ int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
   message msg;
   uint8_t mouse_mask;
 
-  if (!mouse_subscribe_int(&mouse_mask)) {
+  if (mouse_subscribe_int(&mouse_mask) != 0) {
     return 1;
   }
-  if (!mouse_write(ENABLE_STRMODE)) {
+  if (mouse_write(ENABLE_STRMODE) != 0) {
     return 1;
   }
 
@@ -222,11 +221,11 @@ int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
     }
   }
 
-  if (!mouse_write(DISABLE)) {
+  if (mouse_write(DISABLE) != 0) {
     return 1;
   }
 
-  if (!mouse_unsubscribe_int()) {
+  if (mouse_unsubscribe_int() != 0) {
     return 1;
   }
 
