@@ -20,7 +20,7 @@ typedef enum {
 } states;
 
 states state = START;
-uint16_t x_len_total = 0;
+uint16_t len = 0;
 
 
 int main(int argc, char *argv[]) {
@@ -97,9 +97,14 @@ int (mouse_test_packet)(uint32_t cnt) {
 int (mouse_test_async)(uint8_t idle_time) {
   int ipc_status;
   message msg;
+  int r;
   uint8_t sec = 0;
   uint8_t mouse_mask = 0, timer_mask = 0; 
   uint16_t timerFreq = sys_hz();
+
+  if (mouse_write(ENABLE_STRMODE) != 0) {
+    return 1;
+  } 
 
   if (mouse_subscribe_int(&mouse_mask) != 0) {
     return 1;
@@ -108,14 +113,10 @@ int (mouse_test_async)(uint8_t idle_time) {
     return 1;
   }
 
-  if (mouse_write(ENABLE_STRMODE) != 0) {
-    return 1;
-  } 
-
   while (sec < idle_time) { 
 
-    if (driver_receive(ANY, &msg, &ipc_status) != 0){
-      printf("Error");
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0){
+      printf("driver_receive failed with: %d", r);
       continue;
     }
 
@@ -131,12 +132,11 @@ int (mouse_test_async)(uint8_t idle_time) {
           }
 
           if (msg.m_notify.interrupts & mouse_mask){  
-            mouse_ih();                               
-            mouse_init();                      
-            if (bIndex == 3) {            
+            mouse_ih();                                                   
+            if (bIndex == 3) { 
+              mouse_init();             
               packet_contruction();                // Create packet
               mouse_print_packet(&mPacket);      
-              bIndex = 0;
             }
             sec = 0;
             counter = 0;
@@ -144,22 +144,103 @@ int (mouse_test_async)(uint8_t idle_time) {
       }
     }
   }
-  if (mouse_write(DISABLE) != 0) {
-    return 1;
-  }
   if (timer_unsubscribe_int() != 0) {
     return 1;
   }
   if (mouse_unsubscribe_int() != 0) {
     return 1;
   }
+  if (mouse_write(DISABLE) != 0) {
+    return 1;
+  }
 
   return 0;
 }
 
+void switch_state(uint8_t tolerance) {
+    switch (state) {
+        case START:
+            if (mPacket.lb && !mPacket.rb && !mPacket.mb) {
+                state = UP;
+            }
+            break;
+
+        case UP:
+            if ((mPacket.lb && mPacket.rb && !mPacket.mb) || (mPacket.lb && !mPacket.rb && mPacket.mb)) {
+                state = VERTEX;
+            } else if (!mPacket.lb && !mPacket.rb && !mPacket.mb) {
+                state = START;
+            }
+            break;
+
+        case VERTEX:
+            if ((mPacket.lb && mPacket.rb && mPacket.mb) || (!mPacket.lb && !mPacket.rb && mPacket.mb)) {
+                state = DOWN;
+            } else if (!mPacket.lb && !mPacket.rb && !mPacket.mb) {
+                state = END;
+            }
+            break;
+
+        case DOWN:
+            if ((mPacket.lb && !mPacket.rb && !mPacket.mb) || (!mPacket.lb && !mPacket.rb && !mPacket.mb)) {
+                state = VERTEX;
+            } else if (!mPacket.lb && !mPacket.rb && mPacket.mb) {
+                state = END;
+            }
+            break;
+
+        case END:
+            break;
+    }
+}
+
+
 int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
-    printf("%s(%u, %u): under construction\n", __func__, period, cnt);
+  int ipc_status;
+  int r;
+  message msg;
+  uint8_t mouse_mask;
+
+  if (mouse_write(ENABLE_STRMODE) != 0) {
     return 1;
+  }
+
+  if (mouse_subscribe_int(&mouse_mask) != 0) {
+    return 1;
+  }
+
+  while (state != END) { 
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0){
+      printf("driver_receive failed with: %d", r);
+      continue;
+    }
+
+    if (is_ipc_notify(ipc_status)){
+      switch(_ENDPOINT_P(msg.m_source)){
+        case HARDWARE: 
+          if (msg.m_notify.interrupts & mouse_mask){  
+            mouse_ih();                                                                        
+            if (bIndex == 3) {  
+              mouse_init();                         
+              packet_contruction();                                      
+              switch_state(tolerance);      
+              bIndex = 0;
+            }
+          }
+          break;
+      }
+    }
+  }
+
+  if  (mouse_unsubscribe_int() != 0) {  
+    return 1;
+  }
+
+  if (mouse_write(DISABLE) != 0) {
+    return 1;
+  }
+
+  return 0;
 }
 
 int (mouse_test_remote)(uint16_t period, uint8_t cnt) {
@@ -167,12 +248,11 @@ int (mouse_test_remote)(uint16_t period, uint8_t cnt) {
         if (mouse_write(M_READ) != 0) {
           return 1;
         } 
-        mouse_ih();                                       
-        mouse_init();                                  
-        if (bIndex == 3) {                            
+        mouse_ih();                                                                       
+        if (bIndex == 3) {      
+            mouse_init();                  
             packet_contruction();                     
-            mouse_print_packet(&mPacket);           
-            bIndex = 0;
+            mouse_print_packet(&mPacket);
             cnt--;
             tickdelay(micros_to_ticks(period * 1000));    
         }
@@ -185,11 +265,12 @@ int (mouse_test_remote)(uint16_t period, uint8_t cnt) {
       return 1;
     }
   
-    uint8_t commandByte = minix_get_dflt_kbc_cmd_byte();              
+    uint8_t command = minix_get_dflt_kbc_cmd_byte();       
+
     if (write_scancode(IN_CMD, OUT_BUF) != 0) {
       return 1; 
     } 
-    if (write_scancode(OUT_BUF, commandByte) != 0) {
+    if (write_scancode(OUT_BUF, command) != 0) {
       return 1;
     }
     return 0;

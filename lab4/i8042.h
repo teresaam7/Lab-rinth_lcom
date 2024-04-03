@@ -9,7 +9,7 @@
 #define OBF            BIT(0) // Output buffer
 #define IBF            BIT(1) // Input buffer
 #define INH            BIT(4) // Inhibit flag
-#define AUX            BIT(6) // Mouse data
+#define AUX            BIT(5) // Mouse data
 #define TIMEOUT        BIT(6) // Timeout error - invalid data
 #define  PARITY        BIT(7) // Parity error - invalid data
 

@@ -32,12 +32,12 @@ int (mouse_write)(uint8_t command) {
     int i = 10;
     uint8_t status = NACK;
     while (i && status != ACK){
-        if (write_scancode(W_CMD, command) != 0) {
-            return 1;
-        } 
         if (write_scancode(IN_CMD, M_WRITE_BYTE) != 0) {
             return 1;
-        } 
+        }
+        if (write_scancode(W_CMD, command) != 0) {
+            return 1;
+        }  
         tickdelay(micros_to_ticks(20000)); 
         if (util_sys_inb(W_CMD, &status) != 0) {
             return 1;
