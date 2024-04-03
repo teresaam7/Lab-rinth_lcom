@@ -6,10 +6,10 @@
 
 
 int hook_id_mouse = 3;
-uint8_t bytes_mouse[3];
 uint8_t byte_mouse;
 
 uint8_t index_byte;
+uint8_t bytes_mouse[3];
 struct packet packet_mouse;
 
 

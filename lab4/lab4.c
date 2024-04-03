@@ -8,6 +8,8 @@
 
 extern struct packet packet_mouse;
 extern uint8_t index_byte;
+extern uint8_t bytes_mouse[3];
+
 uint32_t packets_count = 0;
 
 uint8_t time_count = 0;
@@ -137,7 +139,7 @@ int (mouse_test_async)(uint8_t idle_time) {
             }
             if (msg.m_notify.interrupts & irq_set_timer) {
               timer_int_handler();
-              if (counter > freq) {
+              if (counter == freq) {
                 counter = 0;
                 time_count++;
               } 
@@ -167,23 +169,22 @@ void (state_machine)() {
 
   switch (state) {
     case START:
-      o
+      if ((bytes_mouse[0] & BIT(0)) )
       break;
 
     case UP_LINE:
-      o
+      //o
       break;
 
     case VERTEX:
-      o
+      //o
       break;
 
     case DOWN_LINE:
-      o
+      //o
       break;
 
     case END:
-      o
       break;
 
     default: 
@@ -191,6 +192,7 @@ void (state_machine)() {
   }
 
 }
+
 
 int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
     if (write_mouse(ENABLE_DATA_MODE) != 0)
@@ -219,6 +221,7 @@ int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
               if (index_byte == 3) {
                 store_bytes_packet();
                 mouse_print_packet(&packet_mouse);
+                state_machine();
                 
                 packets_count++;
                 index_byte = 0;
