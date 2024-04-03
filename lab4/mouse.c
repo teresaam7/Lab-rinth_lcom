@@ -7,7 +7,9 @@ uint8_t mBytes[3];
 
 void (mouse_ih)(){
   if (read_scancode(W_CMD, &current, 1) != 0) 
-        printf("Read scancode error\n");
+    printf("Error reading a byte from mouse\n");
+  else 
+    mouse_init();
 }
 
 int (mouse_subscribe_int)(uint8_t *bit_no){
@@ -28,9 +30,8 @@ int (mouse_unsubscribe_int)(){
 
 int (mouse_write)(uint8_t command) {
     int i = 10;
-    uint8_t status;
-    do {
-        i--;
+    uint8_t status = NACK;
+    while (i && status != ACK){
         if (write_scancode(W_CMD, command) != 0) {
             return 1;
         } 
@@ -41,11 +42,12 @@ int (mouse_write)(uint8_t command) {
         if (util_sys_inb(W_CMD, &status) != 0) {
             return 1;
         }
-        if (status == ACK) {
-            return 0;
-        }  
-    } while (i && status != ACK);
+        i--; 
+    }
 
+    if (status == ACK) {
+        return 0;
+    } 
     return 1;
 }
 
@@ -56,21 +58,24 @@ void (packet_contruction)() {
     ++i;
   }
 
-  mPacket.lb = mBytes[0] & M_LB;                                                         // Byte 1 - lb
-  mPacket.mb = mBytes[0] & M_MB;                                                         // Byte 1 - mb
-  mPacket.rb = mBytes[0] & M_RB;                                                         // Byte 1 - rb
-  mPacket.delta_x = (mBytes[0] & M_X_DELTA) ? (0xFF00 | mBytes[1]) : mBytes[1];          // Byte 1 - MSB X Delta
-  mPacket.delta_y = (mBytes[0] & M_Y_DELTA) ? (0xFF00 | mBytes[2]) : mBytes[2];          // Byte 1 - MSB Y Delta
-  mPacket.x_ov = mBytes[0] & M_X_OVFL;                                                   // Byte 1 - X ovfl
-  mPacket.y_ov = mBytes[0] & M_Y_OVFL;                                                   // Byte 1 - Y ovfl
+  mPacket.lb = mBytes[0] & M_LB;
+  mPacket.mb = mBytes[0] & M_MB;
+  mPacket.rb = mBytes[0] & M_RB;
+  if (mBytes[0] & M_X_DELTA)
+      mPacket.delta_x = 0xFF00 | mBytes[1];
+  else
+      mPacket.delta_x = mBytes[1];
+  if (mBytes[0] & M_Y_DELTA)
+      mPacket.delta_y = 0xFF00 | mBytes[2];
+  else
+      mPacket.delta_y = mBytes[2];
+  mPacket.x_ov = mBytes[0] & M_X_OVFL;
+  mPacket.y_ov = mBytes[0] & M_Y_OVFL;
+  bIndex = (bIndex == 3) ? 0 : bIndex;
 }
 
 void (mouse_init) () {
-  if ((bIndex == 0 && (current & BYTE1))) {
-    mBytes[bIndex] = current;
-    bIndex++;
-  }
-  else if (bIndex > 0) {
+  if ((bIndex == 0 && (current & BYTE1)) || (bIndex > 0 && bIndex < 3)) {
     mBytes[bIndex] = current;
     bIndex++;
   }

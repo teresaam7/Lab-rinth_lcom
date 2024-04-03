@@ -15,22 +15,22 @@ int (read_scancode)(uint8_t port, uint8_t *out, uint8_t mouse) {
                 return 1;
             }
 
-            if ((status & TIMEOUT) != 0){
+            if (status & TIMEOUT){
                 printf("Timeout error\n");
                 return 1;
             }
 
-            if ((status & PARITY) != 0){
+            if (status & PARITY){
                 printf("Parity error\n");
                 return 1;
             }
 
-            if ( ((status & AUX) != 0 )& !mouse){
+            if ( (status & AUX) & !mouse){
                 printf("Mouse error\n");
                 return 1;
             }
 
-            if ((!(status & AUX) !=0) & mouse) {
+            if (!(status & AUX) & mouse) {
                 printf("Mouse error\n");
                 return 1;
             }

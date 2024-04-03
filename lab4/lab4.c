@@ -22,7 +22,6 @@ typedef enum {
 states state = START;
 uint16_t x_len_total = 0;
 
-// Any header files included below this line should have been created by you
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -52,46 +51,46 @@ int main(int argc, char *argv[]) {
 int (mouse_test_packet)(uint32_t cnt) {
   int ipc_status;
   message msg;
+  int r;
   uint8_t mouse_mask; 
+
+   if (mouse_write(ENABLE_STRMODE) != 0) {
+    return 1;
+  }
 
   if (mouse_subscribe_int(&mouse_mask) != 0) {
     return 1;
   }
-  if (mouse_write(ENABLE_STRMODE) != 0) {
-    return 1;
-  }
 
-  while (cnt > 0) { 
-    if (driver_receive(ANY, &msg, &ipc_status) != 0){
-      printf("Error");
+  while (cnt) { 
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0){
+      printf("driver_receive failed with: %d", r);
       continue;
     }
-
     if (is_ipc_notify(ipc_status)){
       switch(_ENDPOINT_P(msg.m_source)){
         case HARDWARE: 
           if (msg.m_notify.interrupts & mouse_mask){  
-            mouse_ih();                               
-            mouse_init();                      
-            if (bIndex == 3) {                   
-              packet_contruction();                // Create packet
-              mouse_print_packet(&mPacket);     
-              bIndex = 0;
-              cnt--;
+            mouse_ih();                                           
+            if (bIndex == 3) { 
+              mouse_init();                
+              packet_contruction();       // Create packet        
+              mouse_print_packet(&mPacket);
+              cnt--;  
             }
           }
           break;
       }
     }
   }
-  
-  if (mouse_write(DISABLE) != 0) {
-    return 1;
-  }
 
   if (mouse_unsubscribe_int() != 0) {
     return 1;
   } 
+
+  if (mouse_write(DISABLE) != 0) {
+    return 1;
+  }
   return 0;
 }
 
@@ -158,78 +157,9 @@ int (mouse_test_async)(uint8_t idle_time) {
   return 0;
 }
 
-void (switch_state)(uint8_t tolerance) {
-
-    switch (state) {
-      case START:
-          if (mPacket.lb && !mPacket.rb && !mPacket.mb) {
-            state = UP;
-          }
-
-          break;
-
-      case UP:
-          //TODO: transições II, III e F
-          break;
-
-      case VERTEX:
-          //TODO: transições IV e F
-          break;
-
-      case DOWN:
-          //TODO: transições V, VI e F
-          break;
-
-      case END:
-          break;
-    }
-}
-
 int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
-  int ipc_status;
-  message msg;
-  uint8_t mouse_mask;
-
-  if (mouse_subscribe_int(&mouse_mask) != 0) {
+    printf("%s(%u, %u): under construction\n", __func__, period, cnt);
     return 1;
-  }
-  if (mouse_write(ENABLE_STRMODE) != 0) {
-    return 1;
-  }
-
-  while (state != END) { 
-
-    if (driver_receive(ANY, &msg, &ipc_status) != 0){
-      printf("Error");
-      continue;
-    }
-
-    if (is_ipc_notify(ipc_status)){
-      switch(_ENDPOINT_P(msg.m_source)){
-        case HARDWARE: 
-
-          if (msg.m_notify.interrupts & mouse_mask){  
-            mouse_ih();                                       
-            mouse_init();                                  
-            if (bIndex == 3) {                            
-              packet_contruction();                                   
-              switch_state(tolerance);       
-              bIndex = 0;
-            }
-          }
-      }
-    }
-  }
-
-  if (mouse_write(DISABLE) != 0) {
-    return 1;
-  }
-
-  if (mouse_unsubscribe_int() != 0) {
-    return 1;
-  }
-
-  return 0;
 }
 
 int (mouse_test_remote)(uint16_t period, uint8_t cnt) {
