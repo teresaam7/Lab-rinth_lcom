@@ -91,3 +91,21 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
   return 0;
 }
 
+uint32_t (color_mode_indexed)(uint16_t col, uint16_t row, uint8_t step, uint32_t first, uint8_t n) {
+  return (first +(row *n + col)) % (1 << info.BitsPerPixel);
+}
+
+uint32_t (Red)(unsigned j, uint8_t step, uint32_t first) {
+  uint32_t R = ((1 << info.RedMaskSize) - 1) & (first >> info.RedFieldPosition);
+  return (R + j * step) % (1 << info.RedMaskSize);
+}
+
+uint32_t (Green)(unsigned i, uint8_t step, uint32_t first) {
+  uint32_t G = ((1 << info.GreenMaskSize) - 1) & (first >> info.GreenFieldPosition);
+  return (G + i * step) % (1 << info.GreenMaskSize);
+}
+
+uint32_t (Blue)(unsigned i, unsigned j, uint8_t step, uint32_t first) {
+  uint32_t B = ((1 << info.BlueMaskSize) - 1) & (first >> info.BlueFieldPosition);
+  return (B + (i + j) * step) % (1 << info.GreenMaskSize);
+}

@@ -116,22 +116,62 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
     return 1;
   }
 
-  return 1;
+  return 0;
 }
 
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
-  /* To be completed */
-  printf("%s(0x%03x, %u, 0x%08x, %d): under construction\n", __func__,
-         mode, no_rectangles, first, step);
+  if (frame(mode) != 0) {
+    return 1;
+  }
 
-  return 1;
+  if (videocard_graphic_mode(mode) != 0) {
+    return 1;
+  }
+
+  int height = info.YResolution / no_rectangles;
+  int width = info.XResolution / no_rectangles;
+
+  for  (int i = 0; i < no_rectangles; ++i) {
+    for (int j = 0; j < no_rectangles; i++) {
+      uint32_t color;
+      if (info.MaxPixelClock == DIRECT_COLOR) {
+        uint32_t red = Red(j, step, first);
+        uint32_t green = Green(i, step, first);
+        uint32_t blue = Blue(i, j, step, first);
+        color = (red << info.RedFieldPosition) | (green << info.GreenFieldPosition) | (blue << info.BlueFieldPosition);
+      }
+      else {
+        color = color_mode_indexed(j, i, step, first, no_rectangles);
+      }
+      if (vg_draw_rectangle(j*width, i*height, width, height, color) != 0) {
+        return 1;
+      }
+    }
+  }
+
+  if (receive_ESC() != 0) {
+    return 1;
+  }
+
+  if (vg_exit() != 0) {
+    printf("Could not close video memory\n");
+    return 1;
+  }
+  return 0;
 }
 
 int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
-  /* To be completed */
-  printf("%s(%8p, %u, %u): under construction\n", __func__, xpm, x, y);
+  
+  
+  if (receive_ESC() != 0) {
+    return 1;
+  }
 
-  return 1;
+  if (vg_exit() != 0) {
+    printf("Could not close video memory\n");
+    return 1;
+  }
+  return 0;
 }
 
 int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint16_t yf,
