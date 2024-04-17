@@ -5,6 +5,12 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include "graphic.h"
+#include "keyboard.h"
+
+extern uint8_t scancode;
+extern int counter;
+extern vbe_mode_info_t info;
 
 // Any header files included below this line should have been created by you
 
@@ -32,6 +38,41 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
+
+int (receive_ESC)() {
+  int ipc_status, r;
+  message msg;
+  uint8_t irq_set_kbc;
+  
+  if (keyboard_subscribe_int(&irq_set_kbc) != 0) {
+    return 1;
+  }
+
+  while (scancode != BC_ESC) {
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+      printf("driver_receive failed with: %d", r);
+      continue;
+    }
+    if (is_ipc_notify(ipc_status)) { // received notification
+      switch (_ENDPOINT_P(msg.m_source)) {
+        case HARDWARE: // hardware interrupt notification
+          if (msg.m_notify.interrupts & irq_set_kbc) { // subscribed interrupt
+            kbc_ih();
+          }
+          break;
+        default:
+          break; // no other notifications expected: do nothing
+      }
+    }
+  }
+
+  if (keyboard_unsubscribe_int() != 0) {
+    return 1;
+  }
+
+  return 0;
+}
+
 int(video_test_init)(uint16_t mode, uint8_t delay) {
   if (videocard_graphic_mode(mode) != 0) {
     return 1;
@@ -48,9 +89,32 @@ int(video_test_init)(uint16_t mode, uint8_t delay) {
 
 int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
                           uint16_t width, uint16_t height, uint32_t color) {
-  /* To be completed */
-  printf("%s(0x%03X, %u, %u, %u, %u, 0x%08x): under construction\n",
-         __func__, mode, x, y, width, height, color);
+
+  if (frame(mode) != 0) {
+    return 1;
+  }
+
+  if (videocard_graphic_mode(mode) != 0) {
+    return 1;
+  }
+
+  uint32_t newColor;
+  if (color_normalization(color, &newColor) != 0) {
+    return 1;
+  }
+
+  if (vg_draw_rectangle(x, y, width, height, color) != 0) {
+    return 1;
+  }
+
+  if (receive_ESC() != 0) {
+    return 1;
+  }
+
+  if (vg_exit() != 0) {
+    printf("Could not close video memory\n");
+    return 1;
+  }
 
   return 1;
 }
