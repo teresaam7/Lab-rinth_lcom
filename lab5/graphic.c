@@ -109,3 +109,19 @@ uint32_t (Blue)(unsigned i, unsigned j, uint8_t step, uint32_t first) {
   uint32_t B = ((1 << info.BlueMaskSize) - 1) & (first >> info.BlueFieldPosition);
   return (B + (i + j) * step) % (1 << info.GreenMaskSize);
 }
+
+int (make_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
+  xpm_image_t img;
+ 
+  uint8_t *rc = xpm_load(xpm, XPM_INDEXED, &img); // Now we need make load of the xpm
+  for (int j = 0; j < img.height; j++) {
+    for (int i = 0; i < img.width; i++) {
+      if (draw_pixel(x + i, y + j, *rc) != 0) {
+        printf("Error drawing pixel\n");
+        return 1;
+      }
+      rc++;
+    }
+  }
+  return 0;
+}

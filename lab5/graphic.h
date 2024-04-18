@@ -24,5 +24,7 @@ uint32_t (Green)(unsigned i, uint8_t step, uint32_t first);
 
 uint32_t (Blue)(unsigned i, unsigned j, uint8_t step, uint32_t first);
 
+int (make_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y);
+
 #endif
 

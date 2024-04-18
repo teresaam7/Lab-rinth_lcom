@@ -161,7 +161,18 @@ int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, ui
 }
 
 int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
+  uint16_t mode = VBE_1024x768;  // Default to a common resolution
+  if (frame(mode) != 0) {
+    return 1;
+  }
+
+  if (videocard_graphic_mode(mode) != 0) {
+    return 1;
+  }
   
+  if (make_xpm(xpm, x, y) != 0) {
+    return 1;
+  }
   
   if (receive_ESC() != 0) {
     return 1;
