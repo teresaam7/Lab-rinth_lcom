@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
 
 int(timer_test_read_config)(uint8_t timer, enum timer_status_field field) {
   uint8_t config;
+  //poe RBC no TIMER_CTRL e TIMER_0+timer em config
   if(timer_get_conf(timer, &config)!=0){
     return 1;
   }

@@ -71,6 +71,10 @@ int (write_KBC_command)(uint8_t port, uint8_t commandByte) {
     uint8_t status;
     uint8_t n=0;
     while(n<10){
+       /* if (read_scancode(STATUS_REG,&status) != 0){
+            printf("Error: Status not available!\n");
+            return 1;
+        }*/
         if(util_sys_inb(STATUS_REG, &status)!=0){
           printf("Error: Status not available!\n");
           return 1;

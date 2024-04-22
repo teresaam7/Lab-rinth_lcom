@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "xutility": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "lcf.h": "c"
     }
 }

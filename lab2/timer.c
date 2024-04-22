@@ -17,7 +17,7 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
     return 1;
   }
 
-  uint8_t st;//control word
+  uint8_t st;//selecionar o timer st=TIMER_0+timer
   if(timer_get_conf(timer,&st)!=0){
     return 1;
   }
@@ -84,14 +84,14 @@ void (timer_int_handler)() {
 //timer_test_read_config
 //recebe o número do temporizador(timer) como parâmetro 
 //e retorna o valor de status do temporizador em st
-//poe RBC no TIMER_CTRL e timer_port em st
+//poe RBC no TIMER_CTRL e numero do timer() em st
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
   if (st == NULL || timer > 2 || timer < 0){
      return 1;
   }
   uint8_t readbackcommand= (TIMER_RB_CMD|TIMER_RB_COUNT_|TIMER_RB_SEL(timer));//escolher o counter,status,timer
 
-  if (sys_outb(TIMER_CTRL, readbackcommand) != 0) { 
+  if (sys_outb(TIMER_CTRL, (uint32_t)readbackcommand) != 0) { 
     return 1;
   }
 
