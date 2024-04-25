@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 // Any header files included below this line should have been created by you
-#include "i8042.h"
+//#include "i8042.h"
 #include "mouse.h"
 #include "i8254.h"
 #include "timer.c"
@@ -153,11 +153,110 @@ int (mouse_test_async)(uint8_t idle_time) {
     return 0;
 }
 
+typedef enum{
+    START,
+    UP,
+    VERTEX,
+    DOWN,
+    END
+} states;
+states state=START;
+
+void state_machine(uint8_t tolerance){
+    switch (state) {
+        case START:
+            if (pp.lb && !pp.rb && !pp.mb) {
+                state=UP;
+            }
+            break;
+        case UP:
+            if (!pp.lb && !pp.rb && !pp.mb) {
+                state=VERTEX;
+            } 
+            else if (pp.lb && !pp.rb && !pp.mb) {
+                state=UP;
+            }
+            else {
+                state=START;
+            }
+            break;
+        case VERTEX:
+            if (!pp.lb && pp.rb && !pp.mb) {
+                state=DOWN;
+            }
+            else if (pp.lb && !pp.rb && !pp.mb) {
+                state=UP;
+            }
+            else {
+                state=START;
+            }
+            break;
+        case DOWN:
+            if (!pp.lb && pp.rb && !pp.mb) {
+                state=DOWN;
+            }
+            else if (pp.lb && !pp.rb && !pp.mb) {
+                state=UP;
+            }
+            else if (!pp.lb && !pp.rb && !pp.mb) {
+                state=END;
+            }
+            break;
+        case END:
+            break;
+        default:
+            break;
+    }
+}
 
 int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
-    /* To be completed */
-    printf("%s: under construction\n", __func__);
-    return 1;
+    int ipc_status;
+    message msg;
+    int r;
+    uint8_t irq_set;
+
+    irq_set=BIT(hook_id_mouse);
+    if(sys_irqsetpolicy(12 ,IRQ_REENABLE|IRQ_EXCLUSIVE, &hook_id_mouse)!=0){return 1;}//So that IH knows that a DD is interested in an interrupt
+    if(mouse_enable_data_reporting()!=0){return 1;}
+   
+    //DD receives the notification of the IH about an interrupt
+    while(state!=END) {//reads only one byte per interrupt
+    // Get a request message. 
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
+        printf("driver_receive failed with: %d", r);
+        continue;
+    }
+      
+      if (is_ipc_notify(ipc_status)) { /* received notification */
+        switch (_ENDPOINT_P(msg.m_source)) {
+          case HARDWARE: /* hardware interrupt notification */
+            if (msg.m_notify.interrupts & irq_set) { // subscri... process it 
+                mouse_ih();
+                mouse_sync_bytes(&index_counter);        
+                  if(index_counter==3){
+                    mouse_sync_bytes();
+                     mouse_build_packet(&index_counter);
+                     index_counter=0;
+                     mouse_print_packet(&pp);
+                     state_machine(tolerance);
+                   }
+                }
+            break;
+
+          default:
+            break; 
+        }
+      } /*else { // received a standard message, not a notification 
+        // no standard messages expected 
+      }
+      // Now, do application dependent event handling 
+      if ( event & MOUSE_EVT ) {
+      handle_mouse();
+      }*/
+    }
+
+    if(sys_irqrmpolicy(&hook_id_mouse)!=0){return 1;} 
+    return 0;
 }
 
 int (mouse_test_remote)(uint16_t period, uint8_t cnt) {
