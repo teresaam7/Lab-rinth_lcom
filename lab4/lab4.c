@@ -7,6 +7,8 @@
 // Any header files included below this line should have been created by you
 #include "i8042.h"
 #include "mouse.h"
+#include "i8254.h"
+#include "timer.c"
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -32,7 +34,8 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-int hook_id=2;
+int hook_id_mouse=2;
+int hook_id_timer=0;
 extern uint8_t byte;
 extern int index_counter; 
 extern struct packet pp;
@@ -43,8 +46,8 @@ int (mouse_test_packet)(uint32_t cnt) {
     int r;
     uint8_t irq_set;
 
-    irq_set=BIT(hook_id);
-    if(sys_irqsetpolicy(12 ,IRQ_REENABLE|IRQ_EXCLUSIVE, &hook_id)!=0){return 1;}//So that IH knows that a DD is interested in an interrupt
+    irq_set=BIT(hook_id_mouse);
+    if(sys_irqsetpolicy(12 ,IRQ_REENABLE|IRQ_EXCLUSIVE, &hook_id_mouse)!=0){return 1;}//So that IH knows that a DD is interested in an interrupt
     if(mouse_enable_data_reporting()!=0){return 1;}
     //if(mouse_write(0xF4)!=0){return 1;}
    
@@ -82,17 +85,74 @@ int (mouse_test_packet)(uint32_t cnt) {
     }
 
    // if (mouse_write(0xF5) != 0) return 1;
-    if(sys_irqrmpolicy(&hook_id)!=0){return 1;} 
+    if(sys_irqrmpolicy(&hook_id_mouse)!=0){return 1;} 
 
     return 0;
 }
 
+extern int count; //necessario so por causa dos testes
+//se tiver idle_time segundos sem receber nada do mouse -> break
 int (mouse_test_async)(uint8_t idle_time) {
-    /* To be completed */
     //can be easily written by combining code from mouse_test_packet() and kbd_test_timed_scan()
-    printf("%s(%u): under construction\n", __func__, idle_time);
-    return 1;
+    message msg;
+    int ipc_status;
+    uint8_t irq_mouse;
+    uint8_t irq_timer;
+    int r;
+    int freq=sys_hz(); //número de interrupções geradas pelo temporizador 0 por segundo
+    //if(mouse_enable_data_reporting()!=0){return 1;}
+
+    irq_mouse=BIT(hook_id_mouse);
+    irq_timer=BIT(hook_id_timer);
+    if(sys_irqsetpolicy(0,IRQ_REENABLE,&hook_id_timer)!=0){return 1;}
+    if(sys_irqsetpolicy(12,IRQ_REENABLE|IRQ_EXCLUSIVE,&hook_id_mouse)!=0){return 1;}
+    if(mouse_write(0xF4)!=0){return 1;}
+    //int interrupt=0;
+    int seconds=0;
+
+    while (seconds<idle_time) {
+    /* Get a request message. */
+    if ((r=driver_receive(ANY, &msg, &ipc_status)) != 0) {
+        printf("driver_receive failed with: %d", r);
+        continue;
+    }
+    if (is_ipc_notify(ipc_status)) { /* received notification */
+        switch (_ENDPOINT_P(msg.m_source)) {
+            case HARDWARE: /* hardware interrupt notification */
+                if (msg.m_notify.interrupts & irq_mouse) { /* subsc...  process it */
+                  mouse_ih();
+                  mouse_sync_bytes(&index_counter);
+                  if(index_counter==3){
+                    index_counter=0;
+                    mouse_build_packet();
+                    mouse_print_packet(&pp);
+                  }
+                  count=0;
+                  seconds=0;
+                }
+                if (msg.m_notify.interrupts & irq_timer) { /* subsc...  process it */
+                  timer_int_handler();
+                  //printf("%d\n", seconds);
+                  if(count%freq==0){
+                    count=0;
+                    seconds++;
+                  }
+                }
+                break; //nao tem break entre timer e mouse
+            default:
+                break; /* no other notifications expected */
+        }
+    } else { /* received a standard message, not a notification */
+        /* no standard messages expected */
+    }
+   // printf("%d\n", seconds);
+    }
+    if (mouse_write(0xF5) != 0) return 1;
+    if(sys_irqrmpolicy(&hook_id_mouse)!=0){return 1;}
+    if(sys_irqrmpolicy(&hook_id_timer)!=0){return 1;}
+    return 0;
 }
+
 
 int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
     /* To be completed */

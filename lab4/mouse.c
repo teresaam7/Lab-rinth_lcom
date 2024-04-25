@@ -79,7 +79,7 @@ int (write_KBC_command)(uint8_t port, uint8_t commandByte) {
 }
 
 void mouse_sync_bytes() {
-  if ((index_counter==0) && (byte&BIT(3))) { //bit 3 ativo
+  if ((index_counter==0) && (byte&BIT(3))) { //bit 3 do byte 1 do mouse packet está sempre ativo
     pp.bytes[index_counter]=byte;
     index_counter++;
   }
@@ -110,3 +110,23 @@ void (mouse_build_packet)(){ //por os 3 bytes num packet
   }
 }
 
+
+int (mouse_write)(uint8_t command) {
+  uint8_t received_byte = 0xFE;
+  int n=10;
+  while (n&&(received_byte!=0xFA)){
+        if (write_KBC_command(KBC_CMD_REG, 0xD4)!=0){
+            return 1;
+        }
+        if (write_KBC_command(IN_BUF, command)!=0){
+            return 1;
+        }
+        tickdelay(micros_to_ticks(DELAY_US));
+        if (util_sys_inb(OUT_BUF, &received_byte)!=0){
+            return 1;
+        }   
+        n--;
+  }
+  if(received_byte!=0xFA){return 1;}
+    return 0;
+}
