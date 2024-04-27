@@ -101,7 +101,7 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
 }
 
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
-  if(frame_buffer_func(mode)!=0){return 1;}
+  if(frame_buffer_func(mode)!=0){return 1;}//tem de ser antes do graphics por causa dos testes
   if(graphics_mode(mode)!=0){return 1;}
   printf("olaaaaaa");
   printf("%x",modeinfo.MemoryModel);
@@ -134,10 +134,27 @@ int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, ui
 }
 
 int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
-  /* To be completed */
-  printf("%s(%8p, %u, %u): under construction\n", __func__, xpm, x, y);
+  if(frame_buffer_func(0x105)!=0){return 1;}
+  if(graphics_mode(0x105)!=0){return 1;}
 
-  return 1;
+  //load_xpm() that is provided by the LCF to convert an XPM into a pixmap
+  xpm_image_t img;
+  uint8_t *map;
+  //retorna um apontador para um array de cores preenchido de acordo com o XPM
+  map=xpm_load(xpm, XPM_INDEXED, &img);
+  for(uint8_t i=0; i<img.height; i++){
+    for(uint8_t j=0; j<img.width; j++){
+        if(vg_draw_pixel(x+j, y+i, *map)!=0){return 1;};
+        map++;//proxima cor
+    }
+  }
+
+  if(ESC_break()!=0){return 1;}//acaba quando esc break pressionado
+
+  if(vg_exit()!=0){
+    return 1;
+  }
+  return 0;
 }
 
 int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint16_t yf,
