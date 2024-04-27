@@ -1,10 +1,10 @@
 # LCOM Project
 
-LCOM Project for group T&lt;m&gt;&lt;n&gt;G&lt;p&gt;&lt;q&gt;.
+LCOM Project for group T04 G04.
 
 Group members:
 
-1. &lt;first name&gt; &lt;family name&gt; (&lt;email address&gt;)
-2. &lt;first name&gt; &lt;family name&gt; (&lt;email address&gt;)
-3. &lt;first name&gt; &lt;family name&gt; (&lt;email address&gt;)
-4. &lt;first name&gt; &lt;family name&gt; (&lt;email address&gt;)
+1. Beatriz Bernardo (up202206097@up.pt)
+2. Diana Nunes (up202208247@up.pt)
+3. Sofia Gonçalves (up202205020@up.pt)
+4. Teresa Mascarenhas (up202206828@up.pt)
