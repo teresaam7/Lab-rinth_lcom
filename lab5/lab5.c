@@ -36,6 +36,7 @@ int main(int argc, char *argv[]) {
 }
 
 int hook_id_keyboard=1;
+extern vbe_mode_info_t modeinfo;
 int (ESC_break)() {
   int ipc_status;
   message msg;
@@ -85,6 +86,7 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
 
     if(frame_buffer_func(mode)!=0){return 1;}
     if(graphics_mode(mode)!=0){return 1;}
+    //if(frame_buffer_func(mode)!=0){return 1;}
     
     if(vg_draw_rectangle(x, y, width, height, color)!=0){
         return 1;
@@ -99,11 +101,36 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
 }
 
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
-  /* To be completed */
-  printf("%s(0x%03x, %u, 0x%08x, %d): under construction\n", __func__,
-         mode, no_rectangles, first, step);
+  if(frame_buffer_func(mode)!=0){return 1;}
+  if(graphics_mode(mode)!=0){return 1;}
+  printf("olaaaaaa");
+  printf("%x",modeinfo.MemoryModel);
+  
+  uint16_t width=modeinfo.XResolution/no_rectangles;	//length in pixels of the rectangle along the horizontal direction
+  uint16_t height=modeinfo.YResolution/no_rectangles;
+  uint32_t color;
+  for(uint8_t i=0; i<no_rectangles; i++){//linha
+    for(uint8_t j=0; j<(int)no_rectangles; j++){ //coluna
+        if(modeinfo.MemoryModel!= 0x06){//indexed mode. se for ==0x105 nao da
+        color=(first + (i * no_rectangles + j) * step) % (1 << modeinfo.BitsPerPixel); 
+        }
+        else{ //directed mode. equivalente a else if modeinfo.MemoryModel==0x06
+           printf("%x",modeinfo.RedFieldPosition);
+           printf("%x",modeinfo.RedMaskSize);
+           uint32_t red=(R(first) + j * step) % (1 << modeinfo.RedMaskSize); 
+           uint32_t green=(G(first) + i * step) % (1 << modeinfo.GreenMaskSize); 
+           uint32_t blue=(B(first) + (j + i) * step) % (1 << modeinfo.BlueMaskSize); 
+           color=(red<<modeinfo.RedFieldPosition) | (green<<modeinfo.GreenFieldPosition) | (blue<<modeinfo.BlueFieldPosition);
+        }
+        if(vg_draw_rectangle((uint16_t) j*width, (uint16_t) i*height, width, height, color)!=0){return 1;}
+    }
+  }
 
-  return 1;
+  if(ESC_break()!=0){return 1;}//acaba quando esc break pressionado
+  if(vg_exit()!=0){
+    return 1;
+  }
+  return 0;
 }
 
 int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
@@ -122,7 +149,7 @@ int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint1
   return 1;
 }
 
-//nao fazer
+//NAO FAZERRRRRRRRR
 int(video_test_controller)() {
   /* To be completed */
   printf("%s(): under construction\n", __func__);
