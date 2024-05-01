@@ -70,7 +70,7 @@ int (keyboard_unsubscribe_int)() {
 }
 
 void (kbc_verify_scancode)() {
-    if (scancode == SCAN_1OF2) {
+    if (scancode == SCAN_ONE_TWO) {
         bytes[0] = scancode;
         full_scancode = false;
     }
@@ -131,10 +131,10 @@ int (restore_interrupts)() {
 
     command |= BIT(0);   
 
-    if (write_scancode(IN_CMD, W_CMD) != 0) {  
+    if (write_scancode(IN_CMD, IN_BUF) != 0) {  
         return 1;
     }   
-    if (write_scancode(W_CMD, command) != 0) { 
+    if (write_scancode(IN_BUF, command) != 0) { 
         return 1;
     }
 
