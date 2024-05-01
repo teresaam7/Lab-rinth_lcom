@@ -97,4 +97,3 @@ int (make_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
     }
     return 0;
 }
-
