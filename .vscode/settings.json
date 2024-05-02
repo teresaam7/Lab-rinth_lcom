@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "bitset": "c",
+        "format": "c",
+        "initializer_list": "c",
+        "list": "c",
+        "utility": "c",
+        "vector": "c",
+        "xhash": "c",
+        "xstring": "c",
+        "xtree": "c",
+        "xutility": "c",
+        "__hash_table": "c",
+        "__split_buffer": "c",
+        "__tree": "c",
+        "iterator": "c",
+        "map": "c",
+        "memory": "c",
+        "string": "c",
+        "unordered_map": "c"
+    }
+}
