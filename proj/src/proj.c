@@ -5,6 +5,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "Game.h"
+
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
   lcf_set_language("EN-US");
@@ -30,5 +32,7 @@ int main(int argc, char *argv[]) {
 }
 
 int (proj_main_loop)(int argc, char *argv[]) {
+  gameLogic();
   return 0;
 }
+

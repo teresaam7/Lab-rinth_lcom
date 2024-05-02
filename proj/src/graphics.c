@@ -30,7 +30,7 @@ int (frame_buffer_func)(uint16_t mode){
     physical_address.mr_base=modeinfo.PhysBasePtr; 
     physical_address.mr_limit=physical_address.mr_base + frame_size; 
     int r;
-    if( 0 != (r = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &physical_address))){//codigo retirado do guiao lab5
+    if( 0 != (r = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &physical_address))){
             panic("sys_privctl (ADD_MEM) failed: %d\n", r);
             return 1;
     }

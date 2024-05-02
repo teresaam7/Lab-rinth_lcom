@@ -3,39 +3,54 @@
 
 #include <lcom/lcf.h>
 
-//slide 8 powerpoint 
-//status register-> true(1) if set 
-#define OBF        BIT(0) // Output buffer full - data available for reading
-#define IBF        BIT(1) //Input buffer full don’t write commands or arguments
-#define INH        BIT(4) //Inhibit flag: 0 if keyboard is inhibited
-#define AUX        BIT(5) //Mouse data
-#define TIMEOUT    BIT(6) //Timeout error - invalid data
-#define PARITY     BIT(7) //Parity error - invalid data
+#define KEYBOARD       1
+#define MOUSE          12
 
-//slide 7 e 17
-#define STAT_REG     0x64  //Read the KBC state
-#define IN_CMD       0x64 //Commands to the KBC 
-#define IN_BUF       0x60 //Arguments of KBC commands
-#define OUT_BUF      0x60 //Read scancodes or return values from KBC commands
-#define R_CMD        0x20 // Read back command
-#define MAKEORBREAK  0x80
+#define OBF            BIT(0) // Output buffer
+#define IBF            BIT(1) // Input buffer
+#define INH            BIT(4) // Inhibit flag
+#define AUX            BIT(5) // Mouse data
+#define TIMEOUT        BIT(6) // Timeout error - invalid data
+#define  PARITY        BIT(7) // Parity error - invalid data
 
-//slide 10
-#define BREAK_ESC    0x81
-#define SCAN_ONE_TWO 0xE0 //The first byte of two byte scancodes
+#define BC_ESC         0x81   // Break code of ESC
+#define SCAN_ONE_TWO   0xE0   // Code for scan
+#define R_CMD          0x20   // Read back command
+#define W_CMD          0x60   // Write command
 
 #define KEYBOARD 1
 #define MOUSE_IRQ 12
 #define DELAY_US  20000 //20ms
 
-//mouse data packet
-#define LB BIT(0)
-#define RB BIT(1)
-#define MB BIT(2)
-#define MSB_X_DELTA BIT(4) //signal do 9-bit 
-#define MSB_Y_DELTA BIT(5)
-#define X_OVFL BIT(6)
-#define Y_OVFL BIT(7)
+#define STAT_REG       0x64
+#define IN_CMD         0x64
+#define IN_BUF         0x60
+#define OUT_BUF        0x60
+#define MAKEORBREAK    0x80
 
-#endif
+#define M_LB            BIT(0)  // Mouse left button
+#define M_RB            BIT(1)  // Mouse right button
+#define M_MB            BIT(2)  // Mouse middle button
+#define BYTE1           BIT(3)  // Byte 
+#define M_X_DELTA       BIT(4)  // Relative displacement MSBit X axis
+#define M_Y_DELTA       BIT(5)  // Relative displacement MSBit Y axis
+#define M_X_OVFL        BIT(6)  // Flag that the mouse displacement is to large
+#define M_Y_OVFL        BIT(7)  // Flag that the mouse displacement is to large
+
+
+#define RESET           0xFF
+#define RESEND          0xFE
+#define DISABLE         0xF5
+#define ENABLE_STRMODE  0xF4
+#define SET_STRMODE     0xEA
+#define M_READ          0xEB
+#define M_WRITE_BYTE    0xD4
+#define ACK             0xFA
+#define NACK            0xFE
+#define ERROR           0xFC
+
+
+
+
+#endif /* _LCOM_I8042_H_ */
 
