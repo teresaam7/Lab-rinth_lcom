@@ -24,7 +24,7 @@
 #define BREAK_ESC    0x81
 #define SCAN_ONE_TWO 0xE0 //The first byte of two byte scancodes
 
-#define KBD_IRQ 1
+#define KEYBOARD 1
 #define MOUSE_IRQ 12
 #define DELAY_US  20000 //20ms
 
