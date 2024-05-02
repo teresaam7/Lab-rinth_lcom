@@ -55,7 +55,7 @@ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
 int (draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
     for(int i=0; i<len; i++){
         if(vg_draw_pixel(x+i,y,color)!=0){
-            vg_exit();
+
             return 1;
         }
     }
@@ -88,10 +88,13 @@ uint32_t B(uint32_t color){
 int (make_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
     xpm_image_t image;
     uint8_t *map;
-    map=xpm_load(xpm, XPM_INDEXED, &image);
+    map=xpm_load(xpm,XPM_INDEXED, &image);
     for(uint8_t i=0; i<image.height; i++){
         for(uint8_t j=0; j<image.width; j++){
-            if(vg_draw_pixel(xi+j, yi+i, *map)!=0){return 1;};
+            if(vg_draw_pixel(xi+j, yi+i, *map)!=0){
+                printf("Error drawing pixel\n");
+                return 1;
+            };
             map++;//proxima cor
         }
     }

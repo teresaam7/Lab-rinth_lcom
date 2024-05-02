@@ -2,15 +2,18 @@
 #include "Game.h"
 
 int (gameLogic) () {
-    loadMazeXPM();
+    if (loadMazeXPM() != 0) {
+        return 1;
+    }
     return 0;
 }
 
-void (loadMazeXPM) () {
-    xpm_image_t img;
-    uint8_t *result = xpm_load(maze1, XPM_8_8_8_8, &img);
-    if (result == NULL) {
+int (loadMazeXPM) () {
+    int result = make_xpm(maze1, 40, 40);
+    if (result != 0) {
+        return 1;
         printf("Error loading maze XPM\n");
     }
+    return 0;
 }
 

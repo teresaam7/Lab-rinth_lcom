@@ -8,5 +8,5 @@
 
 int (gameLogic) ();
 
-void (loadMazeXPM) ();
+int (loadMazeXPM) ();
 

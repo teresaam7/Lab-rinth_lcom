@@ -70,7 +70,7 @@ int (keyboard_unsubscribe_int)() {
 }
 
 void (kbc_verify_scancode)() {
-    if (scancode == SCAN_ONE_TWO) {
+    if (scancode == SCAN_1OF2) {
         bytes[0] = scancode;
         full_scancode = false;
     }
