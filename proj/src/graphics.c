@@ -44,7 +44,7 @@ int (frame_buffer_func)(uint16_t mode){
 }
 
 
-int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
+int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
   if(x>modeinfo.XResolution||y>modeinfo.YResolution){ return 1;}
   unsigned int bytesInPixel=(modeinfo.BitsPerPixel+7)/8;
   unsigned int index=(modeinfo.XResolution*y+x)*bytesInPixel;

@@ -14,9 +14,13 @@
 #define  PARITY        BIT(7) // Parity error - invalid data
 
 #define BC_ESC         0x81   // Break code of ESC
-#define SCAN_1OF2      0xE0   // Code for scan
+#define SCAN_ONE_TWO   0xE0   // Code for scan
 #define R_CMD          0x20   // Read back command
 #define W_CMD          0x60   // Write command
+
+#define KEYBOARD 1
+#define MOUSE_IRQ 12
+#define DELAY_US  20000 //20ms
 
 #define STAT_REG       0x64
 #define IN_CMD         0x64
