@@ -1,4 +1,5 @@
-#include "images/maze1.xpm"
+#ifndef GAME_H
+#define GAME_H
 
 #include <lcom/lcf.h>
 #include "graphics.h"
@@ -8,5 +9,7 @@
 
 int (gameLogic) ();
 
-int (loadMazeXPM) ();
+
+
+#endif
 

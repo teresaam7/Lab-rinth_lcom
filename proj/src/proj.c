@@ -6,6 +6,7 @@
 #include <stdint.h>
 
 #include "Game.h"
+#include "maze.h"
 
 extern uint8_t scancode;
 
@@ -69,11 +70,11 @@ int (receive_ESC)() {
 
 
 int (proj_main_loop)(int argc, char *argv[]) {
-  if (frame_buffer_func(0x118) != 0) {
+  if (frame_buffer_func(0x115) != 0) {
     return 1;
   }
 
-  if (graphics_mode(0x118) != 0) {
+  if (graphics_mode(0x115) != 0) {
     return 1;
   }
 
@@ -85,6 +86,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     return 1;
   }
 
+  clear_screen();
 
   if (vg_exit() != 0) {
     return 1;

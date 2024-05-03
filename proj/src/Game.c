@@ -1,19 +1,18 @@
 
 #include "Game.h"
+#include "maze.h"
 
 int (gameLogic) () {
+    maze_allocation();
+    draw_maze(true);
+    /*
+
     if (loadMazeXPM() != 0) {
         return 1;
     }
+
+    */
     return 0;
 }
 
-int (loadMazeXPM) () {
-    int result = make_xpm(maze1, 40, 40);
-    if (result != 0) {
-        return 1;
-        printf("Error loading maze XPM\n");
-    }
-    return 0;
-}
 

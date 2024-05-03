@@ -44,18 +44,17 @@ int (frame_buffer_func)(uint16_t mode){
 }
 
 
-int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
-  if(x>modeinfo.XResolution||y>modeinfo.YResolution){ return 1;}
-  unsigned int bytesInPixel=(modeinfo.BitsPerPixel+7)/8;
-  unsigned int index=(modeinfo.XResolution*y+x)*bytesInPixel;
-  if(memcpy(frame_buffer+index, &color, bytesInPixel)==NULL){ return 1;}
+int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
+  if (x< 0 || y < 0 || x > modeinfo.XResolution || y > modeinfo.YResolution) return 1;
+  unsigned int bytesInPixel= (modeinfo.BitsPerPixel+7)/8;
+  unsigned int index= (modeinfo.XResolution*y+x) * bytesInPixel;
+  if (memcpy(frame_buffer+index, &color, bytesInPixel)==NULL) return 1;
   return 0;
 }
 
 int (draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
     for(int i=0; i<len; i++){
         if(vg_draw_pixel(x+i,y,color)!=0){
-
             return 1;
         }
     }
@@ -63,7 +62,7 @@ int (draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
 }
 
 int (draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color){
-    for(int i=0; i<height; i++){
+    for(int i=0; i< height; i++){
         if(vg_draw_hline(x, y+i, width, color)!=0){
             vg_exit();
             return 1;
@@ -72,10 +71,7 @@ int (draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, ui
     return 0;
 }
 
-//tem de ser uint32_t
 uint32_t R(uint32_t color){
-    printf("%p",modeinfo.RedFieldPosition); //10
-    printf("%p",modeinfo.RedMaskSize); //8
     return ((1<<modeinfo.RedMaskSize)-1)&(color>>modeinfo.RedFieldPosition);
 }
 uint32_t G(uint32_t color){
@@ -88,14 +84,14 @@ uint32_t B(uint32_t color){
 int (make_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
     xpm_image_t image;
     uint8_t *map;
-    map=xpm_load(xpm,XPM_INDEXED, &image);
+    map=xpm_load(xpm,XPM_8_8_8, &image);
     for(uint8_t i=0; i<image.height; i++){
         for(uint8_t j=0; j<image.width; j++){
             if(vg_draw_pixel(xi+j, yi+i, *map)!=0){
                 printf("Error drawing pixel\n");
                 return 1;
             };
-            map++;//proxima cor
+            map++;
         }
     }
     return 0;
