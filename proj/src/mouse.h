@@ -3,7 +3,7 @@
 
 #include <minix/sysutil.h>
 #include <lcom/lcf.h>
-#include "i8042.h"
+#include "KBC.h"
 
 int (write_mouse) (uint8_t command);
 

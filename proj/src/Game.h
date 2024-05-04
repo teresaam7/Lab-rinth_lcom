@@ -1,10 +1,10 @@
 #include "images/maze1.xpm"
 
 #include <lcom/lcf.h>
-#include "graphics.h"
-#include "i8042.h"
-#include "i8254.h"
+#include "timer.h"
 #include "keyboard.h"
+#include "mouse.h"
+#include "graphics.h"
 
 int (gameLogic) ();
 

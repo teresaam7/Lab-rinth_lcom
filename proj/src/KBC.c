@@ -1,9 +1,4 @@
-#include <lcom/lcf.h>
-#include <lcom/timer.h>
-#include <stdint.h>
-
-#include "i8042.h"
-
+#include "KBC.h"
 
 int (write_kbc)(uint8_t port, uint8_t command) {
     uint8_t status;

@@ -2,16 +2,14 @@
 #include <lcom/timer.h>
 #include <stdint.h>
 
-#include "KBC.h"
-#include "i8042.h"
-
+#include "mouse.h"
 
 int hook_id_mouse = 3;
 
-int index = 0;
-uint8_t byte_mouse;
-uint8_t bytes_mouse[3];
-struct packet packet_mouse;
+int m_index = 0;
+uint8_t m_byte;
+uint8_t m_bytes[3];
+struct packet m_packet;
 
 
 int (write_mouse) (uint8_t command) {
@@ -60,16 +58,16 @@ int (mouse_unsubscribe_int)() {
 
 
 void (store_byte_mouse)() {
-    if ((index == 0 && (byte_mouse & M_BYTE_1))     
-            || (index > 0 && index < 3)) {        // Bit 3 of byte 1 is always 1
-        bytes_mouse[index] = byte_mouse;
-        index++;
+    if ((m_index == 0 && (m_byte & M_BYTE_1))     
+                || (m_index > 0 && m_index < 3)) {        // Bit 3 of byte 1 is always 1
+        m_bytes[m_index] = m_byte;
+        m_index++;
     }
 }
 
 
 void (mouse_ih)() {
-    if (read_kbc(OUT_BUF, &byte_mouse, 1) != 0)
+    if (read_kbc(OUT_BUF, &m_byte, 1) != 0)
         printf("Error reading a byte from mouse\n");
     else
         store_byte_mouse();
@@ -78,18 +76,18 @@ void (mouse_ih)() {
 
 void (store_bytes_packet)() {
     for (int i = 0; i < 3; i++)
-        packet_mouse.bytes[i] = bytes_mouse[i];
+        m_packet.bytes[i] = m_bytes[i];
     
-    packet_mouse.lb = bytes_mouse[0] & M_LB;
-    packet_mouse.rb = bytes_mouse[0] & M_RB;
-    packet_mouse.mb = bytes_mouse[0] & M_MB;
+    m_packet.lb = m_bytes[0] & M_LB;
+    m_packet.rb = m_bytes[0] & M_RB;
+    m_packet.mb = m_bytes[0] & M_MB;
 
-    packet_mouse.x_ov = bytes_mouse[0] & M_X_OVFL;
-    packet_mouse.y_ov = bytes_mouse[0] & M_Y_OVFL;
+    m_packet.x_ov = m_bytes[0] & M_X_OVFL;
+    m_packet.y_ov = m_bytes[0] & M_Y_OVFL;
 
-    if (bytes_mouse[0] & M_MSB_X_DELTA) packet_mouse.delta_x = bytes_mouse[1] | 0xFF00;
-    else packet_mouse.delta_x = bytes_mouse[1];
+    if (m_bytes[0] & M_MSB_X_DELTA) m_packet.delta_x = m_bytes[1] | 0xFF00;
+    else m_packet.delta_x = m_bytes[1];
 
-    if (bytes_mouse[0] & M_MSB_Y_DELTA) packet_mouse.delta_y = bytes_mouse[2] | 0xFF00;
-    else packet_mouse.delta_y = bytes_mouse[2];
+    if (m_bytes[0] & M_MSB_Y_DELTA) m_packet.delta_y = m_bytes[2] | 0xFF00;
+    else m_packet.delta_y = m_bytes[2];
 }

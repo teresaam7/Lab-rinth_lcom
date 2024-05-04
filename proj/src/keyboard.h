@@ -1,23 +1,16 @@
 #ifndef _LCOM_KEYBOARD_H_
 #define _LCOM_KEYBOARD_H_
 
+#include <minix/sysutil.h>
 #include <lcom/lcf.h>
 #include <stdint.h>
-#include "i8042.h"
+#include "KBC.h"
 
-int (read_scancode)(uint8_t port, uint8_t *out, uint8_t mouse);
-
-void (kbc_ih)() ; 	// Interrupt handler for the keyboard controller
-
-int (keyboard_subscribe_int)(uint8_t *bit_no) ;
-
+int (keyboard_subscribe_int)(uint8_t *irq_set);
 int (keyboard_unsubscribe_int)();
 
-void (kbc_verify_scancode)();
-
-int (write_scancode)(uint8_t port, uint8_t command);
+void (kbc_ih)(); 	    // Interrupt handler for the keyboard controller
 
 int (restore_interrupts)();
-
 
 #endif

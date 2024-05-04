@@ -12,7 +12,9 @@
 #define KBC_CMD        0x64
 #define IN_BUF         0x60
 #define OUT_BUF        0x60
-// #define R_CMD          0x20   // Read back command
+
+#define READ_COMM_BYTE          0x20    // Read back command
+#define WRITE_COMM_BYTE         0x60
 
 #define OBF            BIT(0)   // Output buffer
 #define IBF            BIT(1)   // Input buffer
@@ -24,15 +26,19 @@
 
 
 /* KEYBOARD */
+
 #define KEYBOARD_IRQ       1
 
 #define MAKE_OR_BREAK      BIT(7) 
 #define SCAN_BREAK_ESC     0x81
-#define SCAN_FIRST_TWO     0xE0    // scancode of first byte of two bytes
+#define SCAN_FIRST_TWO     0xE0    // Scancode of first byte of two bytes
+
+#define ENABLE_INT_KEYBOARD     BIT(0)
 
 
 
 /* MOUSE */
+
 #define MOUSE_IRQ          12
 
 #define WRITE_BYTE_MOUSE   0xD4
