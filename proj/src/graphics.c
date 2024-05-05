@@ -71,13 +71,13 @@ int (draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, ui
     return 0;
 }
 
-uint32_t R(uint32_t color){
+uint32_t (R)(uint32_t color){
     return ((1<<modeinfo.RedMaskSize)-1)&(color>>modeinfo.RedFieldPosition);
 }
-uint32_t G(uint32_t color){
+uint32_t (G)(uint32_t color){
     return ((1<<modeinfo.GreenMaskSize)-1)&(color>>modeinfo.GreenFieldPosition);
 }
-uint32_t B(uint32_t color){
+uint32_t (B)(uint32_t color){
     return ((1<<modeinfo.BlueMaskSize)-1)&(color>>modeinfo.BlueFieldPosition);
 }
 
@@ -95,4 +95,14 @@ int (make_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
         }
     }
     return 0;
+}
+
+uint32_t (direct_mode)(uint32_t red, uint32_t green, uint32_t blue) {
+    uint32_t color=(red<<modeinfo.RedFieldPosition)|(green<<modeinfo.GreenFieldPosition)|(blue<<modeinfo.BlueFieldPosition);
+    return color;
+}
+
+uint32_t (indexed_mode)(uint16_t column, uint16_t row, uint8_t step, uint32_t color, uint8_t no_rectangles) {
+    uint32_t color2=(color+(row*no_rectangles+column)*step)%(1<<modeinfo.BitsPerPixel);
+    return color2;
 }
