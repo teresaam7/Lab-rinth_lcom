@@ -38,7 +38,7 @@ int (read_kbc)(uint8_t port, uint8_t *byte, uint8_t mouse_aux) {
         }
 
         if (status & OBF) {
-            if (util_sys_inb(port, &byte) != 0){   
+            if (util_sys_inb(port, byte) != 0){   
                 printf("Error reading byte from port\n");
                 return 1;
             }
