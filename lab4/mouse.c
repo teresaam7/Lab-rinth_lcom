@@ -65,7 +65,7 @@ int (write_KBC_command)(uint8_t port, uint8_t commandByte) {
           printf("Error: Status not available!\n");
           return 1;
         }
-        if((status&BIT(0))==0){ //se IBF não estiver cheio
+        if((status&BIT(1))==0){ //se IBF não estiver cheio
             if(sys_outb(port, commandByte) != 0){
                 printf("Error: Could not write commandByte!\n");
                 return 1;

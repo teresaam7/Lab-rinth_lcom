@@ -4,6 +4,7 @@
 #include "graphics.h"
 
 vbe_mode_info_t modeinfo;
+//What is displayed on a computer screen depends on the frame buffer in VRAM
 uint8_t *frame_buffer;
 
 // Mudança do Minix do modo texto para modo gráfico
@@ -24,7 +25,6 @@ int (graphics_mode)(uint16_t mode) {
 }
 
 //Mapping the Linear Frame Buffer-> contruir o frame buffer virtual e físico
-//What is displayed on a computer screen depends on the contents of the frame buffer in VRAM
 //The VRAM is a physical memory region so before lab5 can access the frame buffer, it must map the VRAM to its address space using:
 //void *vm_map_phys(endpoint_t who, void *phaddr, size_t len)-> receives physical address and returns virtual address
 int (frame_buffer_func)(uint16_t mode){
@@ -68,7 +68,8 @@ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
   unsigned int index=(modeinfo.XResolution*y+x)*bytesInPixel;
 
   //copy bytesInPixel bytes of color starting from frame_buffer[index]
-  if (memcpy(&frame_buffer[index], &color, bytesInPixel) == NULL) return 1;
+  //if (memcpy(&frame_buffer[index], &color, bytesInPixel) == NULL) return 1;
+  if (memcpy(frame_buffer+index, &color, bytesInPixel) == NULL) return 1;
   return 0;
 }
 
@@ -94,11 +95,31 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
 
 //tem de ser uint32_t
 uint32_t R(uint32_t first){
+    printf("%p",modeinfo.RedFieldPosition); //10
+    printf("%p",modeinfo.RedMaskSize); //8
     return ((1<<modeinfo.RedMaskSize)-1) & (first>>modeinfo.RedFieldPosition);
 }
 uint32_t G(uint32_t first){
+    printf("%p",modeinfo.GreenFieldPosition); //8
+    printf("%p",modeinfo.GreenMaskSize); //8
     return ((1<<modeinfo.GreenMaskSize)-1) & (first>>modeinfo.GreenFieldPosition);
 }
 uint32_t B(uint32_t first){
+    printf("%x",modeinfo.BlueFieldPosition); //0
+    printf("%x",modeinfo.BlueMaskSize); //8
     return ((1<<modeinfo.BlueMaskSize)-1) & (first>>modeinfo.BlueFieldPosition);
+}
+
+int (make_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
+    xpm_image_t img;
+    uint8_t *map;
+    //retorna um apontador para um array de cores preenchido de acordo com o XPM
+    map=xpm_load(xpm, XPM_INDEXED, &img);
+    for(uint8_t i=0; i<img.height; i++){
+        for(uint8_t j=0; j<img.width; j++){
+            if(vg_draw_pixel(xi+j, yi+i, *map)!=0){return 1;};
+            map++;//proxima cor
+        }
+    }
+    return 0;
 }

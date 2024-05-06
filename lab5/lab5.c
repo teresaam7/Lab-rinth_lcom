@@ -8,6 +8,7 @@
 #include "graphics.h"
 #include "keyboard.c"
 #include "utils.c"
+#include "timer.c"
 
 // Any header files included below this line should have been created by you
 
@@ -36,6 +37,7 @@ int main(int argc, char *argv[]) {
 }
 
 int hook_id_keyboard=1;
+int hook_id_timer=0;
 extern vbe_mode_info_t modeinfo;
 int (ESC_break)() {
   int ipc_status;
@@ -115,8 +117,8 @@ int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, ui
         color=(first + (i * no_rectangles + j) * step) % (1 << modeinfo.BitsPerPixel); 
         }
         else{ //directed mode. equivalente a else if modeinfo.MemoryModel==0x06
-           printf("%x",modeinfo.RedFieldPosition);
-           printf("%x",modeinfo.RedMaskSize);
+           //printf("%x",modeinfo.RedFieldPosition);
+           //printf("%x",modeinfo.RedMaskSize);
            uint32_t red=(R(first) + j * step) % (1 << modeinfo.RedMaskSize); 
            uint32_t green=(G(first) + i * step) % (1 << modeinfo.GreenMaskSize); 
            uint32_t blue=(B(first) + (j + i) * step) % (1 << modeinfo.BlueMaskSize); 
@@ -159,11 +161,69 @@ int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
 
 int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint16_t yf,
                      int16_t speed, uint8_t fr_rate) {
-  /* To be completed */
-  printf("%s(%8p, %u, %u, %u, %u, %d, %u): under construction\n",
-         __func__, xpm, xi, yi, xf, yf, speed, fr_rate);
 
-  return 1;
+    if(frame_buffer_func(0x105)!=0){return 1;}
+    if(graphics_mode(0x105)!=0){return 1;}
+
+    int move_vertical;//1 se movimento vertical
+    if((xi==xf)&&(yi<yf)){move_vertical=1;}
+    else if((yi==yf)&&(xi<xf)){
+        move_vertical=0;
+    }
+    make_xpm(xpm, xi, yi);
+
+    int r;
+    int ipc_status;
+    message msg;
+    uint8_t irq_timer;
+    uint8_t irq_keyboard;
+    irq_timer=BIT(hook_id_timer);
+    irq_keyboard=BIT(hook_id_keyboard);
+    if(sys_irqsetpolicy(0, IRQ_REENABLE, &hook_id_timer)!=0){return 1;}
+    if(sys_irqsetpolicy(1, IRQ_REENABLE|IRQ_EXCLUSIVE, &hook_id_keyboard)!=0){return 1;}
+    // Atualiza o sistema para a frame rate dada
+    if (timer_set_frequency(0, fr_rate) != 0) return 1; 
+
+    while((scancode!=0x81)&&((xi<xf)||(yi<yf)) ) { // You may want to use a different condition 
+       // Get a request message. 
+       if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+       printf("driver_receive failed with: %d", r);
+       continue;
+       }
+       if (is_ipc_notify(ipc_status)) { //received notification 
+       switch (_ENDPOINT_P(msg.m_source)) {
+       case HARDWARE: // hardware interrupt notification 
+       if (msg.m_notify.interrupts & irq_keyboard) { // subscri
+           kbc_ih();
+       }
+        if (msg.m_notify.interrupts & irq_timer) { // subscri
+           // Apaga o desenho anterior para dar a sensação de movimetno
+           if (vg_draw_rectangle(xi, yi, 100, 100, 0xFFFFFF) != 0) return 1;
+           if(move_vertical==0){
+            xi+=speed;
+            make_xpm(xpm, xi, yi);
+            }
+           else{
+            yi+=speed;
+            make_xpm(xpm, xi, yi);
+           }
+        }
+         break;
+       default:
+         break; // no other notifications expected: do nothi
+       }
+       } else { // received a standard message, not a notification
+         // no standard messages expected: do nothing 
+       }
+    }
+
+    if(sys_irqrmpolicy(&hook_id_timer)!=0){return 1;}
+    if(sys_irqrmpolicy(&hook_id_keyboard)!=0){return 1;}
+  //  if(ESC_break()!=0){return 1;}//acaba quando esc break pressionado
+    if(vg_exit()!=0){
+    return 1;
+    }
+  return 0;
 }
 
 //NAO FAZERRRRRRRRR
