@@ -1,8 +1,22 @@
 @lcflib.a:2019, lcf_start
   proj_main_loop(argc, argv)
 > proj_main_loop(0, [NULL])
-  @Game.c:11, loadMazeXPM
-    xpm_load(maze1, XPM_8_8_8_8, &img)
-  > xpm_load(addr: 0x82347b0, XPM_8_8_8_8, addr: 0xeffff7a8)
-  < xpm_load(addr: 0x82347b0, XPM_8_8_8_8, addr: 0xeffff7a8 [810x410 : 1328400 bytes]) -> (ret: 0x8257000)
-< proj_main_loop(0, [NULL]) -> (ret: 0)
+  @graphics.c:25, frame_buffer_func
+    vbe_get_mode_info(mode, &modeinfo)
+  > vbe_get_mode_info(0x115, addr: 0x82523e0)
+  < vbe_get_mode_info(0x115, addr: 0x82523e0 [0xe0000000, 800x600, 8:8:8 (24) <1.37329 MiB>]) -> (ret: 0)
+  @graphics.c:33, frame_buffer_func
+    sys_privctl(SELF, SYS_PRIV_ADD_MEM, &physical_address)
+  > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff790 [0xe0000000 - 0xe015f900 <1.37329 MiB>])
+  < sys_privctl(SELF, SYS_PRIV_ADD_MEM, &physical_address) -> (ret: 0)
+  @graphics.c:38, frame_buffer_func
+    vm_map_phys(SELF, (void*) physical_address.mr_base, frame_size)
+  < vm_map_phys(SELF, addr: 0xe0000000, 1.37329 MiB) -> (ret: 0xef89b000)
+  @graphics.c:17, graphics_mode
+    sys_int86(&reg86)
+  > sys_int86(addr: 0xeffff770 [AX: 4f02, BX: 4115, CX: 0000, DX: 0000, ES: 0000, DI: 0000])
+  < sys_int86(addr: 0xeffff770 [AX: 004f, BX: 4115, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
+  @graphics.c:87, make_xpm
+    xpm_load(xpm, XPM_8_8_8, &image)
+  > xpm_load(addr: 0x81b72f0, XPM_8_8_8, addr: 0xeffff758)
+  < xpm_load(addr: 0x81b72f0, XPM_8_8_8, addr: 0xeffff758 [810x410 : 996300 bytes]) -> (ret: 0x83c8000)

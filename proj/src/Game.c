@@ -1,5 +1,6 @@
 
 #include "Game.h"
+#include "maze.h"
 
 uint8_t k_index = 0;
 uint8_t k_bytes[2];
@@ -11,17 +12,18 @@ extern struct packet m_packet;
 
 
 int (gameLogic) () {
-    loadMazeXPM();
+    maze_allocation();
+    draw_maze(true);
+    /*
+
+    if (loadMazeXPM() != 0) {
+        return 1;
+    }
+
+    */
     return 0;
 }
 
-void (loadMazeXPM) () {
-    xpm_image_t img;
-    uint8_t *result = xpm_load(maze1, XPM_8_8_8_8, &img);
-    if (result == NULL) {
-        printf("Error loading maze XPM\n");
-    }
-}
 
 int(kbc_interrupts)() {
     if (write_mouse(ENABLE_DATA_MODE) != 0)

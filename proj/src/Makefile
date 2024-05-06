@@ -1,6 +1,6 @@
 PROG=proj
 
-SRCS = proj.c timer.c keyboard.c mouse.c graphics.c Game.c 
+SRCS = proj.c timer.c keyboard.c mouse.c graphics.c connector.c maze.c Game.c 
 
 # __LCOM_OPTIMIZED__ disables most of the LCF's overhead (and functionality!)
 CPPFLAGS += -pedantic #-D __LCOM_OPTIMIZED__
