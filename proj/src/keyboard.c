@@ -26,7 +26,7 @@ int (keyboard_unsubscribe_int)() {
 
 
 void (kbc_ih)() {
-    if (read_kbc(OUT_BUF, &scancode, 0) != 0) 
+    if (read_kbc(OUT_BUF, &k_scancode, 0) != 0) 
         printf("Read scancode error\n");
 }
 
@@ -36,7 +36,7 @@ int (restore_interrupts)() {
         return 1;
 
     uint8_t command_byte;
-    if (read_kbc(OUT_BUF, &command_byte) != 0)
+    if (read_kbc(OUT_BUF, &command_byte, 0) != 0)
         return 1;
 
     command_byte = command_byte | ENABLE_INT_KEYBOARD;

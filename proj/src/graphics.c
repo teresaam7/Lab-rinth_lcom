@@ -10,10 +10,10 @@ int (graphics_mode)(uint16_t mode) {
     reg86_t reg86;
     memset(&reg86, 0, sizeof(reg86)); //zero em todo o reg86
        
+    reg86.intno=0x10; 
     reg86.ah=0x4F;                    //parte + significativa de ax
     reg86.al=0x02;                    //parte - significativa de ax 
-    reg86.bx=mode|BIT(14); 
-    reg86.intno=0x10;                 
+    reg86.bx=mode|BIT(14);                 
     if(sys_int86(&reg86)!=0){       //se erro retorna EFAULT 
         printf("Changing graphic mode error\n");
         return 1;
@@ -45,7 +45,7 @@ int (frame_buffer_func)(uint16_t mode){
 
 
 int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
-  if (x< 0 || y < 0 || x > modeinfo.XResolution || y > modeinfo.YResolution) return 1;
+  if (x< 0 || y < 0 || x >= modeinfo.XResolution || y >= modeinfo.YResolution) return 0;
   unsigned int bytesInPixel= (modeinfo.BitsPerPixel+7)/8;
   unsigned int index= (modeinfo.XResolution*y+x) * bytesInPixel;
   if (memcpy(frame_buffer+index, &color, bytesInPixel)==NULL) return 1;
@@ -85,6 +85,8 @@ int (make_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
     xpm_image_t image;
     uint8_t *map;
     map=xpm_load(xpm,XPM_8_8_8, &image);
+    if (map == NULL) return 1;
+
     for(uint8_t i=0; i<image.height; i++){
         for(uint8_t j=0; j<image.width; j++){
             if(vg_draw_pixel(xi+j, yi+i, *map)!=0){
