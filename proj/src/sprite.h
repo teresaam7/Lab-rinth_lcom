@@ -18,4 +18,6 @@ void destroy_sprite(Sprite *sp);
 //static int draw_sprite(Sprite *sp, char *base);
 //static int check_collision(Sprite *sp, char *base);
 
+int drawing_xpm(Sprite *sp);
+
 #endif

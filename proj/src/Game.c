@@ -1,5 +1,6 @@
 
 #include "Game.h"
+#include "sprite.c"
 
 /*
 uint8_t k_index = 0;
@@ -12,7 +13,12 @@ extern struct packet m_packet;
 */
 
 int (gameLogic) () {
-  make_xpm((xpm_map_t) maze1,4,4);
+  //make_xpm((xpm_map_t) maze1,4,4);
+
+  Sprite *sp;
+  sp=create_sprite(maze1, 500, 100, 0, 0);
+  drawing_xpm(sp);
+  destroy_sprite(sp); 
 
     //maze_allocation();
     //draw_maze(true);

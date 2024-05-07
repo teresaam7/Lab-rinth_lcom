@@ -16,7 +16,7 @@ int xspeed, int yspeed) {
   if( sp == NULL )
     return NULL;
   // read the sprite pixmap
-  sp->map = xpm_load(pic, XPM_INDEXED, &img);
+  sp->map = xpm_load((xpm_map_t) pic, XPM_INDEXED, &img);
   if( sp->map == NULL ) {
     free(sp);
     return NULL;
@@ -35,4 +35,12 @@ void destroy_sprite(Sprite *sp) {
   // should do this @ the caller
 }
 
+int drawing_xpm(Sprite *sp){
+	for(int i=0; i<sp->height; i++) {
+		for(int j=0; j<sp->width; ++j) {
+			draw_pixel((unsigned int) (j+sp->x), (unsigned int)(i+sp->y), sp->map[i*sp->width+j]);
+		}
+	}
+	return 0;
+}
 
