@@ -12,7 +12,7 @@ extern struct packet m_packet;
 */
 
 int (gameLogic) () {
-  make_xpm((xpm_map_t)result,0,0);
+  make_xpm((xpm_map_t) maze1,4,4);
 
     //maze_allocation();
     //draw_maze(true);

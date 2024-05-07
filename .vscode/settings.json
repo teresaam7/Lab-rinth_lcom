@@ -59,6 +59,7 @@
   "files.associations": {
     "i8042.h": "c",
     "lcf.h": "c",
-    "*.xpm": "c"
+    "*.xpm": "c",
+    "ios": "c"
   }
 }
