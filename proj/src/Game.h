@@ -7,6 +7,7 @@
 #include "mouse.h"
 #include "graphics.h"
 #include "images/maze1.xpm"
+#include "sprite.h"
 
 int (gameLogic) ();
 
