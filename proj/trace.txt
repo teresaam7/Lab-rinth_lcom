@@ -1,22 +1,22 @@
 @lcflib.a:2019, lcf_start
   proj_main_loop(argc, argv)
 > proj_main_loop(0, [NULL])
-  @graphics.c:25, frame_buffer_func
-    vbe_get_mode_info(mode, & mode_info)
+  @graphics.c:27, frame_buffer_func
+    vbe_get_mode_info(mode, &mode_info)
   > vbe_get_mode_info(0x115, addr: 0x8252274)
   < vbe_get_mode_info(0x115, addr: 0x8252274 [0xe0000000, 800x600, 8:8:8 (24) <1.37329 MiB>]) -> (ret: 0)
-  @graphics.c:36, frame_buffer_func
+  @graphics.c:39, frame_buffer_func
     sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)
   > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff788 [0xe0000000 - 0xe015f900 <1.37329 MiB>])
   < sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr) -> (ret: 0)
-  @graphics.c:39, frame_buffer_func
+  @graphics.c:43, frame_buffer_func
     vm_map_phys(SELF, (void *)mr.mr_base, frameSize)
   < vm_map_phys(SELF, addr: 0xe0000000, 1.37329 MiB) -> (ret: 0xef89b000)
-  @graphics.c:16, graphics_mode
+  @graphics.c:18, graphics_mode
     sys_int86(&r)
   > sys_int86(addr: 0xeffff768 [AX: 4f02, BX: 4115, CX: 0000, DX: 0000, ES: 0000, DI: 0000])
   < sys_int86(addr: 0xeffff768 [AX: 004f, BX: 4115, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
-  @graphics.c:60, make_xpm
+  @graphics.c:64, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
   > xpm_load(addr: 0x82351d4, XPM_8_8_8_8, addr: 0xeffff768)
   < xpm_load(addr: 0x82351d4, XPM_8_8_8_8, addr: 0xeffff768 [810x410 : 1328400 bytes]) -> (ret: 0x8268000)
