@@ -11,7 +11,6 @@ typedef struct Frame {
 } Frame; 
 
 Frame frame;
-uint8_t *display_buffer;
 uint8_t *draw_buffer;  
 
 int (graphic_mode)(uint16_t mode);
@@ -22,8 +21,8 @@ int (draw_sprite)(xpm_map_t xpm, uint16_t xi, uint16_t yi);
 
 void (initialize_buffers)();
 void (free_buffers)();
-void (update_display)();
-void (update_screen)();
-
+void (update_frame)();
+void (clear_frame)();
+void (clear_drawing)();
 
 #endif

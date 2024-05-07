@@ -19,7 +19,11 @@
   @graphics.c:66, draw_sprite
     xpm_load(xpm, XPM_8_8_8_8, &image)
   > xpm_load(addr: 0x82351d4, XPM_8_8_8_8, addr: 0xeffff768)
-  < xpm_load(addr: 0x82351d4, XPM_8_8_8_8, addr: 0xeffff768 [810x410 : 1328400 bytes]) -> (ret: 0x8528000)
+  < xpm_load(addr: 0x82351d4, XPM_8_8_8_8, addr: 0xeffff768 [810x410 : 1328400 bytes]) -> (ret: 0x83c8000)
+  @graphics.c:66, draw_sprite
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8235848, XPM_8_8_8_8, addr: 0xeffff768)
+  < xpm_load(addr: 0x8235848, XPM_8_8_8_8, addr: 0xeffff768 [50x50 : 10000 bytes]) -> (ret: 0x8258000)
   @keyboard.c:13, keyboard_subscribe_int
     sys_irqsetpolicy(KEYBOARD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_keyboard)
   > sys_irqsetpolicy(1, 3, addr: 0x82351cc [1])

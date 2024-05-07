@@ -1,5 +1,5 @@
 /* XPM */
-static char * brushPlus_xpm[] = {
+static char * teste[] = {
 "50 50 2 1",
 " 	c #FFFFFF",
 ".	c #000000",

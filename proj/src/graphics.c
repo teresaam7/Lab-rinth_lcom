@@ -77,6 +77,29 @@ int (draw_sprite)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
     return 0; 
 }
 
+void (initialize_buffers)() {
+  draw_buffer = malloc(frame.size);
+}
+
+void (free_buffers)() {
+  free(draw_buffer);
+}
+
+void (update_frame)() {
+  memcpy(frame.buffer, draw_buffer, frame.size);
+}
+
+void (clear_frame)() {
+  memset(frame.buffer, 0, frame.size);
+}
+
+void (clear_drawing)() {
+  memset(draw_buffer, 0, frame.size);
+}
+
+
+/*
+uint8_t *display_buffer;
 
 void (initialize_buffers)() {
   display_buffer = malloc(frame.size);
@@ -93,11 +116,9 @@ void (update_display)() {
 }
 
 void (update_screen)() {
-    memcpy(frame.buffer, display_buffer, frame.size);
+  memcpy(frame.buffer, display_buffer, frame.size);
 }
 
-
-/*
 void flip_pages() { // Flip?
     uint8_t *temp = display_buffer;
     display_buffer = draw_buffer;

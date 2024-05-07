@@ -14,9 +14,14 @@ extern struct packet m_packet;
 int (gameLogic) () {
   initialize_buffers();
   draw_sprite((xpm_map_t) maze1,4,4);
-  update_display();
-  update_screen();
-  
+  update_frame();
+
+
+  clear_drawing();
+
+  draw_sprite((xpm_map_t) teste,4,4);
+  update_frame();
+
   return 0;
 }
 
