@@ -48,15 +48,15 @@ int (receive_ESC)() {
       printf("driver_receive failed with: %d", r);
       continue;
     }
-    if (is_ipc_notify(ipc_status)) { // received notification
+    if (is_ipc_notify(ipc_status)) { 
       switch (_ENDPOINT_P(msg.m_source)) {
-        case HARDWARE: // hardware interrupt notification
-          if (msg.m_notify.interrupts & irq_set_kbc) { // subscribed interrupt
+        case HARDWARE: 
+          if (msg.m_notify.interrupts & irq_set_kbc) { 
             kbc_ih();
           }
           break;
         default:
-          break; // no other notifications expected: do nothing
+          break; 
       }
     }
   }
