@@ -60,6 +60,15 @@
     "i8042.h": "c",
     "lcf.h": "c",
     "*.xpm": "c",
-    "ios": "c"
+    "ios": "c",
+    "__split_buffer": "c",
+    "__tree": "c",
+    "bitset": "c",
+    "initializer_list": "c",
+    "map": "c",
+    "memory": "c",
+    "string": "c",
+    "utility": "c",
+    "vector": "c"
   }
 }

@@ -84,28 +84,26 @@ int (receive_ESC)() {
 
 
 int (proj_main_loop)(int argc, char *argv[]) {
-  if (frame_buffer_func(0x115) != 0) {
+  if (initialize_frame_buffer(0x115) != 0) {
     return 1;
   }
 
-  if (graphics_mode(0x115) != 0) {
+  if (graphic_mode(0x115) != 0) {
     return 1;
   }
 
   if (gameLogic()!= 0) {
     return 1;
   }
-  printf("AAA");
 
   if (receive_ESC() != 0) {
     return 1;
   }
 
-  //clear_screen();
-
   if (vg_exit() != 0) {
     return 1;
   }
+  //free_buffers();
   return 0;
 }
 

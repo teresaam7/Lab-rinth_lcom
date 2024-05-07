@@ -12,18 +12,12 @@ extern struct packet m_packet;
 */
 
 int (gameLogic) () {
-  make_xpm((xpm_map_t) maze1,4,4);
-
-    //maze_allocation();
-    //draw_maze(true);
-    /*
-
-    if (loadMazeXPM() != 0) {
-        return 1;
-    }
-
-    */
-    return 0;
+  initialize_buffers();
+  draw_sprite((xpm_map_t) maze1,4,4);
+  update_display();
+  update_screen();
+  
+  return 0;
 }
 
 /*
