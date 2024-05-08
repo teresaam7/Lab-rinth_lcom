@@ -6,9 +6,11 @@
 #include "keyboard.h"
 #include "mouse.h"
 #include "graphics.h"
+#include "sprite.h"
+
 #include "images/maze1.xpm"
 #include "images/maze2.xpm"
-#include "sprite.h"
+#include "images/maze3.xpm"
 
 #include "images/right1.xpm"
 

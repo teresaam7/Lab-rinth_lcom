@@ -110,8 +110,8 @@ enum SpriteState get_next_sprite(enum SpriteState current_state, uint8_t scancod
 /*A personagem pinta o fundo enquanto anda -- dar fix*/
 
 void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
-    static enum SpriteState current_state = RIGHT1;
-    enum SpriteState next_state = get_next_sprite(current_state, scancode);
+    //static enum SpriteState current_state = RIGHT1;
+    //enum SpriteState next_state = get_next_sprite(current_state, scancode);
     /*Falta trocar de sprite quando anda para o lado*/
     switch (scancode) {
         case D_KEY_MK:
