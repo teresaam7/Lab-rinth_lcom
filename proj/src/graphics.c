@@ -49,7 +49,7 @@ int (frame_buffer_func)(uint16_t mode){
 }
 
 
-int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
+int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
   if(x>mode_info.XResolution || y >mode_info.YResolution) return 0;
   unsigned int bytesPerPixel = (mode_info.BitsPerPixel + 7)/8;
   unsigned int index = (mode_info.XResolution * y + x) * bytesPerPixel;
@@ -65,7 +65,7 @@ int (make_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
 
     for (int h = 0 ; h < image.height ; h++) {
       for (int w = 0 ; w < image.width ; w++) {
-        if (vg_draw_pixel(x + w, y + h, colors[w + h*image.width])) return 1;
+        if (draw_pixel(x + w, y + h, colors[w + h*image.width])) return 1;
       }
     }
     return 0; 
