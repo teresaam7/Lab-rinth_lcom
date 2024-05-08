@@ -148,6 +148,7 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
             return;
     }
     clear_drawing();
+    make_xpm((xpm_map_t) maze2,1,1);
     drawing_sprite(player);
     update_frame();
 }
