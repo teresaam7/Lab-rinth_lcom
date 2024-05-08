@@ -14,7 +14,7 @@
 
 int (gameLogic) ();
 
-
+void (handle_ingame_scancode)(uint8_t scancode, Sprite *player);
 
 #endif
 
