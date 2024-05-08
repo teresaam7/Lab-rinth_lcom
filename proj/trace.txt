@@ -1,21 +1,21 @@
 @lcflib.a:2019, lcf_start
   proj_main_loop(argc, argv)
 > proj_main_loop(0, [NULL])
-  @graphics.c:27, frame_buffer_func
+  @graphics.c:23, initialize_frame_buffer
     vbe_get_mode_info(mode, &mode_info)
-  > vbe_get_mode_info(0x115, addr: 0x82515d4)
-  < vbe_get_mode_info(0x115, addr: 0x82515d4 [0xe0000000, 800x600, 8:8:8 (24) <1.37329 MiB>]) -> (ret: 0)
-  @graphics.c:39, frame_buffer_func
+  > vbe_get_mode_info(0x115, addr: 0xeffff6a0)
+  < vbe_get_mode_info(0x115, addr: 0xeffff6a0 [0xe0000000, 800x600, 8:8:8 (24) <1.37329 MiB>]) -> (ret: 0)
+  @graphics.c:38, initialize_frame_buffer
     sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)
-  > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff788 [0xe0000000 - 0xe015f900 <1.37329 MiB>])
+  > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff698 [0xe0000000 - 0xe015f900 <1.37329 MiB>])
   < sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr) -> (ret: 0)
-  @graphics.c:43, frame_buffer_func
-    vm_map_phys(SELF, (void *)mr.mr_base, frameSize)
+  @graphics.c:43, initialize_frame_buffer
+    vm_map_phys(SELF, (void *)mr.mr_base, frame.size)
   < vm_map_phys(SELF, addr: 0xe0000000, 1.37329 MiB) -> (ret: 0xef89b000)
-  @graphics.c:18, graphics_mode
+  @graphics.c:12, graphic_mode
     sys_int86(&r)
-  > sys_int86(addr: 0xeffff768 [AX: 4f02, BX: 4115, CX: 0000, DX: 0000, ES: 0000, DI: 0000])
-  < sys_int86(addr: 0xeffff768 [AX: 004f, BX: 4115, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
+  > sys_int86(addr: 0xeffff770 [AX: 4f02, BX: 4115, CX: 0000, DX: 0000, ES: 0000, DI: 0000])
+  < sys_int86(addr: 0xeffff770 [AX: 004f, BX: 4115, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
   @utils.c:26, util_sys_inb
     sys_inb(port, &temp)
   > sys_inb(0x64, addr: 0xeffff6b0)
@@ -47,19 +47,19 @@
     sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_mouse)
   > sys_irqsetpolicy(12, 3, addr: 0x82341d0 [3])
   < sys_irqsetpolicy(12, 3, addr: 0x82341d0 [11]) -> (ret: 0)
-  @graphics.c:64, make_xpm
+  @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
   > xpm_load(addr: 0x82341d4, XPM_8_8_8_8, addr: 0xeffff6f0)
-  < xpm_load(addr: 0x82341d4, XPM_8_8_8_8, addr: 0xeffff6f0 [810x594 : 1924560 bytes]) -> (ret: 0x8267000)
-  @graphics.c:64, make_xpm
+  < xpm_load(addr: 0x82341d4, XPM_8_8_8_8, addr: 0xeffff6f0 [810x594 : 1924560 bytes]) -> (ret: 0x83c7000)
+  @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
   > xpm_load(addr: 0x8234b28, XPM_8_8_8_8, addr: 0xeffff6e0)
-  < xpm_load(addr: 0x8234b28, XPM_8_8_8_8, addr: 0xeffff6e0 [15x18 : 1080 bytes]) -> (ret: 0x8258000)
-  @Game.c:37, gameLogic
+  < xpm_load(addr: 0x8234b28, XPM_8_8_8_8, addr: 0xeffff6e0 [13x20 : 1040 bytes]) -> (ret: 0x8258000)
+  @Game.c:42, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff73c)
   < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
-  @Game.c:46, gameLogic
+  @Game.c:54, gameLogic
     kbc_ih()
     @utils.c:26, util_sys_inb
       sys_inb(port, &temp)
@@ -69,11 +69,11 @@
       sys_inb(port, &temp)
     > sys_inb(0x60, addr: 0xeffff62c)
     < sys_inb(0x60, addr: 0xeffff62c [0x01 = 0b00000001])
-  @Game.c:37, gameLogic
+  @Game.c:42, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff73c)
   < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
-  @Game.c:46, gameLogic
+  @Game.c:54, gameLogic
     kbc_ih()
     @utils.c:26, util_sys_inb
       sys_inb(port, &temp)
@@ -114,10 +114,7 @@
     sys_inb(port, &temp)
   > sys_inb(0x60, addr: 0xeffff6e0)
   < sys_inb(0x60, addr: 0xeffff6e0 [0xfa = 0b11111010])
-  @proj.c:47, proj_main_loop
-    printf("AAA")
-    "AAA"
-  @proj.c:51, proj_main_loop
+  @proj.c:48, proj_main_loop
     vg_exit()
   < vg_exit() -> (ret: 0)
 < proj_main_loop(0, [NULL]) -> (ret: 0)
