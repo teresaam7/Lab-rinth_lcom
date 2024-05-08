@@ -41,9 +41,33 @@ int (proj_main_loop)(int argc, char *argv[]) {
     return 1;
   }
 
-  if (gameLogic()!= 0) {
-    return 1;
+  bool running = true;
+  GameState gameState = MENU;
+
+  while(running)
+{
+  switch(gameState){
+
+    case MENU:
+      if (menuLogic(&running)!= 0) return 1;
+    break;
+
+    case GAME: 
+      if (gameLogic(&running)!= 0) return 1;
+    break;
+
+    case ABOUTUS:
+      //if (aboutUsLogic(&running)!= 0) return 1;
+    break;
+
+    case EXIT:
+      running = false;
+    break;
   }
+
+}
+
+
   printf("AAA");
 
   //clear_screen();
