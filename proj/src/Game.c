@@ -84,27 +84,50 @@ int (gameLogic) () {
     return 0;
 }
 
+enum SpriteState get_next_sprite(enum SpriteState current_state, uint8_t scancode) {
+    switch (scancode) {
+        case A_KEY_MK:
+            return LEFT1;
+        case D_KEY_MK:
+            return RIGHT1;
+        case W_KEY_MK:
+            return UP1;
+        case S_KEY_MK:
+            return DOWN1;
+        case A_KEY_BRK:
+            return LEFT2;
+        case D_KEY_BRK:
+            return RIGHT2;
+        case W_KEY_BRK:
+            return UP2;
+        case S_KEY_BRK:
+            return DOWN2;
+        default:
+            return current_state;
+    }
+}
+
+/*A personagem pinta o fundo enquanto anda -- dar fix*/
+
 void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
+    static enum SpriteState current_state = RIGHT1;
+    enum SpriteState next_state = get_next_sprite(current_state, scancode);
+    /*Falta trocar de sprite quando anda para o lado*/
     switch (scancode) {
         case D_KEY_MK:
             player->x = player->x + 1;
-            drawing_xpm(player);
             break;
 
         case A_KEY_MK:
             player->x = player->x - 1;
-            drawing_xpm(player);
             break;
 
         case W_KEY_MK:
             player->y = player->y- 1;
-            drawing_xpm(player);
             break;
         
         case S_KEY_MK:
             player->y = player->y + 1;
-            drawing_xpm(player);
-
             break;
         case A_KEY_BRK:
         case D_KEY_BRK:
@@ -114,6 +137,6 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
         default:
             return;
     }
-  
+      drawing_xpm(player);
 }
 
