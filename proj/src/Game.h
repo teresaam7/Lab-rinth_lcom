@@ -6,12 +6,21 @@
 #include "keyboard.h"
 #include "mouse.h"
 #include "graphics.h"
+#include "sprite.h"
+
 #include "images/teste.xpm"
 #include "images/maze1.xpm"
 #include "images/maze2.xpm"
-#include "sprite.h"
+#include "images/maze3.xpm"
 
 #include "images/right1.xpm"
+#include "images/right2.xpm"
+#include "images/left1.xpm"
+#include "images/left2.xpm"
+#include "images/up1.xpm"
+#include "images/up2.xpm"
+#include "images/down1.xpm"
+#include "images/down2.xpm"
 
 enum SpriteState {
     RIGHT1,
