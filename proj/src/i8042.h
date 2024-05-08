@@ -35,6 +35,14 @@
 
 #define ENABLE_INT_KEYBOARD     BIT(0)
 
+#define A_KEY_MK        0x1e
+#define A_KEY_BRK       0x9e
+#define S_KEY_MK        0x1F
+#define S_KEY_BRK       0x9f
+#define D_KEY_MK        0x20
+#define D_KEY_BRK       0xa0
+#define W_KEY_MK        0x11
+#define W_KEY_BRK       0x91
 
 
 /* MOUSE */

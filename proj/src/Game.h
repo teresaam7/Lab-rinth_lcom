@@ -8,6 +8,9 @@
 #include "graphics.h"
 #include "images/maze1.xpm"
 #include "images/maze2.xpm"
+#include "sprite.h"
+
+#include "images/right1.xpm"
 
 int (gameLogic) ();
 
