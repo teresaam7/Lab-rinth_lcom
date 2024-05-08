@@ -1,7 +1,6 @@
 
 #include "Game.h"
 
-/*
 uint8_t k_index = 0;
 uint8_t k_bytes[2];
 extern uint8_t k_scancode;
@@ -9,24 +8,11 @@ extern uint8_t k_scancode;
 extern int m_index;
 extern uint8_t m_bytes[3];
 extern struct packet m_packet;
-*/
+
 
 int (gameLogic) () {
-  initialize_buffers();
-  draw_sprite((xpm_map_t) maze1,4,4);
-  update_frame();
+    initialize_buffers();
 
-
-  clear_drawing();
-
-  draw_sprite((xpm_map_t) teste,4,4);
-  update_frame();
-
-  return 0;
-}
-
-/*
-int(kbc_interrupts)() {
     if (write_mouse(ENABLE_DATA_MODE) != 0)
       return 1;
 
@@ -41,18 +27,32 @@ int(kbc_interrupts)() {
     int r;
     message msg;
     int ipc_status;
-    while (1) {     // CHANGEEEEEEEEEEEEEEEEEEEE
+
+    make_xpm((xpm_map_t) maze2,1,1);
+
+    Sprite *sp;
+    sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
+    drawing_sprite(sp);
+
+    update_frame();
+    clear_drawing();
+    
+    while (k_scancode != SCAN_BREAK_ESC) {    
      
       if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
         printf("driver_receive failed with: %d", r);
         continue;
       }
+
+      int count = 0;
       
       if (is_ipc_notify(ipc_status)) {      
         switch (_ENDPOINT_P(msg.m_source)) {
-          case HARDWARE:    /
+          case HARDWARE:    
             if (msg.m_notify.interrupts & irq_set_keyboard) { 
+                count++;
                 kbc_ih();
+                handle_ingame_scancode(k_scancode, sp);
                 if (k_scancode == SCAN_FIRST_TWO) {
                     k_bytes[k_index] = k_scancode; k_index++;
                 } else {
@@ -60,6 +60,7 @@ int(kbc_interrupts)() {
                     // kbd_print_scancode(!(scancode & MAKE_OR_BREAK), i == 0? 1: 2 , bytes);
                     k_index = 0;
                 }
+
             }
 
             if (msg.m_notify.interrupts & irq_set_mouse) { 
@@ -88,7 +89,66 @@ int(kbc_interrupts)() {
     if (write_mouse(DISABLE_DATA_MODE) != 0)
       return 1;
 
-    return 0;
+    free_buffers();
 
+    return 0;
 }
-*/
+
+enum SpriteState get_next_sprite(enum SpriteState current_state, uint8_t scancode) {
+    switch (scancode) {
+        case A_KEY_MK:
+            return LEFT1;
+        case D_KEY_MK:
+            return RIGHT1;
+        case W_KEY_MK:
+            return UP1;
+        case S_KEY_MK:
+            return DOWN1;
+        case A_KEY_BRK:
+            return LEFT2;
+        case D_KEY_BRK:
+            return RIGHT2;
+        case W_KEY_BRK:
+            return UP2;
+        case S_KEY_BRK:
+            return DOWN2;
+        default:
+            return current_state;
+    }
+}
+
+/*A personagem pinta o fundo enquanto anda -- dar fix*/
+
+void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
+    //static enum SpriteState current_state = RIGHT1;
+    //enum SpriteState next_state = get_next_sprite(current_state, scancode);
+    /*Falta trocar de sprite quando anda para o lado*/
+    switch (scancode) {
+        case D_KEY_MK:
+            player->x = player->x + 1;
+            break;
+
+        case A_KEY_MK:
+            player->x = player->x - 1;
+            break;
+
+        case W_KEY_MK:
+            player->y = player->y- 1;
+            break;
+        
+        case S_KEY_MK:
+            player->y = player->y + 1;
+            break;
+        case A_KEY_BRK:
+        case D_KEY_BRK:
+           
+            break;
+
+        default:
+            return;
+    }
+    clear_drawing();
+    drawing_sprite(player);
+    update_frame();
+}
+

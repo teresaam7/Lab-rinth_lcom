@@ -61,7 +61,7 @@ int (draw_pixel_to_buffer) (uint16_t x, uint16_t y, uint32_t color) {
 }
 
 
-int (draw_sprite)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
+int (make_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
     xpm_image_t image;
     uint32_t *colors = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
 

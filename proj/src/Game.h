@@ -8,10 +8,27 @@
 #include "graphics.h"
 #include "images/teste.xpm"
 #include "images/maze1.xpm"
+#include "images/maze2.xpm"
+#include "sprite.h"
+
+#include "images/right1.xpm"
+
+enum SpriteState {
+    RIGHT1,
+    RIGHT2,
+    LEFT1,
+    LEFT2,
+    UP1,
+    UP2,
+    DOWN1,
+    DOWN2
+};
 
 int (gameLogic) ();
 
+enum SpriteState get_next_sprite(enum SpriteState current_state, uint8_t scancode) ;
 
+void (handle_ingame_scancode)(uint8_t scancode, Sprite *player);
 
 #endif
 
