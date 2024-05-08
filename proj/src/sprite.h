@@ -15,7 +15,7 @@ Sprite *create_sprite(xpm_map_t xpm, int x, int y, double xspeed, double yspeed)
 
 void destroy_sprite(Sprite *sp);
 
-int drawing_xpm(Sprite *sp);
+int drawing_sprite(Sprite *sp);
 
 bool check_collision(Sprite *sprite1, const char *base, int base_width, int base_height);
 

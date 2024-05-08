@@ -11,7 +11,9 @@ extern struct packet m_packet;
 
 
 int (gameLogic) () {
-  if (write_mouse(ENABLE_DATA_MODE) != 0)
+    initialize_buffers();
+
+    if (write_mouse(ENABLE_DATA_MODE) != 0)
       return 1;
 
     uint8_t irq_set_keyboard;
@@ -30,19 +32,25 @@ int (gameLogic) () {
 
     Sprite *sp;
     sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
-    drawing_xpm(sp);
+    drawing_sprite(sp);
 
+    update_frame();
+    clear_drawing();
+    
     while (k_scancode != SCAN_BREAK_ESC) {    
      
       if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
         printf("driver_receive failed with: %d", r);
         continue;
       }
+
+      int count = 0;
       
       if (is_ipc_notify(ipc_status)) {      
         switch (_ENDPOINT_P(msg.m_source)) {
           case HARDWARE:    
             if (msg.m_notify.interrupts & irq_set_keyboard) { 
+                count++;
                 kbc_ih();
                 handle_ingame_scancode(k_scancode, sp);
                 if (k_scancode == SCAN_FIRST_TWO) {
@@ -81,6 +89,8 @@ int (gameLogic) () {
     if (write_mouse(DISABLE_DATA_MODE) != 0)
       return 1;
 
+    free_buffers();
+
     return 0;
 }
 
@@ -110,8 +120,8 @@ enum SpriteState get_next_sprite(enum SpriteState current_state, uint8_t scancod
 /*A personagem pinta o fundo enquanto anda -- dar fix*/
 
 void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
-    static enum SpriteState current_state = RIGHT1;
-    enum SpriteState next_state = get_next_sprite(current_state, scancode);
+    //static enum SpriteState current_state = RIGHT1;
+    //enum SpriteState next_state = get_next_sprite(current_state, scancode);
     /*Falta trocar de sprite quando anda para o lado*/
     switch (scancode) {
         case D_KEY_MK:
@@ -137,6 +147,9 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
         default:
             return;
     }
-      drawing_xpm(player);
+    clear_drawing();
+    make_xpm((xpm_map_t) maze2,1,1);
+    drawing_sprite(player);
+    update_frame();
 }
 
