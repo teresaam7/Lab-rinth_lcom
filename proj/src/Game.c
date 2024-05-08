@@ -10,10 +10,10 @@ extern uint8_t k_scancode;
 extern int m_index;
 extern uint8_t m_bytes[3];
 extern struct packet m_packet;
-*/
+
 
 int (gameLogic) () {
-    //make_xpm((xpm_map_t) maze2,1,1);
+    make_xpm((xpm_map_t) maze2,1,1);
 
     Sprite *sp;
     sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
@@ -22,6 +22,53 @@ int (gameLogic) () {
 
     return 0;
 }
+
+
+*/
+
+
+
+int (gameLogic) () {
+    make_xpm((xpm_map_t) maze2,1,1);
+
+    Sprite *sp;
+    sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
+    drawing_xpm(sp);
+    destroy_sprite(sp); 
+
+    return 0;
+}
+
+void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
+  if (!check_collision(player, '.', 810, 594)) {
+    switch (scancode) {
+        case D_KEY_MK:
+            player->x += 1;
+            break;
+
+        case A_KEY_MK:
+            player->x -= 1;
+            break;
+
+        case W_KEY_MK:
+            player->y -= 1;
+            break;
+        
+        case S_KEY_MK:
+            player->y += 1;
+            break;
+        case A_KEY_BRK:
+        case D_KEY_BRK:
+           
+            break;
+
+        default:
+            return;
+    }
+  }
+}
+
+
 
 /*
 int(kbc_interrupts)() {

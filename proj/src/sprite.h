@@ -12,13 +12,12 @@ typedef struct {
 } Sprite;
 
 Sprite *create_sprite(xpm_map_t xpm, int x, int y, double xspeed, double yspeed);
+
 void destroy_sprite(Sprite *sp);
-//int animate_sprite(Sprite *sp);
-/* Some useful non-visible functions */
-//static int draw_sprite(Sprite *sp, char *base);
-//static int check_collision(Sprite *sp, char *base);
 
 int drawing_xpm(Sprite *sp);
+
+bool check_collision(Sprite *sprite1, const char *base, int base_width, int base_height);
 
 #endif
 
