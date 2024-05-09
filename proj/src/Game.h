@@ -22,7 +22,7 @@
 #include "images/down1.xpm"
 #include "images/down2.xpm"
 
-enum SpriteState {
+/*enum SpriteState {
     RIGHT1,
     RIGHT2,
     LEFT1,
@@ -31,11 +31,13 @@ enum SpriteState {
     UP2,
     DOWN1,
     DOWN2
-};
+};*/
 
 int (gameLogic) ();
 
-enum SpriteState get_next_sprite(enum SpriteState current_state, uint8_t scancode) ;
+//enum SpriteState get_next_sprite(enum SpriteState current_state, uint8_t scancode) ;
+
+xpm_map_t get_next_sprite(xpm_map_t current_state, uint8_t scancode); 
 
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player);
 
