@@ -25,7 +25,7 @@
 #include "images/start_button.xpm"
 #include "images/hover_start.xpm"
 
-enum SpriteState {
+/*enum SpriteState {
     RIGHT1,
     RIGHT2,
     LEFT1,
@@ -34,7 +34,7 @@ enum SpriteState {
     UP2,
     DOWN1,
     DOWN2
-};
+};*/
 
 typedef enum {
     MENU,
@@ -50,7 +50,9 @@ void (draw_game)();
 void (draw_menu)();
 
 
-enum SpriteState get_next_sprite(enum SpriteState current_state, uint8_t scancode) ;
+//enum SpriteState get_next_state(enum SpriteState current_state, uint8_t scancode) ;
+
+xpm_map_t get_next_sprite(xpm_map_t current_state, uint8_t scancode); 
 
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player);
 void (handle_mouse_movement)(Sprite * cursor);

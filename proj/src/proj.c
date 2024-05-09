@@ -45,28 +45,20 @@ int (proj_main_loop)(int argc, char *argv[]) {
   GameState gameState = MENU;
 
   while(running){
-            if (gameLogic(&gameState, &running)!= 0) return 1;
-
-    /*
     switch(gameState){
-
       case MENU:
         if (gameLogic(&gameState, &running)!= 0) return 1;
       break;
-
       case GAME: 
         if (gameLogic(&gameState, &running)!= 0) return 1;
       break;
-
       case ABOUTUS:
-        //if (aboutUsLogic(&running)!= 0) return 1;
+        if (gameLogic(&gameState, &running)!= 0) return 1;
       break;
-
       case EXIT:
         running = false;
-      break;
-      }*/
-      //gameState = GAME;
+      break; 
+    }
   }
 
   if (vg_exit() != 0) {
