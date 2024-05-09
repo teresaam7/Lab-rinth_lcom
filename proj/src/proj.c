@@ -42,7 +42,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
   }
 
   bool running = true;
-  GameState gameState = MENU;
+  GameState gameState = GAME;
 
   while(running){
     switch(gameState){
