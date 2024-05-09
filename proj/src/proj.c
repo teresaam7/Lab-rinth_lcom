@@ -41,8 +41,31 @@ int (proj_main_loop)(int argc, char *argv[]) {
     return 1;
   }
 
-  if (gameLogic()!= 0) {
-    return 1;
+  bool running = true;
+  GameState gameState = GAME;
+
+  while(running){
+    switch(gameState){
+
+      case MENU:
+        if (menuLogic(&gameState, &running)!= 0) return 1;
+        gameState = GAME;
+      break;
+
+      case GAME: 
+        gameState = GAME;
+        if (gameLogic(&gameState, &running)!= 0) return 1;
+      break;
+
+      case ABOUTUS:
+        //if (aboutUsLogic(&running)!= 0) return 1;
+      break;
+
+      case EXIT:
+        running = false;
+      break;
+      }
+      //gameState = GAME;
   }
 
   if (vg_exit() != 0) {
@@ -50,4 +73,5 @@ int (proj_main_loop)(int argc, char *argv[]) {
   }
 
   return 0;
+
 }
