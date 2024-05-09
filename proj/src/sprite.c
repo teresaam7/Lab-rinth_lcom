@@ -20,6 +20,7 @@ Sprite *create_sprite(xpm_map_t xpm, int x, int y, double xspeed, double yspeed)
     free(sp);
     return NULL;
   }
+  xpm_load(xpm,XPM_8_8_8,&img);
   sp->width = img.width; 
   sp->height=img.height;
   sp->xspeed = xspeed;

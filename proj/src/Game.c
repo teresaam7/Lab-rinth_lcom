@@ -274,9 +274,10 @@ void (handle_mouse_movement)(Sprite * cursor){
 void(update_menu_frame)(Sprite * start, Sprite * cursor){
   clear_drawing();
   make_xpm((xpm_map_t) menu,1,1);
-  if(collision(cursor, start)){   /* ainda nao está a dar estou a trabalhar nisto*/
-    Sprite* hover_start = create_sprite((xpm_map_t)teste, 315, 300, 0, 0);
-    drawing_sprite(hover_start);
+  if(collision(cursor,start)){
+    Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
+    drawing_sprite(hover_start_sp);
+    
   }
   else drawing_sprite(start);
   drawing_sprite(cursor);

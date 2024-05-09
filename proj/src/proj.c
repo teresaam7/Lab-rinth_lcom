@@ -42,18 +42,16 @@ int (proj_main_loop)(int argc, char *argv[]) {
   }
 
   bool running = true;
-  GameState gameState = GAME;
+  GameState gameState = MENU;
 
   while(running){
     switch(gameState){
 
       case MENU:
         if (menuLogic(&gameState, &running)!= 0) return 1;
-        gameState = GAME;
       break;
 
       case GAME: 
-        gameState = GAME;
         if (gameLogic(&gameState, &running)!= 0) return 1;
       break;
 

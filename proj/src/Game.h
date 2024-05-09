@@ -23,6 +23,7 @@
 #include "images/down1.xpm"
 #include "images/down2.xpm"
 #include "images/start_button.xpm"
+#include "images/hover_start.xpm"
 
 enum SpriteState {
     RIGHT1,
