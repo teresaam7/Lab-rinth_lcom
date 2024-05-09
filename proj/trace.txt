@@ -3,8 +3,8 @@
 > proj_main_loop(0, [NULL])
   @graphics.c:23, initialize_frame_buffer
     vbe_get_mode_info(mode, &mode_info)
-  > vbe_get_mode_info(0x115, addr: 0x82a351a)
-  < vbe_get_mode_info(0x115, addr: 0x82a351a [0xe0000000, 800x600, 8:8:8 (24) <1.37329 MiB>]) -> (ret: 0)
+  > vbe_get_mode_info(0x115, addr: 0x82a480a)
+  < vbe_get_mode_info(0x115, addr: 0x82a480a [0xe0000000, 800x600, 8:8:8 (24) <1.37329 MiB>]) -> (ret: 0)
   @graphics.c:38, initialize_frame_buffer
     sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)
   > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff788 [0xe0000000 - 0xe015f900 <1.37329 MiB>])
@@ -38,46 +38,37 @@
   @utils.c:26, util_sys_inb
     sys_inb(port, &temp)
   > sys_inb(0x60, addr: 0xeffff6d0)
-  < sys_inb(0x60, addr: 0xeffff6d0 [0x9c = 0b10011100])
-  @utils.c:26, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x64, addr: 0xeffff6a0)
-  < sys_inb(0x64, addr: 0xeffff6a0 [0x1c = 0b00011100])
-  @KBC.c:14, write_kbc
-    sys_outb(port, command)
-  > sys_outb(0x64, 0xd4 = 0b11010100)
-  @utils.c:26, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x64, addr: 0xeffff6a0)
-  < sys_inb(0x64, addr: 0xeffff6a0 [0x1c = 0b00011100])
-  @KBC.c:14, write_kbc
-    sys_outb(port, command)
-  > sys_outb(0x60, 0xf4 = 0b11110100)
-  @mouse.c:25, write_mouse
-    micros_to_ticks(20000)
-  @mouse.c:25, write_mouse
-    tickdelay(micros_to_ticks(20000))
-  > tickdelay(1 [16.7 ms])
-  @utils.c:26, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x60, addr: 0xeffff6d0)
   < sys_inb(0x60, addr: 0xeffff6d0 [0xfa = 0b11111010])
   @keyboard.c:13, keyboard_subscribe_int
     sys_irqsetpolicy(KEYBOARD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_keyboard)
-  > sys_irqsetpolicy(1, 3, addr: 0x82853cc [1])
-  < sys_irqsetpolicy(1, 3, addr: 0x82853cc [10]) -> (ret: 0)
+  > sys_irqsetpolicy(1, 3, addr: 0x82861cc [1])
+  < sys_irqsetpolicy(1, 3, addr: 0x82861cc [10]) -> (ret: 0)
   @mouse.c:46, mouse_subscribe_int
     sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_mouse)
-  > sys_irqsetpolicy(12, 3, addr: 0x82853d0 [3])
-  < sys_irqsetpolicy(12, 3, addr: 0x82853d0 [11]) -> (ret: 0)
+  > sys_irqsetpolicy(12, 3, addr: 0x82861d0 [3])
+  < sys_irqsetpolicy(12, 3, addr: 0x82861d0 [11]) -> (ret: 0)
   @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0)
-  < xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0 [810x594 : 1924560 bytes]) -> (ret: 0x8419000)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6e0 [810x594 : 1924560 bytes]) -> (ret: 0x841a000)
   @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0)
-  < xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0 [15x18 : 1080 bytes]) -> (ret: 0x82aa000)
+  > xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6d0)
+  < xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6d0 [15x18 : 1080 bytes]) -> (ret: 0x82ab000)
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0x9c = 0b10011100])
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -105,7 +96,7 @@
     @utils.c:26, util_sys_inb
       sys_inb(port, &temp)
     > sys_inb(0x60, addr: 0xeffff61c)
-    < sys_inb(0x60, addr: 0xeffff61c [0x50 = 0b01010000])
+    < sys_inb(0x60, addr: 0xeffff61c [0x4d = 0b01001101])
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -133,7 +124,7 @@
     @utils.c:26, util_sys_inb
       sys_inb(port, &temp)
     > sys_inb(0x60, addr: 0xeffff61c)
-    < sys_inb(0x60, addr: 0xeffff61c [0xd0 = 0b11010000])
+    < sys_inb(0x60, addr: 0xeffff61c [0xcd = 0b11001101])
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -147,15 +138,7 @@
     @utils.c:26, util_sys_inb
       sys_inb(port, &temp)
     > sys_inb(0x60, addr: 0xeffff61c)
-    < sys_inb(0x60, addr: 0xeffff61c [0x11 = 0b00010001])
-  @graphics.c:66, make_xpm
-    xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0)
-  < xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0 [810x594 : 1924560 bytes]) -> (ret: 0x85ef000)
-  @graphics.c:66, make_xpm
-    xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0)
-  < xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0 [15x18 : 1080 bytes]) -> (ret: 0x82aa800)
+    < sys_inb(0x60, addr: 0xeffff61c [0xe0 = 0b11100000])
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -169,7 +152,295 @@
     @utils.c:26, util_sys_inb
       sys_inb(port, &temp)
     > sys_inb(0x60, addr: 0xeffff61c)
-    < sys_inb(0x60, addr: 0xeffff61c [0x91 = 0b10010001])
+    < sys_inb(0x60, addr: 0xeffff61c [0x4d = 0b01001101])
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0xe0 = 0b11100000])
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0xcd = 0b11001101])
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0x20 = 0b00100000])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6a8 [15x18 : 1080 bytes]) -> (ret: 0x82ab800)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x85f0000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6a8 [15x18 : 1080 bytes]) -> (ret: 0x82ac000)
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0xa0 = 0b10100000])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287a64, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287a64, XPM_8_8_8_8, addr: 0xeffff6a8 [15x17 : 1020 bytes]) -> (ret: 0x82ad000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x87c6000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287a64, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287a64, XPM_8_8_8_8, addr: 0xeffff6a8 [15x17 : 1020 bytes]) -> (ret: 0x82ad400)
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0x20 = 0b00100000])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6a8 [15x18 : 1080 bytes]) -> (ret: 0x82ac800)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x899c000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6a8 [15x18 : 1080 bytes]) -> (ret: 0x82ae000)
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0xa0 = 0b10100000])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287a64, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287a64, XPM_8_8_8_8, addr: 0xeffff6a8 [15x17 : 1020 bytes]) -> (ret: 0x82ad800)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x8b72000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287a64, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287a64, XPM_8_8_8_8, addr: 0xeffff6a8 [15x17 : 1020 bytes]) -> (ret: 0x82adc00)
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0x20 = 0b00100000])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6a8 [15x18 : 1080 bytes]) -> (ret: 0x82ae800)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x8d48000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8286d24, XPM_8_8_8_8, addr: 0xeffff6a8 [15x18 : 1080 bytes]) -> (ret: 0x82af000)
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0xa0 = 0b10100000])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287a64, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287a64, XPM_8_8_8_8, addr: 0xeffff6a8 [15x17 : 1020 bytes]) -> (ret: 0x82b0000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x8f1e000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287a64, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287a64, XPM_8_8_8_8, addr: 0xeffff6a8 [15x17 : 1020 bytes]) -> (ret: 0x82b0400)
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0x1e = 0b00011110])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287800, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287800, XPM_8_8_8_8, addr: 0xeffff6a8 [15x18 : 1080 bytes]) -> (ret: 0x82af800)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x90f4000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287800, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287800, XPM_8_8_8_8, addr: 0xeffff6a8 [15x18 : 1080 bytes]) -> (ret: 0x82b1000)
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0x9e = 0b10011110])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x82879f0, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x82879f0, XPM_8_8_8_8, addr: 0xeffff6a8 [15x17 : 1020 bytes]) -> (ret: 0x82b0800)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x92ca000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x82879f0, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x82879f0, XPM_8_8_8_8, addr: 0xeffff6a8 [15x17 : 1020 bytes]) -> (ret: 0x82b0c00)
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0x1e = 0b00011110])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287800, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287800, XPM_8_8_8_8, addr: 0xeffff6a8 [15x18 : 1080 bytes]) -> (ret: 0x82b1800)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x94a0000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287800, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287800, XPM_8_8_8_8, addr: 0xeffff6a8 [15x18 : 1080 bytes]) -> (ret: 0x82b2000)
+  @Game.c:143, gameLogic
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @Game.c:155, gameLogic
+    kbc_ih()
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff61c)
+    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
+    @utils.c:26, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff61c)
+    < sys_inb(0x60, addr: 0xeffff61c [0x9e = 0b10011110])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x82879f0, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x82879f0, XPM_8_8_8_8, addr: 0xeffff6a8 [15x17 : 1020 bytes]) -> (ret: 0x82b3000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x9676000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x82879f0, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x82879f0, XPM_8_8_8_8, addr: 0xeffff6a8 [15x17 : 1020 bytes]) -> (ret: 0x82b3400)
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -186,12 +457,16 @@
     < sys_inb(0x60, addr: 0xeffff61c [0x1f = 0b00011111])
   @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0)
-  < xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0 [810x594 : 1924560 bytes]) -> (ret: 0x87c5000)
+  > xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8 [13x21 : 1092 bytes]) -> (ret: 0x82b2800)
   @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0)
-  < xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0 [15x18 : 1080 bytes]) -> (ret: 0x82ab000)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x984c000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8 [13x21 : 1092 bytes]) -> (ret: 0x82b4000)
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -206,6 +481,18 @@
       sys_inb(port, &temp)
     > sys_inb(0x60, addr: 0xeffff61c)
     < sys_inb(0x60, addr: 0xeffff61c [0x9f = 0b10011111])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8 [13x20 : 1040 bytes]) -> (ret: 0x82b4800)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x9a22000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8 [13x20 : 1040 bytes]) -> (ret: 0x82b5000)
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -222,12 +509,16 @@
     < sys_inb(0x60, addr: 0xeffff61c [0x1f = 0b00011111])
   @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0)
-  < xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0 [810x594 : 1924560 bytes]) -> (ret: 0x899b000)
+  > xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8 [13x21 : 1092 bytes]) -> (ret: 0x82b5800)
   @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0)
-  < xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0 [15x18 : 1080 bytes]) -> (ret: 0x82ab800)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x9bf8000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8 [13x21 : 1092 bytes]) -> (ret: 0x82b6000)
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -242,6 +533,18 @@
       sys_inb(port, &temp)
     > sys_inb(0x60, addr: 0xeffff61c)
     < sys_inb(0x60, addr: 0xeffff61c [0x9f = 0b10011111])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8 [13x20 : 1040 bytes]) -> (ret: 0x82b6800)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x9dce000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8 [13x20 : 1040 bytes]) -> (ret: 0x82b7000)
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -258,12 +561,16 @@
     < sys_inb(0x60, addr: 0xeffff61c [0x1f = 0b00011111])
   @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0)
-  < xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0 [810x594 : 1924560 bytes]) -> (ret: 0x8b71000)
+  > xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8 [13x21 : 1092 bytes]) -> (ret: 0x82b7800)
   @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0)
-  < xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0 [15x18 : 1080 bytes]) -> (ret: 0x82ac000)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0x9fa4000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8 [13x21 : 1092 bytes]) -> (ret: 0x82b8000)
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -278,6 +585,18 @@
       sys_inb(port, &temp)
     > sys_inb(0x60, addr: 0xeffff61c)
     < sys_inb(0x60, addr: 0xeffff61c [0x9f = 0b10011111])
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8 [13x20 : 1040 bytes]) -> (ret: 0x82b8800)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0xa17a000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8 [13x20 : 1040 bytes]) -> (ret: 0x82b9000)
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -294,12 +613,16 @@
     < sys_inb(0x60, addr: 0xeffff61c [0x1f = 0b00011111])
   @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0)
-  < xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0 [810x594 : 1924560 bytes]) -> (ret: 0x8d47000)
+  > xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8 [13x21 : 1092 bytes]) -> (ret: 0x82b9800)
   @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0)
-  < xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0 [15x18 : 1080 bytes]) -> (ret: 0x82ac800)
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0xa351000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x82878f4, XPM_8_8_8_8, addr: 0xeffff6a8 [13x21 : 1092 bytes]) -> (ret: 0xa350000)
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -314,42 +637,18 @@
       sys_inb(port, &temp)
     > sys_inb(0x60, addr: 0xeffff61c)
     < sys_inb(0x60, addr: 0xeffff61c [0x9f = 0b10011111])
-  @Game.c:143, gameLogic
-    driver_receive(ANY, &msg, &ipc_status)
-  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
-  @Game.c:155, gameLogic
-    kbc_ih()
-    @utils.c:26, util_sys_inb
-      sys_inb(port, &temp)
-    > sys_inb(0x64, addr: 0xeffff61c)
-    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
-    @utils.c:26, util_sys_inb
-      sys_inb(port, &temp)
-    > sys_inb(0x60, addr: 0xeffff61c)
-    < sys_inb(0x60, addr: 0xeffff61c [0x1f = 0b00011111])
   @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0)
-  < xpm_load(addr: 0x82860ac, XPM_8_8_8_8, addr: 0xeffff6e0 [810x594 : 1924560 bytes]) -> (ret: 0x8f1d000)
+  > xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8 [13x20 : 1040 bytes]) -> (ret: 0xa350800)
   @graphics.c:66, make_xpm
     xpm_load(xpm, XPM_8_8_8_8, &image)
-  > xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0)
-  < xpm_load(addr: 0x8285f24, XPM_8_8_8_8, addr: 0xeffff6d0 [15x18 : 1080 bytes]) -> (ret: 0x82ad000)
-  @Game.c:143, gameLogic
-    driver_receive(ANY, &msg, &ipc_status)
-  > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
-  @Game.c:155, gameLogic
-    kbc_ih()
-    @utils.c:26, util_sys_inb
-      sys_inb(port, &temp)
-    > sys_inb(0x64, addr: 0xeffff61c)
-    < sys_inb(0x64, addr: 0xeffff61c [0x1d = 0b00011101])
-    @utils.c:26, util_sys_inb
-      sys_inb(port, &temp)
-    > sys_inb(0x60, addr: 0xeffff61c)
-    < sys_inb(0x60, addr: 0xeffff61c [0x9f = 0b10011111])
+  > xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8)
+  < xpm_load(addr: 0x8286eac, XPM_8_8_8_8, addr: 0xeffff6b8 [810x594 : 1924560 bytes]) -> (ret: 0xa528000)
+  @graphics.c:66, make_xpm
+    xpm_load(xpm, XPM_8_8_8_8, &image)
+  > xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8)
+  < xpm_load(addr: 0x8287c70, XPM_8_8_8_8, addr: 0xeffff6a8 [13x20 : 1040 bytes]) -> (ret: 0xa527000)
   @Game.c:143, gameLogic
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff730, addr: 0xeffff72c)
@@ -380,12 +679,12 @@
     < sys_inb(0x60, addr: 0xeffff61c [0x81 = 0b10000001])
   @keyboard.c:21, keyboard_unsubscribe_int
     sys_irqrmpolicy(&hook_id_keyboard)
-  > sys_irqrmpolicy(addr: 0x82853cc [10])
-  < sys_irqrmpolicy(addr: 0x82853cc [10]) -> (ret: 0)
+  > sys_irqrmpolicy(addr: 0x82861cc [10])
+  < sys_irqrmpolicy(addr: 0x82861cc [10]) -> (ret: 0)
   @mouse.c:54, mouse_unsubscribe_int
     sys_irqrmpolicy(&hook_id_mouse)
-  > sys_irqrmpolicy(addr: 0x82853d0 [11])
-  < sys_irqrmpolicy(addr: 0x82853d0 [11]) -> (ret: 0)
+  > sys_irqrmpolicy(addr: 0x82861d0 [11])
+  < sys_irqrmpolicy(addr: 0x82861d0 [11]) -> (ret: 0)
   @utils.c:26, util_sys_inb
     sys_inb(port, &temp)
   > sys_inb(0x64, addr: 0xeffff6a0)

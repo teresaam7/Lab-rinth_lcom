@@ -196,7 +196,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
     return 0;
 }
 
-enum SpriteState get_next_sprite(enum SpriteState current_state, uint8_t scancode) {
+/*enum SpriteState get_next_state(enum SpriteState current_state, uint8_t scancode) {
     switch (scancode) {
         case A_KEY_MK:
             return LEFT1;
@@ -217,33 +217,78 @@ enum SpriteState get_next_sprite(enum SpriteState current_state, uint8_t scancod
         default:
             return current_state;
     }
+}*/
+
+xpm_map_t get_next_sprite(xpm_map_t current_state, uint8_t scancode) {
+    switch (scancode) {
+        case A_KEY_MK:
+            return (xpm_map_t)left1;
+        case D_KEY_MK:
+            return (xpm_map_t)right1;
+        case W_KEY_MK:
+            return (xpm_map_t)up1;
+        case S_KEY_MK:
+            return (xpm_map_t)down1;
+        case A_KEY_BRK:
+            return (xpm_map_t)left2;
+        case D_KEY_BRK:
+            return (xpm_map_t)right2;
+        case W_KEY_BRK:
+            return (xpm_map_t)up2;
+        case S_KEY_BRK:
+            return (xpm_map_t)down2;
+        default:
+            return (xpm_map_t)current_state;
+    }
 }
 
 /*A personagem pinta o fundo enquanto anda -- dar fix*/
 
 void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
-    //static enum SpriteState current_state = RIGHT1;
-    //enum SpriteState next_state = get_next_sprite(current_state, scancode);
-    /*Falta trocar de sprite quando anda para o lado*/
+    
     switch (scancode) {
         case D_KEY_MK:
             player->x = player->x + 1;
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
             break;
 
         case A_KEY_MK:
             player->x = player->x - 1;
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
             break;
 
         case W_KEY_MK:
             player->y = player->y- 1;
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
             break;
         
         case S_KEY_MK:
             player->y = player->y + 1;
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
             break;
+
         case A_KEY_BRK:
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
+            break;
+
         case D_KEY_BRK:
-           
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
+            break;
+
+        case S_KEY_BRK:
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
+            break;
+
+        case W_KEY_BRK:
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
             break;
 
         default:
