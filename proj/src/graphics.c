@@ -16,10 +16,10 @@ int (graphic_mode)(uint16_t mode) {
 
   return 0;
 }
-
+vbe_mode_info_t mode_info;
 
 int (initialize_frame_buffer) (uint16_t mode) {
-  vbe_mode_info_t mode_info;
+  //vbe_mode_info_t mode_info;
   if (vbe_get_mode_info(mode, &mode_info) != 0) 
     return 1;
 
