@@ -49,11 +49,11 @@ int (proj_main_loop)(int argc, char *argv[]) {
   switch(gameState){
 
     case MENU:
-      if (menuLogic(&running)!= 0) return 1;
+      if (menuLogic(&gameState, &running)!= 0) return 1;
     break;
 
     case GAME: 
-      if (gameLogic(&running)!= 0) return 1;
+      if (gameLogic(&gameState, &running)!= 0) return 1;
     break;
 
     case ABOUTUS:

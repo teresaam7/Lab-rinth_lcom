@@ -10,7 +10,7 @@ extern uint8_t m_bytes[3];
 extern struct packet m_packet;
 
 
-int (menuLogic) (bool *running) {
+int (menuLogic) (GameState *gameState, bool *running) {
   if (write_mouse(ENABLE_DATA_MODE) != 0)
       return 1;
 
@@ -28,7 +28,11 @@ int (menuLogic) (bool *running) {
 
     make_xpm((xpm_map_t) menu,1,1);
 
-
+    Sprite *start, *cursor;
+    cursor = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
+    start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
+    drawing_xpm(cursor);
+    drawing_xpm(start);
 
     while (k_scancode != SCAN_BREAK_ESC) {    
      
@@ -42,7 +46,6 @@ int (menuLogic) (bool *running) {
           case HARDWARE:    
             if (msg.m_notify.interrupts & irq_set_keyboard) { 
                 kbc_ih();
-                //handle_ingame_scancode(k_scancode, sp);
                 if (k_scancode == SCAN_FIRST_TWO) {
                     k_bytes[k_index] = k_scancode; k_index++;
                 } else {
@@ -55,11 +58,21 @@ int (menuLogic) (bool *running) {
 
             if (msg.m_notify.interrupts & irq_set_mouse) { 
                 mouse_ih();
-
+                store_byte_mouse();
                 if (m_index == 3) {
                     store_bytes_packet();
                     mouse_print_packet(&m_packet);
                     m_index = 0;
+
+                    if(!(cursor->x + m_packet.delta_x <= 0)) cursor->x += m_packet.delta_x;
+                    if(!(cursor->y - m_packet.delta_y <= 0)) cursor->y -= m_packet.delta_y;
+
+                    if (m_packet.lb && !m_packet.rb && !m_packet.mb) {
+                      printf("GAME");
+                      *gameState = GAME;
+                      *running = false;
+          }
+
                 }
             }
             break;
@@ -84,7 +97,7 @@ int (menuLogic) (bool *running) {
 }
 
 
-int (gameLogic) (bool *running) {
+int (gameLogic) (GameState *gameState,bool *running) {
   if (write_mouse(ENABLE_DATA_MODE) != 0)
       return 1;
 

@@ -9,6 +9,7 @@
 #include "images/maze1.xpm"
 #include "images/maze2.xpm"
 #include "images/menu.xpm"
+#include "images/start_button.xpm"
 #include "sprite.h"
 
 #include "images/right1.xpm"
@@ -31,8 +32,8 @@ typedef enum {
     EXIT
 } GameState;
 
-int (menuLogic) (bool *running);
-int (gameLogic) (bool *running);
+int (menuLogic) (GameState *gameState, bool *running);
+int (gameLogic) (GameState *gameState, bool *running);
 
 
 enum SpriteState get_next_sprite(enum SpriteState current_state, uint8_t scancode) ;
