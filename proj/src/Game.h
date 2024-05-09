@@ -46,8 +46,8 @@ typedef enum {
 int (menuLogic) (GameState *gameState, bool *running);
 int (gameLogic) (GameState *gameState, bool *running);
 
-void (draw_game)(Sprite* sp);
-void (draw_menu)(Sprite* cursor, Sprite* start);
+void (draw_game)();
+void (draw_menu)();
 
 
 enum SpriteState get_next_sprite(enum SpriteState current_state, uint8_t scancode) ;

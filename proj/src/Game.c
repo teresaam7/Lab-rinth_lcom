@@ -10,113 +10,26 @@ extern uint8_t m_bytes[3];
 extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
+Sprite *sp,*start, *cursor;
+
 int (collision)(Sprite * sp1, Sprite * sp2){
   if(sp1->x < sp2->x || sp1 -> x > sp2->x + sp2->width) return 0;
   if(sp1->y < sp2->y || sp1 -> y > sp2->y + sp2->height) return 0;
   return 1;
 }
 
-int (menuLogic) (GameState *gameState, bool * running) {
-    initialize_buffers();
+void (draw_game)(){
+    make_xpm((xpm_map_t) maze2,1,1);
+    sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
+    drawing_sprite(sp);
+}
 
-    if (write_mouse(ENABLE_DATA_MODE) != 0)
-      return 1;
-
-    uint8_t irq_set_keyboard;
-    if (keyboard_subscribe_int(&irq_set_keyboard) != 0)
-        return 1;
-
-    uint8_t irq_set_mouse;
-    if (mouse_subscribe_int(&irq_set_mouse) != 0)
-      return 1;
-    
-    int r;
-    message msg;
-    int ipc_status;
-
+void (draw_menu)(){
     make_xpm((xpm_map_t) menu,1,1);
-
-   Sprite *start, *cursor;
-    cursor = create_sprite((xpm_map_t)right1, 200, 200, 0, 0);
+    cursor = create_sprite((xpm_map_t)right1, 315, 200, 0, 0);
     start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
     drawing_sprite(start);
     drawing_sprite(cursor);
-
-
-    update_frame();
-    clear_drawing();
-
-    
-    while (k_scancode != SCAN_BREAK_ESC && *gameState == MENU ) { 
-
-      printf("Estou onde nao devia");   
-     
-      if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
-        printf("driver_receive failed with: %d", r);
-        continue;
-      }
-
-      int count = 0;
-      
-      if (is_ipc_notify(ipc_status)) {      
-        switch (_ENDPOINT_P(msg.m_source)) {
-          case HARDWARE:    
-            if (msg.m_notify.interrupts & irq_set_keyboard) { 
-                count++;
-                kbc_ih();
-                printf("ENTREI onde nao devia");   
-
-                //handle_ingame_scancode(k_scancode,cursor);
-                if (k_scancode == SCAN_FIRST_TWO) {
-                    k_bytes[k_index] = k_scancode; k_index++;
-                } else {
-                    k_bytes[k_index] = k_scancode;
-                    // kbd_print_scancode(!(scancode & MAKE_OR_BREAK), i == 0? 1: 2 , bytes);
-                    k_index = 0;
-                }
-
-            }
-
-            if (msg.m_notify.interrupts & irq_set_mouse) { 
-                count++;
-                mouse_ih();
-                store_bytes_packet();
-
-                if (m_index == 3) {
-                    m_index = 0;
-                    mouse_print_packet(&m_packet);
-                    handle_mouse_movement(cursor);
-                    update_menu_frame(start, cursor);
-                  
-                    if (m_packet.lb) {
-                      if(collision(cursor, start))
-                        *gameState = GAME;
-                    }
-                }
-            }
-            break;
-
-          default:
-            break; 
-        }
-      }
-    }
- 
-    if (keyboard_unsubscribe_int() != 0)
-        return 1;
-
-    if (mouse_unsubscribe_int() != 0)
-      return 1;
-
-    if (write_mouse(DISABLE_DATA_MODE) != 0)
-      return 1;
-    free_buffers();
-    if(k_scancode == SCAN_BREAK_ESC)
-    *running = false;
-  
-
-    return 0;
-
 }
 
 int (gameLogic) (GameState *gameState, bool * running) {
@@ -137,21 +50,14 @@ int (gameLogic) (GameState *gameState, bool * running) {
     message msg;
     int ipc_status;
 
-    Sprite *sp,*start, *cursor;
 
     if(*gameState == GAME){
-    make_xpm((xpm_map_t) maze2,1,1);
-    sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
-    drawing_sprite(sp);
+      draw_game();
     }
 
 
     if(*gameState == MENU){
-    make_xpm((xpm_map_t) menu,1,1);
-    cursor = create_sprite((xpm_map_t)right1, 315, 200, 0, 0);
-    start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
-    drawing_sprite(start);
-    drawing_sprite(cursor);
+      draw_menu();
     }
 
     update_frame();
@@ -162,22 +68,16 @@ int (gameLogic) (GameState *gameState, bool * running) {
     while (k_scancode != SCAN_BREAK_ESC) { 
 
       if(gameState_change){
-            if(*gameState == GAME){
-            make_xpm((xpm_map_t) maze2,1,1);
-            sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
-            drawing_sprite(sp);
-            }
+        if(*gameState == GAME){
+          draw_game();
+        }
 
 
-            if(*gameState == MENU){
-            make_xpm((xpm_map_t) menu,1,1);
-            cursor = create_sprite((xpm_map_t)right1, 315, 200, 0, 0);
-            start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
-            drawing_sprite(start);
-            drawing_sprite(cursor);
-            }
-            update_frame();
-    clear_drawing();
+        if(*gameState == MENU){
+          draw_menu();
+        }
+        update_frame();
+        clear_drawing();
         gameState_change = false;
       }  
      
