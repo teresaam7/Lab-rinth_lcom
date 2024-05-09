@@ -33,48 +33,45 @@ int main(int argc, char *argv[]) {
 
 
 int (proj_main_loop)(int argc, char *argv[]) {
-  if (frame_buffer_func(0x115) != 0) {
+  if (initialize_frame_buffer(0x115) != 0) {
     return 1;
   }
 
-  if (graphics_mode(0x115) != 0) {
+  if (graphic_mode(0x115) != 0) {
     return 1;
   }
 
   bool running = true;
   GameState gameState = MENU;
 
-  while(running)
-{
-  switch(gameState){
+  while(running){
+    switch(gameState){
 
-    case MENU:
-      if (menuLogic(&gameState, &running)!= 0) return 1;
-    break;
+      case MENU:
+        if (menuLogic(&gameState, &running)!= 0) return 1;
+        gameState = GAME;
+      break;
 
-    case GAME: 
-      if (gameLogic(&gameState, &running)!= 0) return 1;
-    break;
+      case GAME: 
+        gameState = GAME;
+        if (gameLogic(&gameState, &running)!= 0) return 1;
+      break;
 
-    case ABOUTUS:
-      //if (aboutUsLogic(&running)!= 0) return 1;
-    break;
+      case ABOUTUS:
+        //if (aboutUsLogic(&running)!= 0) return 1;
+      break;
 
-    case EXIT:
-      running = false;
-    break;
+      case EXIT:
+        running = false;
+      break;
+      }
+      //gameState = GAME;
   }
-
-}
-
-
-  printf("AAA");
-
-  //clear_screen();
 
   if (vg_exit() != 0) {
     return 1;
   }
-  return 0;
-}
 
+  return 0;
+
+}

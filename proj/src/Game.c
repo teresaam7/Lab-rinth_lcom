@@ -8,10 +8,14 @@ extern uint8_t k_scancode;
 extern int m_index;
 extern uint8_t m_bytes[3];
 extern struct packet m_packet;
+extern vbe_mode_info_t mode_info;
 
 
-int (menuLogic) (GameState *gameState, bool *running) {
-  if (write_mouse(ENABLE_DATA_MODE) != 0)
+
+int (menuLogic) (GameState *gameState, bool * running) {
+    initialize_buffers();
+
+    if (write_mouse(ENABLE_DATA_MODE) != 0)
       return 1;
 
     uint8_t irq_set_keyboard;
@@ -28,24 +32,34 @@ int (menuLogic) (GameState *gameState, bool *running) {
 
     make_xpm((xpm_map_t) menu,1,1);
 
-    Sprite *start, *cursor;
+   Sprite *start, *cursor;
     cursor = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
     start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
-    drawing_xpm(cursor);
-    drawing_xpm(start);
+    drawing_sprite(start);
+    drawing_sprite(cursor);
 
-    while (k_scancode != SCAN_BREAK_ESC) {    
+
+    update_frame();
+    clear_drawing();
+
+    bool acabou = false;
+    
+    while (k_scancode != SCAN_BREAK_ESC && *gameState == MENU && !acabou) {    
      
       if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
         printf("driver_receive failed with: %d", r);
         continue;
       }
+
+      int count = 0;
       
       if (is_ipc_notify(ipc_status)) {      
         switch (_ENDPOINT_P(msg.m_source)) {
           case HARDWARE:    
             if (msg.m_notify.interrupts & irq_set_keyboard) { 
+                count++;
                 kbc_ih();
+                //handle_ingame_scancode(k_scancode,cursor);
                 if (k_scancode == SCAN_FIRST_TWO) {
                     k_bytes[k_index] = k_scancode; k_index++;
                 } else {
@@ -57,22 +71,20 @@ int (menuLogic) (GameState *gameState, bool *running) {
             }
 
             if (msg.m_notify.interrupts & irq_set_mouse) { 
+                count++;
                 mouse_ih();
-                store_byte_mouse();
+                store_bytes_packet();
+
                 if (m_index == 3) {
-                    store_bytes_packet();
-                    mouse_print_packet(&m_packet);
                     m_index = 0;
-
-                    if(!(cursor->x + m_packet.delta_x <= 0)) cursor->x += m_packet.delta_x;
-                    if(!(cursor->y - m_packet.delta_y <= 0)) cursor->y -= m_packet.delta_y;
-
-                    if (m_packet.lb && !m_packet.rb && !m_packet.mb) {
-                      printf("GAME");
-                      *gameState = GAME;
-                      *running = false;
-          }
-
+                    mouse_print_packet(&m_packet);
+                    handle_mouse_movement(cursor);
+                    update_menu_frame(start, cursor);
+                  
+                    if (m_packet.lb ) {
+                      printf("DIANA");
+                      //acabou = true;
+                    }
                 }
             }
             break;
@@ -91,14 +103,18 @@ int (menuLogic) (GameState *gameState, bool *running) {
 
     if (write_mouse(DISABLE_DATA_MODE) != 0)
       return 1;
+    free_buffers();
+    //if(k_scancode == SCAN_BREAK_ESC)
     *running = false;
 
     return 0;
+
 }
 
+int (gameLogic) (GameState *gameState, bool * running) {
+    initialize_buffers();
 
-int (gameLogic) (GameState *gameState,bool *running) {
-  if (write_mouse(ENABLE_DATA_MODE) != 0)
+    if (write_mouse(ENABLE_DATA_MODE) != 0)
       return 1;
 
     uint8_t irq_set_keyboard;
@@ -117,19 +133,25 @@ int (gameLogic) (GameState *gameState,bool *running) {
 
     Sprite *sp;
     sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
-    drawing_xpm(sp);
+    drawing_sprite(sp);
 
+    update_frame();
+    clear_drawing();
+    
     while (k_scancode != SCAN_BREAK_ESC) {    
      
       if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
         printf("driver_receive failed with: %d", r);
         continue;
       }
+
+      int count = 0;
       
       if (is_ipc_notify(ipc_status)) {      
         switch (_ENDPOINT_P(msg.m_source)) {
           case HARDWARE:    
             if (msg.m_notify.interrupts & irq_set_keyboard) { 
+                count++;
                 kbc_ih();
                 handle_ingame_scancode(k_scancode, sp);
                 if (k_scancode == SCAN_FIRST_TWO) {
@@ -168,6 +190,8 @@ int (gameLogic) (GameState *gameState,bool *running) {
     if (write_mouse(DISABLE_DATA_MODE) != 0)
       return 1;
     *running = false;
+
+    free_buffers();
 
     return 0;
 }
@@ -225,6 +249,37 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
         default:
             return;
     }
-      drawing_xpm(player);
+    clear_drawing();
+    make_xpm((xpm_map_t) maze2,1,1);
+    drawing_sprite(player);
+    update_frame();
+}
+
+int (collision)(Sprite * sp1, Sprite * sp2){
+  if(sp1->x < sp2->x || sp1 -> x > sp2->x + sp2->width) return 0;
+  if(sp1->y < sp2->y || sp1 -> y > sp2->y + sp2->height) return 0;
+  return 1;
+}
+
+
+void (handle_mouse_movement)(Sprite * cursor){
+  if(!(cursor->x + m_packet.delta_x <= 0)) cursor->x += m_packet.delta_x;
+  if(!(cursor->y - m_packet.delta_y <= 0)) cursor->y -= m_packet.delta_y;
+  if(cursor->x + cursor->width >= mode_info.XResolution)cursor->x = mode_info.XResolution - cursor->width;
+  if(cursor->y + cursor->height >= mode_info.YResolution)cursor->y = mode_info.YResolution - cursor->height;
+  if(cursor->x + cursor->width >= 785)cursor->x = 785 - cursor->width;
+  if(cursor->y + cursor->height >= 575)cursor->y = 575 - cursor->height;
+}
+
+void(update_menu_frame)(Sprite * start, Sprite * cursor){
+  clear_drawing();
+  make_xpm((xpm_map_t) menu,1,1);
+  if(collision(cursor, start)){   /* ainda nao está a dar estou a trabalhar nisto*/
+    Sprite* hover_start = create_sprite((xpm_map_t)teste, 315, 300, 0, 0);
+    drawing_sprite(hover_start);
+  }
+  else drawing_sprite(start);
+  drawing_sprite(cursor);
+  update_frame();
 }
 
