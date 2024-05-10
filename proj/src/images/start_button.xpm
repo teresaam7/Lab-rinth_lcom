@@ -2,7 +2,7 @@
 static char *start_button[] = {
 /* columns rows colors chars-per-pixel */
 "180 60 6 1 ",
-"  c #5E575E",
+"  c None",
 ". c #2A260B",
 "X c #BC9414",
 "o c #C39C18",

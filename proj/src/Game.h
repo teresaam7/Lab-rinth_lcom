@@ -22,6 +22,8 @@
 #include "images/up2.xpm"
 #include "images/down1.xpm"
 #include "images/down2.xpm"
+
+#include "images/hand.xpm"
 #include "images/start_button.xpm"
 #include "images/hover_start.xpm"
 

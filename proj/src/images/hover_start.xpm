@@ -2,7 +2,7 @@
 static char *hover_start[] = {
 /* columns rows colors chars-per-pixel */
 "220 73 178 2 ",
-"   c #5E575E",
+"   c None",
 ".  c #29250B",
 "X  c #2A250B",
 "o  c #29260A",

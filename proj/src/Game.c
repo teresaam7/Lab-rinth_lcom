@@ -26,7 +26,7 @@ void (draw_game)(){
 
 void (draw_menu)(){
     make_xpm((xpm_map_t) menu,1,1);
-    cursor = create_sprite((xpm_map_t)right1, 315, 200, 0, 0);
+    cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
     start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
     drawing_sprite(start);
     drawing_sprite(cursor);
