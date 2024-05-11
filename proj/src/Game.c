@@ -82,6 +82,12 @@ int (gameLogic) (GameState *gameState, bool * running) {
             if (msg.m_notify.interrupts & irq_set_keyboard) { 
                 count++;
                 kbc_ih();
+                if(*gameState == MENU) {
+                  if (k_scancode == ENTER_MK ) {
+                      *gameState = GAME;
+                      gameState_change = true;  
+                  }
+                }
                 if(*gameState == GAME){
                 handle_ingame_scancode(k_scancode, sp);
                 }
