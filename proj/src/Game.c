@@ -45,6 +45,10 @@ int (gameLogic) (GameState *gameState, bool * running) {
     uint8_t irq_set_mouse;
     if (mouse_subscribe_int(&irq_set_mouse) != 0)
       return 1;
+
+    uint8_t irq_set_rtc;
+    if (rtc_subscribe_int(&irq_set_rtc) != 0)
+      return 1;
     
     int r;
     message msg;
@@ -133,6 +137,9 @@ int (gameLogic) (GameState *gameState, bool * running) {
         return 1;
 
     if (mouse_unsubscribe_int() != 0)
+      return 1;
+
+    if (rtc_unsubscribe_int() != 0)
       return 1;
 
     if (write_mouse(DISABLE_DATA_MODE) != 0)

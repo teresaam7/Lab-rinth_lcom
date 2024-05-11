@@ -1,14 +1,14 @@
 #include "rtc.h"
 
 rtc_info time_info; 
-int hook_id_rtc = 1;
+int hook_id_rtc = 5;
 
 int (rtc_subscribe_int)() {
     return sys_irqsetpolicy(IRQ_RTC, IRQ_REENABLE, &hook_id_rtc);
 }
 
 
-int (rtc_unsubscribe_interrupts)() {
+int (rtc_unsubscribe_int)() {
     return sys_irqrmpolicy(&hook_id_rtc );
 }
 
@@ -64,4 +64,20 @@ int (rtc_update_time_info) () {
     time_info.year = rtc_binary_count() ? out : ((out >> 4) * 10) + (out & 0xF);
 
     return 0;
+}
+
+int (get_game_time) (uint8_t *hours, uint8_t *minutes) {
+    if (rtc_update_time_info() != 0) {
+        return 1;
+    }
+    *hours = time_info.hours;
+    *minutes = time_info.minutes;
+    return 0;
+}
+
+void (display_game_time)() {
+    uint8_t hours, minutes;
+    get_game_time(&hours, &minutes);
+
+    printf("Tempo do jogo: %02d:%02d\n", hours, minutes);
 }

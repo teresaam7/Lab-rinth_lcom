@@ -5,6 +5,7 @@
 
 #include "keyboard.h"
 #include "mouse.h"
+#include "rtc.h"
 #include "graphics.h"
 #include "sprite.h"
 

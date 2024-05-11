@@ -35,7 +35,7 @@ typedef struct {
 
 int (rtc_subscribe_int)();
 
-int (rtc_unsubscribe_interrupts)();
+int (rtc_unsubscribe_int)();
 
 int (read_rtc) (uint8_t command, uint8_t *output);
 
@@ -44,5 +44,9 @@ int (rtc_in_progress)();
 int (rtc_binary_count)();
 
 int (rtc_update_time_info) ();
+
+int (get_game_time) (uint8_t *hours, uint8_t *minutes);
+
+void (display_game_time)();
 
 #endif /* __RTC_H */
