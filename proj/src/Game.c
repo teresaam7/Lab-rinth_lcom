@@ -31,28 +31,36 @@ void (change_maze_colors_based_on_time)() {
 }
 
 void (draw_life_bar)(Sprite * bar,int total_seconds) {
-    if (total_seconds >= 0 && total_seconds < 30) {
-      life = create_sprite((xpm_map_t)life1, 20, 60, 0, 0);
-      drawing_sprite(life);
-    } else if (total_seconds >= 30 && total_seconds < 60) {
-      life = create_sprite((xpm_map_t)life1, 20, 60, 0, 0);
-      drawing_sprite(life);
-    } else if (total_seconds >= 60 && total_seconds < 90) {
-      life = create_sprite((xpm_map_t)life1, 20, 60, 0, 0);
-      drawing_sprite(life);
-    } else if (total_seconds >= 90 && total_seconds < 120) {
-      life = create_sprite((xpm_map_t)life1, 20, 60, 0, 0);
-      drawing_sprite(life);
-    } else if (total_seconds >= 120 && total_seconds < 150) {
-      life = create_sprite((xpm_map_t)life1, 20, 60, 0, 0);
-      drawing_sprite(life);
+    switch(total_seconds){
+      case 30:
+        bar = create_sprite((xpm_map_t)life5, 610, 5, 0, 0);
+        drawing_sprite(bar);
+        break;
+      case 60:
+        bar = create_sprite((xpm_map_t)life4, 610, 5, 0, 0);
+        drawing_sprite(life); 
+        break;
+      case 90:
+        bar = create_sprite((xpm_map_t)life3, 610, 5, 0, 0);
+        drawing_sprite(bar);
+        break;
+      case 160:
+        bar = create_sprite((xpm_map_t)life2, 610, 5, 0, 0);
+        drawing_sprite(bar);
+        break;
+      default:
+        return;
     }
+    clear_drawing();
+    make_xpm((xpm_map_t) maze2,1,1);
+    drawing_sprite(bar);
+    update_frame();
 }
 
 void (draw_game)(){
   change_maze_colors_based_on_time();
   sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
-  life = create_sprite((xpm_map_t)life1, 20, 60, 0, 0);
+  life = create_sprite((xpm_map_t)life1, 610, 5, 0, 0);
   drawing_sprite(sp);
   drawing_sprite(life);
 }
@@ -317,6 +325,7 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
     clear_drawing();
     make_xpm((xpm_map_t) maze2,1,1);
     drawing_sprite(player);
+    drawing_sprite(life);
     update_frame();
 }
 

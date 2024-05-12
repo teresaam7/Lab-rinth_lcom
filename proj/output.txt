@@ -13,3 +13,16 @@ timer_test_int:timer_print_elapsed_time 12 s
 timer_test_int:timer_print_elapsed_time 13 s
 timer_test_int:timer_print_elapsed_time 14 s
 timer_test_int:timer_print_elapsed_time 15 s
+timer_test_int:timer_print_elapsed_time 16 s
+timer_test_int:timer_print_elapsed_time 17 s
+timer_test_int:timer_print_elapsed_time 18 s
+timer_test_int:timer_print_elapsed_time 19 s
+timer_test_int:timer_print_elapsed_time 20 s
+timer_test_int:timer_print_elapsed_time 21 s
+timer_test_int:timer_print_elapsed_time 22 s
+timer_test_int:timer_print_elapsed_time 23 s
+timer_test_int:timer_print_elapsed_time 24 s
+timer_test_int:timer_print_elapsed_time 25 s
+timer_test_int:timer_print_elapsed_time 26 s
+timer_test_int:timer_print_elapsed_time 27 s
+timer_test_int:timer_print_elapsed_time 28 s
