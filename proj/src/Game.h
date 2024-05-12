@@ -27,6 +27,12 @@
 #include "images/down1.xpm"
 #include "images/down2.xpm"
 
+#include "images/lifeBar/life1.xpm"
+#include "images/lifeBar/life2.xpm"
+#include "images/lifeBar/life3.xpm"
+#include "images/lifeBar/life4.xpm"
+#include "images/lifeBar/life5.xpm"
+
 #include "images/hand.xpm"
 #include "images/start_button.xpm"
 #include "images/hover_start.xpm"
@@ -57,6 +63,7 @@ int (gameLogic) (GameState *gameState, bool *running);
 int (winLogic) (GameState *gameState, bool *running);
 
 void (change_maze_colors_based_on_time)();
+void (draw_life_bar)(Sprite * bar, int total_seconds);
 
 void (draw_game)();
 void (draw_menu)();

@@ -11,7 +11,7 @@ extern uint8_t m_bytes[3];
 extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
-Sprite *sp,*start, *cursor;
+Sprite *sp,*start, *cursor, *life;
 
 int (collision)(Sprite * sp1, Sprite * sp2){
   if(sp1->x < sp2->x || sp1 -> x > sp2->x + sp2->width) return 0;
@@ -30,19 +30,39 @@ void (change_maze_colors_based_on_time)() {
     }
 }
 
+void (draw_life_bar)(Sprite * bar,int total_seconds) {
+    if (total_seconds >= 0 && total_seconds < 30) {
+      life = create_sprite((xpm_map_t)life1, 20, 60, 0, 0);
+      drawing_sprite(life);
+    } else if (total_seconds >= 30 && total_seconds < 60) {
+      life = create_sprite((xpm_map_t)life1, 20, 60, 0, 0);
+      drawing_sprite(life);
+    } else if (total_seconds >= 60 && total_seconds < 90) {
+      life = create_sprite((xpm_map_t)life1, 20, 60, 0, 0);
+      drawing_sprite(life);
+    } else if (total_seconds >= 90 && total_seconds < 120) {
+      life = create_sprite((xpm_map_t)life1, 20, 60, 0, 0);
+      drawing_sprite(life);
+    } else if (total_seconds >= 120 && total_seconds < 150) {
+      life = create_sprite((xpm_map_t)life1, 20, 60, 0, 0);
+      drawing_sprite(life);
+    }
+}
 
 void (draw_game)(){
-    change_maze_colors_based_on_time();
-    sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
-    drawing_sprite(sp);
+  change_maze_colors_based_on_time();
+  sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
+  life = create_sprite((xpm_map_t)life1, 20, 60, 0, 0);
+  drawing_sprite(sp);
+  drawing_sprite(life);
 }
 
 void (draw_menu)(){
-    make_xpm((xpm_map_t) menu,1,1);
-    cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
-    start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
-    drawing_sprite(start);
-    drawing_sprite(cursor);
+  make_xpm((xpm_map_t) menu,1,1);
+  cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
+  start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
+  drawing_sprite(start);
+  drawing_sprite(cursor);
 }
 
 void (draw_win)() {
@@ -156,6 +176,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
             }
 
             if (*gameState == GAME && msg.m_notify.interrupts & irq_set_timer) {
+              draw_life_bar(life, time);
               timer_int_handler(); 
               int clock = counter % 60;
               if (clock == 0) {
