@@ -5,14 +5,18 @@
 
 #include "keyboard.h"
 #include "mouse.h"
+#include "rtc.h"
 #include "graphics.h"
 #include "sprite.h"
 
 #include "images/teste.xpm"
 #include "images/maze1.xpm"
 #include "images/maze2.xpm"
+#include "images/mazeDark2.xpm"
 #include "images/maze3.xpm"
+
 #include "images/menu.xpm"
+#include "images/win.xpm"
 
 #include "images/right1.xpm"
 #include "images/right2.xpm"
@@ -22,6 +26,12 @@
 #include "images/up2.xpm"
 #include "images/down1.xpm"
 #include "images/down2.xpm"
+
+#include "images/lifeBar/life1.xpm"
+#include "images/lifeBar/life2.xpm"
+#include "images/lifeBar/life3.xpm"
+#include "images/lifeBar/life4.xpm"
+#include "images/lifeBar/life5.xpm"
 
 #include "images/hand.xpm"
 #include "images/start_button.xpm"
@@ -41,15 +51,23 @@
 typedef enum {
     MENU,
     GAME,
+    WIN,
     ABOUTUS,
     EXIT
 } GameState;
 
+#define TIMER_MINUTES 3
+
 int (menuLogic) (GameState *gameState, bool *running);
 int (gameLogic) (GameState *gameState, bool *running);
+int (winLogic) (GameState *gameState, bool *running);
+
+void (change_maze_colors_based_on_time)();
+void (draw_life_bar)(Sprite * bar, int total_seconds);
 
 void (draw_game)();
 void (draw_menu)();
+void (draw_win)();
 
 
 //enum SpriteState get_next_state(enum SpriteState current_state, uint8_t scancode) ;

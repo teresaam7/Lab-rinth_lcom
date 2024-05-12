@@ -35,6 +35,7 @@
 
 #define ENABLE_INT_KEYBOARD     BIT(0)
 
+#define ENTER_MK        0x1C 
 #define A_KEY_MK        0x1e
 #define A_KEY_BRK       0x9e
 #define S_KEY_MK        0x1F
@@ -44,6 +45,7 @@
 #define W_KEY_MK        0x11
 #define W_KEY_BRK       0x91
 
+#define G_KEY_BRK       0xA2
 
 /* MOUSE */
 

@@ -4,13 +4,14 @@
 uint8_t k_index = 0;
 uint8_t k_bytes[2];
 extern uint8_t k_scancode;
+extern int counter;
 
 extern int m_index;
 extern uint8_t m_bytes[3];
 extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
-Sprite *sp,*start, *cursor;
+Sprite *sp,*start, *cursor, *life;
 
 int (collision)(Sprite * sp1, Sprite * sp2){
   if(sp1->x < sp2->x || sp1 -> x > sp2->x + sp2->width) return 0;
@@ -18,18 +19,63 @@ int (collision)(Sprite * sp1, Sprite * sp2){
   return 1;
 }
 
+void (change_maze_colors_based_on_time)() {
+    uint8_t hours, minutes, seconds;
+    get_game_time(&hours, &minutes, &seconds);
+
+    if (hours >= 20 || hours < 6) {
+        make_xpm((xpm_map_t) mazeDark2, 1, 1); 
+    } else {
+        make_xpm((xpm_map_t) maze2, 1, 1);
+    }
+}
+
+void (draw_life_bar)(Sprite * bar,int total_seconds) {
+    switch(total_seconds){
+      case 30:
+        bar = create_sprite((xpm_map_t)life5, 610, 5, 0, 0);
+        drawing_sprite(bar);
+        break;
+      case 60:
+        bar = create_sprite((xpm_map_t)life4, 610, 5, 0, 0);
+        drawing_sprite(life); 
+        break;
+      case 90:
+        bar = create_sprite((xpm_map_t)life3, 610, 5, 0, 0);
+        drawing_sprite(bar);
+        break;
+      case 160:
+        bar = create_sprite((xpm_map_t)life2, 610, 5, 0, 0);
+        drawing_sprite(bar);
+        break;
+      default:
+        return;
+    }
+    clear_drawing();
+    change_maze_colors_based_on_time();
+    drawing_sprite(bar);
+    update_frame();
+}
+
 void (draw_game)(){
-    make_xpm((xpm_map_t) maze2,1,1);
-    sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
-    drawing_sprite(sp);
+  change_maze_colors_based_on_time();
+  sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
+  life = create_sprite((xpm_map_t)life1, 610, 5, 0, 0);
+  drawing_sprite(sp);
+  drawing_sprite(life);
 }
 
 void (draw_menu)(){
-    make_xpm((xpm_map_t) menu,1,1);
-    cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
-    start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
-    drawing_sprite(start);
-    drawing_sprite(cursor);
+  make_xpm((xpm_map_t) menu,1,1);
+  cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
+  start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
+  drawing_sprite(start);
+  drawing_sprite(cursor);
+}
+
+void (draw_win)() {
+  make_xpm((xpm_map_t) win,1,1);
+  display_game_time();
 }
 
 int (gameLogic) (GameState *gameState, bool * running) {
@@ -45,6 +91,14 @@ int (gameLogic) (GameState *gameState, bool * running) {
     uint8_t irq_set_mouse;
     if (mouse_subscribe_int(&irq_set_mouse) != 0)
       return 1;
+
+    uint8_t irq_set_timer;
+    if (timer_subscribe_int(&irq_set_timer) != 0)
+      return 1;
+
+    uint8_t irq_set_rtc;
+    if (rtc_subscribe_int(&irq_set_rtc) != 0)
+      return 1;
     
     int r;
     message msg;
@@ -58,12 +112,13 @@ int (gameLogic) (GameState *gameState, bool * running) {
     clear_drawing();
 
     bool gameState_change = false;
-    
+    int time = 60 * TIMER_MINUTES;
     while (k_scancode != SCAN_BREAK_ESC) { 
 
       if(gameState_change){
         if(*gameState == GAME) {draw_game();}
         if(*gameState == MENU) {draw_menu();}
+        if(*gameState == WIN) {draw_win();}
         update_frame();
         clear_drawing();
         gameState_change = false;
@@ -73,17 +128,26 @@ int (gameLogic) (GameState *gameState, bool * running) {
         printf("driver_receive failed with: %d", r);
         continue;
       }
-
-      int count = 0;
       
       if (is_ipc_notify(ipc_status)) {      
         switch (_ENDPOINT_P(msg.m_source)) {
           case HARDWARE:    
             if (msg.m_notify.interrupts & irq_set_keyboard) { 
-                count++;
+                
                 kbc_ih();
+                if(*gameState == MENU) {
+                  if (k_scancode == ENTER_MK ) {
+                      *gameState = GAME;
+                      gameState_change = true;  
+                  }
+                }
                 if(*gameState == GAME){
-                handle_ingame_scancode(k_scancode, sp);
+                  handle_ingame_scancode(k_scancode, sp);
+                }
+
+                if (k_scancode == G_KEY_BRK) {
+                  *gameState = WIN;
+                  gameState_change = true;  
                 }
 
                 if (k_scancode == SCAN_FIRST_TWO) {
@@ -93,6 +157,8 @@ int (gameLogic) (GameState *gameState, bool * running) {
                     // kbd_print_scancode(!(scancode & MAKE_OR_BREAK), i == 0? 1: 2 , bytes);
                     k_index = 0;
                 }
+                // Need to implement win logic
+
 
             }
 
@@ -116,6 +182,20 @@ int (gameLogic) (GameState *gameState, bool * running) {
                     }
                 }
             }
+
+            if (*gameState == GAME && msg.m_notify.interrupts & irq_set_timer) {
+              draw_life_bar(life, time);
+              timer_int_handler(); 
+              int clock = counter % 60;
+              if (clock == 0) {
+                timer_print_elapsed_time();
+                time--;
+              }
+              if (time == 0) {
+                *gameState = WIN; 
+                gameState_change = true; 
+              }
+            }
             break;
 
           default:
@@ -127,6 +207,12 @@ int (gameLogic) (GameState *gameState, bool * running) {
         return 1;
 
     if (mouse_unsubscribe_int() != 0)
+      return 1;
+
+    if (timer_unsubscribe_int() != 0)
+      return 1;
+
+    if (rtc_unsubscribe_int() != 0)
       return 1;
 
     if (write_mouse(DISABLE_DATA_MODE) != 0)
@@ -190,25 +276,25 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
     
     switch (scancode) {
         case D_KEY_MK:
-            player->x = player->x + 1;
+            player->x = player->x + 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
             break;
 
         case A_KEY_MK:
-            player->x = player->x - 1;
+            player->x = player->x - 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
             break;
 
         case W_KEY_MK:
-            player->y = player->y- 1;
+            player->y = player->y- 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
             break;
         
         case S_KEY_MK:
-            player->y = player->y + 1;
+            player->y = player->y + 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
             break;
@@ -237,8 +323,9 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
             return;
     }
     clear_drawing();
-    make_xpm((xpm_map_t) maze2,1,1);
+    change_maze_colors_based_on_time();
     drawing_sprite(player);
+    drawing_sprite(life);
     update_frame();
 }
 
