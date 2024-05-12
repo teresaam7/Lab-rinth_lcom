@@ -4,6 +4,7 @@
 uint8_t k_index = 0;
 uint8_t k_bytes[2];
 extern uint8_t k_scancode;
+extern int counter;
 
 extern int m_index;
 extern uint8_t m_bytes[3];
@@ -63,6 +64,10 @@ int (gameLogic) (GameState *gameState, bool * running) {
     if (mouse_subscribe_int(&irq_set_mouse) != 0)
       return 1;
 
+    uint8_t irq_set_timer;
+    if (timer_subscribe_int(&irq_set_timer) != 0)
+      return 1;
+
     uint8_t irq_set_rtc;
     if (rtc_subscribe_int(&irq_set_rtc) != 0)
       return 1;
@@ -79,7 +84,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
     clear_drawing();
 
     bool gameState_change = false;
-    
+    int time = 60 * TIMER_MINUTES;
     while (k_scancode != SCAN_BREAK_ESC) { 
 
       if(gameState_change){
@@ -95,14 +100,12 @@ int (gameLogic) (GameState *gameState, bool * running) {
         printf("driver_receive failed with: %d", r);
         continue;
       }
-
-      int count = 0;
       
       if (is_ipc_notify(ipc_status)) {      
         switch (_ENDPOINT_P(msg.m_source)) {
           case HARDWARE:    
             if (msg.m_notify.interrupts & irq_set_keyboard) { 
-                count++;
+                
                 kbc_ih();
                 if(*gameState == MENU) {
                   if (k_scancode == ENTER_MK ) {
@@ -151,6 +154,19 @@ int (gameLogic) (GameState *gameState, bool * running) {
                     }
                 }
             }
+
+            if (*gameState == GAME && msg.m_notify.interrupts & irq_set_timer) {
+              timer_int_handler(); 
+              int clock = counter % 60;
+              if (clock == 0) {
+                timer_print_elapsed_time();
+                time--;
+              }
+              if (time == 0) {
+                *gameState = WIN; 
+                gameState_change = true; 
+              }
+            }
             break;
 
           default:
@@ -162,6 +178,9 @@ int (gameLogic) (GameState *gameState, bool * running) {
         return 1;
 
     if (mouse_unsubscribe_int() != 0)
+      return 1;
+
+    if (timer_unsubscribe_int() != 0)
       return 1;
 
     if (rtc_unsubscribe_int() != 0)

@@ -50,6 +50,8 @@ typedef enum {
     EXIT
 } GameState;
 
+#define TIMER_MINUTES 3
+
 int (menuLogic) (GameState *gameState, bool *running);
 int (gameLogic) (GameState *gameState, bool *running);
 int (winLogic) (GameState *gameState, bool *running);
