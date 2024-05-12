@@ -52,7 +52,7 @@ void (draw_life_bar)(Sprite * bar,int total_seconds) {
         return;
     }
     clear_drawing();
-    make_xpm((xpm_map_t) maze2,1,1);
+    change_maze_colors_based_on_time();
     drawing_sprite(bar);
     update_frame();
 }
@@ -323,7 +323,7 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
             return;
     }
     clear_drawing();
-    make_xpm((xpm_map_t) maze2,1,1);
+    change_maze_colors_based_on_time();
     drawing_sprite(player);
     drawing_sprite(life);
     update_frame();
