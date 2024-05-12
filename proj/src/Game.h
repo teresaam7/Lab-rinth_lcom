@@ -12,8 +12,11 @@
 #include "images/teste.xpm"
 #include "images/maze1.xpm"
 #include "images/maze2.xpm"
+#include "images/mazeDark2.xpm"
 #include "images/maze3.xpm"
+
 #include "images/menu.xpm"
+#include "images/win.xpm"
 
 #include "images/right1.xpm"
 #include "images/right2.xpm"
@@ -42,15 +45,20 @@
 typedef enum {
     MENU,
     GAME,
+    WIN,
     ABOUTUS,
     EXIT
 } GameState;
 
 int (menuLogic) (GameState *gameState, bool *running);
 int (gameLogic) (GameState *gameState, bool *running);
+int (winLogic) (GameState *gameState, bool *running);
+
+void (change_maze_colors_based_on_time)();
 
 void (draw_game)();
 void (draw_menu)();
+void (draw_win)();
 
 
 //enum SpriteState get_next_state(enum SpriteState current_state, uint8_t scancode) ;

@@ -1,11 +1,8 @@
 #ifndef __RTC_H
 #define __RTC_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <minix/syslib.h>
-#include <minix/drivers.h>
 #include <minix/sysutil.h>
+#include <lcom/lcf.h>
 
 
 typedef struct {
@@ -37,7 +34,7 @@ int (rtc_subscribe_int)();
 
 int (rtc_unsubscribe_int)();
 
-int (read_rtc) (uint8_t command, uint8_t *output);
+int (rtc_read) (uint8_t command, uint8_t *output);
 
 int (rtc_in_progress)();
 
@@ -45,8 +42,9 @@ int (rtc_binary_count)();
 
 int (rtc_update_time_info) ();
 
-int (get_game_time) (uint8_t *hours, uint8_t *minutes);
+int (get_game_time) (uint8_t *hours, uint8_t *minutes, uint8_t *seconds);
 
 void (display_game_time)();
 
 #endif /* __RTC_H */
+

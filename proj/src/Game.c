@@ -18,8 +18,20 @@ int (collision)(Sprite * sp1, Sprite * sp2){
   return 1;
 }
 
+void (change_maze_colors_based_on_time)() {
+    uint8_t hours, minutes, seconds;
+    get_game_time(&hours, &minutes, &seconds);
+
+    if (hours >= 20 || hours < 6) {
+        make_xpm((xpm_map_t) mazeDark2, 1, 1); 
+    } else {
+        make_xpm((xpm_map_t) maze2, 1, 1);
+    }
+}
+
+
 void (draw_game)(){
-    make_xpm((xpm_map_t) maze2,1,1);
+    change_maze_colors_based_on_time();
     sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
     drawing_sprite(sp);
 }
@@ -30,6 +42,11 @@ void (draw_menu)(){
     start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
     drawing_sprite(start);
     drawing_sprite(cursor);
+}
+
+void (draw_win)() {
+  make_xpm((xpm_map_t) win,1,1);
+  display_game_time();
 }
 
 int (gameLogic) (GameState *gameState, bool * running) {
@@ -68,6 +85,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
       if(gameState_change){
         if(*gameState == GAME) {draw_game();}
         if(*gameState == MENU) {draw_menu();}
+        if(*gameState == WIN) {draw_win();}
         update_frame();
         clear_drawing();
         gameState_change = false;
@@ -93,7 +111,12 @@ int (gameLogic) (GameState *gameState, bool * running) {
                   }
                 }
                 if(*gameState == GAME){
-                handle_ingame_scancode(k_scancode, sp);
+                  handle_ingame_scancode(k_scancode, sp);
+                }
+
+                if (k_scancode == G_KEY_BRK) {
+                  *gameState = WIN;
+                  gameState_change = true;  
                 }
 
                 if (k_scancode == SCAN_FIRST_TWO) {
@@ -103,6 +126,8 @@ int (gameLogic) (GameState *gameState, bool * running) {
                     // kbd_print_scancode(!(scancode & MAKE_OR_BREAK), i == 0? 1: 2 , bytes);
                     k_index = 0;
                 }
+                // Need to implement win logic
+
 
             }
 
@@ -203,25 +228,25 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
     
     switch (scancode) {
         case D_KEY_MK:
-            player->x = player->x + 1;
+            player->x = player->x + 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
             break;
 
         case A_KEY_MK:
-            player->x = player->x - 1;
+            player->x = player->x - 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
             break;
 
         case W_KEY_MK:
-            player->y = player->y- 1;
+            player->y = player->y- 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
             break;
         
         case S_KEY_MK:
-            player->y = player->y + 1;
+            player->y = player->y + 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
             break;
