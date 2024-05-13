@@ -30,30 +30,30 @@ void (change_maze_colors_based_on_time)() {
     }
 }
 
-void (draw_life_bar)(Sprite * bar,int total_seconds) {
+void (draw_life_bar)(Sprite **bar, int total_seconds) {
     switch(total_seconds){
-      case 30:
-        bar = create_sprite((xpm_map_t)life5, 610, 5, 0, 0);
-        drawing_sprite(bar);
-        break;
-      case 60:
-        bar = create_sprite((xpm_map_t)life4, 610, 5, 0, 0);
-        drawing_sprite(life); 
-        break;
-      case 90:
-        bar = create_sprite((xpm_map_t)life3, 610, 5, 0, 0);
-        drawing_sprite(bar);
-        break;
-      case 160:
-        bar = create_sprite((xpm_map_t)life2, 610, 5, 0, 0);
-        drawing_sprite(bar);
-        break;
-      default:
-        return;
+        case 30:
+            *bar = create_sprite((xpm_map_t)life5, 610, 5, 0, 0);
+            drawing_sprite(*bar);
+            break;
+        case 60:
+            *bar = create_sprite((xpm_map_t)life4, 610, 5, 0, 0);
+            drawing_sprite(*bar);
+            break;
+        case 90:
+            *bar = create_sprite((xpm_map_t)life3, 610, 5, 0, 0);
+            drawing_sprite(*bar);
+            break;
+        case 140:
+            *bar = create_sprite((xpm_map_t)life2, 610, 5, 0, 0);
+            drawing_sprite(*bar);
+            break;
+        default:
+            return;
     }
     clear_drawing();
     change_maze_colors_based_on_time();
-    drawing_sprite(bar);
+    drawing_sprite(*bar);
     update_frame();
 }
 
@@ -184,13 +184,13 @@ int (gameLogic) (GameState *gameState, bool * running) {
             }
 
             if (*gameState == GAME && msg.m_notify.interrupts & irq_set_timer) {
-              draw_life_bar(life, time);
               timer_int_handler(); 
               int clock = counter % 60;
               if (clock == 0) {
                 timer_print_elapsed_time();
                 time--;
               }
+              draw_life_bar(&life, time);
               if (time == 0) {
                 *gameState = WIN; 
                 gameState_change = true; 
