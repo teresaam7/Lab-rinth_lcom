@@ -11,7 +11,7 @@ extern uint8_t m_bytes[3];
 extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
-Sprite *sp,*start, *cursor, *life;
+Sprite *sp,*start, *quit, *cursor, *life;
 
 int (collision)(Sprite * sp1, Sprite * sp2){
   if(sp1->x < sp2->x || sp1 -> x > sp2->x + sp2->width) return 0;
@@ -66,10 +66,13 @@ void (draw_game)(){
 }
 
 void (draw_menu)(){
-  drawing_xpm((xpm_map_t) menu,1,1);
+  //drawing_xpm((xpm_map_t) menu,1,1);
+  
   cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
   start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
+  quit = create_sprite((xpm_map_t)quit_button, 335, 380, 0, 0);
   drawing_sprite(start);
+  drawing_sprite(quit);
   drawing_sprite(cursor);
 }
 
@@ -119,6 +122,8 @@ int (gameLogic) (GameState *gameState, bool * running) {
         if(*gameState == GAME) {draw_game();}
         if(*gameState == MENU) {draw_menu();}
         if(*gameState == WIN) {draw_win();}
+        if(*gameState == EXIT) {*running = false;
+        break;}
         update_frame_with_background();
         clear_drawing();
         gameState_change = false;
@@ -145,11 +150,6 @@ int (gameLogic) (GameState *gameState, bool * running) {
                   handle_ingame_scancode(k_scancode, sp);
                 }
 
-                if (k_scancode == G_KEY_BRK) {
-                  *gameState = WIN;
-                  gameState_change = true;  
-                }
-
                 if (k_scancode == SCAN_FIRST_TWO) {
                     k_bytes[k_index] = k_scancode; k_index++;
                 } else {
@@ -172,12 +172,15 @@ int (gameLogic) (GameState *gameState, bool * running) {
                     if(*gameState == MENU){
                       mouse_print_packet(&m_packet);
                       handle_mouse_movement(cursor);
-                      update_menu_frame(start, cursor);
+                      update_menu_frame(start, quit, cursor);
                     
                       if (m_packet.lb) {
-                        if(collision(cursor, start))
+                        if(collision(cursor, start)){
                           *gameState = GAME;
-                          gameState_change = true;                        
+                          gameState_change = true;}    
+                          if(collision(cursor, quit)){
+                          *gameState = EXIT;
+                          gameState_change = true;}                      
                       }
                     }
                 }
@@ -339,17 +342,45 @@ void (handle_mouse_movement)(Sprite * cursor){
   if(cursor->y + cursor->height >= 575)cursor->y = 575 - cursor->height;
 }
 
-void(update_menu_frame)(Sprite * start, Sprite * cursor){
-    clear_drawing();
-    background_drawing((xpm_map_t) menu,1,1);
 
-    if(collision(cursor,start)){
-        Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
-        drawing_sprite(hover_start_sp);
-        
-    }
-    else drawing_sprite(start);
-    drawing_sprite(cursor);
-    update_frame_with_background();
+void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
+  clear_drawing();
+  //background_drawing((xpm_map_t) menu,1,1);
+
+  if(collision(cursor,start)){
+    Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
+    drawing_sprite(hover_start_sp);
+    
+  }
+  else drawing_sprite(start);
+  if(collision(cursor,quit)){
+    Sprite* hover_quit_sp = create_sprite((xpm_map_t)hover_quit, 315, 373, 0, 0);
+    drawing_sprite(hover_quit_sp);
+    
+  }
+  else drawing_sprite(quit);
+  drawing_sprite(cursor);
+  update_frame();
 }
 
+
+/*
+void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
+  clear_drawing();
+  //make_xpm((xpm_map_t) menu,1,1);
+  if(collision(cursor,start)){
+    Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
+    drawing_sprite(hover_start_sp);
+    
+  }
+  else drawing_sprite(start);
+  if(collision(cursor,quit)){
+    Sprite* hover_quit_sp = create_sprite((xpm_map_t)hover_quit, 315, 373, 0, 0);
+    drawing_sprite(hover_quit_sp);
+    
+  }
+  else drawing_sprite(quit);
+  drawing_sprite(cursor);
+  update_frame();
+}
+*/
