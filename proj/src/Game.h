@@ -36,6 +36,8 @@
 #include "images/hand.xpm"
 #include "images/start_button.xpm"
 #include "images/hover_start.xpm"
+#include "images/quit_button.xpm"
+#include "images/hover_quit.xpm"
 
 /*enum SpriteState {
     RIGHT1,
@@ -76,7 +78,7 @@ xpm_map_t get_next_sprite(xpm_map_t current_state, uint8_t scancode);
 
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player);
 void (handle_mouse_movement)(Sprite * cursor);
-void (update_menu_frame)(Sprite * start, Sprite * cursor);
+void (update_menu_frame)(Sprite * start,Sprite * exit, Sprite * cursor);
 
 #endif
 
