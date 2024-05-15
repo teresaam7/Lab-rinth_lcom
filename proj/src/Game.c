@@ -78,6 +78,10 @@ void (draw_win)() {
   display_game_time();
 }
 
+void (draw_lost)() {
+  make_xpm((xpm_map_t) win,1,1);
+}
+
 int (gameLogic) (GameState *gameState, bool * running) {
     initialize_buffers();
 
@@ -119,6 +123,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
         if(*gameState == GAME) {draw_game();}
         if(*gameState == MENU) {draw_menu();}
         if(*gameState == WIN) {draw_win();}
+        if(*gameState == LOSE) {draw_lost();}
         update_frame();
         clear_drawing();
         gameState_change = false;
@@ -192,7 +197,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
               }
               draw_life_bar(&life, time);
               if (time == 0) {
-                *gameState = WIN; 
+                *gameState = LOSE; 
                 gameState_change = true; 
               }
             }
