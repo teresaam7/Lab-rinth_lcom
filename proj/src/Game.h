@@ -65,7 +65,7 @@ int (gameLogic) (GameState *gameState, bool *running);
 int (winLogic) (GameState *gameState, bool *running);
 
 void (change_maze_colors_based_on_time)();
-void (draw_life_bar)(Sprite * bar, int total_seconds);
+void (draw_life_bar)(Sprite **bar, int total_seconds);
 
 void (draw_game)();
 void (draw_menu)();
