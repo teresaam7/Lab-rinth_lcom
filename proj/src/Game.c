@@ -24,9 +24,9 @@ void (change_maze_colors_based_on_time)() {
     get_game_time(&hours, &minutes, &seconds);
 
     if (hours >= 20 || hours < 6) {
-        make_xpm((xpm_map_t) mazeDark2, 1, 1); 
+        background_drawing((xpm_map_t) mazeDark2, 1, 1); 
     } else {
-        make_xpm((xpm_map_t) maze2, 1, 1);
+        background_drawing((xpm_map_t) maze2, 1, 1);
     }
 }
 
@@ -54,7 +54,7 @@ void (draw_life_bar)(Sprite **bar, int total_seconds) {
     clear_drawing();
     change_maze_colors_based_on_time();
     drawing_sprite(*bar);
-    update_frame();
+    update_frame_with_background();
 }
 
 void (draw_game)(){
@@ -66,7 +66,7 @@ void (draw_game)(){
 }
 
 void (draw_menu)(){
-  make_xpm((xpm_map_t) menu,1,1);
+  drawing_xpm((xpm_map_t) menu,1,1);
   cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
   start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
   drawing_sprite(start);
@@ -74,7 +74,7 @@ void (draw_menu)(){
 }
 
 void (draw_win)() {
-  make_xpm((xpm_map_t) win,1,1);
+  drawing_xpm((xpm_map_t) win,1,1);
   display_game_time();
 }
 
@@ -108,7 +108,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
     if(*gameState == GAME){draw_game();}
     if(*gameState == MENU){draw_menu();}
 
-    update_frame();
+    update_frame_with_background();
     clear_drawing();
 
     bool gameState_change = false;
@@ -119,7 +119,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
         if(*gameState == GAME) {draw_game();}
         if(*gameState == MENU) {draw_menu();}
         if(*gameState == WIN) {draw_win();}
-        update_frame();
+        update_frame_with_background();
         clear_drawing();
         gameState_change = false;
       }  
@@ -326,7 +326,7 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
     change_maze_colors_based_on_time();
     drawing_sprite(player);
     drawing_sprite(life);
-    update_frame();
+    update_frame_with_background();
 }
 
 
@@ -340,15 +340,16 @@ void (handle_mouse_movement)(Sprite * cursor){
 }
 
 void(update_menu_frame)(Sprite * start, Sprite * cursor){
-  clear_drawing();
-  make_xpm((xpm_map_t) menu,1,1);
-  if(collision(cursor,start)){
-    Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
-    drawing_sprite(hover_start_sp);
-    
-  }
-  else drawing_sprite(start);
-  drawing_sprite(cursor);
-  update_frame();
+    clear_drawing();
+    background_drawing((xpm_map_t) menu,1,1);
+
+    if(collision(cursor,start)){
+        Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
+        drawing_sprite(hover_start_sp);
+        
+    }
+    else drawing_sprite(start);
+    drawing_sprite(cursor);
+    update_frame_with_background();
 }
 
