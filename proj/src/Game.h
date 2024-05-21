@@ -10,7 +10,6 @@
 #include "sprite.h"
 
 #include "images/teste.xpm"
-#include "images/maze1.xpm"
 #include "images/maze2.xpm"
 #include "images/mazeDark2.xpm"
 #include "images/maze3.xpm"
@@ -71,7 +70,7 @@ void (draw_life_bar)(Sprite **bar, int total_seconds);
 void (draw_game)();
 void (draw_menu)();
 void (draw_win)();
-void (draw_lost)();
+//void (draw_lost)();
 
 
 xpm_map_t (get_next_sprite)(xpm_map_t current_state, uint8_t scancode); 

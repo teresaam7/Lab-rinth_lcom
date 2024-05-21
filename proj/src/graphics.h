@@ -21,12 +21,9 @@ int (graphic_mode)(uint16_t mode);
 int (initialize_frame_buffer) (uint16_t mode);
 
 int (draw_pixel_to_buffer) (uint16_t x, uint16_t y, uint32_t color);
-<<<<<<< HEAD
 int (make_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi);
 uint32_t (return_color)(xpm_map_t xpm, uint16_t xi, uint16_t yi, int base_width, int base_height);
-=======
 int (drawing_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi);
->>>>>>> 778747005d7c6a0d6ed837054c0b550b5aa79d92
 
 void (initialize_buffers)();
 void (free_buffers)();
