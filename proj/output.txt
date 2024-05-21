@@ -1,8 +1,67 @@
-antes do forantes do forantes do forantes do for1timer_test_int:timer_print_elapsed_time 1 s
-antes do forantes do forantes do forantes do for1antes do forantes do forantes do forantes do for1antes do forantes do forantes do forantes do for1antes do forantes do forantes do forantes do for0timer_test_int:timer_print_elapsed_time 2 s
-antes do forantes do forantes do forantes do forantes do forantes do for0antes do forantes do fortimer_test_int:timer_print_elapsed_time 3 s
+6600666600666600666600660660066660066660066660066661660066660066660066660066666600666600666600666600666616600666600666600666600666666006666006666006666006666166006666006666006666006666660066660066660066660066661timer_test_int:timer_print_elapsed_time 1 s
+660066660066660066660066666600666600666600666600666616600666600666600666600666666006666006666006666006601660066660066660066660066066006666006666006666006666166006666006666006666006666660066660066660066660066661660066660066660066660066666600666600666600666600660166006666006666006666006606600666600666600666600666616600666600666600666600666666006666006666006666006666166006666006666006666006666660066660066660066660066016600666600666600666600660660066660066660066660066661660066660066660066660066666600666600666600666600666616600666600666600666600666666006666006666006666006601timer_test_int:timer_print_elapsed_time 2 s
+timer_test_int:timer_print_elapsed_time 3 s
 timer_test_int:timer_print_elapsed_time 4 s
-antes do forantes do forantes do forantes do for1antes do forantes do forantes do forantes do for1antes do forantes do forantes do forantes do for1timer_test_int:timer_print_elapsed_time 5 s
-antes do forantes do forantes do forantes do for1antes do forantes do forantes do forantes do for0antes do forantes do forantes do forantes do forantes do forantes do for0antes do forantes do forantes do forantes do forantes do forantes do for0antes do forantes do forantes do forantes do forantes do forantes do for0antes do forantes do forantes do forantes do forantes do forantes do for0antes do forantes do forantes do forantes do forantes do forantes do for0antes do forantes do fortimer_test_int:timer_print_elapsed_time 6 s
-antes do forantes do forantes do forantes do for1antes do forantes do forantes do forantes do for1antes do forantes do forantes do forantes do for1antes do forantes do forantes do forantes do for1timer_test_int:timer_print_elapsed_time 7 s
-antes do forantes do for1
+timer_test_int:timer_print_elapsed_time 5 s
+timer_test_int:timer_print_elapsed_time 6 s
+timer_test_int:timer_print_elapsed_time 7 s
+timer_test_int:timer_print_elapsed_time 8 s
+timer_test_int:timer_print_elapsed_time 9 s
+timer_test_int:timer_print_elapsed_time 10 s
+timer_test_int:timer_print_elapsed_time 11 s
+timer_test_int:timer_print_elapsed_time 12 s
+timer_test_int:timer_print_elapsed_time 13 s
+timer_test_int:timer_print_elapsed_time 14 s
+timer_test_int:timer_print_elapsed_time 15 s
+timer_test_int:timer_print_elapsed_time 16 s
+timer_test_int:timer_print_elapsed_time 17 s
+timer_test_int:timer_print_elapsed_time 18 s
+timer_test_int:timer_print_elapsed_time 19 s
+timer_test_int:timer_print_elapsed_time 20 s
+timer_test_int:timer_print_elapsed_time 21 s
+timer_test_int:timer_print_elapsed_time 22 s
+timer_test_int:timer_print_elapsed_time 23 s
+timer_test_int:timer_print_elapsed_time 24 s
+timer_test_int:timer_print_elapsed_time 25 s
+timer_test_int:timer_print_elapsed_time 26 s
+timer_test_int:timer_print_elapsed_time 27 s
+timer_test_int:timer_print_elapsed_time 28 s
+timer_test_int:timer_print_elapsed_time 29 s
+timer_test_int:timer_print_elapsed_time 30 s
+timer_test_int:timer_print_elapsed_time 31 s
+timer_test_int:timer_print_elapsed_time 32 s
+timer_test_int:timer_print_elapsed_time 33 s
+timer_test_int:timer_print_elapsed_time 34 s
+timer_test_int:timer_print_elapsed_time 35 s
+timer_test_int:timer_print_elapsed_time 36 s
+timer_test_int:timer_print_elapsed_time 37 s
+timer_test_int:timer_print_elapsed_time 38 s
+timer_test_int:timer_print_elapsed_time 39 s
+timer_test_int:timer_print_elapsed_time 40 s
+timer_test_int:timer_print_elapsed_time 41 s
+timer_test_int:timer_print_elapsed_time 42 s
+timer_test_int:timer_print_elapsed_time 43 s
+timer_test_int:timer_print_elapsed_time 44 s
+timer_test_int:timer_print_elapsed_time 45 s
+timer_test_int:timer_print_elapsed_time 46 s
+timer_test_int:timer_print_elapsed_time 47 s
+timer_test_int:timer_print_elapsed_time 48 s
+timer_test_int:timer_print_elapsed_time 49 s
+timer_test_int:timer_print_elapsed_time 50 s
+timer_test_int:timer_print_elapsed_time 51 s
+timer_test_int:timer_print_elapsed_time 52 s
+timer_test_int:timer_print_elapsed_time 53 s
+timer_test_int:timer_print_elapsed_time 54 s
+timer_test_int:timer_print_elapsed_time 55 s
+timer_test_int:timer_print_elapsed_time 56 s
+timer_test_int:timer_print_elapsed_time 57 s
+timer_test_int:timer_print_elapsed_time 58 s
+timer_test_int:timer_print_elapsed_time 59 s
+timer_test_int:timer_print_elapsed_time 60 s
+timer_test_int:timer_print_elapsed_time 61 s
+timer_test_int:timer_print_elapsed_time 62 s
+timer_test_int:timer_print_elapsed_time 63 s
+timer_test_int:timer_print_elapsed_time 64 s
+timer_test_int:timer_print_elapsed_time 65 s
+timer_test_int:timer_print_elapsed_time 66 s
+66006666006666006666006601

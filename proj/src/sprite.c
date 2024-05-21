@@ -43,11 +43,21 @@ bool check_collision(Sprite *sprite1, int base_width, int base_height) {
     int sprite1_right = sprite1->x + sprite1->width - 1;
     int sprite1_top = sprite1->y;
     int sprite1_bottom = sprite1->y + sprite1->height - 1;
-    printf("%s", "antes do for");
-    printf("%s", "antes do for");
+    /*uint32_t color1= return_color((xpm_map_t)sprite1->map, (uint16_t)sprite1->x+5, (uint16_t)sprite1->y, base_width, base_height);
+    uint32_t color2= return_color((xpm_map_t)sprite1->map, (uint16_t)sprite1->x-5, (uint16_t)sprite1->y, base_width, base_height);
+    uint32_t color3= return_color((xpm_map_t)sprite1->map, (uint16_t)sprite1->x, (uint16_t)sprite1->y+5, base_width, base_height);
+    uint32_t color4= return_color((xpm_map_t)sprite1->map, (uint16_t)sprite1->x, (uint16_t)sprite1->y-5,  base_width, base_height);
+    printf("%x", color1);
+    if(color1==0x660066||color2==0x660066||color3==0x660066||color4==0x660066){
+      return true;
+    }*/
     if (sprite1_left >= 0 && sprite1_right < base_width && sprite1_top >= 0 && sprite1_bottom < base_height) {
-      return true; 
+      return true; //pode andar
     }
+  /*  if(sprite1->map[sprite1_bottom*base_width+sprite1_left]=='.'){
+      printf("%s", "pontoooo");
+      return true;
+    }*/
    /* for (int y = sprite1_top; y <= sprite1_bottom; y++) {
         for (int x = sprite1_left; x <= sprite1_right; x++) {
             int base_x = x;
@@ -55,7 +65,7 @@ bool check_collision(Sprite *sprite1, int base_width, int base_height) {
             //printf("%s", "x");
             //printf("%s", "y"); 
             //"  c #660066", ->cor escura por onde nao pode ir
-            if(sprite1_left!='.')     
+                 
                 if ((int)base[base_y * base_width + base_x] != '.') {
                     return true; 
                 }
