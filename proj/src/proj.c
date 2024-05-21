@@ -57,6 +57,8 @@ int (proj_main_loop)(int argc, char *argv[]) {
       break;
       case WIN:
         if (gameLogic(&gameState, &running)!= 0) return 1;
+      case LOSE:
+        if (gameLogic(&gameState, &running)!= 0) return 1;
       break;
       case EXIT:
         running = false;

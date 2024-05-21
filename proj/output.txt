@@ -1,4 +1,6 @@
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 B1=0x28 B2=0x03 B3=0xf3 LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=-13
 B1=0x28 B2=0x03 B3=0xf3 LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=-13
 B1=0x28 B2=0x04 B3=0xed LB=0 MB=0 RB=0 XOV=0 X=4 YOV=0 Y=-19
@@ -878,3 +880,4 @@ timer_test_int:timer_print_elapsed_time 96 s
 timer_test_int:timer_print_elapsed_time 97 s
 >>>>>>> 1402c587b314b86c548778724650d5ecea36906e
 >>>>>>> 4eaa4cfef31ea9c0a931d15909a63f72bb9fdf08
+>>>>>>> 73c6e8a3c7c62e69b6a547825fda5f3b9d364c7d

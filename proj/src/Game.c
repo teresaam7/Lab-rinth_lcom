@@ -66,7 +66,7 @@ void (draw_game)(){
 }
 
 void (draw_menu)(){
-  //drawing_xpm((xpm_map_t) menu,1,1);
+  drawing_xpm((xpm_map_t) menu,1,1);
   
   cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
   start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
@@ -79,6 +79,10 @@ void (draw_menu)(){
 void (draw_win)() {
   drawing_xpm((xpm_map_t) win,1,1);
   display_game_time();
+}
+
+void (draw_lost)() {
+  drawing_xpm((xpm_map_t) win,1,1);
 }
 
 int (gameLogic) (GameState *gameState, bool * running) {
@@ -195,7 +199,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
               }
               draw_life_bar(&life, time);
               if (time == 0) {
-                *gameState = WIN; 
+                *gameState = LOSE; 
                 gameState_change = true; 
               }
             }
@@ -226,29 +230,6 @@ int (gameLogic) (GameState *gameState, bool * running) {
 
     return 0;
 }
-
-/*enum SpriteState get_next_state(enum SpriteState current_state, uint8_t scancode) {
-    switch (scancode) {
-        case A_KEY_MK:
-            return LEFT1;
-        case D_KEY_MK:
-            return RIGHT1;
-        case W_KEY_MK:
-            return UP1;
-        case S_KEY_MK:
-            return DOWN1;
-        case A_KEY_BRK:
-            return LEFT2;
-        case D_KEY_BRK:
-            return RIGHT2;
-        case W_KEY_BRK:
-            return UP2;
-        case S_KEY_BRK:
-            return DOWN2;
-        default:
-            return current_state;
-    }
-}*/
 
 xpm_map_t get_next_sprite(xpm_map_t current_state, uint8_t scancode) {
     switch (scancode) {
@@ -345,7 +326,7 @@ void (handle_mouse_movement)(Sprite * cursor){
 
 void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
   clear_drawing();
-  //background_drawing((xpm_map_t) menu,1,1);
+  background_drawing((xpm_map_t) menu,1,1);
 
   if(collision(cursor,start)){
     Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);

@@ -55,6 +55,7 @@ typedef enum {
     GAME,
     WIN,
     ABOUTUS,
+    LOSE,
     EXIT
 } GameState;
 
@@ -70,9 +71,8 @@ void (draw_life_bar)(Sprite **bar, int total_seconds);
 void (draw_game)();
 void (draw_menu)();
 void (draw_win)();
+void (draw_lost)();
 
-
-//enum SpriteState get_next_state(enum SpriteState current_state, uint8_t scancode) ;
 
 xpm_map_t (get_next_sprite)(xpm_map_t current_state, uint8_t scancode); 
 
