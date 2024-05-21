@@ -46,6 +46,9 @@
 #define W_KEY_BRK       0x91
 
 #define G_KEY_BRK       0xA2
+#define MK_1            0x02
+#define MK_2            0x03
+#define MK_3            0x04
 
 /* MOUSE */
 

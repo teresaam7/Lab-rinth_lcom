@@ -38,27 +38,43 @@ void destroy_sprite(Sprite *sp) {
   sp = NULL; 
 }
 
-bool check_collision(Sprite *sprite1, const char *base, int base_width, int base_height) {
+bool check_collision(Sprite *sprite1, int base_width, int base_height) {
     int sprite1_left = sprite1->x;
     int sprite1_right = sprite1->x + sprite1->width - 1;
     int sprite1_top = sprite1->y;
     int sprite1_bottom = sprite1->y + sprite1->height - 1;
-
-    for (int y = sprite1_top; y <= sprite1_bottom; y++) {
+    /*uint32_t color1= return_color((xpm_map_t)sprite1->map, (uint16_t)sprite1->x+5, (uint16_t)sprite1->y, base_width, base_height);
+    uint32_t color2= return_color((xpm_map_t)sprite1->map, (uint16_t)sprite1->x-5, (uint16_t)sprite1->y, base_width, base_height);
+    uint32_t color3= return_color((xpm_map_t)sprite1->map, (uint16_t)sprite1->x, (uint16_t)sprite1->y+5, base_width, base_height);
+    uint32_t color4= return_color((xpm_map_t)sprite1->map, (uint16_t)sprite1->x, (uint16_t)sprite1->y-5,  base_width, base_height);
+    printf("%x", color1);
+    if(color1==0x660066||color2==0x660066||color3==0x660066||color4==0x660066){
+      return true;
+    }*/
+    if (sprite1_left >= 0 && sprite1_right < base_width && sprite1_top >= 0 && sprite1_bottom < base_height) {
+      return true; //pode andar
+    }
+  /*  if(sprite1->map[sprite1_bottom*base_width+sprite1_left]=='.'){
+      printf("%s", "pontoooo");
+      return true;
+    }*/
+   /* for (int y = sprite1_top; y <= sprite1_bottom; y++) {
         for (int x = sprite1_left; x <= sprite1_right; x++) {
             int base_x = x;
             int base_y = y;
-
-            if (base_x >= 0 && base_x < base_width && base_y >= 0 && base_y < base_height) {
-                if (base[base_y * base_width + base_x] != '.') {
+            //printf("%s", "x");
+            //printf("%s", "y"); 
+            //"  c #660066", ->cor escura por onde nao pode ir
+                 
+                if ((int)base[base_y * base_width + base_x] != '.') {
                     return true; 
                 }
-            }
         }
-    }
+    }*/
 
     return false;
 }
+
 
 int drawing_sprite(Sprite *sp){
   if (drawing_xpm((xpm_map_t)sp->map, sp->x, sp->y) != 0) {

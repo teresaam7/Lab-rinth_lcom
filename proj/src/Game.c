@@ -11,7 +11,7 @@ extern uint8_t m_bytes[3];
 extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
-Sprite *sp,*start, *quit, *cursor, *life;
+Sprite *sp,*start, *quit, *cursor, *life, *level1_, *level2_, *level3_;
 
 int (collision)(Sprite * sp1, Sprite * sp2){
   if(sp1->x < sp2->x || sp1 -> x > sp2->x + sp2->width) return 0;
@@ -88,24 +88,12 @@ void (drawLevel) (GameState gameState) {
 
 void (draw_game_menu)() {
   drawing_xpm((xpm_map_t) menu,1,1);
-  /*
-  GameState gameState = GAME;
-  switch (scancode) {
-    case 1:
-      gameState = LEVEL1;
-      break;
-    case 2:
-      gameState = LEVEL2;
-      break;
-    case 3:
-      gameState = LEVEL3;
-      break;
-    default:
-      return;
-  }
-  drawLevel(gameState);
-  */
-  
+  level1_ = create_sprite((xpm_map_t)level1, 315, 260, 0, 0);
+  level2_ = create_sprite((xpm_map_t)level2, 315, 340, 0, 0);
+  level3_ = create_sprite((xpm_map_t)level3, 315, 420, 0, 0);
+  drawing_sprite(level1_);
+  drawing_sprite(level2_);
+  drawing_sprite(level3_);
 }
 
 void (draw_game)(GameState gameState){
@@ -209,15 +197,15 @@ int (gameLogic) (GameState *gameState, bool * running) {
                 }
                 if(*gameState == GAME){
 
-                  if (k_scancode == 1 ) {
+                  if (k_scancode == MK_1) {
                       *gameState = LEVEL1;
                       gameState_change = true;  
                   }
-                  if (k_scancode == 2 ) {
+                  if (k_scancode == MK_2) {
                       *gameState = LEVEL2;
                       gameState_change = true;  
                   }
-                  if (k_scancode == 3 ) {
+                  if (k_scancode == MK_3) {
                       *gameState = LEVEL3;
                       gameState_change = true;  
                   }
@@ -417,24 +405,22 @@ void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
   update_frame();
 }
 
-
-/*
-void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
+void (update_levels_frame)(uint8_t scancode) {
   clear_drawing();
-  //make_xpm((xpm_map_t) menu,1,1);
-  if(collision(cursor,start)){
-    Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
-    drawing_sprite(hover_start_sp);
-    
+  background_drawing((xpm_map_t) menu,1,1);
+  Sprite* level;
+  switch(scancode) {
+    case MK_1:
+      level = create_sprite((xpm_map_t)hover_level1, 253, 253, 0, 0);
+      drawing_sprite(level);
+      break;
+    case MK_2:
+      level = create_sprite((xpm_map_t)hover_level2, 253, 313, 0, 0);
+      break;
+    case MK_3:
+      level = create_sprite((xpm_map_t)hover_level3, 253, 413, 0, 0);
+      break;
+    default:
+      return;
   }
-  else drawing_sprite(start);
-  if(collision(cursor,quit)){
-    Sprite* hover_quit_sp = create_sprite((xpm_map_t)hover_quit, 315, 373, 0, 0);
-    drawing_sprite(hover_quit_sp);
-    
-  }
-  else drawing_sprite(quit);
-  drawing_sprite(cursor);
-  update_frame();
 }
-*/
