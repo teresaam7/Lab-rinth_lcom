@@ -59,10 +59,12 @@ void (draw_life_bar)(Sprite **bar, int total_seconds) {
 
 void (draw_game)(){
   change_maze_colors_based_on_time();
+  cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
   sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
   life = create_sprite((xpm_map_t)life1, 610, 5, 0, 0);
   drawing_sprite(sp);
   drawing_sprite(life);
+  drawing_sprite(cursor);
 }
 
 void (draw_menu)(){
@@ -187,6 +189,14 @@ int (gameLogic) (GameState *gameState, bool * running) {
                           gameState_change = true;}                      
                       }
                     }
+
+                    if(*gameState == GAME) {
+                      mouse_print_packet(&m_packet);
+                      handle_mouse_movement(cursor);
+                      update_game_frame();
+
+
+                    }
                 }
             }
 
@@ -310,6 +320,7 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
     change_maze_colors_based_on_time();
     drawing_sprite(player);
     drawing_sprite(life);
+    drawing_sprite(cursor);
     update_frame_with_background();
 }
 
@@ -321,6 +332,16 @@ void (handle_mouse_movement)(Sprite * cursor){
   if(cursor->y + cursor->height >= mode_info.YResolution)cursor->y = mode_info.YResolution - cursor->height;
   if(cursor->x + cursor->width >= 785)cursor->x = 785 - cursor->width;
   if(cursor->y + cursor->height >= 575)cursor->y = 575 - cursor->height;
+}
+
+void(update_game_frame)(){
+  clear_drawing();
+  change_maze_colors_based_on_time();
+  drawing_sprite(sp);
+  drawing_sprite(life);
+  drawing_sprite(cursor);
+  update_frame_with_background();
+
 }
 
 
