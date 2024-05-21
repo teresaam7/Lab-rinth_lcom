@@ -2,8 +2,8 @@
 static const char * maze3[] = {
 /* columns rows colors chars-per-pixel */
 "810 594 2 1 ",
-"  c #FFA364",
-". c #FFFF7D",
+"  c #009999",
+". c #B3FFB3",
 /* pixels */
 "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ",
 "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ",

@@ -9,11 +9,18 @@
 #include "graphics.h"
 #include "sprite.h"
 
-#include "images/teste.xpm"
+
 #include "images/maze1.xpm"
-#include "images/maze2.xpm"
+#include "images/mazes/mazeNoon1.xpm"
+#include "images/mazes/mazeDark1.xpm"
+
+#include "images/mazes/maze2.xpm"
+#include "images/mazes/mazeNoon2.xpm"
 #include "images/mazeDark2.xpm"
-#include "images/maze3.xpm"
+
+#include "images/mazes/maze3.xpm"
+#include "images/mazes/mazeNoon3.xpm"
+#include "images/mazes/mazeDark3.xpm"
 
 #include "images/menu.xpm"
 #include "images/win.xpm"
@@ -53,8 +60,8 @@
 typedef enum {
     MENU,
     GAME,
+    LEVELS,
     WIN,
-    ABOUTUS,
     LOSE,
     EXIT
 } GameState;
