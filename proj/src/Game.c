@@ -190,9 +190,8 @@ int (gameLogic) (GameState *gameState, bool * running) {
                       }
                     }
 
-                    if(*gameState == GAME) {
-                      mouse_print_packet(&m_packet);
-                      handle_mouse_movement(cursor);
+                    if(*gameState == GAME && !gameState_change) {
+                      handle_mouse_movement(cursor);  ///////////////////////
                       update_game_frame();
 
 
@@ -316,12 +315,7 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
         default:
             return;
     }
-    clear_drawing();
-    change_maze_colors_based_on_time();
-    drawing_sprite(player);
-    drawing_sprite(life);
-    drawing_sprite(cursor);
-    update_frame_with_background();
+    update_game_frame();
 }
 
 
@@ -337,6 +331,7 @@ void (handle_mouse_movement)(Sprite * cursor){
 void(update_game_frame)(){
   clear_drawing();
   change_maze_colors_based_on_time();
+  handle_mouse_movement(cursor);
   drawing_sprite(sp);
   drawing_sprite(life);
   drawing_sprite(cursor);
