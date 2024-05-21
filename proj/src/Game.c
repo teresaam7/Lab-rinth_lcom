@@ -23,11 +23,13 @@ void (change_maze_colors_based_on_time)() {
     uint8_t hours, minutes, seconds;
     get_game_time(&hours, &minutes, &seconds);
 
+    /*
     if (hours >= 20 || hours < 6) {
-        background_drawing((xpm_map_t) mazeDark2, 1, 1); 
+       background_drawing((xpm_map_t) mazeDark2, 100, 100);
     } else {
-        background_drawing((xpm_map_t) maze2, 1, 1);
+        background_drawing((xpm_map_t) maze2, 100, 100);
     }
+    */
 }
 
 void (draw_life_bar)(Sprite **bar, int total_seconds) {
@@ -58,6 +60,7 @@ void (draw_life_bar)(Sprite **bar, int total_seconds) {
 }
 
 void (draw_game)(){
+  clear_drawing();
   change_maze_colors_based_on_time();
   cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
   sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
@@ -331,6 +334,8 @@ void (handle_mouse_movement)(Sprite * cursor){
 void(update_game_frame)(){
   clear_drawing();
   change_maze_colors_based_on_time();
+  background_drawing((xpm_map_t) maze2, sp->x, sp->y, sp->width, sp->width);
+  background_drawing((xpm_map_t) maze2,cursor->x, cursor->y, cursor->height, cursor->width);
   handle_mouse_movement(cursor);
   drawing_sprite(sp);
   drawing_sprite(life);
@@ -342,7 +347,7 @@ void(update_game_frame)(){
 
 void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
   clear_drawing();
-  background_drawing((xpm_map_t) menu,1,1);
+  drawing_xpm((xpm_map_t) menu,1,1);
 
   if(collision(cursor,start)){
     Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
