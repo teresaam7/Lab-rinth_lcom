@@ -17,7 +17,7 @@ void destroy_sprite(Sprite *sp);
 
 int drawing_sprite(Sprite *sp);
 
-bool check_collision(Sprite *sprite1, const char *base, int base_width, int base_height);
+bool check_collision(Sprite *sprite1, int base_width, int base_height);
 
 #endif
 

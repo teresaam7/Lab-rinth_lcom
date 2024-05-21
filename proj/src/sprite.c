@@ -38,24 +38,29 @@ void destroy_sprite(Sprite *sp) {
   sp = NULL; 
 }
 
-bool check_collision(Sprite *sprite1, const char *base, int base_width, int base_height) {
+bool check_collision(Sprite *sprite1, int base_width, int base_height) {
     int sprite1_left = sprite1->x;
     int sprite1_right = sprite1->x + sprite1->width - 1;
     int sprite1_top = sprite1->y;
     int sprite1_bottom = sprite1->y + sprite1->height - 1;
-
-    for (int y = sprite1_top; y <= sprite1_bottom; y++) {
+    printf("%s", "antes do for");
+    printf("%s", "antes do for");
+    if (sprite1_left >= 0 && sprite1_right < base_width && sprite1_top >= 0 && sprite1_bottom < base_height) {
+      return true; 
+    }
+   /* for (int y = sprite1_top; y <= sprite1_bottom; y++) {
         for (int x = sprite1_left; x <= sprite1_right; x++) {
             int base_x = x;
             int base_y = y;
-
-            if (base_x >= 0 && base_x < base_width && base_y >= 0 && base_y < base_height) {
-                if (base[base_y * base_width + base_x] != '.') {
+            //printf("%s", "x");
+            //printf("%s", "y"); 
+            //"  c #660066", ->cor escura por onde nao pode ir
+            if(sprite1_left!='.')     
+                if ((int)base[base_y * base_width + base_x] != '.') {
                     return true; 
                 }
-            }
         }
-    }
+    }*/
 
     return false;
 }
