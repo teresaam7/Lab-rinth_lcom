@@ -49,6 +49,9 @@
 #define MK_1            0x02
 #define MK_2            0x03
 #define MK_3            0x04
+#define BK_1            0x82
+#define BK_2            0x83
+#define BK_3            0x84
 
 /* MOUSE */
 

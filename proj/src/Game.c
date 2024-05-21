@@ -196,16 +196,15 @@ int (gameLogic) (GameState *gameState, bool * running) {
                   }
                 }
                 if(*gameState == GAME){
-
-                  if (k_scancode == MK_1) {
+                  if (k_scancode == BK_1) {
                       *gameState = LEVEL1;
                       gameState_change = true;  
                   }
-                  if (k_scancode == MK_2) {
+                  if (k_scancode == BK_2) {
                       *gameState = LEVEL2;
                       gameState_change = true;  
                   }
-                  if (k_scancode == MK_3) {
+                  if (k_scancode == BK_3) {
                       *gameState = LEVEL3;
                       gameState_change = true;  
                   }
@@ -405,22 +404,3 @@ void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
   update_frame();
 }
 
-void (update_levels_frame)(uint8_t scancode) {
-  clear_drawing();
-  background_drawing((xpm_map_t) menu,1,1);
-  Sprite* level;
-  switch(scancode) {
-    case MK_1:
-      level = create_sprite((xpm_map_t)hover_level1, 253, 253, 0, 0);
-      drawing_sprite(level);
-      break;
-    case MK_2:
-      level = create_sprite((xpm_map_t)hover_level2, 253, 313, 0, 0);
-      break;
-    case MK_3:
-      level = create_sprite((xpm_map_t)hover_level3, 253, 413, 0, 0);
-      break;
-    default:
-      return;
-  }
-}

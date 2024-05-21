@@ -29,10 +29,6 @@
 #include "images/levels/level2.xpm"
 #include "images/levels/level3.xpm"
 
-#include "images/levels/hover_level1.xpm"
-#include "images/levels/hover_level2.xpm"
-#include "images/levels/hover_level3.xpm"
-
 #include "images/right1.xpm"
 #include "images/right2.xpm"
 #include "images/left1.xpm"
@@ -41,6 +37,8 @@
 #include "images/up2.xpm"
 #include "images/down1.xpm"
 #include "images/down2.xpm"
+
+#include "images/ar.xpm"
 
 #include "images/lifeBar/life1.xpm"
 #include "images/lifeBar/life2.xpm"
@@ -97,7 +95,6 @@ xpm_map_t (get_next_sprite)(xpm_map_t current_state, uint8_t scancode);
 void (handle_ingame_scancode)(GameState gameState, uint8_t scancode, Sprite *player);
 void (handle_mouse_movement)(Sprite * cursor);
 void (update_menu_frame)(Sprite * start,Sprite * quit, Sprite * cursor);
-void (update_levels_frame)(uint8_t scancode);
 
 #endif
 
