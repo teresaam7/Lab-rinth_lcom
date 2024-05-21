@@ -24,7 +24,7 @@ void (change_maze_colors_based_on_time)() {
     get_game_time(&hours, &minutes, &seconds);
 
     if (hours >= 20 || hours < 6) {
-        make_xpm((xpm_map_t) mazeDark2, 1, 1); 
+        background_drawing((xpm_map_t) mazeDark2, 1, 1); 
     } else {
         maze= create_sprite((xpm_map_t)maze1, 1, 1, 0, 0);
         drawing_sprite(maze);
@@ -56,7 +56,7 @@ void (draw_life_bar)(Sprite **bar, int total_seconds) {
     clear_drawing();
     change_maze_colors_based_on_time();
     drawing_sprite(*bar);
-    update_frame();
+    update_frame_with_background();
 }
 
 void (draw_game)(){
@@ -68,16 +68,23 @@ void (draw_game)(){
 }
 
 void (draw_menu)(){
-  make_xpm((xpm_map_t) menu,1,1);
+  drawing_xpm((xpm_map_t) menu,1,1);
+  
   cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
   start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
+  //quit = create_sprite((xpm_map_t)quit_button, 335, 380, 0, 0);
   drawing_sprite(start);
+  //drawing_sprite(quit);
   drawing_sprite(cursor);
 }
 
 void (draw_win)() {
-  make_xpm((xpm_map_t) win,1,1);
+  drawing_xpm((xpm_map_t) win,1,1);
   display_game_time();
+}
+
+void (draw_lost)() {
+  drawing_xpm((xpm_map_t) win,1,1);
 }
 
 int (gameLogic) (GameState *gameState, bool * running) {
@@ -110,7 +117,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
     if(*gameState == GAME){draw_game();}
     if(*gameState == MENU){draw_menu();}
 
-    update_frame();
+    update_frame_with_background();
     clear_drawing();
 
     bool gameState_change = false;
@@ -121,7 +128,9 @@ int (gameLogic) (GameState *gameState, bool * running) {
         if(*gameState == GAME) {draw_game();}
         if(*gameState == MENU) {draw_menu();}
         if(*gameState == WIN) {draw_win();}
-        update_frame();
+        if(*gameState == EXIT) {*running = false;
+        break;}
+        update_frame_with_background();
         clear_drawing();
         gameState_change = false;
       }  
@@ -146,17 +155,6 @@ int (gameLogic) (GameState *gameState, bool * running) {
                 if(*gameState == GAME){
                  // if(check_collision(sp, maze->map, maze->width, maze->height)==true){
                   handle_ingame_scancode(k_scancode, sp);
-                 
-                 // } 
-                 /* else{
-                    sp=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)sp->map, D_KEY_MK), sp->x, sp->y, sp->xspeed, sp->yspeed);
-                    drawing_sprite(sp);
-                    clear_drawing();
-                    change_maze_colors_based_on_time();
-                    drawing_sprite(sp);
-                    drawing_sprite(life);
-                    update_frame();
-                  }*/
                 }
 
                 if (k_scancode == G_KEY_BRK) {
@@ -186,12 +184,15 @@ int (gameLogic) (GameState *gameState, bool * running) {
                     if(*gameState == MENU){
                       mouse_print_packet(&m_packet);
                       handle_mouse_movement(cursor);
-                      update_menu_frame(start, cursor);
+                      //update_menu_frame(start, quit, cursor);
                     
                       if (m_packet.lb) {
-                        if(collision(cursor, start))
+                        if(collision(cursor, start)){
                           *gameState = GAME;
-                          gameState_change = true;                        
+                          gameState_change = true;}    
+                          //if(collision(cursor, quit)){
+                          *gameState = EXIT;
+                          gameState_change = true;}                      
                       }
                     }
                 }
@@ -206,7 +207,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
               }
               draw_life_bar(&life, time);
               if (time == 0) {
-                *gameState = WIN; 
+                *gameState = LOSE; 
                 gameState_change = true; 
               }
             }
@@ -218,7 +219,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
       }
     }
     //printf("%n", 2);
-    printf("%d", check_collision(sp, maze->width, maze->height));
+    //printf("%d", check_collision(sp, maze->width, maze->height));
     if (keyboard_unsubscribe_int() != 0)
         return 1;
 
@@ -347,7 +348,7 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
     change_maze_colors_based_on_time();
     drawing_sprite(player);
     drawing_sprite(life);
-    update_frame();
+    update_frame_with_background();
 }
 
 
@@ -360,16 +361,45 @@ void (handle_mouse_movement)(Sprite * cursor){
   if(cursor->y + cursor->height >= 575)cursor->y = 575 - cursor->height;
 }
 
-void(update_menu_frame)(Sprite * start, Sprite * cursor){
+
+void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
   clear_drawing();
-  make_xpm((xpm_map_t) menu,1,1);
+  background_drawing((xpm_map_t) menu,1,1);
+
   if(collision(cursor,start)){
     Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
     drawing_sprite(hover_start_sp);
     
   }
   else drawing_sprite(start);
+  if(collision(cursor,quit)){
+    Sprite* hover_quit_sp = create_sprite((xpm_map_t)hover_quit, 315, 373, 0, 0);
+    drawing_sprite(hover_quit_sp);
+    
+  }
+  else drawing_sprite(quit);
   drawing_sprite(cursor);
   update_frame();
 }
 
+
+/*
+void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
+  clear_drawing();
+  //make_xpm((xpm_map_t) menu,1,1);
+  if(collision(cursor,start)){
+    Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
+    drawing_sprite(hover_start_sp);
+    
+  }
+  else drawing_sprite(start);
+  if(collision(cursor,quit)){
+    Sprite* hover_quit_sp = create_sprite((xpm_map_t)hover_quit, 315, 373, 0, 0);
+    drawing_sprite(hover_quit_sp);
+    
+  }
+  else drawing_sprite(quit);
+  drawing_sprite(cursor);
+  update_frame();
+}
+*/
