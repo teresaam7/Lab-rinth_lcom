@@ -19,18 +19,7 @@ int (collision)(Sprite * sp1, Sprite * sp2){
   return 1;
 }
 
-void (change_maze_colors_based_on_time)() {
-    uint8_t hours, minutes, seconds;
-    get_game_time(&hours, &minutes, &seconds);
-
-    if (hours >= 20 || hours < 6) {
-        background_drawing((xpm_map_t) mazeDark2, 1, 1); 
-    } else {
-        background_drawing((xpm_map_t) maze2, 1, 1);
-    }
-}
-
-void (draw_life_bar)(Sprite **bar, int total_seconds) {
+void (draw_life_bar)(GameState gameState, Sprite **bar, int total_seconds) {
     switch(total_seconds){
         case 30:
             *bar = create_sprite((xpm_map_t)life5, 610, 5, 0, 0);
@@ -52,13 +41,75 @@ void (draw_life_bar)(Sprite **bar, int total_seconds) {
             return;
     }
     clear_drawing();
-    change_maze_colors_based_on_time();
+    drawLevel(gameState);
     drawing_sprite(*bar);
     update_frame_with_background();
 }
 
-void (draw_game)(){
-  change_maze_colors_based_on_time();
+void (drawLevel) (GameState gameState) {
+  uint8_t hours, minutes, seconds;
+  get_game_time(&hours, &minutes, &seconds);
+
+  switch(gameState) {
+    case LEVEL1: 
+      if (hours >= 6 && hours < 16) {
+        background_drawing((xpm_map_t) mazeDay1, 1, 1); 
+      } else if (hours >= 20 && hours < 6) {
+        background_drawing((xpm_map_t) mazeDark1, 1, 1);
+      }
+      else {
+        background_drawing((xpm_map_t) maze1, 1, 1);
+      }
+      break;
+    case LEVEL2: 
+      if (hours >= 6 && hours < 16) {
+        background_drawing((xpm_map_t) mazeDay2, 1, 1); 
+      } else if (hours >= 20 && hours < 6) {
+        background_drawing((xpm_map_t) mazeDark2, 1, 1);
+      }
+      else {
+        background_drawing((xpm_map_t) maze2, 1, 1);
+      }
+      break;
+    case LEVEL3: 
+      if (hours >= 6 && hours < 16) {
+        background_drawing((xpm_map_t) mazeDay3, 1, 1); 
+      } else if (hours >= 20 && hours < 6) {
+        background_drawing((xpm_map_t) mazeDark3, 1, 1);
+      }
+      else {
+        background_drawing((xpm_map_t) maze3, 1, 1);
+      }
+      break;
+    default:
+      return;
+  }
+}
+
+void (draw_game_menu)() {
+  drawing_xpm((xpm_map_t) menu,1,1);
+  /*
+  GameState gameState = GAME;
+  switch (scancode) {
+    case 1:
+      gameState = LEVEL1;
+      break;
+    case 2:
+      gameState = LEVEL2;
+      break;
+    case 3:
+      gameState = LEVEL3;
+      break;
+    default:
+      return;
+  }
+  drawLevel(gameState);
+  */
+  
+}
+
+void (draw_game)(GameState gameState){
+  drawLevel(gameState);
   sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
   life = create_sprite((xpm_map_t)life1, 610, 5, 0, 0);
   drawing_sprite(sp);
@@ -75,6 +126,7 @@ void (draw_menu)(){
   drawing_sprite(quit);
   drawing_sprite(cursor);
 }
+
 
 void (draw_win)() {
   drawing_xpm((xpm_map_t) win,1,1);
@@ -111,8 +163,10 @@ int (gameLogic) (GameState *gameState, bool * running) {
     message msg;
     int ipc_status;
 
-
-    if(*gameState == GAME){draw_game();}
+    if(*gameState == GAME){draw_game_menu();}
+    if(*gameState == LEVEL1){draw_game(LEVEL1);}
+    if(*gameState == LEVEL2){draw_game(LEVEL2);}
+    if(*gameState == LEVEL3){draw_game(LEVEL3);}
     if(*gameState == MENU){draw_menu();}
 
     update_frame_with_background();
@@ -123,9 +177,12 @@ int (gameLogic) (GameState *gameState, bool * running) {
     while (k_scancode != SCAN_BREAK_ESC) { 
 
       if(gameState_change){
-        if(*gameState == GAME) {draw_game();}
+        if(*gameState == GAME) {draw_game_menu();}
         if(*gameState == MENU) {draw_menu();}
         if(*gameState == WIN) {draw_win();}
+        if(*gameState == LEVEL1){draw_game(LEVEL1);}
+        if(*gameState == LEVEL2){draw_game(LEVEL2);}
+        if(*gameState == LEVEL3){draw_game(LEVEL3);}
         if(*gameState == EXIT) {*running = false;
         break;}
         update_frame_with_background();
@@ -151,7 +208,23 @@ int (gameLogic) (GameState *gameState, bool * running) {
                   }
                 }
                 if(*gameState == GAME){
-                  handle_ingame_scancode(k_scancode, sp);
+
+                  if (k_scancode == 1 ) {
+                      *gameState = LEVEL1;
+                      gameState_change = true;  
+                  }
+                  if (k_scancode == 2 ) {
+                      *gameState = LEVEL2;
+                      gameState_change = true;  
+                  }
+                  if (k_scancode == 3 ) {
+                      *gameState = LEVEL3;
+                      gameState_change = true;  
+                  }
+                }
+
+                if (*gameState == LEVEL1 ||*gameState == LEVEL2 || *gameState == LEVEL3  ) {
+                  handle_ingame_scancode(*gameState,k_scancode, sp);
                 }
 
                 if (k_scancode == SCAN_FIRST_TWO) {
@@ -197,7 +270,7 @@ int (gameLogic) (GameState *gameState, bool * running) {
                 timer_print_elapsed_time();
                 time--;
               }
-              draw_life_bar(&life, time);
+              draw_life_bar(*gameState, &life, time);
               if (time == 0) {
                 *gameState = LOSE; 
                 gameState_change = true; 
@@ -256,7 +329,7 @@ xpm_map_t get_next_sprite(xpm_map_t current_state, uint8_t scancode) {
 
 /*A personagem pinta o fundo enquanto anda -- dar fix*/
 
-void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
+void handle_ingame_scancode(GameState gameState, uint8_t scancode, Sprite *player) {
     
     switch (scancode) {
         case D_KEY_MK:
@@ -307,7 +380,7 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
             return;
     }
     clear_drawing();
-    change_maze_colors_based_on_time();
+    drawLevel(gameState);
     drawing_sprite(player);
     drawing_sprite(life);
     update_frame_with_background();

@@ -10,16 +10,16 @@
 #include "sprite.h"
 
 
-#include "images/maze1.xpm"
-#include "images/mazes/mazeNoon1.xpm"
+#include "images/mazes/maze1.xpm"
+#include "images/mazes/mazeDay1.xpm"
 #include "images/mazes/mazeDark1.xpm"
 
 #include "images/mazes/maze2.xpm"
-#include "images/mazes/mazeNoon2.xpm"
-#include "images/mazeDark2.xpm"
+#include "images/mazes/mazeDay2.xpm"
+#include "images/mazes/mazeDark2.xpm"
 
 #include "images/mazes/maze3.xpm"
-#include "images/mazes/mazeNoon3.xpm"
+#include "images/mazes/mazeDay3.xpm"
 #include "images/mazes/mazeDark3.xpm"
 
 #include "images/menu.xpm"
@@ -60,7 +60,9 @@
 typedef enum {
     MENU,
     GAME,
-    LEVELS,
+    LEVEL1,
+    LEVEL2,
+    LEVEL3,
     WIN,
     LOSE,
     EXIT
@@ -72,10 +74,11 @@ int (menuLogic) (GameState *gameState, bool *running);
 int (gameLogic) (GameState *gameState, bool *running);
 int (winLogic) (GameState *gameState, bool *running);
 
-void (change_maze_colors_based_on_time)();
-void (draw_life_bar)(Sprite **bar, int total_seconds);
+void (draw_life_bar)(GameState gameState, Sprite **bar, int total_seconds);
 
-void (draw_game)();
+void (draw_game_menu)();
+void (drawLevel) (GameState gameState);
+void (draw_game)(GameState gameState);
 void (draw_menu)();
 void (draw_win)();
 void (draw_lost)();
@@ -83,7 +86,7 @@ void (draw_lost)();
 
 xpm_map_t (get_next_sprite)(xpm_map_t current_state, uint8_t scancode); 
 
-void (handle_ingame_scancode)(uint8_t scancode, Sprite *player);
+void (handle_ingame_scancode)(GameState gameState, uint8_t scancode, Sprite *player);
 void (handle_mouse_movement)(Sprite * cursor);
 void (update_menu_frame)(Sprite * start,Sprite * quit, Sprite * cursor);
 

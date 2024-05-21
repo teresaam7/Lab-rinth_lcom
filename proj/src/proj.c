@@ -51,8 +51,11 @@ int (proj_main_loop)(int argc, char *argv[]) {
       break;
       case GAME: 
         if (gameLogic(&gameState, &running)!= 0) return 1;
-      break;
-      case ABOUTUS:
+      case LEVEL1:
+        if (gameLogic(&gameState, &running)!= 0) return 1;
+      case LEVEL2:
+        if (gameLogic(&gameState, &running)!= 0) return 1;
+      case LEVEL3:
         if (gameLogic(&gameState, &running)!= 0) return 1;
       break;
       case WIN:
