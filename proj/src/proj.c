@@ -77,7 +77,8 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
 
   gameState = MENU;
-  draw_menu();
+  while (1)
+    draw_menu();
 /*
       while(k_scancode != SCAN_BREAK_ESC && running){
         switch(gameState){

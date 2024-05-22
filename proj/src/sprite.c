@@ -5,24 +5,10 @@
 
 int (loading_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi, Sprite *sp) {
     xpm_image_t image;
-    uint32_t *colors = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
-    uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
-
+    sp->map = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
     sp->height = image.height;
     sp->width = image.width; 
   
-    for (int y = 0 ; y < sp->height ; y++) {
-        for (int x = 0 ; x < sp->width ; x++) {
-            uint32_t current_color = colors [y * image.width + x];
-            
-            if (current_color != transparent_color) {
-                if (draw_pixel(xi + x, yi + y, current_color, sp->map)) {
-                    printf("Drawing pixel failed \n");
-                    return 1;
-                }
-            }
-        }
-    }
     return 0; 
 }
 
@@ -55,7 +41,21 @@ void destroy_sprite(Sprite *sp) {
 
 
 int drawing_sprite(Sprite *sp){
-  drawing_to_buffer(sp->map);
+  uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
+
+  for (int y = 0 ; y < sp->height ; y++) {
+        for (int x = 0 ; x < sp->width ; x++) {
+            uint32_t current_color = sp->map [y * sp->width + x];
+            
+            if (current_color != transparent_color) {
+                if (draw_pixel(sp->x + x, sp->y + y, current_color)) {
+                    printf("Drawing pixel failed \n");
+                    return 1;
+                }
+            }
+        }
+    }
+  //drawing_to_buffer(sp->map);
   return 0;
 }
 

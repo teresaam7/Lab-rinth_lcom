@@ -6,7 +6,7 @@
 
 typedef struct {
 	int x, y, width, height, speed;
-	uint8_t *map;     
+	uint32_t *map;     
 } Sprite;
 
 

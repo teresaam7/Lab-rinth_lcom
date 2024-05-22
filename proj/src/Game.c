@@ -135,7 +135,7 @@ void (draw_menu)(){
   drawing_sprite(quit);
   drawing_sprite(cursor);
   drawing_sprite(title_);
-  update_flip_frames(); 
+  //update_flip_frames(); 
 }
 
 

@@ -22,7 +22,7 @@ void (set_display_start)(int buffer);
 void (update_flip_frames)();
 void (clear_drawing)();
 
-int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color, uint8_t *map);
+int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color);
 
 void (drawing_to_buffer)(uint8_t *sp_map);
 void (initialize_buffers)();
