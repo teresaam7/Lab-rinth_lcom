@@ -83,28 +83,37 @@ void drawLevel( int x, int y, int width, int height) {
     case LEVEL1:
       if (hours >= 6 && hours < 14) {
         background_drawing((xpm_map_t) mazeDay1, x, y, width, height);
+        maze= create_sprite((xpm_map_t)mazeDay1, x, y, 0, 0);
       } else if (hours >= 20 || hours < 6) {
         background_drawing((xpm_map_t) mazeDark1, x, y, width, height);
+        maze= create_sprite((xpm_map_t)mazeDark1, x, y, 0, 0);
       } else {
         background_drawing((xpm_map_t) maze1, x, y, width, height);
+        maze= create_sprite((xpm_map_t)maze1, x, y, 0, 0);
       }
       break;
     case LEVEL2:
       if (hours >= 6 && hours < 14) {
         background_drawing((xpm_map_t) mazeDay2, x, y, width, height);
+        maze= create_sprite((xpm_map_t)mazeDay2, x, y, 0, 0);
       } else if (hours >= 20 || hours < 6) {
         background_drawing((xpm_map_t) mazeDark2, x, y, width, height);
+        maze= create_sprite((xpm_map_t)mazeDark2, x, y, 0, 0);
       } else {
         background_drawing((xpm_map_t) maze2, x, y, width, height);
+        maze= create_sprite((xpm_map_t)maze2, x, y, 0, 0);
       }
       break;
     case LEVEL3:
       if (hours >= 6 && hours < 14) {
         background_drawing((xpm_map_t) mazeDay3, x, y, width, height);
+        maze= create_sprite((xpm_map_t)mazeDay3, x, y, 0, 0);
       } else if (hours >= 20 || hours < 6) {
         background_drawing((xpm_map_t) mazeDark3, x, y, width, height);
+        maze= create_sprite((xpm_map_t)mazeDark3, x, y, 0, 0);
       } else {
         background_drawing((xpm_map_t) maze3, x, y, width, height);
+        maze= create_sprite((xpm_map_t)maze3, x, y, 0, 0);
       }
       break;
     default:
