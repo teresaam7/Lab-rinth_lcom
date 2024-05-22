@@ -3,13 +3,30 @@
 #include <stdio.h>
 #include "sprite.h"
 
-/** Creates a new sprite from XPM "pic", with specified
-* position (within the screen limits) and speed;
-* Does not draw the sprite on the screen
-* Returns NULL on invalid pixmap.
-*/
+int (loading_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi, Sprite *sp) {
+    xpm_image_t image;
+    uint32_t *colors = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
+    uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
 
-Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed=0) {
+    sp->height = image.height;
+    sp->width = image.width; 
+  
+    for (int y = 0 ; y < sp->height ; y++) {
+        for (int x = 0 ; x < sp->width ; x++) {
+            uint32_t current_color = colors [y * image.width + x];
+            
+            if (current_color != transparent_color) {
+                if (draw_pixel(xi + x, yi + y, current_color, sp->map)) {
+                    printf("Drawing pixel failed \n");
+                    return 1;
+                }
+            }
+        }
+    }
+    return 0; 
+}
+
+Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed) {
   Sprite *sp = (Sprite *) malloc (sizeof(Sprite));
   if (sp == NULL )
     return NULL;
@@ -20,7 +37,7 @@ Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed=0) {
     return NULL;
   }
 
-  drawing_xpm(xpm, x, y, sp);
+  loading_xpm(xpm, x, y, sp);
   sp->x = x;
   sp->y = y;
   sp->speed = speed;
@@ -38,12 +55,8 @@ void destroy_sprite(Sprite *sp) {
 
 
 int drawing_sprite(Sprite *sp){
-  /*
-  if (drawing_xpm((xpm_map_t)sp->map, sp->x, sp->y) != 0) {
-    return 1;
-  }
+  drawing_to_buffer(sp->map);
   return 0;
-  */
 }
 
 

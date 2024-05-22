@@ -4,32 +4,30 @@
 #include <lcom/lcf.h>
 #include <stdint.h>
 #include <stdio.h>
-#include "sprite.h"
 
 typedef struct Frame {
-    uint8_t *buffer, *buffer2;
-    unsigned int res_x, res_y, size, bytesPerPixel;
+    uint8_t *buffer1, *buffer2;
+    unsigned int res_x, res_y, size, bytes_pixel;
 } Frame; 
 
-
-int nBuffer;
 Frame frame;
-uint8_t *draw_buffer, *display_buffer;  
 vbe_mode_info_t mode_info;
+int display_buffer; uint8_t *draw_buffer;
 
 int (graphic_mode)(uint16_t mode);
 int (initialize_frame_buffer) (uint16_t mode);
 
-int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color, uint8_t *map);
-int (drawing_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi, Sprite *sp) ;
 
-void (initialize_buffers)();
-void (free_buffers)();
-void (update_frame)();
-void (clear_frame)();
+void (set_display_start)(int buffer);
+void (update_flip_frames)();
 void (clear_drawing)();
 
-int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi);
-void (update_frame_with_background)();
+int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color, uint8_t *map);
+
+void (drawing_to_buffer)(uint8_t *sp_map);
+void (initialize_buffers)();
+void (free_buffers)();
+
+int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t w, uint16_t h);
 
 #endif

@@ -56,7 +56,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     return 1;
   }
 
-  bool running = true;
+  //bool running = true;
 
   initialize_buffers();
 
@@ -75,9 +75,10 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (rtc_subscribe_int(&irq_set_rtc) != 0)
     return 1;
 
-  gameState =   MENU;
-  draw_menu();
 
+  gameState = MENU;
+  draw_menu();
+/*
       while(k_scancode != SCAN_BREAK_ESC && running){
         switch(gameState){
           case MENU:
@@ -118,6 +119,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
           break; 
         }
       }
+      */
     
     if (keyboard_unsubscribe_int() != 0)
         return 1;

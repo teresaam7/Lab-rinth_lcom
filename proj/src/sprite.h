@@ -10,6 +10,8 @@ typedef struct {
 } Sprite;
 
 
+int (loading_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi, Sprite *sp);
+
 Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed);
 
 void destroy_sprite(Sprite *sp);
