@@ -78,9 +78,11 @@ void (set_display_start)(int buffer) {
 void (update_flip_frames)() { 
   if (display_buffer == 1) {
     set_display_start(2);
+    display_buffer = 2;
     draw_buffer = frame.buffer1;
   } else {
     set_display_start(1);
+    display_buffer = 1;
     draw_buffer = frame.buffer2;
   }
 

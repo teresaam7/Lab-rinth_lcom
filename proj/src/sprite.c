@@ -55,7 +55,6 @@ int drawing_sprite(Sprite *sp){
             }
         }
     }
-  //drawing_to_buffer(sp->map);
   return 0;
 }
 
