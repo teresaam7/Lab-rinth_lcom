@@ -41,44 +41,43 @@ void (draw_life_bar)(GameState gameState, Sprite **bar, int total_seconds) {
             return;
     }
     clear_drawing();
-    drawLevel(gameState);
     drawing_sprite(*bar);
     update_frame_with_background();
 }
 
-void (drawLevel) (GameState gameState) {
+void (drawLevel) (GameState gameState, int x, int y, int width, int height) {
   uint8_t hours, minutes, seconds;
   get_game_time(&hours, &minutes, &seconds);
 
   switch(gameState) {
     case LEVEL1: 
       if (hours >= 6 && hours < 16) {
-        background_drawing((xpm_map_t) mazeDay1, 1, 1); 
+        background_drawing((xpm_map_t) mazeDay1, x, y, width, height); 
       } else if (hours >= 20 && hours < 6) {
-        background_drawing((xpm_map_t) mazeDark1, 1, 1);
+        background_drawing((xpm_map_t) mazeDark1, x, y, width, height);
       }
       else {
-        background_drawing((xpm_map_t) maze1, 1, 1);
+        background_drawing((xpm_map_t) maze1, x, y, width, height);
       }
       break;
     case LEVEL2: 
       if (hours >= 6 && hours < 16) {
-        background_drawing((xpm_map_t) mazeDay2, 1, 1); 
+        background_drawing((xpm_map_t) mazeDay2, x, y, width, height); 
       } else if (hours >= 20 && hours < 6) {
-        background_drawing((xpm_map_t) mazeDark2, 1, 1);
+        background_drawing((xpm_map_t) mazeDark2, x, y, width, height);
       }
       else {
-        background_drawing((xpm_map_t) maze2, 1, 1);
+        background_drawing((xpm_map_t) maze2, x, y, width, height);
       }
       break;
     case LEVEL3: 
       if (hours >= 6 && hours < 16) {
-        background_drawing((xpm_map_t) mazeDay3, 1, 1); 
+        background_drawing((xpm_map_t) mazeDay3, x, y, width, height); 
       } else if (hours >= 20 && hours < 6) {
-        background_drawing((xpm_map_t) mazeDark3, 1, 1);
+        background_drawing((xpm_map_t) mazeDark3, x, y, width, height);
       }
       else {
-        background_drawing((xpm_map_t) maze3, 1, 1);
+        background_drawing((xpm_map_t) maze3, x, y, width, height);
       }
       break;
     default:
@@ -96,8 +95,7 @@ void (draw_game_menu)() {
   drawing_sprite(level3_);
 }
 
-void (draw_game)(GameState gameState){
-  drawLevel(gameState);
+void (draw_game)(){
   sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
   life = create_sprite((xpm_map_t)life1, 610, 5, 0, 0);
   drawing_sprite(sp);
@@ -152,9 +150,9 @@ int (gameLogic) (GameState *gameState, bool * running) {
     int ipc_status;
 
     if(*gameState == GAME){draw_game_menu();}
-    if(*gameState == LEVEL1){draw_game(LEVEL1);}
-    if(*gameState == LEVEL2){draw_game(LEVEL2);}
-    if(*gameState == LEVEL3){draw_game(LEVEL3);}
+    if(*gameState == LEVEL1){draw_game();}
+    if(*gameState == LEVEL2){draw_game();}
+    if(*gameState == LEVEL3){draw_game();}
     if(*gameState == MENU){draw_menu();}
 
     update_frame_with_background();
@@ -168,9 +166,9 @@ int (gameLogic) (GameState *gameState, bool * running) {
         if(*gameState == GAME) {draw_game_menu();}
         if(*gameState == MENU) {draw_menu();}
         if(*gameState == WIN) {draw_win();}
-        if(*gameState == LEVEL1){draw_game(LEVEL1);}
-        if(*gameState == LEVEL2){draw_game(LEVEL2);}
-        if(*gameState == LEVEL3){draw_game(LEVEL3);}
+        if(*gameState == LEVEL1){draw_game();}
+        if(*gameState == LEVEL2){draw_game();}
+        if(*gameState == LEVEL3){draw_game();}
         if(*gameState == EXIT) {*running = false;
         break;}
         update_frame_with_background();
@@ -367,7 +365,7 @@ void handle_ingame_scancode(GameState gameState, uint8_t scancode, Sprite *playe
             return;
     }
     clear_drawing();
-    drawLevel(gameState);
+    drawLevel (gameState, player->x, player->y, player->width, player->width);
     drawing_sprite(player);
     drawing_sprite(life);
     update_frame_with_background();
@@ -386,7 +384,7 @@ void (handle_mouse_movement)(Sprite * cursor){
 
 void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
   clear_drawing();
-  background_drawing((xpm_map_t) menu,1,1);
+  drawing_xpm((xpm_map_t) menu,1,1);
 
   if(collision(cursor,start)){
     Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);

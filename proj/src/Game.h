@@ -83,8 +83,8 @@ int (winLogic) (GameState *gameState, bool *running);
 void (draw_life_bar)(GameState gameState, Sprite **bar, int total_seconds);
 
 void (draw_game_menu)();
-void (drawLevel) (GameState gameState);
-void (draw_game)(GameState gameState);
+void (drawLevel) (GameState gameState, int x, int y, int width, int height);
+void (draw_game)();
 void (draw_menu)();
 void (draw_win)();
 void (draw_lost)();
