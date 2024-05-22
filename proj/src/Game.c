@@ -45,38 +45,35 @@ void (draw_life_bar)(GameState gameState, Sprite **bar, int total_seconds) {
     update_frame_with_background();
 }
 
-void (drawLevel) (GameState gameState, int x, int y, int width, int height) {
+void drawLevel(GameState gameState, int x, int y, int width, int height) {
   uint8_t hours, minutes, seconds;
   get_game_time(&hours, &minutes, &seconds);
 
-  switch(gameState) {
-    case LEVEL1: 
-      if (hours >= 6 && hours < 16) {
-        background_drawing((xpm_map_t) mazeDay1, x, y, width, height); 
-      } else if (hours >= 20 && hours < 6) {
+  switch (gameState) {
+    case LEVEL1:
+      if (hours >= 6 && hours < 14) {
+        background_drawing((xpm_map_t) mazeDay1, x, y, width, height);
+      } else if (hours >= 20 || hours < 6) {
         background_drawing((xpm_map_t) mazeDark1, x, y, width, height);
-      }
-      else {
+      } else {
         background_drawing((xpm_map_t) maze1, x, y, width, height);
       }
       break;
-    case LEVEL2: 
-      if (hours >= 6 && hours < 16) {
-        background_drawing((xpm_map_t) mazeDay2, x, y, width, height); 
-      } else if (hours >= 20 && hours < 6) {
+    case LEVEL2:
+      if (hours >= 6 && hours < 14) {
+        background_drawing((xpm_map_t) mazeDay2, x, y, width, height);
+      } else if (hours >= 20 || hours < 6) {
         background_drawing((xpm_map_t) mazeDark2, x, y, width, height);
-      }
-      else {
+      } else {
         background_drawing((xpm_map_t) maze2, x, y, width, height);
       }
       break;
-    case LEVEL3: 
-      if (hours >= 6 && hours < 16) {
-        background_drawing((xpm_map_t) mazeDay3, x, y, width, height); 
-      } else if (hours >= 20 && hours < 6) {
+    case LEVEL3:
+      if (hours >= 6 && hours < 14) {
+        background_drawing((xpm_map_t) mazeDay3, x, y, width, height);
+      } else if (hours >= 20 || hours < 6) {
         background_drawing((xpm_map_t) mazeDark3, x, y, width, height);
-      }
-      else {
+      } else {
         background_drawing((xpm_map_t) maze3, x, y, width, height);
       }
       break;
