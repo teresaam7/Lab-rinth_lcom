@@ -89,7 +89,7 @@ void (drawLevel) ( int x, int y, int width, int height);
 void (draw_game)();
 void (draw_menu)();
 void (draw_win)();
-void (draw_lost)();
+//void (draw_lost)();
 
 
 xpm_map_t (get_next_sprite)(xpm_map_t current_state, uint8_t scancode); 

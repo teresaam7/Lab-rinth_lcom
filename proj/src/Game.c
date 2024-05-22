@@ -25,7 +25,7 @@ extern uint8_t irq_set_rtc;
 
 bool update_cursor, update_player;
 
-Sprite *sp,*start, *quit, *title_, *cursor, *life, *level1_, *level2_, *level3_, *num;
+Sprite *sp,*start, *quit, *title_, *cursor, *life, *level1_, *level2_, *level3_, *num,  *maze;
 
 
 int (collision)(Sprite * sp1, Sprite * sp2){
@@ -34,7 +34,22 @@ int (collision)(Sprite * sp1, Sprite * sp2){
   return 1;
 }
 
-void (draw_life_bar)( Sprite **bar, int total_seconds) {
+
+void (change_maze_colors_based_on_time)() {
+    uint8_t hours, minutes, seconds;
+    get_game_time(&hours, &minutes, &seconds);
+
+    if (hours >= 20 || hours < 6) {
+        drawing_xpm((xpm_map_t) mazeDark2, 1, 1); 
+    } else {
+        maze= create_sprite((xpm_map_t)maze1, 1, 1, 0, 0);
+        drawing_sprite(maze);
+       // maze=make_xpm((xpm_map_t) maze1, 1, 1);
+    }
+}
+
+void (draw_life_bar)(Sprite **bar, int total_seconds) {
+
     switch(total_seconds){
         case 30:
             *bar = create_sprite((xpm_map_t)life5, 610, 5, 0, 0);
@@ -318,47 +333,75 @@ void handle_ingame_scancode( uint8_t scancode, Sprite *player) {
     
     switch (scancode) {
         case D_KEY_MK:
+          if(check_collision(player, maze->width, maze->height)!=0){
             player->x = player->x + 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
-            break;
+            printf("%d", check_collision(player, maze->width, maze->height));
+          }
+          else{
+            player->x = player->x - 5;
+          }
+          break;
 
         case A_KEY_MK:
+          if(check_collision(player, maze->width, maze->height)!=0){
             player->x = player->x - 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
-            break;
+            printf("%d", check_collision(player, maze->width, maze->height));
+          }
+          else{
+            player->x = player->x + 5;
+          }
+          break;
 
         case W_KEY_MK:
+          if(check_collision(player, maze->width, maze->height)!=0){
             player->y = player->y- 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
-            break;
+            printf("%d", check_collision(player, maze->width, maze->height));
+          }
+          else{
+            player->y=player->y+5;
+          }
+          break;
         
         case S_KEY_MK:
+          if(check_collision(player, maze->width, maze->height)!=0){
             player->y = player->y + 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
-            break;
+            printf("%d", check_collision(player, maze->width, maze->height));
+          }
+          else{
+            player->y = player->y - 5;
+          }
+          break;
 
         case A_KEY_BRK:
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
+            //printf("%d", check_collision(player, maze->width, maze->height));
             break;
 
         case D_KEY_BRK:
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
+            //printf("%d", check_collision(player, maze->width, maze->height));
             break;
 
         case S_KEY_BRK:
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
+            //printf("%d", check_collision(player, maze->width, maze->height));
             break;
 
         case W_KEY_BRK:
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
             drawing_sprite(player);
+            //printf("%d", check_collision(player, maze->width, maze->height));
             break;
 
         default:
@@ -367,6 +410,7 @@ void handle_ingame_scancode( uint8_t scancode, Sprite *player) {
 
     update_game_frame();
 }
+
 
 
 void (handle_mouse_movement)(Sprite * cursor){

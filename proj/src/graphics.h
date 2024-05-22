@@ -20,6 +20,8 @@ int (graphic_mode)(uint16_t mode);
 int (initialize_frame_buffer) (uint16_t mode);
 
 int (draw_pixel_to_buffer) (uint16_t x, uint16_t y, uint32_t color);
+int (make_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi);
+uint32_t (return_color)(xpm_map_t xpm, uint16_t xi, uint16_t yi, int base_width, int base_height);
 int (drawing_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi);
 
 void (initialize_buffers)();

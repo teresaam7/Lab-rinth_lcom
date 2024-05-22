@@ -71,6 +71,10 @@
     "utility": "c",
     "vector": "c",
     "mouse.h": "c",
+<<<<<<< HEAD
     "ratio": "c"
+=======
+    "game.h": "c"
+>>>>>>> f7759d0c09180697e5c87c997beb11d5133ad41b
   }
 }
