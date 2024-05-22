@@ -87,9 +87,11 @@ void (draw_game_menu)() {
   level1_ = create_sprite((xpm_map_t)level1, 315, 260, 0, 0);
   level2_ = create_sprite((xpm_map_t)level2, 315, 340, 0, 0);
   level3_ = create_sprite((xpm_map_t)level3, 315, 420, 0, 0);
+  Sprite *num = create_sprite((xpm_map_t)ar, 30, 530, 0, 0);
   drawing_sprite(level1_);
   drawing_sprite(level2_);
   drawing_sprite(level3_);
+  drawing_sprite(num);
 }
 
 void (draw_game)(){
