@@ -25,7 +25,7 @@ extern uint8_t irq_set_rtc;
 
 bool update_cursor, update_player;
 
-Sprite *sp,*start, *quit, *title_, *cursor, *life, *level1_, *level2_, *level3_;
+Sprite *sp,*start, *quit, *title_, *cursor, *life, *level1_, *level2_, *level3_, *num;
 
 
 int (collision)(Sprite * sp1, Sprite * sp2){
@@ -98,11 +98,13 @@ void drawLevel( int x, int y, int width, int height) {
 }
 
 void (draw_game_menu)() {
+  update_frame_with_background();
+  clear_drawing();
   drawing_xpm((xpm_map_t) menu,1,1);
   level1_ = create_sprite((xpm_map_t)level1, 315, 260, 0, 0);
   level2_ = create_sprite((xpm_map_t)level2, 315, 340, 0, 0);
   level3_ = create_sprite((xpm_map_t)level3, 315, 420, 0, 0);
-  Sprite *num = create_sprite((xpm_map_t)ar, 30, 530, 0, 0);
+  num = create_sprite((xpm_map_t)ar, 30, 530, 0, 0);
   drawing_sprite(level1_);
   drawing_sprite(level2_);
   drawing_sprite(level3_);
@@ -155,6 +157,7 @@ int (menuLogic) ( bool * running) {
     if (k_scancode == ENTER_MK ) {
       gameState_change = true;
       gameState = GAME; 
+      //gameState = LEVEL1; 
     }
   }
   if (msg.m_notify.interrupts & irq_set_mouse) { 
@@ -170,12 +173,52 @@ int (menuLogic) ( bool * running) {
         if(collision(cursor, start)){
           gameState_change = true;
           gameState = GAME;
+          // gameState = LEVEL1; 
         }   
         if(collision(cursor, quit)){
           gameState_change = true;
           gameState = EXIT;
         }                      
       }
+    }
+  }
+
+  return 0;
+}
+
+int (chooseLevelLogic)() {
+   update_cursor = false;
+
+    if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+    printf("driver_receive failed with: %d", r);
+  }   
+
+    if (msg.m_notify.interrupts & irq_set_keyboard) {       
+      kbc_ih();
+      if (k_scancode == BK_1) {
+        gameState = LEVEL1;
+        gameState_change = true;  
+      }
+      if (k_scancode == BK_2) {
+        gameState = LEVEL2;
+        gameState_change = true;  
+      }
+      if (k_scancode == BK_3) {
+        gameState = LEVEL3;
+        gameState_change = true;  
+      }
+    }  
+    if (msg.m_notify.interrupts & irq_set_mouse) { 
+      mouse_ih();
+      if (m_index == 3) {
+        store_bytes_packet();
+        m_index = 0;
+        mouse_print_packet(&m_packet);
+        handle_mouse_movement(cursor);
+        update_game_menu();
+                      
+        if (m_packet.lb) {                 
+        }
     }
   }
 
@@ -197,24 +240,9 @@ int (gameLogic) ( bool * running) {
         if (msg.m_notify.interrupts & irq_set_keyboard) { 
                 
             kbc_ih();
-            if (k_scancode == BK_1) {
-              gameState = LEVEL1;
-              gameState_change = true;  
-            }
-            if (k_scancode == BK_2) {
-              gameState = LEVEL2;
-              gameState_change = true;  
-            }
-            if (k_scancode == BK_3) {
-              gameState = LEVEL3;
-              gameState_change = true;  
-            }
-    
 
-            if (gameState == LEVEL1 ||gameState == LEVEL2 || gameState == LEVEL3 ) {
               handle_ingame_scancode(k_scancode, sp);
               update_player = true;
-            }
 
             if (k_scancode == SCAN_FIRST_TWO) {
                 k_bytes[k_index] = k_scancode; k_index++;
@@ -239,7 +267,7 @@ int (gameLogic) ( bool * running) {
           }
 
 
-          if (gameState == GAME && msg.m_notify.interrupts & irq_set_timer) {
+          if ( msg.m_notify.interrupts & irq_set_timer) {
             timer_int_handler(); 
             int clock = counter % 60;
             if (clock == 0) {
@@ -252,7 +280,7 @@ int (gameLogic) ( bool * running) {
                 gameState_change = true; 
               }
           }
-
+          break;
           default:
             break;
       }
@@ -358,6 +386,18 @@ void(update_game_frame)(){
   drawing_sprite(life);
   drawing_sprite(cursor);
   update_frame_with_background();
+
+}
+
+void(update_game_menu)(){
+  clear_drawing();
+  drawing_xpm((xpm_map_t) menu,1,1);
+  drawing_sprite(level1_);
+  drawing_sprite(level2_);
+  drawing_sprite(level3_);
+  drawing_sprite(num);
+
+  update_frame();
 
 }
 

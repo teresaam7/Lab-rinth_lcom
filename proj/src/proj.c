@@ -75,7 +75,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (rtc_subscribe_int(&irq_set_rtc) != 0)
     return 1;
 
-  gameState = MENU;
+  gameState =   MENU;
   draw_menu();
 
       while(k_scancode != SCAN_BREAK_ESC && running){
@@ -90,7 +90,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
             if(gameState_change){
               draw_game_menu();
               gameState_change = false;}
-            if (gameLogic( &running)!= 0) return 1;
+            if (chooseLevelLogic()!= 0) return 1;
           break;
           case LEVEL1:
             if(gameState_change){

@@ -78,6 +78,7 @@ typedef enum {
 #define TIMER_MINUTES 3
 
 int (menuLogic) ( bool *running);
+int (chooseLevelLogic)();
 int (gameLogic) ( bool *running);
 int (winLogic) ( bool *running);
 
@@ -96,6 +97,7 @@ xpm_map_t (get_next_sprite)(xpm_map_t current_state, uint8_t scancode);
 void (handle_ingame_scancode)( uint8_t scancode, Sprite *player);
 void (handle_mouse_movement)(Sprite * cursor);
 void (update_menu_frame)(Sprite * start,Sprite * quit, Sprite * cursor);
+void(update_game_menu)();
 void(update_game_frame)();
 
 #endif
