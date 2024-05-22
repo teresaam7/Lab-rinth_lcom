@@ -261,7 +261,7 @@ int (gameLogic) ( bool * running) {
                 m_index = 0;
                 handle_mouse_movement(cursor); 
                 update_cursor = true;
-                update_game_frame();
+                update_game_frame(sp);
 
             }
           }
@@ -320,52 +320,50 @@ void handle_ingame_scancode( uint8_t scancode, Sprite *player) {
         case D_KEY_MK:
             player->x = player->x + 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
+            update_game_frame(player);
             break;
 
         case A_KEY_MK:
             player->x = player->x - 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
+            update_game_frame(player);
             break;
 
         case W_KEY_MK:
             player->y = player->y- 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
+            update_game_frame(player);
             break;
         
         case S_KEY_MK:
             player->y = player->y + 5;
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
+            update_game_frame(player);
             break;
 
         case A_KEY_BRK:
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
+            update_game_frame(player);
             break;
 
         case D_KEY_BRK:
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
+            update_game_frame(player);
             break;
 
         case S_KEY_BRK:
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
+            update_game_frame(player);
             break;
 
         case W_KEY_BRK:
             player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
+            update_game_frame(player);
             break;
 
         default:
             return;
     }
-
-    update_game_frame();
 }
 
 
@@ -378,11 +376,11 @@ void (handle_mouse_movement)(Sprite * cursor){
   if(cursor->y + cursor->height >= 575)cursor->y = 575 - cursor->height;
 }
 
-void(update_game_frame)(){
+void(update_game_frame)(Sprite * player){
   clear_drawing();
   drawLevel (sp->x, sp->y, sp->width, sp->width);
   drawLevel (cursor->x, cursor->y, cursor->height, cursor->width);
-  drawing_sprite(sp);
+  drawing_sprite(player);
   drawing_sprite(life);
   drawing_sprite(cursor);
   update_frame_with_background();
