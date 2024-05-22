@@ -47,6 +47,7 @@
 #include "images/lifeBar/life5.xpm"
 
 #include "images/hand.xpm"
+#include "images/title.xpm"
 #include "images/start_button.xpm"
 #include "images/hover_start.xpm"
 #include "images/quit_button.xpm"

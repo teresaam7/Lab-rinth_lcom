@@ -11,7 +11,7 @@ extern uint8_t m_bytes[3];
 extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
-Sprite *sp,*start, *quit, *cursor, *life, *level1_, *level2_, *level3_;
+Sprite *sp,*start, *quit, *title_, *cursor, *life, *level1_, *level2_, *level3_;
 
 int (collision)(Sprite * sp1, Sprite * sp2){
   if(sp1->x < sp2->x || sp1 -> x > sp2->x + sp2->width) return 0;
@@ -103,13 +103,14 @@ void (draw_game)(){
 
 void (draw_menu)(){
   drawing_xpm((xpm_map_t) menu,1,1);
-  
+  title_ = create_sprite((xpm_map_t)title, 170, 100, 0, 0);
   cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
   start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
   quit = create_sprite((xpm_map_t)quit_button, 335, 380, 0, 0);
   drawing_sprite(start);
   drawing_sprite(quit);
   drawing_sprite(cursor);
+  drawing_sprite(title_);
 }
 
 
