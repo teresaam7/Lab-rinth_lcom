@@ -9,34 +9,43 @@
 * Returns NULL on invalid pixmap.
 */
 
-Sprite *create_sprite(xpm_map_t xpm, int x, int y, double xspeed, double yspeed) {
-  Sprite *sp = (Sprite *) malloc ( sizeof(Sprite));
-  xpm_image_t img;
+Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed=0) {
+  Sprite *sp = (Sprite *) malloc (sizeof(Sprite));
   if (sp == NULL )
     return NULL;
 
-  sp->map = (const char *)xpm;
-  if( sp->map == NULL ) {
+  if( ((char *)xpm) == NULL ) {
+    printf("XPM is NULL \n");
     free(sp);
     return NULL;
   }
-  xpm_load(xpm,XPM_8_8_8,&img);
-  sp->width = img.width; 
-  sp->height=img.height;
-  sp->xspeed = xspeed;
-  sp->yspeed = yspeed;
+
+  drawing_xpm(xpm, x, y, sp);
   sp->x = x;
   sp->y = y;
+  sp->speed = speed;
   return sp;
 }
 
+
 void destroy_sprite(Sprite *sp) {
-  if( sp == NULL )
+  if ( sp == NULL )
     return;
-  if(sp->map) free((void *)sp->map);
+
+  free(sp->map);
   free(sp);
-  sp = NULL; 
 }
+
+
+int drawing_sprite(Sprite *sp){
+  /*
+  if (drawing_xpm((xpm_map_t)sp->map, sp->x, sp->y) != 0) {
+    return 1;
+  }
+  return 0;
+  */
+}
+
 
 bool check_collision(Sprite *sprite1, int base_width, int base_height) {
     int sprite1_left = sprite1->x;
@@ -73,12 +82,4 @@ bool check_collision(Sprite *sprite1, int base_width, int base_height) {
     }*/
 
     return false;
-}
-
-
-int drawing_sprite(Sprite *sp){
-  if (drawing_xpm((xpm_map_t)sp->map, sp->x, sp->y) != 0) {
-    return 1;
-  }
-  return 0;
 }

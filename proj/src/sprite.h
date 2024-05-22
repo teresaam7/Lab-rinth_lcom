@@ -5,13 +5,12 @@
 
 
 typedef struct {
-	int x, y;
-	int width, height;
-	double xspeed, yspeed;
-	const char *map;     
+	int x, y, width, height, speed;
+	uint8_t *map;     
 } Sprite;
 
-Sprite *create_sprite(xpm_map_t xpm, int x, int y, double xspeed, double yspeed);
+
+Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed);
 
 void destroy_sprite(Sprite *sp);
 
