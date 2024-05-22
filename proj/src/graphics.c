@@ -61,7 +61,6 @@ void (set_display_start)(int buffer) {
     r.intno = 0x10;
     r.ax = 0x4F07;
     r.bx = 0x00;
-
     r.cx = 0x00;
 
     if (buffer == 1) {
@@ -99,7 +98,7 @@ int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
 
   unsigned int index = (y * frame.res_x + x) * frame.bytes_pixel;
 
-  if (memcpy(&frame.buffer1[index], &color, frame.bytes_pixel) == NULL) 
+  if (memcpy(&draw_buffer[index], &color, frame.bytes_pixel) == NULL) 
     return 1;
 
   return 0;
@@ -111,15 +110,6 @@ int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
 
 void (drawing_to_buffer)(uint8_t *sp_map) {
   memcpy(draw_buffer, sp_map, frame.size);
-}
-
-
-void (initialize_buffers)() {
-  draw_buffer = malloc(frame.size);
-}
-
-void (free_buffers)() {
-  free(draw_buffer);
 }
 
 
@@ -147,6 +137,15 @@ int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t w, ui
 
 
 /*
+void (initialize_buffers)() {
+  //draw_buffer = malloc(frame.size);
+}
+
+void (free_buffers)() {
+  //free(draw_buffer);
+}
+
+
 void (update_frame)() {
   memcpy(frame.buffer1, draw_buffer, frame.size);
 }
@@ -187,11 +186,6 @@ void get_display_start(int* buffer) {
         printf("sys_int86() failed for get display start\n");
     }
 
-    uint32_t first_pixel = r.cx;
-    if (first_pixel == 0) 
-      *buffer = 1;
-    else 
-      *buffer = 2;
 }
 */
 
