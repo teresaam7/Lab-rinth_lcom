@@ -77,14 +77,14 @@ typedef enum {
 
 #define TIMER_MINUTES 3
 
-int (menuLogic) (GameState *gameState, bool *running);
-int (gameLogic) (GameState *gameState, bool *running);
-int (winLogic) (GameState *gameState, bool *running);
+int (menuLogic) ( bool *running);
+int (gameLogic) ( bool *running);
+int (winLogic) ( bool *running);
 
-void (draw_life_bar)(GameState gameState, Sprite **bar, int total_seconds);
+void (draw_life_bar)( Sprite **bar, int total_seconds);
 
 void (draw_game_menu)();
-void (drawLevel) (GameState gameState, int x, int y, int width, int height);
+void (drawLevel) ( int x, int y, int width, int height);
 void (draw_game)();
 void (draw_menu)();
 void (draw_win)();
@@ -93,9 +93,10 @@ void (draw_lost)();
 
 xpm_map_t (get_next_sprite)(xpm_map_t current_state, uint8_t scancode); 
 
-void (handle_ingame_scancode)(GameState gameState, uint8_t scancode, Sprite *player);
+void (handle_ingame_scancode)( uint8_t scancode, Sprite *player);
 void (handle_mouse_movement)(Sprite * cursor);
 void (update_menu_frame)(Sprite * start,Sprite * quit, Sprite * cursor);
+void(update_game_frame)();
 
 #endif
 
