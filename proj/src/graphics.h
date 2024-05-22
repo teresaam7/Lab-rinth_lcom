@@ -4,7 +4,6 @@
 #include <lcom/lcf.h>
 #include <stdint.h>
 #include <stdio.h>
-#include "images/maze1.xpm"
 
 typedef struct Frame {
     uint8_t *buffer;
@@ -31,7 +30,7 @@ void (update_frame)();
 void (clear_frame)();
 void (clear_drawing)();
 
-int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi);
+int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t w, uint16_t h);
 void (update_frame_with_background)();
 
 #endif

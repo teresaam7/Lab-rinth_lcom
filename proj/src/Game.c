@@ -11,13 +11,29 @@ extern uint8_t m_bytes[3];
 extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
-Sprite *sp,*start, *quit, *cursor, *life, *maze;
+int r;
+message msg;
+int ipc_status;
+
+extern bool gameState_change;
+extern GameState gameState;
+
+extern uint8_t irq_set_keyboard;
+extern uint8_t irq_set_mouse;
+extern uint8_t irq_set_timer;
+extern uint8_t irq_set_rtc;
+
+bool update_cursor, update_player;
+
+Sprite *sp,*start, *quit, *title_, *cursor, *life, *level1_, *level2_, *level3_, *num,  *maze;
+
 
 int (collision)(Sprite * sp1, Sprite * sp2){
   if(sp1->x < sp2->x || sp1 -> x > sp2->x + sp2->width) return 0;
   if(sp1->y < sp2->y || sp1 -> y > sp2->y + sp2->height) return 0;
   return 1;
 }
+
 
 void (change_maze_colors_based_on_time)() {
     uint8_t hours, minutes, seconds;
@@ -33,6 +49,7 @@ void (change_maze_colors_based_on_time)() {
 }
 
 void (draw_life_bar)(Sprite **bar, int total_seconds) {
+
     switch(total_seconds){
         case 30:
             *bar = create_sprite((xpm_map_t)life5, 610, 5, 0, 0);
@@ -54,29 +71,86 @@ void (draw_life_bar)(Sprite **bar, int total_seconds) {
             return;
     }
     clear_drawing();
-    change_maze_colors_based_on_time();
     drawing_sprite(*bar);
     update_frame_with_background();
 }
 
+void drawLevel( int x, int y, int width, int height) {
+  uint8_t hours, minutes, seconds;
+  get_game_time(&hours, &minutes, &seconds);
+
+  switch (gameState) {
+    case LEVEL1:
+      if (hours >= 6 && hours < 14) {
+        background_drawing((xpm_map_t) mazeDay1, x, y, width, height);
+      } else if (hours >= 20 || hours < 6) {
+        background_drawing((xpm_map_t) mazeDark1, x, y, width, height);
+      } else {
+        background_drawing((xpm_map_t) maze1, x, y, width, height);
+      }
+      break;
+    case LEVEL2:
+      if (hours >= 6 && hours < 14) {
+        background_drawing((xpm_map_t) mazeDay2, x, y, width, height);
+      } else if (hours >= 20 || hours < 6) {
+        background_drawing((xpm_map_t) mazeDark2, x, y, width, height);
+      } else {
+        background_drawing((xpm_map_t) maze2, x, y, width, height);
+      }
+      break;
+    case LEVEL3:
+      if (hours >= 6 && hours < 14) {
+        background_drawing((xpm_map_t) mazeDay3, x, y, width, height);
+      } else if (hours >= 20 || hours < 6) {
+        background_drawing((xpm_map_t) mazeDark3, x, y, width, height);
+      } else {
+        background_drawing((xpm_map_t) maze3, x, y, width, height);
+      }
+      break;
+    default:
+      return;
+  }
+}
+
+void (draw_game_menu)() {
+  update_frame_with_background();
+  clear_drawing();
+  drawing_xpm((xpm_map_t) menu,1,1);
+  level1_ = create_sprite((xpm_map_t)level1, 315, 260, 0, 0);
+  level2_ = create_sprite((xpm_map_t)level2, 315, 340, 0, 0);
+  level3_ = create_sprite((xpm_map_t)level3, 315, 420, 0, 0);
+  num = create_sprite((xpm_map_t)ar, 30, 530, 0, 0);
+  drawing_sprite(level1_);
+  drawing_sprite(level2_);
+  drawing_sprite(level3_);
+  drawing_sprite(num);
+}
+
 void (draw_game)(){
-  change_maze_colors_based_on_time();
+  update_frame_with_background();
+  clear_drawing();
+  cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
   sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
   life = create_sprite((xpm_map_t)life1, 610, 5, 0, 0);
   drawing_sprite(sp);
   drawing_sprite(life);
+  drawing_sprite(cursor);
 }
 
 void (draw_menu)(){
+  update_frame_with_background();
+  clear_drawing();
   drawing_xpm((xpm_map_t) menu,1,1);
-  
+  title_ = create_sprite((xpm_map_t)title, 170, 100, 0, 0);
   cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
   start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
   quit = create_sprite((xpm_map_t)quit_button, 335, 380, 0, 0);
   drawing_sprite(start);
   drawing_sprite(quit);
   drawing_sprite(cursor);
+  drawing_sprite(title_);
 }
+
 
 void (draw_win)() {
   drawing_xpm((xpm_map_t) win,1,1);
@@ -87,150 +161,148 @@ void (draw_lost)() {
   drawing_xpm((xpm_map_t) win,1,1);
 }
 
-int (gameLogic) (GameState *gameState, bool * running) {
-    initialize_buffers();
 
-    if (write_mouse(ENABLE_DATA_MODE) != 0)
-      return 1;
-
-    uint8_t irq_set_keyboard;
-    if (keyboard_subscribe_int(&irq_set_keyboard) != 0)
-        return 1;
-
-    uint8_t irq_set_mouse;
-    if (mouse_subscribe_int(&irq_set_mouse) != 0)
-      return 1;
-
-    uint8_t irq_set_timer;
-    if (timer_subscribe_int(&irq_set_timer) != 0)
-      return 1;
-
-    uint8_t irq_set_rtc;
-    if (rtc_subscribe_int(&irq_set_rtc) != 0)
-      return 1;
-    
-    int r;
-    message msg;
-    int ipc_status;
-
-
-    if(*gameState == GAME){draw_game();}
-    if(*gameState == MENU){draw_menu();}
-
-    update_frame_with_background();
-    clear_drawing();
-
-    bool gameState_change = false;
-    int time = 60 * TIMER_MINUTES;
-    while (k_scancode != SCAN_BREAK_ESC) { 
-
-      if(gameState_change){
-        if(*gameState == GAME) {draw_game();}
-        if(*gameState == MENU) {draw_menu();}
-        if(*gameState == WIN) {draw_win();}
-        if(*gameState == EXIT) {*running = false;
-        break;}
-        update_frame_with_background();
-        clear_drawing();
-        gameState_change = false;
-      }  
-     
-      if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+int (menuLogic) ( bool * running) {
+  update_cursor = false;
+  if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
         printf("driver_receive failed with: %d", r);
-        continue;
       }
-      
-      if (is_ipc_notify(ipc_status)) {      
-        switch (_ENDPOINT_P(msg.m_source)) {
-          case HARDWARE:    
-            if (msg.m_notify.interrupts & irq_set_keyboard) { 
-                
-                kbc_ih();
-                if(*gameState == MENU) {
-                  if (k_scancode == ENTER_MK ) {
-                      *gameState = GAME;
-                      gameState_change = true;  
-                  }
-                }
-                if(*gameState == GAME){
-                  handle_ingame_scancode(k_scancode, sp);
-                }
-
-                if (k_scancode == SCAN_FIRST_TWO) {
-                    k_bytes[k_index] = k_scancode; k_index++;
-                } else {
-                    k_bytes[k_index] = k_scancode;
-                    // kbd_print_scancode(!(scancode & MAKE_OR_BREAK), i == 0? 1: 2 , bytes);
-                    k_index = 0;
-                }
-                // Need to implement win logic
-
-
-            }
-
-            if (msg.m_notify.interrupts & irq_set_mouse) { 
-                mouse_ih();
-
-                if (m_index == 3) {
-                    store_bytes_packet();
-                    mouse_print_packet(&m_packet);
-                    m_index = 0;
-                    if(*gameState == MENU){
-                      mouse_print_packet(&m_packet);
-                      handle_mouse_movement(cursor);
-                      update_menu_frame(start, quit, cursor);
+  if (msg.m_notify.interrupts & irq_set_keyboard) { 
+    kbc_ih();
+    if (k_scancode == ENTER_MK ) {
+      gameState_change = true;
+      gameState = GAME; 
+      //gameState = LEVEL1; 
+    }
+  }
+  if (msg.m_notify.interrupts & irq_set_mouse) { 
+    mouse_ih();
+    if (m_index == 3) {
+      store_bytes_packet();
+      m_index = 0;
+      mouse_print_packet(&m_packet);
+      handle_mouse_movement(cursor);
+      update_menu_frame(start, quit, cursor);
                     
-                      if (m_packet.lb) {
-                        if(collision(cursor, start)){
-                          *gameState = GAME;
-                          gameState_change = true;}    
-                          if(collision(cursor, quit)){
-                          *gameState = EXIT;
-                          gameState_change = true;}                      
-                      }
-                    }
-                }
-            }
-
-            if (*gameState == GAME && msg.m_notify.interrupts & irq_set_timer) {
-              timer_int_handler(); 
-              int clock = counter % 60;
-              if (clock == 0) {
-                timer_print_elapsed_time();
-                time--;
-              }
-              draw_life_bar(&life, time);
-              if (time == 0) {
-                *gameState = LOSE; 
-                gameState_change = true; 
-              }
-            }
-            break;
-
-          default:
-            break; 
-        }
+      if (m_packet.lb) {
+        if(collision(cursor, start)){
+          gameState_change = true;
+          gameState = GAME;
+          // gameState = LEVEL1; 
+        }   
+        if(collision(cursor, quit)){
+          gameState_change = true;
+          gameState = EXIT;
+        }                      
       }
     }
-    if (keyboard_unsubscribe_int() != 0)
-        return 1;
+  }
 
-    if (mouse_unsubscribe_int() != 0)
-      return 1;
+  return 0;
+}
 
-    if (timer_unsubscribe_int() != 0)
-      return 1;
+int (chooseLevelLogic)() {
+   update_cursor = false;
 
-    if (rtc_unsubscribe_int() != 0)
-      return 1;
+    if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+    printf("driver_receive failed with: %d", r);
+  }   
 
-    if (write_mouse(DISABLE_DATA_MODE) != 0)
-      return 1;
-    if(k_scancode == SCAN_BREAK_ESC)*running = false;
+    if (msg.m_notify.interrupts & irq_set_keyboard) {       
+      kbc_ih();
+      if (k_scancode == BK_1) {
+        gameState = LEVEL1;
+        gameState_change = true;  
+      }
+      if (k_scancode == BK_2) {
+        gameState = LEVEL2;
+        gameState_change = true;  
+      }
+      if (k_scancode == BK_3) {
+        gameState = LEVEL3;
+        gameState_change = true;  
+      }
+    }  
+    if (msg.m_notify.interrupts & irq_set_mouse) { 
+      mouse_ih();
+      if (m_index == 3) {
+        store_bytes_packet();
+        m_index = 0;
+        mouse_print_packet(&m_packet);
+        handle_mouse_movement(cursor);
+        update_game_menu();
+                      
+        if (m_packet.lb) {                 
+        }
+    }
+  }
 
-    free_buffers();
+  return 0;
+}
 
-    return 0;
+
+int (gameLogic) ( bool * running) {
+
+  int time = 60 * TIMER_MINUTES;
+     
+  if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+    printf("driver_receive failed with: %d", r);
+  }
+      
+  if (is_ipc_notify(ipc_status)) {      
+    switch (_ENDPOINT_P(msg.m_source)) {
+      case HARDWARE:    
+        if (msg.m_notify.interrupts & irq_set_keyboard) { 
+                
+            kbc_ih();
+
+              handle_ingame_scancode(k_scancode, sp);
+              update_player = true;
+
+            if (k_scancode == SCAN_FIRST_TWO) {
+                k_bytes[k_index] = k_scancode; k_index++;
+            } else {
+                k_bytes[k_index] = k_scancode;
+                k_index = 0;
+            }
+          }
+
+          if (msg.m_notify.interrupts & irq_set_mouse) { 
+            mouse_ih();
+
+            if (m_index == 3) {
+                store_bytes_packet();
+                mouse_print_packet(&m_packet);
+                m_index = 0;
+                handle_mouse_movement(cursor); 
+                update_cursor = true;
+                update_game_frame();
+
+            }
+          }
+
+
+          if ( msg.m_notify.interrupts & irq_set_timer) {
+            timer_int_handler(); 
+            int clock = counter % 60;
+            if (clock == 0) {
+              timer_print_elapsed_time();
+              time--;
+            }
+            draw_life_bar(&life, time);
+              if (time == 0) {
+                gameState = LOSE; 
+                gameState_change = true; 
+              }
+          }
+          break;
+          default:
+            break;
+      }
+        
+    }
+
+  return 0;
 }
 
 xpm_map_t get_next_sprite(xpm_map_t current_state, uint8_t scancode) {
@@ -256,9 +328,8 @@ xpm_map_t get_next_sprite(xpm_map_t current_state, uint8_t scancode) {
     }
 }
 
-/*A personagem pinta o fundo enquanto anda -- dar fix*/
 
-void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
+void handle_ingame_scancode( uint8_t scancode, Sprite *player) {
     
     switch (scancode) {
         case D_KEY_MK:
@@ -336,11 +407,8 @@ void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
         default:
             return;
     }
-    clear_drawing();
-    change_maze_colors_based_on_time();
-    drawing_sprite(player);
-    drawing_sprite(life);
-    update_frame_with_background();
+
+    update_game_frame();
 }
 
 
@@ -354,10 +422,33 @@ void (handle_mouse_movement)(Sprite * cursor){
   if(cursor->y + cursor->height >= 575)cursor->y = 575 - cursor->height;
 }
 
+void(update_game_frame)(){
+  clear_drawing();
+  drawLevel (sp->x, sp->y, sp->width, sp->width);
+  drawLevel (cursor->x, cursor->y, cursor->height, cursor->width);
+  drawing_sprite(sp);
+  drawing_sprite(life);
+  drawing_sprite(cursor);
+  update_frame_with_background();
+
+}
+
+void(update_game_menu)(){
+  clear_drawing();
+  drawing_xpm((xpm_map_t) menu,1,1);
+  drawing_sprite(level1_);
+  drawing_sprite(level2_);
+  drawing_sprite(level3_);
+  drawing_sprite(num);
+
+  update_frame();
+
+}
+
 
 void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
   clear_drawing();
-  background_drawing((xpm_map_t) menu,1,1);
+  drawing_xpm((xpm_map_t) menu,1,1);
 
   if(collision(cursor,start)){
     Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
@@ -375,24 +466,3 @@ void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
   update_frame();
 }
 
-
-/*
-void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
-  clear_drawing();
-  //make_xpm((xpm_map_t) menu,1,1);
-  if(collision(cursor,start)){
-    Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
-    drawing_sprite(hover_start_sp);
-    
-  }
-  else drawing_sprite(start);
-  if(collision(cursor,quit)){
-    Sprite* hover_quit_sp = create_sprite((xpm_map_t)hover_quit, 315, 373, 0, 0);
-    drawing_sprite(hover_quit_sp);
-    
-  }
-  else drawing_sprite(quit);
-  drawing_sprite(cursor);
-  update_frame();
-}
-*/

@@ -75,6 +75,7 @@ bool check_collision(Sprite *sprite1, int base_width, int base_height) {
     return false;
 }
 
+
 int drawing_sprite(Sprite *sp){
   if (drawing_xpm((xpm_map_t)sp->map, sp->x, sp->y) != 0) {
     return 1;

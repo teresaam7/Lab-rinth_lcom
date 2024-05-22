@@ -104,14 +104,24 @@ void (clear_drawing)() {
   memset(draw_buffer, 0, frame.size);
 }
 
-int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
-  clear_drawing();
-  if (drawing_xpm(xpm, xi, yi) != 1) {
-    printf("Background drawing failed \n");
-    return 1;
-  }
-  memcpy(background_buffer, draw_buffer, frame.size);
-  clear_drawing();
+int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t w, uint16_t h) {
+
+  xpm_image_t image;
+  uint32_t *colors = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
+  uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
+
+  for (int y = (- 40) ; y < (h + 40) ; y++) {
+      for (int x = (-40) ; x < (w + 40) ; x++) {
+          uint32_t current_color = colors[ (yi+y) * image.width + (xi+x)];
+          
+          if (current_color != transparent_color) {
+              if (draw_pixel_to_buffer(xi + x, yi + y, current_color)) {
+                  printf("Drawing failed \n");
+                  return 1;
+              }
+          }
+      }
+  } 
   return 0;
 }
 
