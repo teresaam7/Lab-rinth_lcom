@@ -61,8 +61,8 @@ typedef enum {
 
 #define TIMER_MINUTES 3
 
-int (menuLogic) (GameState *gameState, bool *running);
-int (gameLogic) (GameState *gameState, bool *running);
+int (menuLogic) ( bool *running);
+int (gameLogic) ( bool *running);
 int (winLogic) (GameState *gameState, bool *running);
 
 void (change_maze_colors_based_on_time)();
