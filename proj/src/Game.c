@@ -11,200 +11,7 @@ extern uint8_t m_bytes[3];
 extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
-Sprite *sp,*start, *quit, *cursor, *life, *maze;
-
-/*int (collision)(Sprite * sp1, Sprite * sp2){
-  if(sp1->x < sp2->x || sp1 -> x > sp2->x + sp2->width) return 0;
-  if(sp1->y < sp2->y || sp1 -> y > sp2->y + sp2->height) return 0;
-  return 1;
-}*/
-
-void (change_maze_colors_based_on_time)() {
-    uint8_t hours, minutes, seconds;
-    get_game_time(&hours, &minutes, &seconds);
-
-    if (hours >= 20 || hours < 6) {
-        make_xpm((xpm_map_t) mazeDark2, 1, 1); 
-    } else {
-        maze= create_sprite((xpm_map_t)maze1, 1, 1, 0, 0);
-        drawing_sprite(maze);
-       // maze=make_xpm((xpm_map_t) maze1, 1, 1);
-    }
-}
-
-/*void (draw_life_bar)(Sprite **bar, int total_seconds) {
-    switch(total_seconds){
-        case 30:
-            *bar = create_sprite((xpm_map_t)life5, 610, 5, 0, 0);
-            drawing_sprite(*bar);
-            break;
-        case 60:
-            *bar = create_sprite((xpm_map_t)life4, 610, 5, 0, 0);
-            drawing_sprite(*bar);
-            break;
-        case 90:
-            *bar = create_sprite((xpm_map_t)life3, 610, 5, 0, 0);
-            drawing_sprite(*bar);
-            break;
-        case 140:
-            *bar = create_sprite((xpm_map_t)life2, 610, 5, 0, 0);
-            drawing_sprite(*bar);
-            break;
-        default:
-            return;
-    }
-    clear_drawing();
-    change_maze_colors_based_on_time();
-    drawing_sprite(*bar);
-    update_frame();
-}
-
-void (draw_game)(){
-  change_maze_colors_based_on_time();
-  sp = create_sprite((xpm_map_t)right1, 20, 20, 0, 0);
-  life = create_sprite((xpm_map_t)life1, 610, 5, 0, 0);
-  drawing_sprite(sp);
-  drawing_sprite(life);
-}
-
-void (draw_menu)(){
-  make_xpm((xpm_map_t) menu,1,1);
-  cursor = create_sprite((xpm_map_t)hand, 315, 200, 0, 0);
-  start = create_sprite((xpm_map_t)start_button, 315, 300, 0, 0);
-  drawing_sprite(start);
-  drawing_sprite(cursor);
-}
-
-void (draw_win)() {
-  make_xpm((xpm_map_t) win,1,1);
-  display_game_time();
-}*/
-
-xpm_map_t get_next_sprite(xpm_map_t current_state, uint8_t scancode) {
-    switch (scancode) {
-        case A_KEY_MK:
-            return (xpm_map_t)left1;
-        case D_KEY_MK:
-            return (xpm_map_t)right1;
-        case W_KEY_MK:
-            return (xpm_map_t)up1;
-        case S_KEY_MK:
-            return (xpm_map_t)down1;
-        case A_KEY_BRK:
-            return (xpm_map_t)left2;
-        case D_KEY_BRK:
-            return (xpm_map_t)right2;
-        case W_KEY_BRK:
-            return (xpm_map_t)up2;
-        case S_KEY_BRK:
-            return (xpm_map_t)down2;
-        default:
-            return (xpm_map_t)current_state;
-    }
-}
-
-/*A personagem pinta o fundo enquanto anda -- dar fix*/
-
-void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
-    
-    switch (scancode) {
-        case D_KEY_MK:
-          if(check_collision(player, maze->width, maze->height)!=0){
-            player->x = player->x + 5;
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
-            printf("%d", check_collision(player, maze->width, maze->height));
-          }
-          else{
-            player->x = player->x - 5;
-          }
-          break;
-
-        case A_KEY_MK:
-          if(check_collision(player, maze->width, maze->height)!=0){
-            player->x = player->x - 5;
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
-            printf("%d", check_collision(player, maze->width, maze->height));
-          }
-          else{
-            player->x = player->x + 5;
-          }
-          break;
-
-        case W_KEY_MK:
-          if(check_collision(player, maze->width, maze->height)!=0){
-            player->y = player->y- 5;
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
-            printf("%d", check_collision(player, maze->width, maze->height));
-          }
-          else{
-            player->y=player->y+5;
-          }
-          break;
-        
-        case S_KEY_MK:
-          if(check_collision(player, maze->width, maze->height)!=0){
-            player->y = player->y + 5;
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
-            printf("%d", check_collision(player, maze->width, maze->height));
-          }
-          else{
-            player->y = player->y - 5;
-          }
-          break;
-
-        case A_KEY_BRK:
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
-            //printf("%d", check_collision(player, maze->width, maze->height));
-            break;
-
-        case D_KEY_BRK:
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
-            //printf("%d", check_collision(player, maze->width, maze->height));
-            break;
-
-        case S_KEY_BRK:
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
-            //printf("%d", check_collision(player, maze->width, maze->height));
-            break;
-
-        case W_KEY_BRK:
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
-            drawing_sprite(player);
-            //printf("%d", check_collision(player, maze->width, maze->height));
-            break;
-
-        default:
-            return;
-    }
-    clear_drawing();
-    change_maze_colors_based_on_time();
-    drawing_sprite(player);
-    drawing_sprite(life);
-    update_frame();
-}
-
-
-/*void(update_menu_frame)(Sprite * start, Sprite * cursor){
-  clear_drawing();
-  make_xpm((xpm_map_t) menu,1,1);
-  if(collision(cursor,start)){
-    Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
-    drawing_sprite(hover_start_sp);
-    
-  }
-  else drawing_sprite(start);
-  drawing_sprite(cursor);
-  update_frame();
-}*/
-
-//aqui
+Sprite *sp,*start, *quit, *cursor, *life;
 
 int (collision)(Sprite * sp1, Sprite * sp2){
   if(sp1->x < sp2->x || sp1 -> x > sp2->x + sp2->width) return 0;
@@ -212,7 +19,7 @@ int (collision)(Sprite * sp1, Sprite * sp2){
   return 1;
 }
 
-/*void (change_maze_colors_based_on_time)() {
+void (change_maze_colors_based_on_time)() {
     uint8_t hours, minutes, seconds;
     get_game_time(&hours, &minutes, &seconds);
 
@@ -221,7 +28,7 @@ int (collision)(Sprite * sp1, Sprite * sp2){
     } else {
         background_drawing((xpm_map_t) maze2, 1, 1);
     }
-}*/
+}
 
 void (draw_life_bar)(Sprite **bar, int total_seconds) {
     switch(total_seconds){
@@ -424,6 +231,88 @@ int (gameLogic) (GameState *gameState, bool * running) {
     return 0;
 }
 
+xpm_map_t get_next_sprite(xpm_map_t current_state, uint8_t scancode) {
+    switch (scancode) {
+        case A_KEY_MK:
+            return (xpm_map_t)left1;
+        case D_KEY_MK:
+            return (xpm_map_t)right1;
+        case W_KEY_MK:
+            return (xpm_map_t)up1;
+        case S_KEY_MK:
+            return (xpm_map_t)down1;
+        case A_KEY_BRK:
+            return (xpm_map_t)left2;
+        case D_KEY_BRK:
+            return (xpm_map_t)right2;
+        case W_KEY_BRK:
+            return (xpm_map_t)up2;
+        case S_KEY_BRK:
+            return (xpm_map_t)down2;
+        default:
+            return (xpm_map_t)current_state;
+    }
+}
+
+/*A personagem pinta o fundo enquanto anda -- dar fix*/
+
+void handle_ingame_scancode(uint8_t scancode, Sprite *player) {
+    
+    switch (scancode) {
+        case D_KEY_MK:
+            player->x = player->x + 5;
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
+            break;
+
+        case A_KEY_MK:
+            player->x = player->x - 5;
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
+            break;
+
+        case W_KEY_MK:
+            player->y = player->y- 5;
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
+            break;
+        
+        case S_KEY_MK:
+            player->y = player->y + 5;
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_MK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
+            break;
+
+        case A_KEY_BRK:
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
+            break;
+
+        case D_KEY_BRK:
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
+            break;
+
+        case S_KEY_BRK:
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
+            break;
+
+        case W_KEY_BRK:
+            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_BRK), player->x, player->y, player->xspeed, player->yspeed);
+            drawing_sprite(player);
+            break;
+
+        default:
+            return;
+    }
+    clear_drawing();
+    change_maze_colors_based_on_time();
+    drawing_sprite(player);
+    drawing_sprite(life);
+    update_frame_with_background();
+}
+
 
 void (handle_mouse_movement)(Sprite * cursor){
   if(!(cursor->x + m_packet.delta_x <= 0)) cursor->x += m_packet.delta_x;
@@ -455,3 +344,24 @@ void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
   update_frame();
 }
 
+
+/*
+void(update_menu_frame)(Sprite * start,Sprite *quit, Sprite * cursor){
+  clear_drawing();
+  //make_xpm((xpm_map_t) menu,1,1);
+  if(collision(cursor,start)){
+    Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0, 0);
+    drawing_sprite(hover_start_sp);
+    
+  }
+  else drawing_sprite(start);
+  if(collision(cursor,quit)){
+    Sprite* hover_quit_sp = create_sprite((xpm_map_t)hover_quit, 315, 373, 0, 0);
+    drawing_sprite(hover_quit_sp);
+    
+  }
+  else drawing_sprite(quit);
+  drawing_sprite(cursor);
+  update_frame();
+}
+*/

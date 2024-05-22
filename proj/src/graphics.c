@@ -64,9 +64,8 @@ int (draw_pixel_to_buffer) (uint16_t x, uint16_t y, uint32_t color) {
 int (drawing_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
     xpm_image_t image;
     uint32_t *colors = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
-    uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8);
-    //printf("%x", transparent_color); 
-    //printf("%x", *colors); 
+    uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
+
     for (int y = 0 ; y < image.height ; y++) {
         for (int x = 0 ; x < image.width ; x++) {
             uint32_t current_color = colors[y * image.width + x];
@@ -82,25 +81,6 @@ int (drawing_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
     return 0; 
 }
 
-/*uint32_t (return_color)(xpm_map_t xpm, uint16_t xi, uint16_t yi, int base_width, int base_height) {
-    clear_drawing();
-    make_xpm((xpm_map_t)maze1, 0, 0);
-    xpm_image_t image;
-    uint32_t *colors = (uint32_t *) xpm_load((xpm_map_t)maze1, XPM_8_8_8_8, &image);
-    //uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8);
-    //printf("%x", transparent_color); 
-    printf("%x", *colors); 
-    for (int y = 0 ; y <  base_height; y++) {
-      for (int x = 0 ; x < base_width ; x++) {
-           // printf("%x", colors[yi * image.width + xi]);
-            uint32_t current_color = draw_buffer[yi * image.width + xi];
-            printf("%x", current_color);
-            
-            return current_color;
-      }
-    }
-    //return transparent_color; //"ff000000"
-}*/
 
 void (initialize_buffers)() {
   draw_buffer = malloc(frame.size);
@@ -140,25 +120,6 @@ void (update_frame_with_background)() {
   memcpy(frame.buffer, draw_buffer, frame.size);
 }
 
-int (make_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
-    xpm_image_t image;
-    uint32_t *colors = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
-    uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
-
-    for (int y = 0 ; y < image.height ; y++) {
-        for (int x = 0 ; x < image.width ; x++) {
-            uint32_t current_color = colors[y * image.width + x];
-            
-            if (current_color != transparent_color) {
-                if (draw_pixel_to_buffer(xi + x, yi + y, current_color)) {
-                    printf("Drawing failed \n");
-                    return 1;
-                }
-            }
-        }
-    }
-    return 0; 
-}
 
 /*
 uint8_t *display_buffer;
