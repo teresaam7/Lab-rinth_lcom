@@ -4,28 +4,31 @@
 uint8_t k_index = 0;
 uint8_t k_bytes[2];
 extern uint8_t k_scancode;
-extern int counter;
+//extern int counter;
 
 extern int m_index;
 extern uint8_t m_bytes[3];
 extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
+/*
 int r;
 message msg;
 int ipc_status;
-
+*/
 extern bool gameState_change;
 extern GameState gameState;
 
+/*
 extern uint8_t irq_set_keyboard;
 extern uint8_t irq_set_mouse;
 extern uint8_t irq_set_timer;
 extern uint8_t irq_set_rtc;
 
 bool update_cursor, update_player;
+*/
 
-Sprite *sp,*start, *quit, *title_, *cursor, *life, *level1_, *level2_, *level3_, *num, *menu_bg;
+extern Sprite *sp,*start, *quit, *title_, *cursor, *life, *level1_, *level2_, *level3_, *num, *menu_bg;
 
 
 int (collision)(Sprite * sp1, Sprite * sp2){
@@ -149,51 +152,35 @@ void (draw_lost)() {
 }
 
 
-int (menuLogic) ( bool * running) {
-  update_cursor = false;
-  if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
-        printf("driver_receive failed with: %d", r);
-      }
-  if (msg.m_notify.interrupts & irq_set_keyboard) { 
-    kbc_ih();
-    if (k_scancode == ENTER_MK ) {
-      gameState_change = true;
-      gameState = GAME; 
-      //gameState = LEVEL1; 
-    }
-  }
-  if (msg.m_notify.interrupts & irq_set_mouse) { 
-    mouse_ih();
-    if (m_index == 3) {
-      store_bytes_packet();
-      m_index = 0;
-      mouse_print_packet(&m_packet);
-      handle_mouse_movement(cursor);
-      update_menu_frame(start, quit, cursor);
-                    
-      if (m_packet.lb) {
-        if(collision(cursor, start)){
-          gameState_change = true;
-          gameState = GAME;
-          // gameState = LEVEL1; 
-        }   
-        if(collision(cursor, quit)){
-          gameState_change = true;
-          gameState = EXIT;
-        }                      
-      }
-    }
-  }
+/*
 
+int (menuKeyboardLogic) () {
+  if (k_scancode == ENTER_MK ) {
+    gameState_change = true;
+    gameState = GAME; 
+  }
+  return 0;
+}
+
+int (menuMouseLogic) () {
+    handle_mouse_movement(cursor);
+    update_menu_frame(start, quit, cursor);
+                    
+    if (m_packet.lb) {
+      if(collision(cursor, start)){
+        gameState_change = true;
+        gameState = GAME;
+      }   
+      if(collision(cursor, quit)){
+        gameState_change = true;
+        gameState = EXIT;
+      }                      
+    }
   return 0;
 }
 
 int (chooseLevelLogic)() {
    update_cursor = false;
-
-    if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
-    printf("driver_receive failed with: %d", r);
-  }   
 
     if (msg.m_notify.interrupts & irq_set_keyboard) {       
       kbc_ih();
@@ -291,6 +278,7 @@ int (gameLogic) ( bool * running) {
 
   return 0;
 }
+*/
 
 xpm_map_t get_next_sprite(xpm_map_t current_state, uint8_t scancode) {
     switch (scancode) {
