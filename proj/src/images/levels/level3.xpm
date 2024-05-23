@@ -1,5 +1,5 @@
 /* XPM */
-static char *level3[] = {
+static char *level3_[] = {
 /* columns rows colors chars-per-pixel */
 "165 52 6 1 ",
 "  c None",

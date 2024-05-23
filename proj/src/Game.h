@@ -53,23 +53,11 @@
 #include "images/quit_button.xpm"
 #include "images/hover_quit.xpm"
 
-/*enum SpriteState {
-    RIGHT1,
-    RIGHT2,
-    LEFT1,
-    LEFT2,
-    UP1,
-    UP2,
-    DOWN1,
-    DOWN2
-};*/
 
 typedef enum {
     MENU,
+    LEVELS,
     GAME,
-    LEVEL1,
-    LEVEL2,
-    LEVEL3,
     WIN,
     LOSE,
     EXIT
@@ -77,28 +65,23 @@ typedef enum {
 
 #define TIMER_MINUTES 3
 
-int (menuLogic) ( bool *running);
-int (chooseLevelLogic)();
-int (gameLogic) ( bool *running);
-int (winLogic) ( bool *running);
-
-void (draw_life_bar)( Sprite **bar, int total_seconds);
-
-void (draw_game_menu)();
-void (drawLevel) ( int x, int y, int width, int height);
-void (draw_game)();
 void (draw_menu)();
+void (update_menu)();
+int (collision)(Sprite * sp1, Sprite * sp2);
+
+void (draw_menu_levels)();
+void (load_level)();
+
+void (update_game)(Sprite * player);
+xpm_map_t (get_next_sprite)(uint8_t scancode);
+void (handle_ingame_scancode)(uint8_t scancode, Sprite *player);
+void (handle_mouse_movement)(Sprite * cursor);
+void (update_life_bar)(int total_seconds);
+
+
 void (draw_win)();
 void (draw_lost)();
 
-
-xpm_map_t (get_next_sprite)(xpm_map_t current_state, uint8_t scancode); 
-
-void (handle_ingame_scancode)( uint8_t scancode, Sprite *player);
-void (handle_mouse_movement)(Sprite * cursor);
-void (update_menu_frame)(Sprite * start, Sprite * quit, Sprite * cursor);
-void(update_game_menu)();
-void(update_game_frame)(Sprite * player);
 
 #endif
 
