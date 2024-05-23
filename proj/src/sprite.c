@@ -41,11 +41,11 @@ void destroy_sprite(Sprite *sp) {
 }
 
 
-int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer, int lant_radius) {
+int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer) {
   uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
 
-  for (int y = (-lant_radius) ; y < (sp->height+lant_radius) ; y++) {
-      for (int x = (-lant_radius) ; x < (sp->width + lant_radius) ; x++) {
+  for (int y = 0 ; y < sp->height ; y++) {
+      for (int x = 0 ; x < sp->width  ; x++) {
           uint32_t current_color = sp->map [y * sp->width + x];
           
           if (current_color != transparent_color) {
@@ -62,7 +62,7 @@ int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer, int lant_radius) {
 
 
 int (drawing_sprite)(Sprite *sp) {
-  if (drawing_to_buffer(sp, draw_buffer, 0) != 0) {
+  if (drawing_to_buffer(sp, draw_buffer) != 0) {
     printf("Drawing sprite failed \n");
     return 1;
   }
@@ -71,9 +71,29 @@ int (drawing_sprite)(Sprite *sp) {
 }
 
 
-int (drawing_sprite_lantern)(Sprite *sp, int lant_radius) {
-  if (drawing_to_buffer(sp, draw_buffer, lant_radius) != 0) {
-    printf("Drawing sprite failed \n");
+int (drawing_to_buffer_lantern)(Sprite *bg, Sprite *sp, uint8_t *buffer, int lant_radius) {
+  uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
+
+  for (int y = (-lant_radius) ; y < (sp->height+lant_radius) ; y++) {
+      for (int x = (-lant_radius) ; x < (sp->width + lant_radius) ; x++) {
+          uint32_t current_color = bg->map [(sp->y + y) * bg->width + (sp->x + x)];
+          
+          if (current_color != transparent_color) {
+              if (draw_pixel(sp->x + x, sp->y + y, current_color, buffer)) {
+                  printf("Drawing pixel failed \n");
+                  return 1;
+              }
+          }
+      }
+  }
+  
+  return 0;
+}
+
+
+int (drawing_lantern)(Sprite *bg, Sprite *sp, int lant_radius) {
+  if (drawing_to_buffer_lantern(bg, sp, draw_buffer, lant_radius) != 0) {
+    printf("Drawing background failed \n");
     return 1;
   }
 
@@ -92,7 +112,7 @@ int (drawing_bg)() {
 
 
 int (loading_bg_sprite)(Sprite *sp) {
-  if (drawing_to_buffer(sp, bg_buffer, 0) != 0) {
+  if (drawing_to_buffer(sp, bg_buffer) != 0) {
     printf("Loading background failed \n");
     return 1;
   }

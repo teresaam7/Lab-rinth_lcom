@@ -147,7 +147,7 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
             break;
 
         case W_KEY_MK:
-            player->y = player->y- 5;
+            player->y = player->y - 5;
             loading_xpm(get_next_sprite(W_KEY_MK), player);
             update_game(player);
             break;
@@ -187,6 +187,7 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
 void (update_game)(Sprite * player) {
   //drawLevel (player->x, player->y, player->width, player->width);
   //drawLevel (cursor->x, cursor->y, cursor->height, cursor->width);
+  drawing_lantern(maze, player, 40);
   drawing_sprite(player);
   drawing_sprite(life);
   drawing_sprite(cursor);

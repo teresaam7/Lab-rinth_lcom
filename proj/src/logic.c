@@ -43,7 +43,7 @@ int (loadSprites)() {
 int (gameStateInit)(bool * running) {
 	if(gameState == MENU) {draw_menu();}
 	if(gameState == LEVELS) {draw_menu_levels();}
-	if(gameState == GAME){update_game(player);}
+	if(gameState == GAME){ update_game(player);}
 	if(gameState == EXIT) {*running = false;}
 	gameState_change = false;
 	return 0;
