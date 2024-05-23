@@ -6,6 +6,7 @@
 
 #include "Game.h"
 
+int (loadSprites)();
 int (gameStateInit)(bool * running);
 int (keyboardLogic)();
 int (mouseLogic)();

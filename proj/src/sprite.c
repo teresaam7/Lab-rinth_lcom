@@ -92,7 +92,7 @@ int (drawing_bg)() {
 
 
 int (loading_bg_sprite)(Sprite *sp) {
-  if (drawing_to_buffer(sp, bg_buffer) != 0) {
+  if (drawing_to_buffer(sp, bg_buffer, 0) != 0) {
     printf("Loading background failed \n");
     return 1;
   }

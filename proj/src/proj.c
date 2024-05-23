@@ -5,7 +5,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-//#include "Game.h"
 #include "logic.h"
 
 int main(int argc, char *argv[]) {
@@ -59,6 +58,12 @@ int (proj_main_loop)(int argc, char *argv[]) {
   }
 
   if (graphic_mode(0x115) != 0) {
+    return 1;
+  }
+
+  initialize_buffers();
+
+  if (loadSprites()) {
     return 1;
   }
 
@@ -137,6 +142,8 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (vg_exit() != 0) {
     return 1;
   }
+
+  free_buffers();
 
   return 0;
 
