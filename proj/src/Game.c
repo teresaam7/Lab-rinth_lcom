@@ -14,8 +14,9 @@ extern bool gameState_change;
 extern GameState gameState;
 
 
-extern Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, *level1, *level2, *level3, *num, *player, *life;
+extern Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, *level1, *level2, *level3, *num, *maze, *player, *life;
 
+/* Menu */
 void (draw_menu)(){
   drawing_bg(menu_bg);
   drawing_sprite(start);
@@ -42,11 +43,70 @@ void (update_menu)(){
 }
 
 
-int (collision)(Sprite * sp1, Sprite * sp2){
+int (collision)(Sprite * sp1, Sprite * sp2) {
   if(sp1->x < sp2->x || sp1 -> x > sp2->x + sp2->width) return 0;
   if(sp1->y < sp2->y || sp1 -> y > sp2->y + sp2->height) return 0;
   return 1;
 }
+
+
+/* Levels */
+void (draw_menu_levels)() {
+  drawing_sprite(menu_bg);
+  drawing_sprite(level1);
+  drawing_sprite(level2);
+  drawing_sprite(level3);
+  drawing_sprite(num);
+  update_flip_frames();
+}
+
+
+void (load_level)(int level) {
+  uint8_t hours, minutes, seconds;
+  get_game_time(&hours, &minutes, &seconds);
+
+  if (maze != NULL) 
+    destroy_sprite(maze);
+
+  switch (level) {
+    case 1:
+      if (hours >= 6 && hours < 14) {
+        maze = create_sprite((xpm_map_t) mazeDay1, 0, 0, 0);
+      } else if (hours >= 20 || hours < 6) {
+        maze = create_sprite((xpm_map_t) mazeDark1, 0, 0, 0);
+      } else {
+        maze = create_sprite((xpm_map_t) maze1, 0, 0, 0);
+      }
+      break;
+
+    case 2:
+      if (hours >= 6 && hours < 14) {
+        maze = create_sprite((xpm_map_t) mazeDay2, 0, 0, 0);
+      } else if (hours >= 20 || hours < 6) {
+        maze = create_sprite((xpm_map_t) mazeDark2, 0, 0, 0);
+      } else {
+        maze = create_sprite((xpm_map_t) maze2, 0, 0, 0);
+      }
+      break;
+
+    case 3:
+      if (hours >= 6 && hours < 14) {
+        maze = create_sprite((xpm_map_t) mazeDay3, 0, 0, 0);
+      } else if (hours >= 20 || hours < 6) {
+        maze = create_sprite((xpm_map_t) mazeDark3, 0, 0, 0);
+      } else {
+        maze = create_sprite((xpm_map_t) maze3, 0, 0, 0);
+      }
+      break;
+
+    default:
+      return;
+  }
+}
+
+
+
+/* Game */
 
 void (draw_life_bar)( Sprite **bar, int total_seconds) {
     switch(total_seconds){
@@ -74,56 +134,7 @@ void (draw_life_bar)( Sprite **bar, int total_seconds) {
     //update_frame_with_background();
 }
 
-void drawLevel( int x, int y, int width, int height) {
-  uint8_t hours, minutes, seconds;
-  get_game_time(&hours, &minutes, &seconds);
 
-  switch (gameState) {
-    case LEVEL1:
-      if (hours >= 6 && hours < 14) {
-        //background_drawing((xpm_map_t) mazeDay1, x, y, width, height);
-      } else if (hours >= 20 || hours < 6) {
-        //background_drawing((xpm_map_t) mazeDark1, x, y, width, height);
-      } else {
-        //background_drawing((xpm_map_t) maze1, x, y, width, height);
-      }
-      break;
-    case LEVEL2:
-      if (hours >= 6 && hours < 14) {
-        //background_drawing((xpm_map_t) mazeDay2, x, y, width, height);
-      } else if (hours >= 20 || hours < 6) {
-        //background_drawing((xpm_map_t) mazeDark2, x, y, width, height);
-      } else {
-        //background_drawing((xpm_map_t) maze2, x, y, width, height);
-      }
-      break;
-    case LEVEL3:
-      if (hours >= 6 && hours < 14) {
-        //background_drawing((xpm_map_t) mazeDay3, x, y, width, height);
-      } else if (hours >= 20 || hours < 6) {
-        //background_drawing((xpm_map_t) mazeDark3, x, y, width, height);
-      } else {
-        //background_drawing((xpm_map_t) maze3, x, y, width, height);
-      }
-      break;
-    default:
-      return;
-  }
-}
-
-void (draw_game_menu)() {
-  //update_frame_with_background();
-  clear_drawing();
-  drawing_sprite(menu_bg);
-  //level1_ = create_sprite((xpm_map_t)level1, 315, 260, 0);
-  //level2_ = create_sprite((xpm_map_t)level2, 315, 340, 0);
-  //level3_ = create_sprite((xpm_map_t)level3, 315, 420, 0);
-  //num = create_sprite((xpm_map_t)ar, 30, 530, 0);
-  drawing_sprite(level1);
-  drawing_sprite(level2);
-  drawing_sprite(level3);
-  drawing_sprite(num);
-}
 
 void (draw_game)(){
   //update_frame_with_background();
@@ -239,8 +250,8 @@ void (handle_mouse_movement)(Sprite * cursor){
 
 void(update_game_frame)(Sprite * player){
   clear_drawing();
-  drawLevel (player->x, player->y, player->width, player->width);
-  drawLevel (cursor->x, cursor->y, cursor->height, cursor->width);
+  //drawLevel (player->x, player->y, player->width, player->width);
+  //drawLevel (cursor->x, cursor->y, cursor->height, cursor->width);
   drawing_sprite(player);
   drawing_sprite(life);
   drawing_sprite(cursor);

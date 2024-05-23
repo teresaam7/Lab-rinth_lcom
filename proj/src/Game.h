@@ -66,16 +66,21 @@
 
 typedef enum {
     MENU,
+    LEVELS,
     GAME,
-    LEVEL1,
-    LEVEL2,
-    LEVEL3,
     WIN,
     LOSE,
     EXIT
 } GameState;
 
 #define TIMER_MINUTES 3
+
+void (draw_menu)();
+void (update_menu)();
+int (collision)(Sprite * sp1, Sprite * sp2);
+
+void (draw_menu_levels)();
+void (load_level)();
 
 int (menuLogic) ( bool keyboard, bool mouse );
 int (chooseLevelLogic)();
@@ -85,21 +90,15 @@ int (winLogic) ( bool *running);
 
 void (draw_life_bar)( Sprite **bar, int total_seconds);
 
-void (draw_game_menu)();
-void (drawLevel) ( int x, int y, int width, int height);
 void (draw_game)();
-void (draw_menu)();
 void (draw_win)();
 void (draw_lost)();
 
 
 xpm_map_t (get_next_sprite)(xpm_map_t current_state, uint8_t scancode); 
 
-int (collision)(Sprite * sp1, Sprite * sp2);
-
 void (handle_ingame_scancode)( uint8_t scancode, Sprite *player);
 void (handle_mouse_movement)(Sprite * cursor);
-void (update_menu)();
 void(update_game_menu)();
 void(update_game_frame)(Sprite* player);
 

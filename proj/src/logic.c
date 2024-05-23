@@ -11,7 +11,7 @@ extern uint8_t k_bytes[2];
 extern int gameTime;
 extern int counter;
 
-Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, *level1, *level2, *level3, *num, *player, *life;
+Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, *level1, *level2, *level3, *num, *maze, *player, *life;
 
 int (loadSprites)() {
   menu_bg =  create_sprite((xpm_map_t)menu, 1, 1, 0);
@@ -42,31 +42,34 @@ int (loadSprites)() {
 
 int (gameStateInit)(bool * running) {
 	if(gameState == MENU) {draw_menu();}
-	if(gameState == GAME) {draw_game_menu();update_game_menu();}
-	if(gameState == LEVEL1|gameState == LEVEL2|gameState == LEVEL3 ){draw_game();update_game_frame(player);}
+	if(gameState == LEVELS) {draw_menu_levels();}
+	if(gameState == GAME ){draw_game(); update_game_frame(player);}
 	if(gameState == EXIT) {*running = false;}
 	gameState_change = false;
 	return 0;
 }
 
 int (keyboardLogic)() {
-	if(gameState == GAME) {
-		update_game_menu();
+	if(gameState == LEVELS) {
+		draw_menu_levels();
     if (k_scancode == BK_1) {
-      gameState = LEVEL1;
+      load_level(1);
+      gameState = GAME;
       gameState_change = true;  
     }
     if (k_scancode == BK_2) {
-    	gameState = LEVEL2;
+    	load_level(2);
+      gameState = GAME;
       gameState_change = true;  
     }
     if (k_scancode == BK_3) {
-      gameState = LEVEL3;
+      load_level(3);
+      gameState = GAME;
       gameState_change = true;  
     }
 	}
 
-	if(gameState == LEVEL1|gameState == LEVEL2|gameState == LEVEL3 ) {
+	if (gameState == GAME) {
 		handle_ingame_scancode(k_scancode, player);
 
 		if (k_scancode == SCAN_FIRST_TWO) {
@@ -76,7 +79,8 @@ int (keyboardLogic)() {
 			k_index = 0;
 		}
 	}
-return 0;
+
+  return 0;
 }
 
 int (mouseLogic) () {
@@ -88,7 +92,7 @@ int (mouseLogic) () {
     if (m_packet.lb) {
       if(collision(cursor, start)){
         gameState_change = true;
-        gameState = GAME;
+        gameState = LEVELS;
       }   
       if(collision(cursor, quit)){
         gameState_change = true;
@@ -97,7 +101,7 @@ int (mouseLogic) () {
     }
 	}
 
-	if(gameState == LEVEL1|gameState == LEVEL2|gameState == LEVEL3){
+	if(gameState == GAME){
 		handle_mouse_movement(cursor); 
   	update_game_frame(player);
 	}
@@ -107,7 +111,7 @@ int (mouseLogic) () {
 
 int (timerLogic) () {
 
-	if(gameState == LEVEL1|gameState == LEVEL2|gameState == LEVEL3){
+	if(gameState == GAME){
   int clock = counter % 60;
   if (clock == 0) {
     timer_print_elapsed_time();
