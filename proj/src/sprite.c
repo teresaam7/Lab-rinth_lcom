@@ -3,40 +3,61 @@
 #include <stdio.h>
 #include "sprite.h"
 
-/** Creates a new sprite from XPM "pic", with specified
-* position (within the screen limits) and speed;
-* Does not draw the sprite on the screen
-* Returns NULL on invalid pixmap.
-*/
+int (loading_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi, Sprite *sp) {
+    xpm_image_t image;
+    sp->map = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
+    sp->height = image.height;
+    sp->width = image.width; 
+  
+    return 0; 
+}
 
-Sprite *create_sprite(xpm_map_t xpm, int x, int y, double xspeed, double yspeed) {
-  Sprite *sp = (Sprite *) malloc ( sizeof(Sprite));
-  xpm_image_t img;
+Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed) {
+  Sprite *sp = (Sprite *) malloc (sizeof(Sprite));
   if (sp == NULL )
     return NULL;
 
-  sp->map = (const char *)xpm;
-  if( sp->map == NULL ) {
+  if( ((char *)xpm) == NULL ) {
+    printf("XPM is NULL \n");
     free(sp);
     return NULL;
   }
-  xpm_load(xpm,XPM_8_8_8,&img);
-  sp->width = img.width; 
-  sp->height=img.height;
-  sp->xspeed = xspeed;
-  sp->yspeed = yspeed;
+
+  loading_xpm(xpm, x, y, sp);
   sp->x = x;
   sp->y = y;
+  sp->speed = speed;
   return sp;
 }
 
+
 void destroy_sprite(Sprite *sp) {
-  if( sp == NULL )
+  if ( sp == NULL )
     return;
-  if(sp->map) free((void *)sp->map);
+
+  free(sp->map);
   free(sp);
-  sp = NULL; 
 }
+
+
+int drawing_sprite(Sprite *sp){
+  uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
+
+  for (int y = 0 ; y < sp->height ; y++) {
+        for (int x = 0 ; x < sp->width ; x++) {
+            uint32_t current_color = sp->map [y * sp->width + x];
+            
+            if (current_color != transparent_color) {
+                if (draw_pixel(sp->x + x, sp->y + y, current_color)) {
+                    printf("Drawing pixel failed \n");
+                    return 1;
+                }
+            }
+        }
+    }
+  return 0;
+}
+
 
 bool check_collision(Sprite *sprite1, int base_width, int base_height) {
     int sprite1_left = sprite1->x;
@@ -73,12 +94,4 @@ bool check_collision(Sprite *sprite1, int base_width, int base_height) {
     }*/
 
     return false;
-}
-
-
-int drawing_sprite(Sprite *sp){
-  if (drawing_xpm((xpm_map_t)sp->map, sp->x, sp->y) != 0) {
-    return 1;
-  }
-  return 0;
 }

@@ -58,7 +58,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
   bool running = true;
 
-  initialize_buffers();
+  //initialize_buffers();
 
   if (write_mouse(ENABLE_DATA_MODE) != 0)
     return 1;
@@ -75,7 +75,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (rtc_subscribe_int(&irq_set_rtc) != 0)
     return 1;
 
-  gameState =   MENU;
+
+  gameState = MENU;
+  
   draw_menu();
 
       while(k_scancode != SCAN_BREAK_ESC && running){
@@ -118,6 +120,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
           break; 
         }
       }
+      
     
     if (keyboard_unsubscribe_int() != 0)
         return 1;
@@ -134,7 +137,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (write_mouse(DISABLE_DATA_MODE) != 0)
       return 1;
 
-    free_buffers();
+    //free_buffers();
 
   if (vg_exit() != 0) {
     return 1;
