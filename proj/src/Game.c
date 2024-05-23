@@ -14,33 +14,28 @@ extern bool gameState_change;
 extern GameState gameState;
 
 
-extern Sprite *menu_bg, *title_, *start, *quit, *cursor, *level1_, *level2_, *level3_, *num, *player, *life;
+extern Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, *level1, *level2, *level3, *num, *player, *life;
 
 void (draw_menu)(){
   drawing_bg(menu_bg);
   drawing_sprite(start);
   drawing_sprite(quit);
   drawing_sprite(cursor);
-  drawing_sprite(title_);
+  drawing_sprite(title);
   update_flip_frames(); 
 }
 
 
 void (update_menu)(){
   drawing_bg(menu_bg);
+  drawing_sprite(title);
 
-  if(collision(cursor,start)){
-    Sprite* hover_start_sp = create_sprite((xpm_map_t)hover_start, 295, 293, 0);
-    drawing_sprite(hover_start_sp);
-    
-  }
+  if (collision(cursor,start)) drawing_sprite(hover_start);
   else drawing_sprite(start);
-  if(collision(cursor,quit)){
-    Sprite* hover_quit_sp = create_sprite((xpm_map_t)hover_quit, 315, 373, 0);
-    drawing_sprite(hover_quit_sp);
-    
-  }
+
+  if (collision(cursor,quit)) drawing_sprite(hover_quit);
   else drawing_sprite(quit);
+
   drawing_sprite(cursor);
 
   update_flip_frames();
@@ -120,13 +115,13 @@ void (draw_game_menu)() {
   //update_frame_with_background();
   clear_drawing();
   drawing_sprite(menu_bg);
-  level1_ = create_sprite((xpm_map_t)level1, 315, 260, 0);
-  level2_ = create_sprite((xpm_map_t)level2, 315, 340, 0);
-  level3_ = create_sprite((xpm_map_t)level3, 315, 420, 0);
-  num = create_sprite((xpm_map_t)ar, 30, 530, 0);
-  drawing_sprite(level1_);
-  drawing_sprite(level2_);
-  drawing_sprite(level3_);
+  //level1_ = create_sprite((xpm_map_t)level1, 315, 260, 0);
+  //level2_ = create_sprite((xpm_map_t)level2, 315, 340, 0);
+  //level3_ = create_sprite((xpm_map_t)level3, 315, 420, 0);
+  //num = create_sprite((xpm_map_t)ar, 30, 530, 0);
+  drawing_sprite(level1);
+  drawing_sprite(level2);
+  drawing_sprite(level3);
   drawing_sprite(num);
 }
 
@@ -256,9 +251,9 @@ void(update_game_menu)(){
   clear_drawing();
   //drawing_xpm((xpm_map_t) menu,1,1);
   drawing_sprite(menu_bg);
-  drawing_sprite(level1_);
-  drawing_sprite(level2_);
-  drawing_sprite(level3_);
+  drawing_sprite(level1);
+  drawing_sprite(level2);
+  drawing_sprite(level3);
   drawing_sprite(num);
 
   update_flip_frames();

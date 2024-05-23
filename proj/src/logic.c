@@ -11,25 +11,27 @@ extern uint8_t k_bytes[2];
 extern int gameTime;
 extern int counter;
 
-Sprite *menu_bg, *title_, *start, *quit, *cursor, *level1_, *level2_, *level3_, *num, *player, *life;
+Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, *level1, *level2, *level3, *num, *player, *life;
 
 int (loadSprites)() {
   menu_bg =  create_sprite((xpm_map_t)menu, 1, 1, 0);
-  title_ = create_sprite((xpm_map_t)title, 170, 100, 0);
+  title = create_sprite((xpm_map_t)title_, 200, 100, 0);
   start = create_sprite((xpm_map_t)start_button, 315, 300, 0);
+  hover_start = create_sprite((xpm_map_t)hover_start_, 295, 293, 0);
   quit = create_sprite((xpm_map_t)quit_button, 335, 380, 0);
+  hover_quit = create_sprite((xpm_map_t)hover_quit_, 315, 373, 0);
   cursor = create_sprite((xpm_map_t)hand, 315, 200, 0);
   
-  level1_ = create_sprite((xpm_map_t)level1, 315, 260, 0);
-  level2_ = create_sprite((xpm_map_t)level2, 315, 340, 0);
-  level3_ = create_sprite((xpm_map_t)level3, 315, 420, 0);
+  level1 = create_sprite((xpm_map_t)level1_, 315, 260, 0);
+  level2 = create_sprite((xpm_map_t)level2_, 315, 340, 0);
+  level3 = create_sprite((xpm_map_t)level3_, 315, 420, 0);
   num = create_sprite((xpm_map_t)ar, 30, 530, 0);
 
   player = create_sprite((xpm_map_t)right1, 20, 20, 0);
   life = create_sprite((xpm_map_t)life1, 610, 5, 0);
 
-  if (menu_bg == NULL || title_ == NULL || start == NULL || quit == NULL || cursor == NULL || level1_ == NULL ||
-      level2_ == NULL || level3_ == NULL || num == NULL || player == NULL || life == NULL)
+  if (menu_bg == NULL || title == NULL || start == NULL || hover_start == NULL || quit == NULL || hover_quit == NULL || 
+      cursor == NULL || level1 == NULL || level2 == NULL || level3 == NULL || num == NULL || player == NULL || life == NULL)
       return 1;
 
   loading_bg_sprite(menu_bg);

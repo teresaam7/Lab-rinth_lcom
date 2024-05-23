@@ -1,5 +1,5 @@
 /* XPM */
-static char *hover_start[] = {
+static char *hover_start_[] = {
 /* columns rows colors chars-per-pixel */
 "220 73 178 2 ",
 "   c None",
