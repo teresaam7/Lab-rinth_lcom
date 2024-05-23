@@ -53,16 +53,6 @@
 #include "images/quit_button.xpm"
 #include "images/hover_quit.xpm"
 
-/*enum SpriteState {
-    RIGHT1,
-    RIGHT2,
-    LEFT1,
-    LEFT2,
-    UP1,
-    UP2,
-    DOWN1,
-    DOWN2
-};*/
 
 typedef enum {
     MENU,

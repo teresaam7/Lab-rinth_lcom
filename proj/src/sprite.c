@@ -41,6 +41,7 @@ void destroy_sprite(Sprite *sp) {
 }
 
 
+
 int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer) {
   uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
 

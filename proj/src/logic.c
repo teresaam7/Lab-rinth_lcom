@@ -41,16 +41,16 @@ int (loadSprites)() {
 
 
 int (gameStateInit)(bool * running) {
-	if(gameState == MENU) {draw_menu();}
-	if(gameState == LEVELS) {draw_menu_levels();}
-	if(gameState == GAME){ update_game(player);}
-	if(gameState == EXIT) {*running = false;}
+	if (gameState == MENU) {draw_menu();}
+	if (gameState == LEVELS) {draw_menu_levels();}
+	if (gameState == GAME){ update_game(player);}
+	if (gameState == EXIT) {*running = false;}
 	gameState_change = false;
 	return 0;
 }
 
 int (keyboardLogic)() {
-	if(gameState == LEVELS) {
+	if (gameState == LEVELS) {
 		draw_menu_levels();
     if (k_scancode == BK_1) {
       load_level(1);
@@ -84,8 +84,7 @@ int (keyboardLogic)() {
 }
 
 int (mouseLogic) () {
-
-	if(gameState == MENU){
+	if (gameState == MENU){
 		handle_mouse_movement(cursor);
     update_menu();
                     
@@ -101,27 +100,31 @@ int (mouseLogic) () {
     }
 	}
 
-	if(gameState == GAME){
+	if (gameState == GAME){
 		handle_mouse_movement(cursor); 
   	update_game(player);
 	}
+
 	return 0;
 }
 
 
 int (timerLogic) () {
+	if (gameState == GAME){
+    int clock = counter % 60;
 
-	if(gameState == GAME){
-  int clock = counter % 60;
-  if (clock == 0) {
-    timer_print_elapsed_time();
-    gameTime--;
-  }
-  update_life_bar(gameTime);
+    if (clock == 0) {
+      timer_print_elapsed_time();
+      gameTime--;
+    }
+
+    update_life_bar(gameTime);
+
     if (gameTime == 0) {
       gameState = LOSE; 
       gameState_change = true; 
-  	}
+    }
 	}
+  
 	return 0;
 }
