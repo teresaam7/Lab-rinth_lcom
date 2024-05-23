@@ -28,6 +28,9 @@
 #include "images/levels/level1.xpm"
 #include "images/levels/level2.xpm"
 #include "images/levels/level3.xpm"
+#include "images/levels/hover_level1.xpm"
+#include "images/levels/hover_level2.xpm"
+#include "images/levels/hover_level3.xpm"
 
 #include "images/right1.xpm"
 #include "images/right2.xpm"
@@ -67,6 +70,7 @@ typedef enum {
 
 void (draw_menu)();
 void (update_menu)();
+void (update_menu_levels)();
 int (collision)(Sprite * sp1, Sprite * sp2);
 
 void (draw_menu_levels)();

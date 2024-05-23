@@ -14,7 +14,8 @@ extern bool gameState_change;
 extern GameState gameState;
 
 
-extern Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, *level1, *level2, *level3, *num, *maze, *player, *life;
+extern Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor,
+ *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *life;
 
 /* Menu */
 void (draw_menu)(){
@@ -53,10 +54,28 @@ int (collision)(Sprite * sp1, Sprite * sp2) {
 /* Levels */
 void (draw_menu_levels)() {
   drawing_sprite(menu_bg);
+  drawing_sprite(title);
   drawing_sprite(level1);
   drawing_sprite(level2);
   drawing_sprite(level3);
-  drawing_sprite(num);
+  update_flip_frames();
+}
+
+void (update_menu_levels)(){
+  drawing_bg(menu_bg);
+  drawing_sprite(title);
+
+  if (collision(cursor,level1)) drawing_sprite(hover_level1);
+  else drawing_sprite(level1);
+
+  if (collision(cursor,level2)) drawing_sprite(hover_level2);
+  else drawing_sprite(level2);
+
+  if (collision(cursor,level3)) drawing_sprite(hover_level3);
+  else drawing_sprite(level3);
+
+  drawing_sprite(cursor);
+
   update_flip_frames();
 }
 
