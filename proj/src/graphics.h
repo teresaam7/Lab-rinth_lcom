@@ -24,6 +24,7 @@ void (clear_drawing)();
 int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color, uint8_t* buffer);
 int (draw_background)();
 
-int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t w, uint16_t h);
+void (initialize_buffers)();
+void (free_buffers)();
 
 #endif

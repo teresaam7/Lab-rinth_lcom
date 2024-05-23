@@ -15,8 +15,9 @@ Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed);
 
 void destroy_sprite(Sprite *sp);
 
-int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer);
+int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer, int lant_radius);
 int (drawing_sprite)(Sprite *sp);
+int (drawing_sprite_lantern)(Sprite *sp, int lant_radius);
 int (drawing_bg)();
 
 int (loading_bg_sprite)(Sprite *sp);

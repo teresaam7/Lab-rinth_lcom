@@ -41,11 +41,11 @@ void destroy_sprite(Sprite *sp) {
 }
 
 
-int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer) {
+int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer, int lant_radius) {
   uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
 
-  for (int y = 0 ; y < sp->height ; y++) {
-      for (int x = 0 ; x < sp->width ; x++) {
+  for (int y = (-lant_radius) ; y < (sp->height+lant_radius) ; y++) {
+      for (int x = (-lant_radius) ; x < (sp->width + lant_radius) ; x++) {
           uint32_t current_color = sp->map [y * sp->width + x];
           
           if (current_color != transparent_color) {
@@ -62,7 +62,17 @@ int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer) {
 
 
 int (drawing_sprite)(Sprite *sp) {
-  if (drawing_to_buffer(sp, draw_buffer) != 0) {
+  if (drawing_to_buffer(sp, draw_buffer, 0) != 0) {
+    printf("Drawing sprite failed \n");
+    return 1;
+  }
+
+  return 0;
+}
+
+
+int (drawing_sprite_lantern)(Sprite *sp, int lant_radius) {
+  if (drawing_to_buffer(sp, draw_buffer, lant_radius) != 0) {
     printf("Drawing sprite failed \n");
     return 1;
   }

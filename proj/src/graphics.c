@@ -117,108 +117,12 @@ int (draw_background)() {
 }
 
 
-
-int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t w, uint16_t h) {
-
-  xpm_image_t image;
-  uint32_t *colors = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
-  uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
-
-  for (int y = (- 40) ; y < (h + 40) ; y++) {
-      for (int x = (-40) ; x < (w + 40) ; x++) {
-          uint32_t current_color = colors[ (yi+y) * image.width + (xi+x)];
-          
-          if (current_color != transparent_color) {
-              if (draw_pixel(xi + x, yi + y, current_color, draw_buffer)) {
-                  printf("Drawing failed \n");
-                  return 1;
-              }
-          }
-      }
-  } 
-  return 0;
-}
-
-
-
-/*
 void (initialize_buffers)() {
-  //draw_buffer = malloc(frame.size);
+  bg_buffer = malloc(frame.size);
 }
+
 
 void (free_buffers)() {
-  //free(draw_buffer);
+  free(bg_buffer);
 }
 
-
-void (update_frame)() {
-  memcpy(frame.buffer1, draw_buffer, frame.size);
-}
-
-void (clear_frame)() {
-  memset(frame.buffer1, 0, frame.size);
-}
-
-
-int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
-  clear_drawing();
-  if (drawing_xpm(xpm, xi, yi) != 1) {
-    printf("Background drawing failed \n");
-    return 1;
-  }
-  memcpy(background_buffer, draw_buffer, frame.size);
-  clear_drawing();
-  return 0;
-}
-
-void (update_frame_with_background)() {
-  memcpy(frame.buffer1, background_buffer, frame.size);
-  memcpy(frame.buffer1, draw_buffer, frame.size);
-}
-*/
-
-/*
-void get_display_start(int* buffer) {
-    reg86_t r;
-    memset(&r, 0, sizeof(r));
-
-    r.intno = 0x10;
-    r.ax = 0x4F07;
-    r.bh = 0x00;
-    r.bl = 0x01;
-
-    if (sys_int86(&r) != 0) {
-        printf("sys_int86() failed for get display start\n");
-    }
-
-}
-*/
-
-
-/*
-uint8_t *display_buffer;
-
-void (initialize_buffers)() {
-  display_buffer = malloc(frame.size);
-  draw_buffer = malloc(frame.size);
-}
-
-void (free_buffers)() {
-  free(display_buffer);
-  free(draw_buffer);;
-}
-
-void (update_display)() { 
-  display_buffer = draw_buffer;
-}
-
-void (update_screen)() {
-  memcpy(frame.buffer1, display_buffer, frame.size);
-}
-
-void flip_pages() { // Flip?
-    uint8_t *temp = display_buffer;
-    display_buffer = draw_buffer;
-    draw_buffer = temp;
-}
-*/
