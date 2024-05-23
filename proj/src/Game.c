@@ -107,6 +107,104 @@ void (load_level)(int level) {
 
 
 /* Game */
+xpm_map_t (get_next_sprite)(uint8_t scancode) {
+    switch (scancode) {
+        case A_KEY_MK:
+            return (xpm_map_t)left1;
+        case D_KEY_MK:
+            return (xpm_map_t)right1;
+        case W_KEY_MK:
+            return (xpm_map_t)up1;
+        case S_KEY_MK:
+            return (xpm_map_t)down1;
+        case A_KEY_BRK:
+            return (xpm_map_t)left2;
+        case D_KEY_BRK:
+            return (xpm_map_t)right2;
+        case W_KEY_BRK:
+            return (xpm_map_t)up2;
+        case S_KEY_BRK:
+            return (xpm_map_t)down2;
+
+        default:
+            return (xpm_map_t)right1;
+    }
+}
+
+
+void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
+    switch (scancode) {
+        case D_KEY_MK:
+            player->x = player->x + 5;
+            loading_xpm(get_next_sprite(D_KEY_MK), player);
+            update_game(player);
+            break;
+
+        case A_KEY_MK:
+            player->x = player->x - 5;
+            loading_xpm(get_next_sprite(A_KEY_MK), player);
+            update_game(player);
+            break;
+
+        case W_KEY_MK:
+            player->y = player->y- 5;
+            loading_xpm(get_next_sprite(W_KEY_MK), player);
+            update_game(player);
+            break;
+        
+        case S_KEY_MK:
+            player->y = player->y + 5;
+            loading_xpm(get_next_sprite(S_KEY_MK), player);
+            update_game(player);
+            break;
+
+        case A_KEY_BRK:
+            loading_xpm(get_next_sprite(A_KEY_BRK), player);
+            update_game(player);
+            break;
+
+        case D_KEY_BRK:
+            loading_xpm(get_next_sprite(D_KEY_BRK), player);
+            update_game(player);
+            break;
+
+        case S_KEY_BRK:
+            loading_xpm(get_next_sprite(S_KEY_BRK), player);
+            update_game(player);
+            break;
+
+        case W_KEY_BRK:
+            loading_xpm(get_next_sprite(W_KEY_BRK), player);
+            update_game(player);
+            break;
+
+        default:
+            return;
+    }
+}
+
+
+void (update_game)(Sprite * player) {
+  //drawLevel (player->x, player->y, player->width, player->width);
+  //drawLevel (cursor->x, cursor->y, cursor->height, cursor->width);
+  drawing_sprite(player);
+  drawing_sprite(life);
+  drawing_sprite(cursor);
+  update_flip_frames();
+}
+
+
+void (handle_mouse_movement)(Sprite * cursor){
+  if(!(cursor->x + m_packet.delta_x <= 0)) cursor->x += m_packet.delta_x;
+  if(!(cursor->y - m_packet.delta_y <= 0)) cursor->y -= m_packet.delta_y;
+  if(cursor->x + cursor->width >= mode_info.XResolution)cursor->x = mode_info.XResolution - cursor->width;
+  if(cursor->y + cursor->height >= mode_info.YResolution)cursor->y = mode_info.YResolution - cursor->height;
+  if(cursor->x + cursor->width >= 785)cursor->x = 785 - cursor->width;
+  if(cursor->y + cursor->height >= 575)cursor->y = 575 - cursor->height;
+}
+
+
+
 
 void (draw_life_bar)( Sprite **bar, int total_seconds) {
     switch(total_seconds){
@@ -158,117 +256,4 @@ void (draw_win)() {
 void (draw_lost)() {
   //drawing_xpm((xpm_map_t) win,1,1);
 }
-
-
-xpm_map_t get_next_sprite(xpm_map_t current_state, uint8_t scancode) {
-    switch (scancode) {
-        case A_KEY_MK:
-            return (xpm_map_t)left1;
-        case D_KEY_MK:
-            return (xpm_map_t)right1;
-        case W_KEY_MK:
-            return (xpm_map_t)up1;
-        case S_KEY_MK:
-            return (xpm_map_t)down1;
-        case A_KEY_BRK:
-            return (xpm_map_t)left2;
-        case D_KEY_BRK:
-            return (xpm_map_t)right2;
-        case W_KEY_BRK:
-            return (xpm_map_t)up2;
-        case S_KEY_BRK:
-            return (xpm_map_t)down2;
-        default:
-            return (xpm_map_t)current_state;
-    }
-}
-
-
-void handle_ingame_scancode( uint8_t scancode, Sprite *player) {
-    
-    switch (scancode) {
-        case D_KEY_MK:
-            player->x = player->x + 5;
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_MK), player->x, player->y, player->speed);
-            update_game_frame(player);
-            break;
-
-        case A_KEY_MK:
-            player->x = player->x - 5;
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_MK), player->x, player->y, player->speed);
-            update_game_frame(player);
-            break;
-
-        case W_KEY_MK:
-            player->y = player->y- 5;
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_MK), player->x, player->y, player->speed);
-            update_game_frame(player);
-            break;
-        
-        case S_KEY_MK:
-            player->y = player->y + 5;
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_MK), player->x, player->y, player->speed);
-            update_game_frame(player);
-            break;
-
-        case A_KEY_BRK:
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, A_KEY_BRK), player->x, player->y, player->speed);
-            update_game_frame(player);
-            break;
-
-        case D_KEY_BRK:
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, D_KEY_BRK), player->x, player->y, player->speed);
-            update_game_frame(player);
-            break;
-
-        case S_KEY_BRK:
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, S_KEY_BRK), player->x, player->y, player->speed);
-            update_game_frame(player);
-            break;
-
-        case W_KEY_BRK:
-            player=create_sprite((xpm_map_t)get_next_sprite((xpm_map_t)player->map, W_KEY_BRK), player->x, player->y, player->speed);
-            update_game_frame(player);
-            break;
-
-        default:
-            return;
-    }
-
-
-}
-
-
-void (handle_mouse_movement)(Sprite * cursor){
-  if(!(cursor->x + m_packet.delta_x <= 0)) cursor->x += m_packet.delta_x;
-  if(!(cursor->y - m_packet.delta_y <= 0)) cursor->y -= m_packet.delta_y;
-  if(cursor->x + cursor->width >= mode_info.XResolution)cursor->x = mode_info.XResolution - cursor->width;
-  if(cursor->y + cursor->height >= mode_info.YResolution)cursor->y = mode_info.YResolution - cursor->height;
-  if(cursor->x + cursor->width >= 785)cursor->x = 785 - cursor->width;
-  if(cursor->y + cursor->height >= 575)cursor->y = 575 - cursor->height;
-}
-
-void(update_game_frame)(Sprite * player){
-  clear_drawing();
-  //drawLevel (player->x, player->y, player->width, player->width);
-  //drawLevel (cursor->x, cursor->y, cursor->height, cursor->width);
-  drawing_sprite(player);
-  drawing_sprite(life);
-  drawing_sprite(cursor);
-  update_flip_frames();
-}
-
-void(update_game_menu)(){
-  clear_drawing();
-  //drawing_xpm((xpm_map_t) menu,1,1);
-  drawing_sprite(menu_bg);
-  drawing_sprite(level1);
-  drawing_sprite(level2);
-  drawing_sprite(level3);
-  drawing_sprite(num);
-
-  update_flip_frames();
-}
-
-
 

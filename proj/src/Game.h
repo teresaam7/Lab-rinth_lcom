@@ -82,6 +82,13 @@ int (collision)(Sprite * sp1, Sprite * sp2);
 void (draw_menu_levels)();
 void (load_level)();
 
+
+xpm_map_t (get_next_sprite)(uint8_t scancode);
+void (handle_ingame_scancode)(uint8_t scancode, Sprite *player);
+void (update_game)(Sprite * player);
+
+
+
 int (menuLogic) ( bool keyboard, bool mouse );
 int (chooseLevelLogic)();
 int (gameLogic) ( bool *running);
@@ -95,11 +102,9 @@ void (draw_win)();
 void (draw_lost)();
 
 
-xpm_map_t (get_next_sprite)(xpm_map_t current_state, uint8_t scancode); 
 
-void (handle_ingame_scancode)( uint8_t scancode, Sprite *player);
+
 void (handle_mouse_movement)(Sprite * cursor);
-void(update_game_menu)();
 void(update_game_frame)(Sprite* player);
 
 #endif

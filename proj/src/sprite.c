@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "sprite.h"
 
-int (loading_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi, Sprite *sp) {
+int (loading_xpm)(xpm_map_t xpm, Sprite *sp) {
     xpm_image_t image;
     sp->map = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
     sp->height = image.height;
@@ -13,7 +13,7 @@ int (loading_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi, Sprite *sp) {
 }
 
 
-Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed) {
+Sprite* (create_sprite)(xpm_map_t xpm, int x, int y, int speed) {
   Sprite *sp = (Sprite *) malloc (sizeof(Sprite));
   if (sp == NULL )
     return NULL;
@@ -24,7 +24,7 @@ Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed) {
     return NULL;
   }
 
-  loading_xpm(xpm, x, y, sp);
+  loading_xpm(xpm, sp);
   sp->x = x;
   sp->y = y;
   sp->speed = speed;
