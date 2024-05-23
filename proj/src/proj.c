@@ -5,7 +5,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "Game.h"
+//#include "Game.h"
+#include "logic.h"
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -31,13 +32,12 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-Sprite *sp,*start, *quit, *title_, *cursor, *life, *level1_, *level2_, *level3_;
-
 extern uint8_t k_scancode;
 
 int r;
 message msg;
 int ipc_status;
+int gameTime = 60 * TIMER_MINUTES;
 bool gameState_change = true;
 GameState gameState;
 
@@ -46,6 +46,12 @@ uint8_t irq_set_keyboard;
 uint8_t irq_set_mouse;
 uint8_t irq_set_timer;
 uint8_t irq_set_rtc;
+
+extern int m_index;
+extern uint8_t m_bytes[3];
+extern struct packet m_packet;
+extern vbe_mode_info_t mode_info;
+
 
 int (proj_main_loop)(int argc, char *argv[]) {
   if (initialize_frame_buffer(0x115) != 0) {
@@ -73,55 +79,48 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (rtc_subscribe_int(&irq_set_rtc) != 0)
     return 1;
 
-
   gameState = MENU;
-  
   draw_menu();
 
-      while(k_scancode != SCAN_BREAK_ESC && running){
-        switch(gameState){
-          case MENU:
-          if(gameState_change){
-            draw_menu();
-            gameState_change = false;}
-          if(menuLogic( &running)!=0) return 1;
+  while(k_scancode != SCAN_BREAK_ESC && running){
+    if(gameState_change){
+      gameStateInit(&running);
+    }
+
+    if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+        printf("driver_receive failed with: %d", r);
+        continue;
+    }
+    if (is_ipc_notify(ipc_status)) {      
+      switch (_ENDPOINT_P(msg.m_source)) {
+        case HARDWARE:   
+          if (msg.m_notify.interrupts & irq_set_keyboard) { 
+            kbc_ih();
+            keyboardLogic();
+          }
+
+          if (msg.m_notify.interrupts & irq_set_mouse) {
+            mouse_ih(); 
+            if (m_index == 3) {
+              store_bytes_packet();
+              m_index = 0;
+              mouse_print_packet(&m_packet);
+              mouseLogic();
+            }
+          }
+
+          if ( msg.m_notify.interrupts & irq_set_timer) {
+            timer_int_handler(); 
+            timerLogic();
+          }
           break;
-          case GAME: 
-            if(gameState_change){
-              draw_game_menu();
-              gameState_change = false;}
-            if (chooseLevelLogic()!= 0) return 1;
-          break;
-          case LEVEL1:
-            if(gameState_change){
-              draw_game();
-              gameState_change = false;}
-            if (gameLogic( &running)!= 0) return 1;
-          case LEVEL2:
-            if(gameState_change){
-              draw_game();
-              gameState_change = false;}
-            if (gameLogic( &running)!= 0) return 1;
-          case LEVEL3:
-            if(gameState_change){
-              draw_game();
-              gameState_change = false;}
-            if (gameLogic(&running)!= 0) return 1;
-          break;
-          case WIN:
-            //if (gameLogic(&gameState, &running)!= 0) return 1;
-          case LOSE:
-            //if (gameLogic(&gameState, &running)!= 0) return 1;
-          break;
-          case EXIT:
-            running = false;
-          break; 
-        }
-      }
+        default: break;
+      } 
+    } 
+  }
       
-    
     if (keyboard_unsubscribe_int() != 0)
-        return 1;
+      return 1;
 
     if (mouse_unsubscribe_int() != 0)
       return 1;
