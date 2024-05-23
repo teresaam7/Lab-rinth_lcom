@@ -117,7 +117,7 @@ int (timerLogic) () {
     timer_print_elapsed_time();
     gameTime--;
   }
-  draw_life_bar(&life, gameTime);
+  update_life_bar(gameTime);
     if (gameTime == 0) {
       gameState = LOSE; 
       gameState_change = true; 

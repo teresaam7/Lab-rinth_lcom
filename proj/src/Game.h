@@ -82,30 +82,16 @@ int (collision)(Sprite * sp1, Sprite * sp2);
 void (draw_menu_levels)();
 void (load_level)();
 
-
+void (update_game)(Sprite * player);
 xpm_map_t (get_next_sprite)(uint8_t scancode);
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player);
-void (update_game)(Sprite * player);
+void (handle_mouse_movement)(Sprite * cursor);
+void (update_life_bar)(int total_seconds);
 
 
-
-int (menuLogic) ( bool keyboard, bool mouse );
-int (chooseLevelLogic)();
-int (gameLogic) ( bool *running);
-int (winLogic) ( bool *running);
-
-
-void (draw_life_bar)( Sprite **bar, int total_seconds);
-
-void (draw_game)();
 void (draw_win)();
 void (draw_lost)();
 
-
-
-
-void (handle_mouse_movement)(Sprite * cursor);
-void(update_game_frame)(Sprite* player);
 
 #endif
 

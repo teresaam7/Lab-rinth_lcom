@@ -107,6 +107,16 @@ void (load_level)(int level) {
 
 
 /* Game */
+void (update_game)(Sprite * player) {
+  drawing_lantern(maze, player, 40);
+  drawing_lantern(maze, cursor, 40);
+  drawing_sprite(player);
+  drawing_sprite(life);
+  drawing_sprite(cursor);
+  update_flip_frames();
+}
+
+
 xpm_map_t (get_next_sprite)(uint8_t scancode) {
     switch (scancode) {
         case A_KEY_MK:
@@ -184,17 +194,6 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
 }
 
 
-void (update_game)(Sprite * player) {
-  //drawLevel (player->x, player->y, player->width, player->width);
-  //drawLevel (cursor->x, cursor->y, cursor->height, cursor->width);
-  drawing_lantern(maze, player, 40);
-  drawing_sprite(player);
-  drawing_sprite(life);
-  drawing_sprite(cursor);
-  update_flip_frames();
-}
-
-
 void (handle_mouse_movement)(Sprite * cursor){
   if(!(cursor->x + m_packet.delta_x <= 0)) cursor->x += m_packet.delta_x;
   if(!(cursor->y - m_packet.delta_y <= 0)) cursor->y -= m_packet.delta_y;
@@ -205,46 +204,29 @@ void (handle_mouse_movement)(Sprite * cursor){
 }
 
 
-
-
-void (draw_life_bar)( Sprite **bar, int total_seconds) {
+void (update_life_bar)(int total_seconds) {
     switch(total_seconds){
         case 30:
-            *bar = create_sprite((xpm_map_t)life5, 610, 5, 0);
-            drawing_sprite(*bar);
+            loading_xpm((xpm_map_t)life5, life);
             break;
         case 60:
-            *bar = create_sprite((xpm_map_t)life4, 610, 5, 0);
-            drawing_sprite(*bar);
+            loading_xpm((xpm_map_t)life4, life);
             break;
         case 90:
-            *bar = create_sprite((xpm_map_t)life3, 610, 5, 0);
-            drawing_sprite(*bar);
+            loading_xpm((xpm_map_t)life3, life);
             break;
         case 140:
-            *bar = create_sprite((xpm_map_t)life2, 610, 5, 0);
-            drawing_sprite(*bar);
+            loading_xpm((xpm_map_t)life2, life);
             break;
+        //case 200:
+            //loading_xpm((xpm_map_t)life1, life);
+            //break;
         default:
             return;
     }
-    clear_drawing();
-    drawing_sprite(*bar);
-    //update_frame_with_background();
+    
 }
 
-
-
-void (draw_game)(){
-  //update_frame_with_background();
-  clear_drawing();
-  cursor = create_sprite((xpm_map_t)hand, 315, 200, 0);
-  player = create_sprite((xpm_map_t)right1, 20, 20, 0);
-  life = create_sprite((xpm_map_t)life1, 610, 5, 0);
-  drawing_sprite(player);
-  drawing_sprite(life);
-  drawing_sprite(cursor);
-}
 
 
 
