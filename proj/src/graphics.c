@@ -95,12 +95,12 @@ void (clear_drawing)() {
 }
 
 
-int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
+int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color, uint8_t* buffer) {
   if (x < 0 || y < 0 || x >= frame.res_x || y >= frame.res_y) return 0;
 
   unsigned int index = (y * frame.res_x + x) * frame.bytes_pixel;
 
-  if (memcpy(&draw_buffer[index], &color, frame.bytes_pixel) == NULL) 
+  if (memcpy(&buffer[index], &color, frame.bytes_pixel) == NULL) 
     return 1;
 
   return 0;
@@ -109,11 +109,11 @@ int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
 
 
 
-
+/*
 void (drawing_to_buffer)(uint8_t *sp_map) {
   memcpy(draw_buffer, sp_map, frame.size);
 }
-
+*/
 
 int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t w, uint16_t h) {
 
@@ -126,7 +126,7 @@ int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t w, ui
           uint32_t current_color = colors[ (yi+y) * image.width + (xi+x)];
           
           if (current_color != transparent_color) {
-              if (draw_pixel(xi + x, yi + y, current_color)) {
+              if (draw_pixel(xi + x, yi + y, current_color, draw_buffer)) {
                   printf("Drawing failed \n");
                   return 1;
               }

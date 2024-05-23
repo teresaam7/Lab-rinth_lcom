@@ -58,8 +58,6 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
   bool running = true;
 
-  //initialize_buffers();
-
   if (write_mouse(ENABLE_DATA_MODE) != 0)
     return 1;
 
@@ -136,8 +134,6 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
     if (write_mouse(DISABLE_DATA_MODE) != 0)
       return 1;
-
-    //free_buffers();
 
   if (vg_exit() != 0) {
     return 1;
