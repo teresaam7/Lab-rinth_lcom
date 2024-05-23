@@ -54,6 +54,7 @@ int (initialize_frame_buffer)(uint16_t mode) {
 }
 
 
+
 void (set_display_start)(int buffer) {
     reg86_t r;
     memset(&r, 0, sizeof(r));
@@ -95,6 +96,7 @@ void (clear_drawing)() {
 }
 
 
+
 int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color, uint8_t* buffer) {
   if (x < 0 || y < 0 || x >= frame.res_x || y >= frame.res_y) return 0;
 
@@ -107,13 +109,14 @@ int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color, uint8_t* buffer) {
 }
 
 
-
-
-/*
-void (drawing_to_buffer)(uint8_t *sp_map) {
-  memcpy(draw_buffer, sp_map, frame.size);
+int (draw_background)() {
+  if (memcpy(draw_buffer, bg_buffer, frame.size) == NULL)
+    return 1;
+  
+  return 0;
 }
-*/
+
+
 
 int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t w, uint16_t h) {
 

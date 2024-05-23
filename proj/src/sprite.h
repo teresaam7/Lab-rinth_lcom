@@ -11,14 +11,15 @@ typedef struct {
 
 
 int (loading_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi, Sprite *sp);
-
-void (loading_bg_buffer)(Sprite *sp);
-
 Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed);
 
 void destroy_sprite(Sprite *sp);
 
-int drawing_sprite(Sprite *sp);
+int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer);
+int (drawing_sprite)(Sprite *sp);
+int (drawing_bg)();
+
+int (loading_bg_sprite)(Sprite *sp);
 
 #endif
 

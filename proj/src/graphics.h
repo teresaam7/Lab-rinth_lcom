@@ -17,14 +17,12 @@ int display_buffer; uint8_t *draw_buffer; uint8_t *bg_buffer;
 int (graphic_mode)(uint16_t mode);
 int (initialize_frame_buffer) (uint16_t mode);
 
-
 void (set_display_start)(int buffer);
 void (update_flip_frames)();
 void (clear_drawing)();
 
 int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color, uint8_t* buffer);
-
-//void (drawing_to_buffer)(uint8_t *sp_map);
+int (draw_background)();
 
 int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t w, uint16_t h);
 
