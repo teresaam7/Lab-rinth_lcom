@@ -218,9 +218,6 @@ void (update_life_bar)(int total_seconds) {
         case 140:
             loading_xpm((xpm_map_t)life2, life);
             break;
-        //case 200:
-            //loading_xpm((xpm_map_t)life1, life);
-            //break;
         default:
             return;
     }
