@@ -80,7 +80,7 @@ void (update_life_bar)(int total_seconds);
 
 
 void (draw_win)();
-void (draw_lost)();
+//void (draw_lost)();
 
 
 #endif

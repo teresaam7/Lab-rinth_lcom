@@ -145,27 +145,48 @@ xpm_map_t (get_next_sprite)(uint8_t scancode) {
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
     switch (scancode) {
         case D_KEY_MK:
+          if(check_collision(player, maze->width, maze->height)!=0){
             player->x = player->x + 5;
             loading_xpm(get_next_sprite(D_KEY_MK), player);
             update_game(player);
-            break;
+          }
+          else{
+            player->x = player->x - 5;
+          }
+
+          break;
 
         case A_KEY_MK:
+          if(check_collision(player, maze->width, maze->height)!=0){
             player->x = player->x - 5;
             loading_xpm(get_next_sprite(A_KEY_MK), player);
             update_game(player);
+          }
+          else{
+            player->x = player->x + 5;
+          }
             break;
 
         case W_KEY_MK:
+          if(check_collision(player, maze->width, maze->height)!=0){
             player->y = player->y - 5;
             loading_xpm(get_next_sprite(W_KEY_MK), player);
             update_game(player);
+          }
+          else{
+            player->y = player->y + 5;
+          }
             break;
         
         case S_KEY_MK:
+          if(check_collision(player, maze->width, maze->height)!=0){
             player->y = player->y + 5;
             loading_xpm(get_next_sprite(S_KEY_MK), player);
             update_game(player);
+          }
+          else{
+            player->y = player->y - 5;
+          }
             break;
 
         case A_KEY_BRK:
