@@ -1,9 +1,9 @@
 /* XPM */
-static const char * mazeDark2[] = {
+static const char * mazeDay2[] = {
 /* columns rows colors chars-per-pixel */
 "810 594 2 1 ",
-"  c #004C4C",
-". c #668366",
+"  c #FFA364",
+". c #FFFF7D",
 /* pixels */
 "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ",
 "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ",

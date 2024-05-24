@@ -10,7 +10,7 @@ int (graphic_mode)(uint16_t mode) {
   r.bx = BIT(14) | mode;
   
   if (sys_int86(&r) != 0) {
-    printf("sys_int86() failed \n");
+    printf("sys_int86 failed for graphic mode\n");
     return 1;
   }
 
@@ -18,133 +18,111 @@ int (graphic_mode)(uint16_t mode) {
 }
 
 
-int (initialize_frame_buffer) (uint16_t mode) {
-  //vbe_mode_info_t mode_info;
+int (initialize_frame_buffer)(uint16_t mode) {
   if (vbe_get_mode_info(mode, &mode_info) != 0) 
     return 1;
 
   frame.res_x = mode_info.XResolution;
   frame.res_y = mode_info.YResolution;
 
-  frame.bytesPerPixel = (mode_info.BitsPerPixel + 7) / 8; 
-  frame.size = mode_info.XResolution * mode_info.YResolution * frame.bytesPerPixel;
+  frame.bytes_pixel = (mode_info.BitsPerPixel + 7) / 8; 
+  frame.size = mode_info.XResolution * mode_info.YResolution * frame.bytes_pixel;
+  unsigned int size_total = 2 * frame.size;
   
 
   int r;
   struct minix_mem_range mr;
   mr.mr_base = mode_info.PhysBasePtr;
-  mr.mr_limit = mr.mr_base + frame.size;
+  mr.mr_limit = mr.mr_base + size_total;
 
   if( 0 != (r = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr))) {
     printf("sys_privctl failed: %d\n", r);
     return 1;
   }
-  
-  frame.buffer = vm_map_phys(SELF, (void *)mr.mr_base, frame.size);
-  if(frame.buffer == MAP_FAILED) {
-    printf("Mapping video memory failed \n");
+
+
+  frame.buffer1 = vm_map_phys(SELF, (void *)mr.mr_base, size_total);
+  if (frame.buffer1 == MAP_FAILED) {
+    printf("Mapping video memory failed\n");
     return 1;
   }
+  frame.buffer2 = frame.buffer1 + frame.size;
+
+  display_buffer = 1; draw_buffer = frame.buffer2;
 
   return 0;
 }
 
 
-int (draw_pixel_to_buffer) (uint16_t x, uint16_t y, uint32_t color) {
-  if (x < 0 || y < 0 || x >= frame.res_x || y >= frame.res_y) return 0;
 
-  unsigned int index = (y * frame.res_x + x) * frame.bytesPerPixel;
-  if(memcpy(&draw_buffer[index], &color, frame.bytesPerPixel) == NULL) 
-    return 1;
+void (set_display_start)(int buffer) {
+    reg86_t r;
+    memset(&r, 0, sizeof(r));
 
-  return 0;
-}
+    r.intno = 0x10;
+    r.ax = 0x4F07;
+    r.bx = 0x00;
+    r.cx = 0x00;
 
-
-int (drawing_xpm)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
-    xpm_image_t image;
-    uint32_t *colors = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
-    uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
-
-    for (int y = 0 ; y < image.height ; y++) {
-        for (int x = 0 ; x < image.width ; x++) {
-            uint32_t current_color = colors[y * image.width + x];
-            
-            if (current_color != transparent_color) {
-                if (draw_pixel_to_buffer(xi + x, yi + y, current_color)) {
-                    printf("Drawing failed \n");
-                    return 1;
-                }
-            }
-        }
+    if (buffer == 1) {
+      r.dx = 0;
+    } else {    
+      r.dx = frame.res_y;
     }
-    return 0; 
+    
+    if (sys_int86(&r) != 0) {
+        printf("sys_int86() failed for set display start\n");
+    }
 }
 
 
-void (initialize_buffers)() {
-  draw_buffer = malloc(frame.size);
-  background_buffer = malloc(frame.size);
+void (update_flip_frames)() { 
+  if (display_buffer == 1) {
+    set_display_start(2);
+    display_buffer = 2;
+    draw_buffer = frame.buffer1;
+  } else {
+    set_display_start(1);
+    display_buffer = 1;
+    draw_buffer = frame.buffer2;
+  }
+
+  clear_drawing();
 }
 
-void (free_buffers)() {
-  free(draw_buffer);
-  free(background_buffer);
-}
-
-void (update_frame)() {
-  memcpy(frame.buffer, draw_buffer, frame.size);
-}
-
-void (clear_frame)() {
-  memset(frame.buffer, 0, frame.size);
-}
 
 void (clear_drawing)() {
   memset(draw_buffer, 0, frame.size);
 }
 
-int (background_drawing)(xpm_map_t xpm, uint16_t xi, uint16_t yi) {
-  clear_drawing();
-  if (drawing_xpm(xpm, xi, yi) != 1) {
-    printf("Background drawing failed \n");
+
+
+int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color, uint8_t* buffer) {
+  if (x < 0 || y < 0 || x >= frame.res_x || y >= frame.res_y) return 0;
+
+  unsigned int index = (y * frame.res_x + x) * frame.bytes_pixel;
+
+  if (memcpy(&buffer[index], &color, frame.bytes_pixel) == NULL) 
     return 1;
-  }
-  memcpy(background_buffer, draw_buffer, frame.size);
-  clear_drawing();
+
   return 0;
 }
 
-void (update_frame_with_background)() {
-  memcpy(frame.buffer, background_buffer, frame.size);
-  memcpy(frame.buffer, draw_buffer, frame.size);
+
+int (draw_background)() {
+  if (memcpy(draw_buffer, bg_buffer, frame.size) == NULL)
+    return 1;
+  
+  return 0;
 }
 
-
-/*
-uint8_t *display_buffer;
 
 void (initialize_buffers)() {
-  display_buffer = malloc(frame.size);
-  draw_buffer = malloc(frame.size);
+  bg_buffer = malloc(frame.size);
 }
+
 
 void (free_buffers)() {
-  free(display_buffer);
-  free(draw_buffer);;
+  free(bg_buffer);
 }
 
-void (update_display)() { 
-  display_buffer = draw_buffer;
-}
-
-void (update_screen)() {
-  memcpy(frame.buffer, display_buffer, frame.size);
-}
-
-void flip_pages() { // Flip?
-    uint8_t *temp = display_buffer;
-    display_buffer = draw_buffer;
-    draw_buffer = temp;
-}
-*/

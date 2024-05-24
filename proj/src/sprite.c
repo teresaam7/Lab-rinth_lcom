@@ -3,81 +3,120 @@
 #include <stdio.h>
 #include "sprite.h"
 
-/** Creates a new sprite from XPM "pic", with specified
-* position (within the screen limits) and speed;
-* Does not draw the sprite on the screen
-* Returns NULL on invalid pixmap.
-*/
+int (loading_xpm)(xpm_map_t xpm, Sprite *sp) {
+    xpm_image_t image;
+    sp->map = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
+    sp->height = image.height;
+    sp->width = image.width; 
+  
+    return 0; 
+}
 
-Sprite *create_sprite(xpm_map_t xpm, int x, int y, double xspeed, double yspeed) {
-  Sprite *sp = (Sprite *) malloc ( sizeof(Sprite));
-  xpm_image_t img;
+
+Sprite* (create_sprite)(xpm_map_t xpm, int x, int y, int speed) {
+  Sprite *sp = (Sprite *) malloc (sizeof(Sprite));
   if (sp == NULL )
     return NULL;
 
-  sp->map = (const char *)xpm;
-  if( sp->map == NULL ) {
+  if( ((char *)xpm) == NULL ) {
+    printf("XPM is NULL \n");
     free(sp);
     return NULL;
   }
-  xpm_load(xpm,XPM_8_8_8,&img);
-  sp->width = img.width; 
-  sp->height=img.height;
-  sp->xspeed = xspeed;
-  sp->yspeed = yspeed;
+
+  loading_xpm(xpm, sp);
   sp->x = x;
   sp->y = y;
+  sp->speed = speed;
   return sp;
 }
 
+
 void destroy_sprite(Sprite *sp) {
-  if( sp == NULL )
+  if ( sp == NULL )
     return;
-  if(sp->map) free((void *)sp->map);
+
+  free(sp->map);
   free(sp);
-  sp = NULL; 
 }
 
-bool check_collision(Sprite *sprite1, int base_width, int base_height) {
-    int sprite1_left = sprite1->x;
-    int sprite1_right = sprite1->x + sprite1->width - 1;
-    int sprite1_top = sprite1->y;
-    int sprite1_bottom = sprite1->y + sprite1->height - 1;
-    /*uint32_t color1= return_color((xpm_map_t)sprite1->map, (uint16_t)sprite1->x+5, (uint16_t)sprite1->y, base_width, base_height);
-    uint32_t color2= return_color((xpm_map_t)sprite1->map, (uint16_t)sprite1->x-5, (uint16_t)sprite1->y, base_width, base_height);
-    uint32_t color3= return_color((xpm_map_t)sprite1->map, (uint16_t)sprite1->x, (uint16_t)sprite1->y+5, base_width, base_height);
-    uint32_t color4= return_color((xpm_map_t)sprite1->map, (uint16_t)sprite1->x, (uint16_t)sprite1->y-5,  base_width, base_height);
-    printf("%x", color1);
-    if(color1==0x660066||color2==0x660066||color3==0x660066||color4==0x660066){
-      return true;
-    }*/
-    if (sprite1_left >= 0 && sprite1_right < base_width && sprite1_top >= 0 && sprite1_bottom < base_height) {
-      return true; //pode andar
-    }
-  /*  if(sprite1->map[sprite1_bottom*base_width+sprite1_left]=='.'){
-      printf("%s", "pontoooo");
-      return true;
-    }*/
-   /* for (int y = sprite1_top; y <= sprite1_bottom; y++) {
-        for (int x = sprite1_left; x <= sprite1_right; x++) {
-            int base_x = x;
-            int base_y = y;
-            //printf("%s", "x");
-            //printf("%s", "y"); 
-            //"  c #660066", ->cor escura por onde nao pode ir
-                 
-                if ((int)base[base_y * base_width + base_x] != '.') {
-                    return true; 
-                }
-        }
-    }*/
 
-    return false;
+
+int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer) {
+  uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
+
+  for (int y = 0 ; y < sp->height ; y++) {
+      for (int x = 0 ; x < sp->width  ; x++) {
+          uint32_t current_color = sp->map [y * sp->width + x];
+          
+          if (current_color != transparent_color) {
+              if (draw_pixel(sp->x + x, sp->y + y, current_color, buffer)) {
+                  printf("Drawing pixel failed \n");
+                  return 1;
+              }
+          }
+      }
+  }
+  
+  return 0;
 }
 
-int drawing_sprite(Sprite *sp){
-  if (drawing_xpm((xpm_map_t)sp->map, sp->x, sp->y) != 0) {
+
+int (drawing_sprite)(Sprite *sp) {
+  if (drawing_to_buffer(sp, draw_buffer) != 0) {
+    printf("Drawing sprite failed \n");
     return 1;
   }
+
+  return 0;
+}
+
+
+int (drawing_to_buffer_lantern)(Sprite *bg, Sprite *sp, uint8_t *buffer, int lant_radius) {
+  uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
+
+  for (int y = (-lant_radius) ; y < (sp->height+lant_radius) ; y++) {
+      for (int x = (-lant_radius) ; x < (sp->width + lant_radius) ; x++) {
+          uint32_t current_color = bg->map [(sp->y + y) * bg->width + (sp->x + x)];
+          
+          if (current_color != transparent_color) {
+              if (draw_pixel(sp->x + x, sp->y + y, current_color, buffer)) {
+                  printf("Drawing pixel failed \n");
+                  return 1;
+              }
+          }
+      }
+  }
+  
+  return 0;
+}
+
+
+int (drawing_lantern)(Sprite *bg, Sprite *sp, int lant_radius) {
+  if (drawing_to_buffer_lantern(bg, sp, draw_buffer, lant_radius) != 0) {
+    printf("Drawing background failed \n");
+    return 1;
+  }
+
+  return 0;
+}
+
+
+int (drawing_bg)() {
+  if (draw_background() != 0) {
+    printf("Drawing background failed \n");
+    return 1;
+  }
+
+  return 0;
+}
+
+
+int (loading_bg_sprite)(Sprite *sp) {
+  if (drawing_to_buffer(sp, bg_buffer) != 0) {
+    printf("Loading background failed \n");
+    return 1;
+  }
+
   return 0;
 }

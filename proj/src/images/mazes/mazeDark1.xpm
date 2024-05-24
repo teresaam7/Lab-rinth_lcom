@@ -1,5 +1,5 @@
 /* XPM */
-static const char * maze1[]  = {
+static const char * mazeDark1[]  = {
 /* columns rows colors chars-per-pixel */
 "810 594 2 1 ",
 "  c #660066",
