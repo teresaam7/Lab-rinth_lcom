@@ -14,7 +14,7 @@ extern bool gameState_change;
 extern GameState gameState;
 
 
-extern Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor,
+extern Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_quit, *cursor,
  *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *life;
 
 /* Menu */
@@ -243,7 +243,7 @@ void (update_life_bar)(int total_seconds) {
         default:
             return;
     }
-    
+    update_game(player);
 }
 
 
@@ -256,6 +256,9 @@ void (draw_win)() {
 }
 
 void (draw_lost)() {
+  drawing_bg(menu_bg);
+  drawing_sprite(game_over);
+  update_flip_frames();
   //drawing_xpm((xpm_map_t) win,1,1);
 }
 

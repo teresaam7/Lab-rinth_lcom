@@ -24,6 +24,7 @@
 
 #include "images/menu.xpm"
 #include "images/win.xpm"
+#include "images/game_over.xpm"
 
 #include "images/levels/level1.xpm"
 #include "images/levels/level2.xpm"
