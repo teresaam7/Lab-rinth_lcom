@@ -8,6 +8,7 @@
 #include "rtc.h"
 #include "graphics.h"
 #include "sprite.h"
+#include "serialPort.h"
 
 
 #include "images/mazes/maze1.xpm"

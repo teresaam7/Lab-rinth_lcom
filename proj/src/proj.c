@@ -45,6 +45,7 @@ uint8_t irq_set_keyboard;
 uint8_t irq_set_mouse;
 uint8_t irq_set_timer;
 uint8_t irq_set_rtc;
+uint8_t irq_set_sp;
 
 extern int m_index;
 extern uint8_t m_bytes[3];
@@ -82,6 +83,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
     return 1;
 
   if (rtc_subscribe_int(&irq_set_rtc) != 0)
+    return 1;
+
+  if (sp_subscribe_int(&irq_set_sp) != 0)
     return 1;
 
   gameState = MENU;
@@ -134,6 +138,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
       return 1;
 
     if (rtc_unsubscribe_int() != 0)
+      return 1;
+
+    if (sp_unsubscribe_int() != 0)
       return 1;
 
     if (write_mouse(DISABLE_DATA_MODE) != 0)

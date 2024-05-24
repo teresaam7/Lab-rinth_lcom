@@ -52,7 +52,7 @@ uint8_t (backQueue)(Queue* queue){
     return queue->values[queue->last];
 }
 
-void clearQueue(Queue* queue){
+void (clearQueue)(Queue* queue){
     free(queue->values);
     free(queue);
 }

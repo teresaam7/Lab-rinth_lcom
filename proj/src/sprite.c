@@ -121,7 +121,7 @@ int (loading_bg_sprite)(Sprite *sp) {
   return 0;
 }
 
-bool check_collision(Sprite *sprite1, int base_width, int base_height) {
+bool (check_collision)(Sprite *sprite1, int base_width, int base_height) {
     int sprite1_left = sprite1->x;
     int sprite1_right = sprite1->x + sprite1->width - 1;
     int sprite1_top = sprite1->y;

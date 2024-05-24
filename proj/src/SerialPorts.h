@@ -1,6 +1,9 @@
 #ifndef __SERIALPORTS_H_
 #define __SERIALPORTS_H_
 
+#define IRQ_COM1      4
+#define BASE_COM1     0x3F8
+
 #define RBR           0x00        // Receiver Buffer Register             (R)
 #define THR           0x00        // Transmitter Holding Register         (W)
 #define IER           0x01        // Interrupt Enable Register            (R/W)
