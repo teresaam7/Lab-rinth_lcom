@@ -14,7 +14,10 @@ extern bool gameState_change;
 extern GameState gameState;
 
 
-extern Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, *level1, *level2, *level3, *num, *maze, *player, *life;
+extern Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_quit, *cursor,
+ *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *life;
+
+extern Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, num9;
 
 /* Menu */
 void (draw_menu)(){
@@ -53,10 +56,28 @@ int (collision)(Sprite * sp1, Sprite * sp2) {
 /* Levels */
 void (draw_menu_levels)() {
   drawing_sprite(menu_bg);
+  drawing_sprite(title);
   drawing_sprite(level1);
   drawing_sprite(level2);
   drawing_sprite(level3);
-  drawing_sprite(num);
+  update_flip_frames();
+}
+
+void (update_menu_levels)(){
+  drawing_bg(menu_bg);
+  drawing_sprite(title);
+
+  if (collision(cursor,level1)) drawing_sprite(hover_level1);
+  else drawing_sprite(level1);
+
+  if (collision(cursor,level2)) drawing_sprite(hover_level2);
+  else drawing_sprite(level2);
+
+  if (collision(cursor,level3)) drawing_sprite(hover_level3);
+  else drawing_sprite(level3);
+
+  drawing_sprite(cursor);
+
   update_flip_frames();
 }
 
@@ -221,19 +242,96 @@ void (update_life_bar)(int total_seconds) {
         default:
             return;
     }
-    
+    update_game(player);
+}
+
+
+void (draw_number)(Sprite *num_sprite, int x, int y) {
+    num_sprite->x = x;
+    num_sprite->y = y;
+    drawing_sprite(num_sprite);
+}
+
+void (draw_time)(int total_seconds, int x, int y) {
+    uint8_t minutes = total_seconds / 60;
+    uint8_t seconds = total_seconds % 60;
+
+    int x_offset = x;
+
+    // Desenha os minutos
+    switch (minutes / 10) {
+        case 0: draw_number(numbers->num0, x_offset, y); break;
+        case 1: draw_number(numbers->num1, x_offset, y); break;
+        case 2: draw_number(numbers->num2, x_offset, y); break;
+        case 3: draw_number(numbers->num3, x_offset, y); break;
+        case 4: draw_number(numbers->num4, x_offset, y); break;
+        case 5: draw_number(numbers->num5, x_offset, y); break;
+        case 6: draw_number(numbers->num6, x_offset, y); break;
+        case 7: draw_number(numbers->num7, x_offset, y); break;
+        case 8: draw_number(numbers->num8, x_offset, y); break;
+        case 9: draw_number(numbers->num9, x_offset, y); break;
+    }
+    x_offset += numbers->num0->width;
+
+    switch (minutes % 10) {
+        case 0: draw_number(numbers->num0, x_offset, y); break;
+        case 1: draw_number(numbers->num1, x_offset, y); break;
+        case 2: draw_number(numbers->num2, x_offset, y); break;
+        case 3: draw_number(numbers->num3, x_offset, y); break;
+        case 4: draw_number(numbers->num4, x_offset, y); break;
+        case 5: draw_number(numbers->num5, x_offset, y); break;
+        case 6: draw_number(numbers->num6, x_offset, y); break;
+        case 7: draw_number(numbers->num7, x_offset, y); break;
+        case 8: draw_number(numbers->num8, x_offset, y); break;
+        case 9: draw_number(numbers->num9, x_offset, y); break;
+    }
+    x_offset += numbers->num0->width + 10;  
+
+    switch (seconds / 10) {
+        case 0: draw_number(numbers->num0, x_offset, y); break;
+        case 1: draw_number(numbers->num1, x_offset, y); break;
+        case 2: draw_number(numbers->num2, x_offset, y); break;
+        case 3: draw_number(numbers->num3, x_offset, y); break;
+        case 4: draw_number(numbers->num4, x_offset, y); break;
+        case 5: draw_number(numbers->num5, x_offset, y); break;
+        case 6: draw_number(numbers->num6, x_offset, y); break;
+        case 7: draw_number(numbers->num7, x_offset, y); break;
+        case 8: draw_number(numbers->num8, x_offset, y); break;
+        case 9: draw_number(numbers->num9, x_offset, y); break;
+    }
+    x_offset += numbers->num0->width;
+
+    switch (seconds % 10) {
+        case 0: draw_number(numbers->num0, x_offset, y); break;
+        case 1: draw_number(numbers->num1, x_offset, y); break;
+        case 2: draw_number(numbers->num2, x_offset, y); break;
+        case 3: draw_number(numbers->num3, x_offset, y); break;
+        case 4: draw_number(numbers->num4, x_offset, y); break;
+        case 5: draw_number(numbers->num5, x_offset, y); break;
+        case 6: draw_number(numbers->num6, x_offset, y); break;
+        case 7: draw_number(numbers->num7, x_offset, y); break;
+        case 8: draw_number(numbers->num8, x_offset, y); break;
+        case 9: draw_number(numbers->num9, x_offset, y); break;
+    }
+
 }
 
 
 
-
-
-void (draw_win)() {
-  //drawing_xpm((xpm_map_t) win,1,1);
-  display_game_time();
+void (draw_win)(int total_seconds) {
+  drawing_bg(menu_bg);
+  drawing_sprite(game_over);
+  draw_time(total_seconds, 10, 305);
+  printf("DDDDDD");
+  update_flip_frames();
 }
 
 void (draw_lost)() {
-  //drawing_xpm((xpm_map_t) win,1,1);
+  uint8_t hours, minutes, seconds;
+  get_game_time(&hours, &minutes, &seconds);
+  display_game_time();
+  drawing_bg(menu_bg);
+  drawing_sprite(game_over);
+  update_flip_frames();
 }
 

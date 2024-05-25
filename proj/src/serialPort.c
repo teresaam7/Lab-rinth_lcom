@@ -16,10 +16,12 @@ int (sp_unsubscribe_int)(){
 
 void (initialize_sp)(){
     uint8_t ier;
-    if(util_sys_inb(BASE_COM1+ IER, &ier)) return;
+    if(util_sys_inb(BASE_COM1+ IER, &ier)!= 0) 
+        return;
     ier &= 0xF0;
-    if(sys_outb(COM1_UART_BASE + IER,ier | IER_ERBFI)) return;
-    receiveQueue = createQueue(128);
+    if(sys_outb(BASE_COM1+ IER,ier | IER_ERBFI)!= 0) 
+        return;
+    receiveQueue = newQueue(128);
 }
 
 int (send_byte)(uint8_t byte){
@@ -31,7 +33,7 @@ int (send_byte)(uint8_t byte){
         return 1;
       if(st & LSR_THRE)
         if (sys_outb(BASE_COM1 + THR, byte) != 0)
-            return;
+            return 1;
     }
     return 1;
 }
@@ -57,7 +59,7 @@ Queue* (get_queue)(){
 }
 
 void (sp_out)(){
-    clear(receiveQueue);
+    clearQueue(receiveQueue);
 }
 
 int (cleanInt_sp)(){

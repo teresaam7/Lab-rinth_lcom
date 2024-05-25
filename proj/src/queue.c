@@ -6,7 +6,7 @@ Queue* newQueue(unsigned capacity){
     queue->front = queue->size = 0;
  
     queue->last = capacity - 1;
-    queue->values = (int*)malloc( queue->capacity * sizeof(int));
+    queue->values = (uint8_t*)malloc( queue->capacity * sizeof(uint8_t));
     return queue;
 }
 
@@ -56,3 +56,4 @@ void (clearQueue)(Queue* queue){
     free(queue->values);
     free(queue);
 }
+

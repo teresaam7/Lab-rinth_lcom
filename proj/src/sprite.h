@@ -9,7 +9,6 @@ typedef struct {
 	uint32_t *map;     
 } Sprite;
 
-
 int (loading_xpm)(xpm_map_t xpm, Sprite *sp);
 Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed);
 

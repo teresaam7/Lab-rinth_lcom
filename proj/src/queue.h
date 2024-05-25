@@ -28,3 +28,4 @@ uint8_t (backQueue)(Queue* queue);
 void (clearQueue)(Queue* queue);
 
 #endif
+
