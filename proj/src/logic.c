@@ -14,7 +14,7 @@ extern int counter;
 Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_quit, *cursor, 
 *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *life;
 
-Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9;
+Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 
 int (loadSprites)() {
   menu_bg =  create_sprite((xpm_map_t)menu, 1, 1, 0);
@@ -49,12 +49,13 @@ int (loadSprites)() {
   num7 = create_sprite((xpm_map_t)num7_, 1, 1, 0);
   num8 = create_sprite((xpm_map_t)num8_, 1, 1, 0);
   num9 = create_sprite((xpm_map_t)num9_, 1, 1, 0);
+  dot = create_sprite((xpm_map_t)dot_, 1, 1, 0);
  
   if (menu_bg == NULL || title == NULL || start == NULL || hover_start == NULL || quit == NULL || hover_quit == NULL || 
       cursor == NULL || level1 == NULL || hover_level1 == NULL || level2 == NULL || hover_level2 == NULL ||
 			level3 == NULL || hover_level3 == NULL || player == NULL || life == NULL || num0 == NULL ||
       num1 == NULL ||num2 == NULL ||num3 == NULL ||num4 == NULL ||num5 == NULL ||num6 == NULL || 
-      num7 == NULL ||num8 == NULL ||num9 == NULL )
+      num7 == NULL ||num8 == NULL ||num9 == NULL || dot == NULL )
       return 1;
 
   loading_bg_sprite(menu_bg);

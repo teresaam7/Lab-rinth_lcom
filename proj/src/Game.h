@@ -61,6 +61,7 @@
 #include "images/numbers/num7.xpm"
 #include "images/numbers/num8.xpm"
 #include "images/numbers/num9.xpm"
+#include "images/numbers/dot.xpm"
 
 #include "images/hand.xpm"
 #include "images/title.xpm"

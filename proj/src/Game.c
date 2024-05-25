@@ -17,7 +17,7 @@ extern GameState gameState;
 extern Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_quit, *cursor,
  *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *life;
 
-extern Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9;
+extern Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 
 /* Menu */
 void (draw_menu)(){
@@ -257,6 +257,7 @@ void draw_time(int total_seconds, int x, int y) {
     uint8_t seconds = total_seconds % 60;
 
     int x_offset = x;
+    int spacing = num0->width + 10; // Espaçamento entre dígitos
 
     // Desenha os minutos
     switch (minutes / 10) {
@@ -285,8 +286,13 @@ void draw_time(int total_seconds, int x, int y) {
         case 8: draw_number(num8, x_offset, y); break;
         case 9: draw_number(num9, x_offset, y); break;
     }
-    x_offset += num0->width + 10;  // Adiciona o espaçamento entre minutos e segundos
+    x_offset += spacing;  // Espaçamento entre minutos e separador
 
+    // Desenha o separador "dot"
+    draw_number(dot, x_offset, y + (num0->height - dot->height) / 2); // Centraliza o dot verticalmente em relação aos números
+    x_offset += spacing;  // Espaçamento entre separador e segundos
+
+    // Desenha os segundos
     switch (seconds / 10) {
         case 0: draw_number(num0, x_offset, y); break;
         case 1: draw_number(num1, x_offset, y); break;
