@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-extern uint8_t k_scancode;
+extern uint8_t k_scancode; 
 
 int r;
 message msg;
