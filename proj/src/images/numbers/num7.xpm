@@ -4,7 +4,7 @@ static char *num7_[] = {
 "36 44 5 1 ",
 "  c #000000",
 ". c #464646",
-"X c #F2CB21",
+"X c #cc9900",
 "o c #FFF9BD",
 "O c None",
 /* pixels */

@@ -14,7 +14,7 @@ extern int counter;
 Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_quit, *cursor, 
 *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *life;
 
-Numbers *numbers;
+Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9;
 
 int (loadSprites)() {
   menu_bg =  create_sprite((xpm_map_t)menu, 1, 1, 0);
@@ -38,24 +38,23 @@ int (loadSprites)() {
 
   player = create_sprite((xpm_map_t)right1, 20, 20, 0);
   life = create_sprite((xpm_map_t)life1, 610, 5, 0);
-
-  Numbers *numbers = (Numbers *)malloc(sizeof(Numbers));
   
-  numbers->num0 = create_sprite((xpm_map_t)num0_, 1, 1, 0);
-  numbers->num1 = create_sprite((xpm_map_t)num1_, 1, 1, 0);
-  numbers->num2 = create_sprite((xpm_map_t)num2_, 1, 1, 0);
-  numbers->num3 = create_sprite((xpm_map_t)num3_, 1, 1, 0);
-  numbers->num4 = create_sprite((xpm_map_t)num4_, 1, 1, 0);
-  numbers->num5 = create_sprite((xpm_map_t)num5_, 1, 1, 0);
-  numbers->num6 = create_sprite((xpm_map_t)num6_, 1, 1, 0);
-  numbers->num7 = create_sprite((xpm_map_t)num7_, 1, 1, 0);
-  numbers->num8 = create_sprite((xpm_map_t)num8_, 1, 1, 0);
-  numbers->num9 = create_sprite((xpm_map_t)num9_, 1, 1, 0);
+  num0 = create_sprite((xpm_map_t)num0_, 1, 1, 0);
+  num1 = create_sprite((xpm_map_t)num1_, 1, 1, 0);
+  num2 = create_sprite((xpm_map_t)num2_, 1, 1, 0);
+  num3 = create_sprite((xpm_map_t)num3_, 1, 1, 0);
+  num4 = create_sprite((xpm_map_t)num4_, 1, 1, 0);
+  num5 = create_sprite((xpm_map_t)num5_, 1, 1, 0);
+  num6 = create_sprite((xpm_map_t)num6_, 1, 1, 0);
+  num7 = create_sprite((xpm_map_t)num7_, 1, 1, 0);
+  num8 = create_sprite((xpm_map_t)num8_, 1, 1, 0);
+  num9 = create_sprite((xpm_map_t)num9_, 1, 1, 0);
  
-
   if (menu_bg == NULL || title == NULL || start == NULL || hover_start == NULL || quit == NULL || hover_quit == NULL || 
       cursor == NULL || level1 == NULL || hover_level1 == NULL || level2 == NULL || hover_level2 == NULL ||
-			level3 == NULL || hover_level3 == NULL || player == NULL || life == NULL || numbers == NULL )
+			level3 == NULL || hover_level3 == NULL || player == NULL || life == NULL || num0 == NULL ||
+      num1 == NULL ||num2 == NULL ||num3 == NULL ||num4 == NULL ||num5 == NULL ||num6 == NULL || 
+      num7 == NULL ||num8 == NULL ||num9 == NULL )
       return 1;
 
   loading_bg_sprite(menu_bg);
