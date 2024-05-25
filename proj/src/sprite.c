@@ -121,16 +121,41 @@ int (loading_bg_sprite)(Sprite *sp) {
   return 0;
 }
 
+bool check_walls(Sprite *sprite1, int base_width, int base_height, int direction){
+    printf("%x", sprite1->map[(sprite1->y)*base_width+sprite1->x+5]);
+    if((sprite1->map[(sprite1->y)*base_width+sprite1->x+5]==0xFFA364)&&(direction==0)){
+      //uint8_t* bufffer = malloc(frame.size);
+      //if(draw_pixel(sprite1->x, sprite1->y, 0xffffff, bufffer)!=0){return 1;};
+      printf("%d", (sprite1->y)*base_width+sprite1->x+5);
+      printf("%x", sprite1->map[(sprite1->y)*base_width+sprite1->x+5]);
+      return 1;
+    }
+   /* if(maze->map[(sprite1->y-5)*base_width+sprite1->x]==0xFFA364){
+      printf("%x", maze->map[(sprite1->y-5)*base_width+sprite1->x]);
+      return 1;
+    }
+    if(maze->map[sprite1->y*base_width+sprite1->x+5]==0xFFA364){
+      printf("%x", sprite1->map[sprite1->y*base_width+sprite1->x+5]);
+      return 1;
+    }
+    if(maze->map[sprite1->y*base_width+sprite1->x-5]==0xFFA364){
+      printf("%x", sprite1->map[sprite1->y*base_width+sprite1->x-5]);
+      return 1;
+    }*/
+  return 0;
+}
+
+
 bool check_collision(Sprite *sprite1, int base_width, int base_height) {
     int sprite1_left = sprite1->x;
     int sprite1_right = sprite1->x + sprite1->width - 1;
     int sprite1_top = sprite1->y;
     int sprite1_bottom = sprite1->y + sprite1->height - 1;
     printf("%s", "antes do for");
-    printf("%s", "antes do for");
-    if (sprite1_left >= 0 && sprite1_right < base_width && sprite1_top >= 0 && sprite1_bottom < base_height) {
+    if (sprite1_left >= 0 && sprite1_right <= base_width && sprite1_top >= 0 && sprite1_bottom <= base_height) {
       return true; 
     }
+
    /* for (int y = sprite1_top; y <= sprite1_bottom; y++) {
         for (int x = sprite1_left; x <= sprite1_right; x++) {
             int base_x = x;
