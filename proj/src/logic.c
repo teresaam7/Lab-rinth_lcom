@@ -133,7 +133,7 @@ int (timerLogic) () {
     update_life_bar(gameTime);
     //update_game(player);
 
-    if (gameTime == 175) {
+    if (gameTime == 0) {
       gameState = LOSE; 
       gameState_change = true; 
     }
