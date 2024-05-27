@@ -18,6 +18,7 @@ extern Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_
  *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *life;
 
 extern Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
+extern Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
 
 /* Menu */
 void (draw_menu)(){
@@ -129,10 +130,14 @@ void (load_level)(int level) {
 
 /* Game */
 void (update_game)(Sprite * player) {
+  uint8_t hours, minutes, seconds;
+  get_game_time(&hours, &minutes, &seconds);
+  display_game_time();
   drawing_lantern(maze, player, 40);
   drawing_lantern(maze, cursor, 40);
   drawing_sprite(player);
   drawing_sprite(life);
+  draw_time_small(hours, minutes, 10, 575);
   drawing_sprite(cursor);
   update_flip_frames();
 }
@@ -245,21 +250,20 @@ void (update_life_bar)(int total_seconds) {
     update_game(player);
 }
 
-
+/*Drawing numbers in the game*/
 void (draw_number)(Sprite *num_sprite, int x, int y) {
     num_sprite->x = x;
     num_sprite->y = y;
     drawing_sprite(num_sprite);
 }
 
-void draw_time(int total_seconds, int x, int y) {
+void (draw_time)(int total_seconds, int x, int y) {
     uint8_t minutes = total_seconds / 60;
     uint8_t seconds = total_seconds % 60;
 
     int x_offset = x;
-    int spacing = num0->width + 10; // Espaçamento entre dígitos
+    int spacing = num0->width + 10; 
 
-    // Desenha os minutos
     switch (minutes / 10) {
         case 0: draw_number(num0, x_offset, y); break;
         case 1: draw_number(num1, x_offset, y); break;
@@ -286,13 +290,10 @@ void draw_time(int total_seconds, int x, int y) {
         case 8: draw_number(num8, x_offset, y); break;
         case 9: draw_number(num9, x_offset, y); break;
     }
-    x_offset += spacing;  // Espaçamento entre minutos e separador
+    x_offset += spacing;  
+    draw_number(dot, x_offset, y + (num0->height - dot->height) / 2); 
+    x_offset += spacing;  
 
-    // Desenha o separador "dot"
-    draw_number(dot, x_offset, y + (num0->height - dot->height) / 2); // Centraliza o dot verticalmente em relação aos números
-    x_offset += spacing;  // Espaçamento entre separador e segundos
-
-    // Desenha os segundos
     switch (seconds / 10) {
         case 0: draw_number(num0, x_offset, y); break;
         case 1: draw_number(num1, x_offset, y); break;
@@ -321,7 +322,71 @@ void draw_time(int total_seconds, int x, int y) {
     }
 }
 
+void (draw_time_small)(uint8_t hours, uint8_t minutes, int x, int y) {
+  int x_offset = x;
+    int spacing = 2;
 
+    switch (hours / 10) {
+        case 0: draw_number(smallNum0, x_offset, y); break;
+        case 1: draw_number(smallNum1, x_offset, y); break;
+        case 2: draw_number(smallNum2, x_offset, y); break;
+        case 3: draw_number(smallNum3, x_offset, y); break;
+        case 4: draw_number(smallNum4, x_offset, y); break;
+        case 5: draw_number(smallNum5, x_offset, y); break;
+        case 6: draw_number(smallNum6, x_offset, y); break;
+        case 7: draw_number(smallNum7, x_offset, y); break;
+        case 8: draw_number(smallNum8, x_offset, y); break;
+        case 9: draw_number(smallNum9, x_offset, y); break;
+    }
+    x_offset += smallNum0->width + spacing;
+
+    switch (hours % 10) {
+        case 0: draw_number(smallNum0, x_offset, y); break;
+        case 1: draw_number(smallNum1, x_offset, y); break;
+        case 2: draw_number(smallNum2, x_offset, y); break;
+        case 3: draw_number(smallNum3, x_offset, y); break;
+        case 4: draw_number(smallNum4, x_offset, y); break;
+        case 5: draw_number(smallNum5, x_offset, y); break;
+        case 6: draw_number(smallNum6, x_offset, y); break;
+        case 7: draw_number(smallNum7, x_offset, y); break;
+        case 8: draw_number(smallNum8, x_offset, y); break;
+        case 9: draw_number(smallNum9, x_offset, y); break;
+    }
+    x_offset += smallNum0->width + spacing;
+
+    draw_number(divisor, x_offset, y + (smallNum0->height - divisor->height) / 2);
+    x_offset += divisor->width + spacing;
+
+    switch (minutes / 10) {
+        case 0: draw_number(smallNum0, x_offset, y); break;
+        case 1: draw_number(smallNum1, x_offset, y); break;
+        case 2: draw_number(smallNum2, x_offset, y); break;
+        case 3: draw_number(smallNum3, x_offset, y); break;
+        case 4: draw_number(smallNum4, x_offset, y); break;
+        case 5: draw_number(smallNum5, x_offset, y); break;
+        case 6: draw_number(smallNum6, x_offset, y); break;
+        case 7: draw_number(smallNum7, x_offset, y); break;
+        case 8: draw_number(smallNum8, x_offset, y); break;
+        case 9: draw_number(smallNum9, x_offset, y); break;
+    }
+    x_offset += smallNum0->width + spacing;
+
+    switch (minutes % 10) {
+        case 0: draw_number(smallNum0, x_offset, y); break;
+        case 1: draw_number(smallNum1, x_offset, y); break;
+        case 2: draw_number(smallNum2, x_offset, y); break;
+        case 3: draw_number(smallNum3, x_offset, y); break;
+        case 4: draw_number(smallNum4, x_offset, y); break;
+        case 5: draw_number(smallNum5, x_offset, y); break;
+        case 6: draw_number(smallNum6, x_offset, y); break;
+        case 7: draw_number(smallNum7, x_offset, y); break;
+        case 8: draw_number(smallNum8, x_offset, y); break;
+        case 9: draw_number(smallNum9, x_offset, y); break;
+    }
+}
+
+
+/*Win*/
 void (draw_win)(int total_seconds) {
   drawing_bg(menu_bg);
   drawing_sprite(game_over);
@@ -329,10 +394,8 @@ void (draw_win)(int total_seconds) {
   update_flip_frames();
 }
 
+/*Lose*/
 void (draw_lost)() {
-  uint8_t hours, minutes, seconds;
-  get_game_time(&hours, &minutes, &seconds);
-  display_game_time();
   drawing_bg(menu_bg);
   drawing_sprite(game_over);
   update_flip_frames();

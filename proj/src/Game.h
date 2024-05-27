@@ -63,6 +63,18 @@
 #include "images/numbers/num9.xpm"
 #include "images/numbers/dot.xpm"
 
+#include "images/smallNumbers/small0.xpm"
+#include "images/smallNumbers/small1.xpm" 
+#include "images/smallNumbers/small2.xpm"
+#include "images/smallNumbers/small3.xpm"
+#include "images/smallNumbers/small4.xpm"
+#include "images/smallNumbers/small5.xpm"
+#include "images/smallNumbers/small6.xpm"
+#include "images/smallNumbers/small7.xpm"
+#include "images/smallNumbers/small8.xpm"
+#include "images/smallNumbers/small9.xpm"
+#include "images/smallNumbers/divisor.xpm" 
+
 #include "images/hand.xpm"
 #include "images/title.xpm"
 #include "images/start_button.xpm"
@@ -98,6 +110,7 @@ void (update_life_bar)(int total_seconds);
 
 void (draw_number)(Sprite *num_sprite, int x, int y);
 void (draw_time)(int total_seconds, int x, int y);
+void (draw_time_small)(uint8_t hours, uint8_t minutes, int x, int y);
 
 void (draw_win)(int total_seconds);
 void (draw_lost)();
