@@ -23,9 +23,9 @@
 #include "images/mazes/mazeDay3.xpm"
 #include "images/mazes/mazeDark3.xpm"
 
-#include "images/menu.xpm"
-#include "images/win.xpm"
-#include "images/game_over.xpm"
+#include "images/assets/menu.xpm"
+#include "images/assets/win.xpm"
+#include "images/assets/game_over.xpm"
 
 #include "images/levels/level1.xpm"
 #include "images/levels/level2.xpm"
@@ -34,22 +34,34 @@
 #include "images/levels/hover_level2.xpm"
 #include "images/levels/hover_level3.xpm"
 
-#include "images/right1.xpm"
-#include "images/right2.xpm"
-#include "images/left1.xpm"
-#include "images/left2.xpm"
-#include "images/up1.xpm"
-#include "images/up2.xpm"
-#include "images/down1.xpm"
-#include "images/down2.xpm"
+#include "images/player1/right1.xpm"
+#include "images/player1/right2.xpm"
+#include "images/player1/left1.xpm"
+#include "images/player1/left2.xpm"
+#include "images/player1/up1.xpm"
+#include "images/player1/up2.xpm"
+#include "images/player1/down1.xpm"
+#include "images/player1/down2.xpm"
 
-#include "images/ar.xpm"
+#include "images/player2/right1second.xpm"
+#include "images/player2/right2second.xpm"
+#include "images/player2/left1second.xpm"
+#include "images/player2/left2second.xpm"
+#include "images/player2/up1second.xpm"
+#include "images/player2/up2second.xpm"
+#include "images/player2/down1second.xpm"
+#include "images/player2/down2second.xpm"
 
 #include "images/lifeBar/life1.xpm"
 #include "images/lifeBar/life2.xpm"
 #include "images/lifeBar/life3.xpm"
 #include "images/lifeBar/life4.xpm"
 #include "images/lifeBar/life5.xpm"
+
+#include "images/fireEffect/fire1.xpm"
+#include "images/fireEffect/fire2.xpm"
+#include "images/fireEffect/fire3.xpm"
+#include "images/fireEffect/fire4.xpm"
 
 #include "images/numbers/num0.xpm"
 #include "images/numbers/num1.xpm"
@@ -75,12 +87,12 @@
 #include "images/smallNumbers/small9.xpm"
 #include "images/smallNumbers/divisor.xpm" 
 
-#include "images/hand.xpm"
-#include "images/title.xpm"
-#include "images/start_button.xpm"
-#include "images/hover_start.xpm"
-#include "images/quit_button.xpm"
-#include "images/hover_quit.xpm"
+#include "images/assets/hand.xpm"
+#include "images/assets/title.xpm"
+#include "images/assets/start_button.xpm"
+#include "images/assets/hover_start.xpm"
+#include "images/assets/quit_button.xpm"
+#include "images/assets/hover_quit.xpm"
 
 
 typedef enum {
@@ -107,6 +119,7 @@ xpm_map_t (get_next_sprite)(uint8_t scancode);
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player);
 void (handle_mouse_movement)(Sprite * cursor);
 void (update_life_bar)(int total_seconds);
+void (update_fire_sprite)(int total_milliseconds);
 
 void (draw_number)(Sprite *num_sprite, int x, int y);
 void (draw_time)(int total_seconds, int x, int y);

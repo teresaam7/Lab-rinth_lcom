@@ -1,0 +1,27 @@
+/* XPM */
+static char *fire4[] = {
+/* columns rows colors chars-per-pixel */
+"14 15 6 1 ",
+"  c #3291EB",
+". c #47AFFA",
+"X c #5ACBFD",
+"o c #98FFF6",
+"O c #ECFFFB",
+"+ c None",
+/* pixels */
+"+++o+.++++o+++",
+"+++ +++ +++++.",
+"+.++ ++  + +++",
+"++++.+ . +  ++",
+"++  .+.o. . ++",
+".+  X Xo. X. +",
+"++ .oXXoX.oX +",
+"+ .XOoOooOoo.+",
+"+..OooooOooX.+",
+"+.XOOoOoOoO..+",
+"+.XOoOOoOOOo.+",
+"+ XOOOOOOOOX.+",
+"++.XOOOOOOX. +",
+"++ .XOOOOX. ++",
+"+++ ..XX. ++++"
+};
