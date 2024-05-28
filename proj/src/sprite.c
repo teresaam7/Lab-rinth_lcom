@@ -122,26 +122,22 @@ int (loading_bg_sprite)(Sprite *sp) {
 }
 
 bool check_walls(Sprite *sprite1, int base_width, int base_height, int direction){
-    printf("%x", sprite1->map[(sprite1->y)*base_width+sprite1->x+5]);
-    if((sprite1->map[(sprite1->y)*base_width+sprite1->x+5]==0xFFA364)&&(direction==0)){
-      //uint8_t* bufffer = malloc(frame.size);
-      //if(draw_pixel(sprite1->x, sprite1->y, 0xffffff, bufffer)!=0){return 1;};
+   // printf("%x", sprite1->map[(sprite1->y)*base_width+sprite1->x+5]);
+    if((sprite1->map[(sprite1->y)*base_width+sprite1->x+5+sprite1->width]==0x009999)&&(direction==0)){
       printf("%d", (sprite1->y)*base_width+sprite1->x+5);
       printf("%x", sprite1->map[(sprite1->y)*base_width+sprite1->x+5]);
       return 1;
     }
-   /* if(maze->map[(sprite1->y-5)*base_width+sprite1->x]==0xFFA364){
-      printf("%x", maze->map[(sprite1->y-5)*base_width+sprite1->x]);
+    else if((sprite1->map[sprite1->y*base_width+sprite1->x-5]==0x009999)&&(direction==1)){
       return 1;
     }
-    if(maze->map[sprite1->y*base_width+sprite1->x+5]==0xFFA364){
-      printf("%x", sprite1->map[sprite1->y*base_width+sprite1->x+5]);
+   /* else if((sprite1->map[(sprite1->y-5)*base_width+sprite1->x]==0xFFA364)&&(direction==2)){
       return 1;
     }
-    if(maze->map[sprite1->y*base_width+sprite1->x-5]==0xFFA364){
-      printf("%x", sprite1->map[sprite1->y*base_width+sprite1->x-5]);
+    else if((sprite1->map[(sprite1->y+5)*base_width+sprite1->x]==0xFFA364)&&(direction==3)){
       return 1;
     }*/
+
   return 0;
 }
 

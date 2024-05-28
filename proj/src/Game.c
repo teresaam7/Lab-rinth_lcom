@@ -166,12 +166,15 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
 
         case A_KEY_MK:
           if(check_collision(player, maze->width, maze->height)!=0){
-             
-            player->x = player->x - 5;
-            loading_xpm(get_next_sprite(A_KEY_MK), player);
-            update_game(player);
-             
-             
+            if(check_walls(player, maze->width, maze->height, 1)==0){
+              player->x = player->x - 5;
+              loading_xpm(get_next_sprite(A_KEY_MK), player);
+              update_game(player);
+            }
+            else{
+              loading_xpm(get_next_sprite(A_KEY_MK), player);
+              update_game(player);
+            }
           }
           else{
             player->x = player->x + 5;
@@ -180,11 +183,15 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
 
         case W_KEY_MK:
           if(check_collision(player, maze->width, maze->height)!=0){
-            
+           // if(check_walls(player, maze->width, maze->height, 2)==0){
               player->y = player->y - 5;
               loading_xpm(get_next_sprite(W_KEY_MK), player);
               update_game(player);
-            
+           /* }
+            else{
+              loading_xpm(get_next_sprite(W_KEY_MK), player);
+              update_game(player);
+            }*/
             
           }
           else{
@@ -194,11 +201,15 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
         
         case S_KEY_MK:
           if(check_collision(player, maze->width, maze->height)!=0){
-            
+            //if(check_walls(player, maze->width, maze->height, 3)==0){
               player->y = player->y + 5;
               loading_xpm(get_next_sprite(S_KEY_MK), player);
               update_game(player);
-            
+           /* }
+            else{
+              loading_xpm(get_next_sprite(S_KEY_MK), player);
+              update_game(player);
+            }*/
             
           }
           else{
