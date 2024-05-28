@@ -14,6 +14,9 @@ extern int counter;
 Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_quit, *cursor, 
 *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *life;
 
+Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
+Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
+
 int (loadSprites)() {
   menu_bg =  create_sprite((xpm_map_t)menu, 1, 1, 0);
 
@@ -36,10 +39,38 @@ int (loadSprites)() {
 
   player = create_sprite((xpm_map_t)right1, 20, 20, 0);
   life = create_sprite((xpm_map_t)life1, 610, 5, 0);
+  
+  num0 = create_sprite((xpm_map_t)num0_, 1, 1, 0);
+  num1 = create_sprite((xpm_map_t)num1_, 1, 1, 0);
+  num2 = create_sprite((xpm_map_t)num2_, 1, 1, 0);
+  num3 = create_sprite((xpm_map_t)num3_, 1, 1, 0);
+  num4 = create_sprite((xpm_map_t)num4_, 1, 1, 0);
+  num5 = create_sprite((xpm_map_t)num5_, 1, 1, 0);
+  num6 = create_sprite((xpm_map_t)num6_, 1, 1, 0);
+  num7 = create_sprite((xpm_map_t)num7_, 1, 1, 0);
+  num8 = create_sprite((xpm_map_t)num8_, 1, 1, 0);
+  num9 = create_sprite((xpm_map_t)num9_, 1, 1, 0);
+  dot = create_sprite((xpm_map_t)dot_, 1, 1, 0);
 
+  smallNum0 = create_sprite((xpm_map_t)small0, 2, 2, 0);
+  smallNum1 = create_sprite((xpm_map_t)small1, 2, 2, 0);
+  smallNum2 = create_sprite((xpm_map_t)small2, 2, 2, 0);
+  smallNum3 = create_sprite((xpm_map_t)small3, 2, 2, 0);
+  smallNum4 = create_sprite((xpm_map_t)small4, 2, 2, 0);
+  smallNum5 = create_sprite((xpm_map_t)small5, 2, 2, 0);
+  smallNum6 = create_sprite((xpm_map_t)small6, 2, 2, 0);
+  smallNum7 = create_sprite((xpm_map_t)small7, 2, 2, 0);
+  smallNum8 = create_sprite((xpm_map_t)small8, 2, 2, 0);
+  smallNum9 = create_sprite((xpm_map_t)small9, 2, 2, 0);
+  divisor = create_sprite((xpm_map_t)divisor_, 2, 2, 0);
+ 
   if (menu_bg == NULL || title == NULL || start == NULL || hover_start == NULL || quit == NULL || hover_quit == NULL || 
       cursor == NULL || level1 == NULL || hover_level1 == NULL || level2 == NULL || hover_level2 == NULL ||
-			level3 == NULL || hover_level3 == NULL || player == NULL || life == NULL)
+			level3 == NULL || hover_level3 == NULL || player == NULL || life == NULL || num0 == NULL ||
+      num1 == NULL ||num2 == NULL ||num3 == NULL ||num4 == NULL ||num5 == NULL ||num6 == NULL || 
+      num7 == NULL ||num8 == NULL ||num9 == NULL || dot == NULL || smallNum0 == NULL ||  smallNum1 == NULL ||
+       smallNum2 == NULL || smallNum3 == NULL || smallNum4 == NULL || smallNum5 == NULL || smallNum6 == NULL || 
+        smallNum7 == NULL || smallNum8 == NULL || smallNum9 == NULL ||  divisor == NULL )
       return 1;
 
   loading_bg_sprite(menu_bg);
@@ -52,6 +83,7 @@ int (gameStateInit)(bool * running) {
 	if (gameState == MENU) {draw_menu();}
 	if (gameState == LEVELS) {draw_menu_levels();}
 	if (gameState == GAME) {update_game(player);}
+  if (gameState == WIN) {draw_win(180-gameTime);}
   if (gameState == LOSE) {draw_lost();}
 	if (gameState == EXIT) {*running = false;}
 	gameState_change = false;
@@ -131,13 +163,17 @@ int (timerLogic) () {
     }
 
     update_life_bar(gameTime);
-    //update_game(player);
 
+    if (gameTime == 175) {
+      gameState = WIN; 
+      gameState_change = true; 
+    }
     if (gameTime == 0) {
-      gameState = LOSE; 
+      gameState = LOSE;
       gameState_change = true; 
     }
 	}
   
 	return 0;
 }
+

@@ -9,7 +9,6 @@ typedef struct {
 	uint32_t *map;     
 } Sprite;
 
-
 int (loading_xpm)(xpm_map_t xpm, Sprite *sp);
 Sprite *create_sprite(xpm_map_t xpm, int x, int y, int speed);
 
@@ -19,7 +18,7 @@ int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer);
 int (drawing_sprite)(Sprite *sp);
 int (drawing_to_buffer_lantern)(Sprite *bg, Sprite *sp, uint8_t *buffer, int lant_radius);
 int (drawing_lantern)(Sprite *bg, Sprite *sp, int lant_radius);
-bool check_collision(Sprite *sprite1, int base_width, int base_height);
+bool (check_collision)(Sprite *sprite1, int base_width, int base_height);
 
 int (drawing_bg)();
 int (loading_bg_sprite)(Sprite *sp);
