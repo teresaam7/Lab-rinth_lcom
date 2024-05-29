@@ -29,12 +29,12 @@ int (loadSprites)() {
   hover_quit = create_sprite((xpm_map_t)hover_quit_, 315, 373, 0);
   cursor = create_sprite((xpm_map_t)hand, 315, 200, 0);
   
-  level1 = create_sprite((xpm_map_t)level1_, 315, 260, 0);
-	hover_level1 = create_sprite((xpm_map_t)hover_level1_, 295, 260, 0);
-  level2 = create_sprite((xpm_map_t)level2_, 315, 340, 0);
-	hover_level2 = create_sprite((xpm_map_t)hover_level2_, 295, 340, 0);
-  level3 = create_sprite((xpm_map_t)level3_, 315, 420, 0);
-	hover_level3 = create_sprite((xpm_map_t)hover_level3_, 295, 420, 0);
+  level1 = create_sprite((xpm_map_t)level1_, 315, 220, 0);
+	hover_level1 = create_sprite((xpm_map_t)hover_level1_, 295, 220, 0);
+  level2 = create_sprite((xpm_map_t)level2_, 315, 355, 0);
+	hover_level2 = create_sprite((xpm_map_t)hover_level2_, 295, 355, 0);
+  level3 = create_sprite((xpm_map_t)level3_, 315, 490, 0);
+	hover_level3 = create_sprite((xpm_map_t)hover_level3_, 295, 490, 0);
 
 
   player = create_sprite((xpm_map_t)right1, 20, 20, 0);
