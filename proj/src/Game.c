@@ -15,7 +15,7 @@ extern GameState gameState;
 
 
 extern Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_quit, *cursor,
- *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *life;
+ *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *player2, *life;
 
 extern Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 extern Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
@@ -133,8 +133,8 @@ void (update_game)(Sprite * player) {
   uint8_t hours, minutes, seconds;
   get_game_time(&hours, &minutes, &seconds);
   display_game_time();
-  drawing_lantern(maze, player, 40);
-  drawing_lantern(maze, cursor, 40);
+  drawing_lantern(maze, player, 60);
+  drawing_lantern(maze, cursor, 60);
   drawing_sprite(player);
   drawing_sprite(life);
   draw_time_small(hours, minutes, 10, 575);

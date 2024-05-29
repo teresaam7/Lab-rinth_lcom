@@ -75,20 +75,30 @@ int (drawing_sprite)(Sprite *sp) {
 int (drawing_to_buffer_lantern)(Sprite *bg, Sprite *sp, uint8_t *buffer, int lant_radius) {
   uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
 
-  for (int y = (-lant_radius) ; y < (sp->height+lant_radius) ; y++) {
-      for (int x = (-lant_radius) ; x < (sp->width + lant_radius) ; x++) {
-          uint32_t current_color = bg->map [(sp->y + y) * bg->width + (sp->x + x)];
-          
-          if (current_color != transparent_color) {
-              if (draw_pixel(sp->x + x, sp->y + y, current_color, buffer)) {
-                  printf("Drawing pixel failed \n");
-                  return 1;
-              }
-          }
-      }
-  }
+    int center_x = sp->x + sp->width / 2;
+    int center_y = sp->y + sp->height / 2;
+
+    for (int y = -lant_radius; y <= lant_radius; y++) {
+        for (int x = -lant_radius; x <= lant_radius; x++) {
+            int pixel_x = center_x + x;
+            int pixel_y = center_y + y;
+
+            if (x * x + y * y <= lant_radius * lant_radius) {
+                if (pixel_x >= 0 && pixel_x < bg->width && pixel_y >= 0 && pixel_y < bg->height) {
+                    uint32_t current_color = bg->map[pixel_y * bg->width + pixel_x];
+                    
+                    if (current_color != transparent_color) {
+                        if (draw_pixel(pixel_x, pixel_y, current_color, buffer)) {
+                            printf("Drawing pixel failed \n");
+                            return 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
   
-  return 0;
+    return 0;
 }
 
 

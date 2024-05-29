@@ -39,6 +39,7 @@ int ipc_status;
 int gameTime = 60 * TIMER_MINUTES;
 bool gameState_change = true;
 GameState gameState;
+bool multi = false;
 
 
 uint8_t irq_set_keyboard;
