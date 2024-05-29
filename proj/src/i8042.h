@@ -65,6 +65,7 @@
 #define ACK                0xFA
 #define NACK               0xFE
 #define ERROR              0xFC
+#define END                0x40
 
 
 #define M_LB            BIT(0)  // Mouse left button

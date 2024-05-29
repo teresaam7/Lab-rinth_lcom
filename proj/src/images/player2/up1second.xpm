@@ -6,7 +6,7 @@ static char *up1second[] = {
 ". c #161515",
 "X c #1B1B1B",
 "o c #1D1C1D",
-"O c gray14",
+"O c #708090",
 "+ c #373737",
 "@ c #3A393A",
 "# c #4B143A",
