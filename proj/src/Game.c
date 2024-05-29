@@ -13,9 +13,12 @@ extern vbe_mode_info_t mode_info;
 extern bool gameState_change;
 extern GameState gameState;
 
+bool door1_open = false;
+bool door2_open = false;
+
 
 extern Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_quit, *cursor,
- *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *player2, *life;
+ *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *button1, *button2, *door1, *door2, *player, *player2, *life;
 
 extern Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 extern Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
@@ -48,8 +51,8 @@ void (update_menu)(){
 
 
 int (collision)(Sprite * sp1, Sprite * sp2) {
-  if(sp1->x < sp2->x || sp1 -> x > sp2->x + sp2->width) return 0;
-  if(sp1->y < sp2->y || sp1 -> y > sp2->y + sp2->height) return 0;
+  if (sp1->x + (sp1->width)/2 < sp2->x || sp1->x > sp2->x + sp2->width) return 0;
+  if (sp1->y + sp1->height < sp2->y || sp1->y > sp2->y + sp2->height) return 0;
   return 1;
 }
 
@@ -99,6 +102,10 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze1, 0, 0, 0);
       }
+      button1 = create_sprite((xpm_map_t) button_up_, 90 , 497 , 0);
+      button2 = create_sprite((xpm_map_t) button_up_, 200 , 200 , 0);
+      door1 = create_sprite((xpm_map_t) door_, 220 , 464 , 0);
+      door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
       break;
 
     case 2:
@@ -109,6 +116,8 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze2, 0, 0, 0);
       }
+      button1 = create_sprite((xpm_map_t) button_up_, 25 , 25 , 0);
+      button2 = create_sprite((xpm_map_t) button_up_, 30 , 30 , 0);
       break;
 
     case 3:
@@ -119,6 +128,8 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze3, 0, 0, 0);
       }
+      button1 = create_sprite((xpm_map_t) button_up_, 25 , 25 , 0);
+      button2 = create_sprite((xpm_map_t) button_up_, 30 , 30 , 0);
       break;
 
     default:
@@ -138,6 +149,20 @@ void (update_game)(Sprite * player) {
   drawing_sprite(player);
   drawing_sprite(life);
   draw_time_small(hours, minutes, 10, 575);
+  printf("PLAYERX");
+  printf("%d", player->x);
+  printf("PLAYERY");
+  printf("%d", player->y+player->height);
+  if(collision(player,button1)){
+    door1_open = true;
+    drawing_sprite(button1); // button1_down
+    }
+    else drawing_sprite(button1);
+  if(!collision(player,button2)){
+    drawing_sprite(button2);  
+    //drawing_sprite(door2);
+    }
+  if(!door1_open){drawing_sprite(door1);}
   drawing_sprite(cursor);
   update_flip_frames();
 }

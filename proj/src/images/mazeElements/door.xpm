@@ -1,0 +1,21 @@
+/* XPM */
+static char *door_[] = {
+/* columns rows colors chars-per-pixel */
+"20 14 1 1 ",
+"  c #E61920",
+/* pixels */
+"                    ",
+"                    ",
+"                    ",
+"                    ",
+"                    ",
+"                    ",
+"                    ",
+"                    ",
+"                    ",
+"                    ",
+"                    ",
+"                    ",
+"                    ",
+"                    "
+};
