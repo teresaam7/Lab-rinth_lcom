@@ -86,6 +86,7 @@ int (gameStateInit)(bool * running) {
 	if (gameState == MENU) {draw_menu();}
 	if (gameState == LEVELS) {draw_menu_levels();}
 	if (gameState == GAME) {update_game();}
+  if (gameState == MULTI) {draw_waiting();}
   if (gameState == WIN) {draw_win(300-gameTime);}
   if (gameState == LOSE) {draw_lost();}
 	if (gameState == EXIT) {*running = false;}
@@ -95,9 +96,7 @@ int (gameStateInit)(bool * running) {
 
 int (keyboardLogic)() {
 	if (gameState == GAME) {
-		handle_ingame_scancode(k_scancode, player);
-    if (multi)
-      handle_ingame_scancode_multi(k_scancode, player2);
+		manage_button(k_scancode, true);
 
 		if (k_scancode == SCAN_FIRST_TWO) {
 			k_bytes[k_index] = k_scancode; k_index++;
@@ -105,6 +104,10 @@ int (keyboardLogic)() {
 			k_bytes[k_index] = k_scancode;
 			k_index = 0;
 		}
+
+    if (k_scancode == SCAN_BREAK_ESC ){
+      if(multi) send_byte(END);
+    }
 	}
 
   return 0;
@@ -141,12 +144,14 @@ int (mouseLogic) () {
         gameState = GAME;
       }  
       if(collision(cursor, level3)){
-        send_byte(0x53);
         load_level(3);
         gameState_change = true;
-        multi = true;
-        gameState = GAME;
-      }                      
+        gameState = MULTI;
+      }   
+
+      if(gameState == MULTI){
+          send_byte(0x53);
+        }                   
     }
 	}
 

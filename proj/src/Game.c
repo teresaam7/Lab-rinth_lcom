@@ -513,6 +513,12 @@ void (draw_time_small)(uint8_t hours, uint8_t minutes, int x, int y) {
     }
 }
 
+/*Waiting menu*/
+void (draw_waiting)() {
+  drawing_bg(menu_bg);
+  update_flip_frames();
+}
+
 
 /*Win*/
 void (draw_win)(int total_seconds) {

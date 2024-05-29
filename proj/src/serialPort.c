@@ -5,6 +5,7 @@ extern GameState gameState;
 extern Sprite *player, *player2;
 static Queue * receiveQueue;
 extern bool multi;
+static bool hold_reg_empty = true;
 
 int (sp_subscribe_int)(uint8_t* bitno){
     *bitno = BIT(hook_id_sp);
@@ -17,6 +18,7 @@ int (sp_unsubscribe_int)(){
     return 0;
 }
 
+
 void (initialize_sp)(){
     uint8_t ier;
     if(util_sys_inb(BASE_COM1+ IER, &ier)!= 0) 
@@ -24,7 +26,7 @@ void (initialize_sp)(){
     ier &= 0xF0;
     if(sys_outb(BASE_COM1+ IER,ier | IER_ERBFI)!= 0) 
         return;
-    receiveQueue = newQueue(128);
+    receiveQueue = newQueue(20);
 }
 
 int (send_byte)(uint8_t byte){
@@ -117,6 +119,7 @@ void (manage_button)(uint8_t scancode, bool isPlayer1) {
 bool (handle_start_multi)(){
     if(frontQueue(receiveQueue) == 0x53){
         send_byte(0x54);
+        printf("AAAAAAAA");
     }else if(frontQueue(receiveQueue) == 0x54){
         send_byte(0x55);
     }else if(frontQueue(receiveQueue) == 0x55){
@@ -148,13 +151,13 @@ bool (handle_start_multi)(){
 
 void (sp_handler)(){
   sp_ih();
-  if (gameState == GAME && multi) {
+  if (gameState == MULTI)
     handle_start_multi();
+  else if (gameState == GAME && multi) 
     handle_receive_info();
-  } 
-  else{
-     sp_out();
-  }
+  else
+    cleanInt_sp();
+  
 }
 
 void (handle_receive_info)(){

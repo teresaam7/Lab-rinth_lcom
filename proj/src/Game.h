@@ -101,6 +101,7 @@ typedef enum {
     MENU,
     LEVELS,
     GAME,
+    MULTI,
     WIN,
     LOSE,
     EXIT
@@ -130,6 +131,7 @@ void (draw_time)(int total_seconds, int x, int y);
 void (draw_time_small)(uint8_t hours, uint8_t minutes, int x, int y);
 
 void (draw_win)(int total_seconds);
+void (draw_waiting)();
 void (draw_lost)();
 
 
