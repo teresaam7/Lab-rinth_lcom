@@ -58,11 +58,6 @@
 #include "images/lifeBar/life4.xpm"
 #include "images/lifeBar/life5.xpm"
 
-#include "images/fireEffect/fire1.xpm"
-#include "images/fireEffect/fire2.xpm"
-#include "images/fireEffect/fire3.xpm"
-#include "images/fireEffect/fire4.xpm"
-
 #include "images/numbers/num0.xpm"
 #include "images/numbers/num1.xpm"
 #include "images/numbers/num2.xpm"
@@ -119,7 +114,6 @@ xpm_map_t (get_next_sprite)(uint8_t scancode);
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player);
 void (handle_mouse_movement)(Sprite * cursor);
 void (update_life_bar)(int total_seconds);
-void (update_fire_sprite)(int total_milliseconds);
 
 void (draw_number)(Sprite *num_sprite, int x, int y);
 void (draw_time)(int total_seconds, int x, int y);

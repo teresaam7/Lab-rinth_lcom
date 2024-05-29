@@ -12,7 +12,7 @@ extern int gameTime;
 extern int counter;
 
 Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_quit, *cursor, 
-*level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *player2, *life, *fire;
+*level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *player2, *life;
 
 Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
@@ -40,7 +40,6 @@ int (loadSprites)() {
   player = create_sprite((xpm_map_t)right1, 20, 20, 0);
   player2 = create_sprite((xpm_map_t)right1second, 60, 20, 0);
   life = create_sprite((xpm_map_t)life1, 610, 5, 0);
-  fire = create_sprite((xpm_map_t)fire1, 780, 475, 0);
   
   num0 = create_sprite((xpm_map_t)num0_, 1, 1, 0);
   num1 = create_sprite((xpm_map_t)num1_, 1, 1, 0);
@@ -67,7 +66,7 @@ int (loadSprites)() {
   divisor = create_sprite((xpm_map_t)divisor_, 2, 2, 0);
  
   if (menu_bg == NULL || title == NULL || start == NULL || hover_start == NULL || quit == NULL || hover_quit == NULL || 
-      cursor == NULL || level1 == NULL || hover_level1 == NULL || level2 == NULL || hover_level2 == NULL || fire == NULL ||
+      cursor == NULL || level1 == NULL || hover_level1 == NULL || level2 == NULL || hover_level2 == NULL || 
 			level3 == NULL || hover_level3 == NULL || player == NULL || player2 == NULL || life == NULL || num0 == NULL ||
       num1 == NULL ||num2 == NULL ||num3 == NULL ||num4 == NULL ||num5 == NULL ||num6 == NULL || 
       num7 == NULL ||num8 == NULL ||num9 == NULL || dot == NULL || smallNum0 == NULL ||  smallNum1 == NULL ||
@@ -163,7 +162,6 @@ int (timerLogic) () {
       printf("%d",gameTime);
       gameTime--;
     }
-    update_fire_sprite(gameTime);
     update_life_bar(gameTime);
 
     if (gameTime == 150) {
