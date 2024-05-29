@@ -50,6 +50,8 @@ uint8_t irq_set_sp;
 
 extern int m_index;
 extern uint8_t m_bytes[3];
+extern uint8_t k_index;
+extern uint8_t k_bytes[2];
 extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
@@ -107,6 +109,12 @@ int (proj_main_loop)(int argc, char *argv[]) {
         case HARDWARE:   
           if (msg.m_notify.interrupts & irq_set_keyboard) { 
             kbc_ih();
+            if (k_scancode == SCAN_FIRST_TWO) {
+              k_bytes[k_index] = k_scancode; k_index++;
+            } else {
+              k_bytes[k_index] = k_scancode;
+              k_index = 0;
+            }
             keyboardLogic();
           }
 

@@ -5,7 +5,6 @@ extern GameState gameState;
 extern Sprite *player, *player2;
 static Queue * receiveQueue;
 extern bool multi;
-static bool hold_reg_empty = true;
 
 int (sp_subscribe_int)(uint8_t* bitno){
     *bitno = BIT(hook_id_sp);

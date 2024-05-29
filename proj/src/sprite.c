@@ -3,6 +3,10 @@
 #include <stdio.h>
 #include "sprite.h"
 
+extern bool door1_open;
+extern bool door2_open;
+extern Sprite *door1, *door2, *button1, *button2;
+
 int (loading_xpm)(xpm_map_t xpm, Sprite *sp) {
     xpm_image_t image;
     sp->map = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
@@ -78,6 +82,7 @@ int (drawing_to_buffer_lantern)(Sprite *bg, Sprite *sp, uint8_t *buffer, int lan
     int center_x = sp->x + sp->width / 2;
     int center_y = sp->y + sp->height / 2;
 
+
     for (int y = -lant_radius; y <= lant_radius; y++) {
         for (int x = -lant_radius; x <= lant_radius; x++) {
             int pixel_x = center_x + x;
@@ -97,9 +102,37 @@ int (drawing_to_buffer_lantern)(Sprite *bg, Sprite *sp, uint8_t *buffer, int lan
             }
         }
     }
+    if(!door1_open){
+      if (is_sprite_inside_radius(sp, door1, lant_radius)) {
+          drawing_sprite(door1);
+      }
+    }
+    if(!door2_open){
+      if (is_sprite_inside_radius(sp, door2, lant_radius)) {
+          drawing_sprite(door2);
+      }
+    }
+    if (is_sprite_inside_radius(sp, button1, lant_radius)) {
+      drawing_sprite(button1);
+    }
+    if (is_sprite_inside_radius(sp, button2, lant_radius)) {
+      drawing_sprite(button2);
+    }    
   
     return 0;
 }
+
+
+
+bool is_sprite_inside_radius(Sprite *center, Sprite *sp, int lant_radius) {
+  int center_x = center->x + center->width / 2;
+  int center_y = center->y + center->height / 2;
+
+  if((sp->x >= center_x - lant_radius) && (sp->x <= center_x + lant_radius) &&
+     (sp->y >= center_y - lant_radius) && (sp->y <= center_y + lant_radius)) {return true;}
+    return false;
+}
+
 
 
 int (drawing_lantern)(Sprite *bg, Sprite *sp, int lant_radius) {
@@ -155,9 +188,18 @@ bool (check_collision)(Sprite *player, Sprite *maze, int x_diff, int y_diff) {
     next_color2 = maze->map[(y_top + y_diff) * maze->width + (x_top + player->width)];
 
   }
+    if(!door1_open){
+    if((x_top + x_diff >= (door1->x - (door1->width/2)) && x_top + x_diff <= (door1->x + door1->width))
+    && (y_top + y_diff >= (door1->y - (door1->height/2)) && y_top + y_diff <= (door1->y + door1->height)) ) return true;
+  }
+    if(!door2_open){
+    if((x_top + x_diff >= (door2->x - (door2->width/2)) && x_top + x_diff <= (door2->x + door2->width))
+    && (y_top + y_diff >= (door2->y - (door2->height/2)) && y_top + y_diff <= (door2->y + door2->height)) ) return true;
+  }
 
   if ((color != next_color1) || (color != next_color2)) 
     return true;
   return false;
 }
+
 
