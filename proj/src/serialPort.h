@@ -5,6 +5,8 @@
 
 #include "SerialPorts.h"
 #include "queue.h"
+#include "Game.h"
+#include "i8042.h"
 
 int (sp_subscribe_int)(uint8_t* bitno);
 

@@ -1,7 +1,9 @@
 #include "serialPort.h"
 
 int hook_id_sp = 6;
+extern GameState gameState;
 static Queue * receiveQueue;
+extern bool multi;
 
 int (sp_subscribe_int)(uint8_t* bitno){
     *bitno = BIT(hook_id_sp);
@@ -79,3 +81,45 @@ void (sp_ih)(){
             while(receive_byte());
 }
 
+/*
+
+bool (handle_coop_start)(){
+    if(frontQueue(receiveQueue) == 0x53){
+        send_byte(0x54);
+    }else if(frontQueue(receiveQueue) == 0x54){
+        send_byte(0x55);
+    }else if(frontQueue(receiveQueue) == 0x55){
+        uint8_t srandByte = 0;
+        while(srandByte == ACK || srandByte == NACK || srandByte == ERROR || srandByte == 0){
+            srandByte = rand();
+        }
+        send_byte(0x56);
+        send_byte(srandByte);
+        srandom(srandByte);
+    }else if(frontQueue(receiveQueue) == 0x56){
+        dequeue(receiveQueue);
+        uint8_t srandByte = dequeue(receiveQueue);
+        while(srandByte == 0){
+            read_byte();
+            srandByte = dequeue(receiveQueue);
+        }
+        srandom(srandByte);
+        swap_characters();
+        swapped = true;
+        gameState = GAME;
+        set_power_up_alarm(1);
+        set_enemy_throw(0xF);
+        multi =true;
+        send_byte(0x57);
+    }else if(frontQueue(receiveQueue) == 0x57){
+        gameState = GAME;
+        set_power_up_alarm(1);
+        set_enemy_throw(0xF);
+        multi = true;
+    }
+    dequeue(receiveQueue);
+    return true;
+}
+
+
+*/

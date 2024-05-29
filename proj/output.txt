@@ -1,4 +1,28 @@
+B1=0x38 B2=0xfe B3=0xf8 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=-8
+B1=0x38 B2=0xff B3=0xf5 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=-11
+B1=0x28 B2=0x00 B3=0xf6 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-10
+B1=0x28 B2=0x01 B3=0xf6 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-10
+B1=0x28 B2=0x06 B3=0xe0 LB=0 MB=0 RB=0 XOV=0 X=6 YOV=0 Y=-32
+B1=0x28 B2=0x0a B3=0xe4 LB=0 MB=0 RB=0 XOV=0 X=10 YOV=0 Y=-28
+B1=0x28 B2=0x06 B3=0xee LB=0 MB=0 RB=0 XOV=0 X=6 YOV=0 Y=-18
+B1=0x28 B2=0x06 B3=0xeb LB=0 MB=0 RB=0 XOV=0 X=6 YOV=0 Y=-21
+B1=0x28 B2=0x02 B3=0xfa LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-6
+B1=0x28 B2=0x01 B3=0xf9 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-7
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x18 B2=0xff B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=0
+B1=0x18 B2=0xfc B3=0x06 LB=0 MB=0 RB=0 XOV=0 X=-4 YOV=0 Y=6
+B1=0x18 B2=0xfc B3=0x0a LB=0 MB=0 RB=0 XOV=0 X=-4 YOV=0 Y=10
+B1=0x18 B2=0xe8 B3=0x37 LB=0 MB=0 RB=0 XOV=0 X=-24 YOV=0 Y=55
+B1=0x18 B2=0xf3 B3=0x28 LB=0 MB=0 RB=0 XOV=0 X=-13 YOV=0 Y=40
+B1=0x18 B2=0xf0 B3=0x49 LB=0 MB=0 RB=0 XOV=0 X=-16 YOV=0 Y=73
+B1=0x18 B2=0xfc B3=0x15 LB=0 MB=0 RB=0 XOV=0 X=-4 YOV=0 Y=21
+B1=0x18 B2=0xfd B3=0x0c LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=12
+B1=0x08 B2=0x00 B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=2
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+<<<<<<< HEAD
 B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
 B1=0x28 B2=0x01 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-2
 B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
@@ -144,3 +168,828 @@ B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
 B1=0x28 B2=0x28 B3=0x08 LB=0 MB=0 RB=0 XOV=0 X=40 YOV=0 Y=-248
 B1=0x08 B2=0x08 B3=0x28 LB=0 MB=0 RB=0 XOV=0 X=8 YOV=0 Y=40
 B1=0x08 B2=0x28 B3=0x28 LB=0 MB=0 RB=0 XOV=0 X=40 YOV=0 Y=40
+=======
+B1=0x28 B2=0x01 B3=0xfc LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-4
+B1=0x28 B2=0x02 B3=0xfa LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-6
+B1=0x28 B2=0x09 B3=0xe5 LB=0 MB=0 RB=0 XOV=0 X=9 YOV=0 Y=-27
+B1=0x28 B2=0x09 B3=0xe9 LB=0 MB=0 RB=0 XOV=0 X=9 YOV=0 Y=-23
+B1=0x28 B2=0x08 B3=0xe8 LB=0 MB=0 RB=0 XOV=0 X=8 YOV=0 Y=-24
+B1=0x28 B2=0x13 B3=0xd9 LB=0 MB=0 RB=0 XOV=0 X=19 YOV=0 Y=-39
+B1=0x28 B2=0x0b B3=0xe9 LB=0 MB=0 RB=0 XOV=0 X=11 YOV=0 Y=-23
+B1=0x28 B2=0x03 B3=0xfa LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=-6
+B1=0x28 B2=0x02 B3=0xfc LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-4
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+B1=0x28 B2=0x02 B3=0xfd LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-3
+B1=0x28 B2=0x02 B3=0xfb LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-5
+B1=0x28 B2=0x09 B3=0xf2 LB=0 MB=0 RB=0 XOV=0 X=9 YOV=0 Y=-14
+B1=0x28 B2=0x08 B3=0xf1 LB=0 MB=0 RB=0 XOV=0 X=8 YOV=0 Y=-15
+B1=0x28 B2=0x06 B3=0xf6 LB=0 MB=0 RB=0 XOV=0 X=6 YOV=0 Y=-10
+B1=0x28 B2=0x01 B3=0xfb LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-5
+B1=0x28 B2=0x02 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-2
+B1=0x28 B2=0x02 B3=0xfc LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-4
+B1=0x28 B2=0x01 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-2
+B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+B1=0x18 B2=0xff B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=2
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+B1=0x18 B2=0xff B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=0
+B1=0x18 B2=0xff B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=0
+B1=0x09 B2=0x00 B3=0x00 LB=1 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 18:54:21
+Tempo do jogo: 18:54:21
+B1=0x08 B2=0x00 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 18:54:21
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:21
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:21
+timer_test_int:timer_print_elapsed_time 1 s
+180B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:21
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:21
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:21
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:21
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:21
+B1=0x18 B2=0xff B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=0
+Tempo do jogo: 18:54:22
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:22
+B1=0x18 B2=0xfe B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=3
+Tempo do jogo: 18:54:22
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:22
+B1=0x18 B2=0xfe B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=3
+Tempo do jogo: 18:54:22
+B1=0x08 B2=0x00 B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=3
+Tempo do jogo: 18:54:22
+B1=0x18 B2=0xff B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=1
+Tempo do jogo: 18:54:22
+B1=0x18 B2=0xff B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=3
+Tempo do jogo: 18:54:22
+B1=0x18 B2=0xff B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=1
+Tempo do jogo: 18:54:22
+B1=0x08 B2=0x00 B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=2
+Tempo do jogo: 18:54:22
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:22
+B1=0x18 B2=0xff B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=0
+Tempo do jogo: 18:54:22
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:22
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:23
+B1=0x18 B2=0xff B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=1
+Tempo do jogo: 18:54:23
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:23
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:23
+Tempo do jogo: 18:54:23
+Tempo do jogo: 18:54:23
+Tempo do jogo: 18:54:23
+B1=0x18 B2=0xff B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=0
+Tempo do jogo: 18:54:23
+Tempo do jogo: 18:54:23
+B1=0x18 B2=0xff B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=1
+Tempo do jogo: 18:54:23
+Tempo do jogo: 18:54:23
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 18:54:23
+B1=0x38 B2=0xff B3=0xff LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=-1
+Tempo do jogo: 18:54:23
+Tempo do jogo: 18:54:24
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 18:54:24
+Tempo do jogo: 18:54:24
+B1=0x18 B2=0xff B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=0
+Tempo do jogo: 18:54:24
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 18:54:24
+Tempo do jogo: 18:54:24
+Tempo do jogo: 18:54:24
+timer_test_int:timer_print_elapsed_time 2 s
+179Tempo do jogo: 18:54:24
+Tempo do jogo: 18:54:25
+Tempo do jogo: 18:54:25
+Tempo do jogo: 18:54:25
+Tempo do jogo: 18:54:25
+Tempo do jogo: 18:54:25
+Tempo do jogo: 18:54:25
+Tempo do jogo: 18:54:25
+Tempo do jogo: 18:54:25
+Tempo do jogo: 18:54:25
+timer_test_int:timer_print_elapsed_time 3 s
+178Tempo do jogo: 18:54:26
+Tempo do jogo: 18:54:26
+Tempo do jogo: 18:54:26
+Tempo do jogo: 18:54:26
+Tempo do jogo: 18:54:27
+timer_test_int:timer_print_elapsed_time 4 s
+177Tempo do jogo: 18:54:27
+Tempo do jogo: 18:54:27
+Tempo do jogo: 18:54:28
+timer_test_int:timer_print_elapsed_time 5 s
+176Tempo do jogo: 18:54:28
+Tempo do jogo: 18:54:28
+Tempo do jogo: 18:54:28
+Tempo do jogo: 18:54:28
+Tempo do jogo: 18:54:28
+Tempo do jogo: 18:54:28
+Tempo do jogo: 18:54:29
+Tempo do jogo: 18:54:29
+Tempo do jogo: 18:54:29
+Tempo do jogo: 18:54:29
+Tempo do jogo: 18:54:29
+Tempo do jogo: 18:54:29
+Tempo do jogo: 18:54:29
+Tempo do jogo: 18:54:29
+Tempo do jogo: 18:54:29
+Tempo do jogo: 18:54:30
+timer_test_int:timer_print_elapsed_time 6 s
+175Tempo do jogo: 18:54:30
+Tempo do jogo: 18:54:30
+Tempo do jogo: 18:54:30
+Tempo do jogo: 18:54:30
+Tempo do jogo: 18:54:30
+Tempo do jogo: 18:54:30
+Tempo do jogo: 18:54:31
+Tempo do jogo: 18:54:31
+Tempo do jogo: 18:54:31
+timer_test_int:timer_print_elapsed_time 7 s
+174Tempo do jogo: 18:54:31
+Tempo do jogo: 18:54:31
+Tempo do jogo: 18:54:31
+Tempo do jogo: 18:54:31
+Tempo do jogo: 18:54:32
+Tempo do jogo: 18:54:32
+Tempo do jogo: 18:54:32
+Tempo do jogo: 18:54:32
+Tempo do jogo: 18:54:32
+Tempo do jogo: 18:54:32
+Tempo do jogo: 18:54:32
+Tempo do jogo: 18:54:32
+Tempo do jogo: 18:54:32
+Tempo do jogo: 18:54:32
+Tempo do jogo: 18:54:32
+Tempo do jogo: 18:54:32
+Tempo do jogo: 18:54:33
+Tempo do jogo: 18:54:33
+Tempo do jogo: 18:54:33
+Tempo do jogo: 18:54:33
+Tempo do jogo: 18:54:33
+timer_test_int:timer_print_elapsed_time 8 s
+173Tempo do jogo: 18:54:33
+timer_test_int:timer_print_elapsed_time 9 s
+172Tempo do jogo: 18:54:35
+Tempo do jogo: 18:54:35
+timer_test_int:timer_print_elapsed_time 10 s
+171Tempo do jogo: 18:54:35
+Tempo do jogo: 18:54:36
+Tempo do jogo: 18:54:36
+Tempo do jogo: 18:54:36
+Tempo do jogo: 18:54:36
+Tempo do jogo: 18:54:36
+Tempo do jogo: 18:54:36
+timer_test_int:timer_print_elapsed_time 11 s
+170Tempo do jogo: 18:54:37
+Tempo do jogo: 18:54:37
+Tempo do jogo: 18:54:37
+Tempo do jogo: 18:54:37
+Tempo do jogo: 18:54:37
+Tempo do jogo: 18:54:37
+Tempo do jogo: 18:54:38
+Tempo do jogo: 18:54:38
+Tempo do jogo: 18:54:38
+timer_test_int:timer_print_elapsed_time 12 s
+169Tempo do jogo: 18:54:38
+timer_test_int:timer_print_elapsed_time 13 s
+168Tempo do jogo: 18:54:39
+Tempo do jogo: 18:54:39
+Tempo do jogo: 18:54:40
+Tempo do jogo: 18:54:40
+Tempo do jogo: 18:54:40
+Tempo do jogo: 18:54:40
+timer_test_int:timer_print_elapsed_time 14 s
+167Tempo do jogo: 18:54:40
+Tempo do jogo: 18:54:41
+Tempo do jogo: 18:54:41
+Tempo do jogo: 18:54:41
+Tempo do jogo: 18:54:41
+Tempo do jogo: 18:54:41
+Tempo do jogo: 18:54:41
+Tempo do jogo: 18:54:41
+Tempo do jogo: 18:54:41
+Tempo do jogo: 18:54:41
+Tempo do jogo: 18:54:41
+Tempo do jogo: 18:54:42
+Tempo do jogo: 18:54:42
+Tempo do jogo: 18:54:42
+timer_test_int:timer_print_elapsed_time 15 s
+166Tempo do jogo: 18:54:42
+Tempo do jogo: 18:54:42
+Tempo do jogo: 18:54:43
+Tempo do jogo: 18:54:43
+Tempo do jogo: 18:54:43
+Tempo do jogo: 18:54:43
+Tempo do jogo: 18:54:43
+Tempo do jogo: 18:54:43
+Tempo do jogo: 18:54:43
+Tempo do jogo: 18:54:43
+Tempo do jogo: 18:54:44
+Tempo do jogo: 18:54:44
+timer_test_int:timer_print_elapsed_time 16 s
+165Tempo do jogo: 18:54:44
+Tempo do jogo: 18:54:44
+Tempo do jogo: 18:54:44
+Tempo do jogo: 18:54:45
+Tempo do jogo: 18:54:45
+Tempo do jogo: 18:54:45
+Tempo do jogo: 18:54:45
+timer_test_int:timer_print_elapsed_time 17 s
+164Tempo do jogo: 18:54:45
+Tempo do jogo: 18:54:45
+Tempo do jogo: 18:54:46
+timer_test_int:timer_print_elapsed_time 18 s
+163Tempo do jogo: 18:54:46
+Tempo do jogo: 18:54:46
+Tempo do jogo: 18:54:47
+Tempo do jogo: 18:54:47
+Tempo do jogo: 18:54:47
+Tempo do jogo: 18:54:47
+Tempo do jogo: 18:54:47
+Tempo do jogo: 18:54:47
+Tempo do jogo: 18:54:47
+timer_test_int:timer_print_elapsed_time 19 s
+162Tempo do jogo: 18:54:48
+Tempo do jogo: 18:54:48
+Tempo do jogo: 18:54:48
+Tempo do jogo: 18:54:48
+Tempo do jogo: 18:54:48
+Tempo do jogo: 18:54:49
+Tempo do jogo: 18:54:49
+timer_test_int:timer_print_elapsed_time 20 s
+161Tempo do jogo: 18:54:49
+Tempo do jogo: 18:54:49
+Tempo do jogo: 18:54:50
+Tempo do jogo: 18:54:50
+Tempo do jogo: 18:54:50
+timer_test_int:timer_print_elapsed_time 21 s
+160Tempo do jogo: 18:54:51
+Tempo do jogo: 18:54:51
+Tempo do jogo: 18:54:51
+Tempo do jogo: 18:54:51
+Tempo do jogo: 18:54:51
+Tempo do jogo: 18:54:51
+timer_test_int:timer_print_elapsed_time 22 s
+159Tempo do jogo: 18:54:52
+Tempo do jogo: 18:54:52
+Tempo do jogo: 18:54:52
+Tempo do jogo: 18:54:52
+Tempo do jogo: 18:54:52
+Tempo do jogo: 18:54:53
+timer_test_int:timer_print_elapsed_time 23 s
+158Tempo do jogo: 18:54:53
+Tempo do jogo: 18:54:53
+Tempo do jogo: 18:54:54
+Tempo do jogo: 18:54:54
+timer_test_int:timer_print_elapsed_time 24 s
+157Tempo do jogo: 18:54:54
+Tempo do jogo: 18:54:54
+Tempo do jogo: 18:54:55
+Tempo do jogo: 18:54:55
+Tempo do jogo: 18:54:55
+timer_test_int:timer_print_elapsed_time 25 s
+156timer_test_int:timer_print_elapsed_time 26 s
+155timer_test_int:timer_print_elapsed_time 27 s
+154timer_test_int:timer_print_elapsed_time 28 s
+153timer_test_int:timer_print_elapsed_time 29 s
+152timer_test_int:timer_print_elapsed_time 30 s
+151timer_test_int:timer_print_elapsed_time 31 s
+150timer_test_int:timer_print_elapsed_time 32 s
+149timer_test_int:timer_print_elapsed_time 33 s
+148timer_test_int:timer_print_elapsed_time 34 s
+147timer_test_int:timer_print_elapsed_time 35 s
+146timer_test_int:timer_print_elapsed_time 36 s
+145timer_test_int:timer_print_elapsed_time 37 s
+144timer_test_int:timer_print_elapsed_time 38 s
+143timer_test_int:timer_print_elapsed_time 39 s
+142timer_test_int:timer_print_elapsed_time 40 s
+141Tempo do jogo: 18:55:10
+Tempo do jogo: 18:55:10
+Tempo do jogo: 18:55:10
+Tempo do jogo: 18:55:10
+Tempo do jogo: 18:55:10
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:11
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:12
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:13
+Tempo do jogo: 18:55:14
+Tempo do jogo: 18:55:14
+Tempo do jogo: 18:55:14
+Tempo do jogo: 18:55:14
+Tempo do jogo: 18:55:14
+Tempo do jogo: 18:55:14
+Tempo do jogo: 18:55:14
+Tempo do jogo: 18:55:14
+Tempo do jogo: 18:55:14
+timer_test_int:timer_print_elapsed_time 41 s
+140timer_test_int:timer_print_elapsed_time 42 s
+139timer_test_int:timer_print_elapsed_time 43 s
+138timer_test_int:timer_print_elapsed_time 44 s
+137timer_test_int:timer_print_elapsed_time 45 s
+136timer_test_int:timer_print_elapsed_time 46 s
+135timer_test_int:timer_print_elapsed_time 47 s
+134timer_test_int:timer_print_elapsed_time 48 s
+133timer_test_int:timer_print_elapsed_time 49 s
+132timer_test_int:timer_print_elapsed_time 50 s
+131timer_test_int:timer_print_elapsed_time 51 s
+130timer_test_int:timer_print_elapsed_time 52 s
+129timer_test_int:timer_print_elapsed_time 53 s
+128timer_test_int:timer_print_elapsed_time 54 s
+127timer_test_int:timer_print_elapsed_time 55 s
+126timer_test_int:timer_print_elapsed_time 56 s
+125timer_test_int:timer_print_elapsed_time 57 s
+124timer_test_int:timer_print_elapsed_time 58 s
+123timer_test_int:timer_print_elapsed_time 59 s
+122timer_test_int:timer_print_elapsed_time 60 s
+121timer_test_int:timer_print_elapsed_time 61 s
+120timer_test_int:timer_print_elapsed_time 62 s
+119timer_test_int:timer_print_elapsed_time 63 s
+118timer_test_int:timer_print_elapsed_time 64 s
+117timer_test_int:timer_print_elapsed_time 65 s
+116timer_test_int:timer_print_elapsed_time 66 s
+115timer_test_int:timer_print_elapsed_time 67 s
+114timer_test_int:timer_print_elapsed_time 68 s
+113timer_test_int:timer_print_elapsed_time 69 s
+112timer_test_int:timer_print_elapsed_time 70 s
+111timer_test_int:timer_print_elapsed_time 71 s
+110timer_test_int:timer_print_elapsed_time 72 s
+109timer_test_int:timer_print_elapsed_time 73 s
+108timer_test_int:timer_print_elapsed_time 74 s
+107timer_test_int:timer_print_elapsed_time 75 s
+106timer_test_int:timer_print_elapsed_time 76 s
+105timer_test_int:timer_print_elapsed_time 77 s
+104timer_test_int:timer_print_elapsed_time 78 s
+103timer_test_int:timer_print_elapsed_time 79 s
+102timer_test_int:timer_print_elapsed_time 80 s
+101timer_test_int:timer_print_elapsed_time 81 s
+100timer_test_int:timer_print_elapsed_time 82 s
+99timer_test_int:timer_print_elapsed_time 83 s
+98timer_test_int:timer_print_elapsed_time 84 s
+97timer_test_int:timer_print_elapsed_time 85 s
+96timer_test_int:timer_print_elapsed_time 86 s
+95timer_test_int:timer_print_elapsed_time 87 s
+94timer_test_int:timer_print_elapsed_time 88 s
+93timer_test_int:timer_print_elapsed_time 89 s
+92timer_test_int:timer_print_elapsed_time 90 s
+91Tempo do jogo: 18:56:03
+Tempo do jogo: 18:56:03
+Tempo do jogo: 18:56:03
+Tempo do jogo: 18:56:03
+Tempo do jogo: 18:56:03
+Tempo do jogo: 18:56:03
+Tempo do jogo: 18:56:03
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:04
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:05
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:06
+Tempo do jogo: 18:56:07
+Tempo do jogo: 18:56:07
+Tempo do jogo: 18:56:07
+Tempo do jogo: 18:56:07
+Tempo do jogo: 18:56:07
+Tempo do jogo: 18:56:07
+Tempo do jogo: 18:56:07
+timer_test_int:timer_print_elapsed_time 91 s
+90timer_test_int:timer_print_elapsed_time 92 s
+89timer_test_int:timer_print_elapsed_time 93 s
+88timer_test_int:timer_print_elapsed_time 94 s
+87timer_test_int:timer_print_elapsed_time 95 s
+86timer_test_int:timer_print_elapsed_time 96 s
+85timer_test_int:timer_print_elapsed_time 97 s
+84timer_test_int:timer_print_elapsed_time 98 s
+83timer_test_int:timer_print_elapsed_time 99 s
+82timer_test_int:timer_print_elapsed_time 100 s
+81timer_test_int:timer_print_elapsed_time 101 s
+80timer_test_int:timer_print_elapsed_time 102 s
+79timer_test_int:timer_print_elapsed_time 103 s
+78timer_test_int:timer_print_elapsed_time 104 s
+77timer_test_int:timer_print_elapsed_time 105 s
+76B1=0x09 B2=0x00 B3=0x00 LB=1 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 18:56:22
+Tempo do jogo: 18:56:22
+B1=0x08 B2=0x00 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 18:56:22
+Tempo do jogo: 18:56:22
+B1=0x18 B2=0xfe B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=4
+Tempo do jogo: 18:56:22
+timer_test_int:timer_print_elapsed_time 106 s
+75Tempo do jogo: 18:56:22
+Tempo do jogo: 18:56:22
+Tempo do jogo: 18:56:23
+Tempo do jogo: 18:56:23
+Tempo do jogo: 18:56:23
+Tempo do jogo: 18:56:23
+Tempo do jogo: 18:56:23
+Tempo do jogo: 18:56:23
+Tempo do jogo: 18:56:23
+Tempo do jogo: 18:56:24
+timer_test_int:timer_print_elapsed_time 107 s
+74Tempo do jogo: 18:56:24
+Tempo do jogo: 18:56:24
+Tempo do jogo: 18:56:24
+Tempo do jogo: 18:56:24
+Tempo do jogo: 18:56:24
+Tempo do jogo: 18:56:25
+Tempo do jogo: 18:56:25
+Tempo do jogo: 18:56:25
+timer_test_int:timer_print_elapsed_time 108 s
+73Tempo do jogo: 18:56:25
+Tempo do jogo: 18:56:25
+Tempo do jogo: 18:56:26
+Tempo do jogo: 18:56:26
+Tempo do jogo: 18:56:26
+Tempo do jogo: 18:56:26
+Tempo do jogo: 18:56:26
+Tempo do jogo: 18:56:26
+timer_test_int:timer_print_elapsed_time 109 s
+72Tempo do jogo: 18:56:27
+Tempo do jogo: 18:56:27
+Tempo do jogo: 18:56:27
+Tempo do jogo: 18:56:28
+Tempo do jogo: 18:56:28
+timer_test_int:timer_print_elapsed_time 110 s
+71Tempo do jogo: 18:56:28
+Tempo do jogo: 18:56:28
+Tempo do jogo: 18:56:28
+Tempo do jogo: 18:56:29
+Tempo do jogo: 18:56:29
+Tempo do jogo: 18:56:29
+timer_test_int:timer_print_elapsed_time 111 s
+70Tempo do jogo: 18:56:29
+Tempo do jogo: 18:56:29
+Tempo do jogo: 18:56:29
+Tempo do jogo: 18:56:30
+Tempo do jogo: 18:56:30
+Tempo do jogo: 18:56:30
+Tempo do jogo: 18:56:30
+timer_test_int:timer_print_elapsed_time 112 s
+69Tempo do jogo: 18:56:30
+Tempo do jogo: 18:56:31
+Tempo do jogo: 18:56:31
+Tempo do jogo: 18:56:31
+Tempo do jogo: 18:56:31
+Tempo do jogo: 18:56:31
+Tempo do jogo: 18:56:32
+timer_test_int:timer_print_elapsed_time 113 s
+68Tempo do jogo: 18:56:32
+Tempo do jogo: 18:56:32
+Tempo do jogo: 18:56:32
+Tempo do jogo: 18:56:32
+Tempo do jogo: 18:56:32
+Tempo do jogo: 18:56:32
+Tempo do jogo: 18:56:33
+Tempo do jogo: 18:56:33
+Tempo do jogo: 18:56:33
+Tempo do jogo: 18:56:33
+Tempo do jogo: 18:56:33
+timer_test_int:timer_print_elapsed_time 114 s
+67Tempo do jogo: 18:56:33
+Tempo do jogo: 18:56:33
+Tempo do jogo: 18:56:34
+Tempo do jogo: 18:56:34
+Tempo do jogo: 18:56:34
+Tempo do jogo: 18:56:34
+Tempo do jogo: 18:56:34
+Tempo do jogo: 18:56:34
+Tempo do jogo: 18:56:35
+timer_test_int:timer_print_elapsed_time 115 s
+66Tempo do jogo: 18:56:35
+Tempo do jogo: 18:56:35
+Tempo do jogo: 18:56:35
+Tempo do jogo: 18:56:35
+Tempo do jogo: 18:56:36
+Tempo do jogo: 18:56:36
+Tempo do jogo: 18:56:36
+timer_test_int:timer_print_elapsed_time 116 s
+65Tempo do jogo: 18:56:36
+Tempo do jogo: 18:56:36
+Tempo do jogo: 18:56:37
+Tempo do jogo: 18:56:37
+Tempo do jogo: 18:56:37
+Tempo do jogo: 18:56:37
+timer_test_int:timer_print_elapsed_time 117 s
+64Tempo do jogo: 18:56:37
+Tempo do jogo: 18:56:38
+Tempo do jogo: 18:56:38
+Tempo do jogo: 18:56:38
+Tempo do jogo: 18:56:38
+Tempo do jogo: 18:56:38
+timer_test_int:timer_print_elapsed_time 118 s
+63Tempo do jogo: 18:56:39
+Tempo do jogo: 18:56:39
+Tempo do jogo: 18:56:39
+Tempo do jogo: 18:56:39
+Tempo do jogo: 18:56:39
+Tempo do jogo: 18:56:40
+timer_test_int:timer_print_elapsed_time 119 s
+62Tempo do jogo: 18:56:40
+Tempo do jogo: 18:56:40
+Tempo do jogo: 18:56:40
+Tempo do jogo: 18:56:41
+Tempo do jogo: 18:56:41
+Tempo do jogo: 18:56:41
+Tempo do jogo: 18:56:41
+timer_test_int:timer_print_elapsed_time 120 s
+61Tempo do jogo: 18:56:41
+Tempo do jogo: 18:56:41
+Tempo do jogo: 18:56:41
+Tempo do jogo: 18:56:41
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:42
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:43
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:44
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:45
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:46
+Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:47
+timer_test_int:timer_print_elapsed_time 121 s
+60Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:47
+Tempo do jogo: 18:56:48
+Tempo do jogo: 18:56:48
+Tempo do jogo: 18:56:48
+Tempo do jogo: 18:56:48
+Tempo do jogo: 18:56:48
+Tempo do jogo: 18:56:48
+Tempo do jogo: 18:56:48
+Tempo do jogo: 18:56:48
+Tempo do jogo: 18:56:48
+Tempo do jogo: 18:56:48
+Tempo do jogo: 18:56:48
+Tempo do jogo: 18:56:48
+Tempo do jogo: 18:56:49
+Tempo do jogo: 18:56:49
+Tempo do jogo: 18:56:49
+Tempo do jogo: 18:56:49
+Tempo do jogo: 18:56:49
+Tempo do jogo: 18:56:49
+timer_test_int:timer_print_elapsed_time 122 s
+59Tempo do jogo: 18:56:49
+Tempo do jogo: 18:56:50
+Tempo do jogo: 18:56:50
+Tempo do jogo: 18:56:50
+Tempo do jogo: 18:56:50
+Tempo do jogo: 18:56:50
+Tempo do jogo: 18:56:50
+Tempo do jogo: 18:56:51
+Tempo do jogo: 18:56:51
+timer_test_int:timer_print_elapsed_time 123 s
+58Tempo do jogo: 18:56:51
+Tempo do jogo: 18:56:51
+Tempo do jogo: 18:56:51
+Tempo do jogo: 18:56:51
+Tempo do jogo: 18:56:51
+Tempo do jogo: 18:56:52
+Tempo do jogo: 18:56:52
+Tempo do jogo: 18:56:52
+timer_test_int:timer_print_elapsed_time 124 s
+57Tempo do jogo: 18:56:52
+Tempo do jogo: 18:56:52
+Tempo do jogo: 18:56:53
+Tempo do jogo: 18:56:53
+Tempo do jogo: 18:56:53
+Tempo do jogo: 18:56:53
+timer_test_int:timer_print_elapsed_time 125 s
+56Tempo do jogo: 18:56:54
+Tempo do jogo: 18:56:54
+Tempo do jogo: 18:56:54
+Tempo do jogo: 18:56:55
+timer_test_int:timer_print_elapsed_time 126 s
+55Tempo do jogo: 18:56:55
+Tempo do jogo: 18:56:56
+Tempo do jogo: 18:56:56
+Tempo do jogo: 18:56:56
+Tempo do jogo: 18:56:56
+Tempo do jogo: 18:56:56
+timer_test_int:timer_print_elapsed_time 127 s
+54Tempo do jogo: 18:56:56
+Tempo do jogo: 18:56:56
+Tempo do jogo: 18:56:56
+Tempo do jogo: 18:56:56
+Tempo do jogo: 18:56:57
+Tempo do jogo: 18:56:57
+Tempo do jogo: 18:56:57
+Tempo do jogo: 18:56:57
+Tempo do jogo: 18:56:57
+Tempo do jogo: 18:56:57
+Tempo do jogo: 18:56:57
+Tempo do jogo: 18:56:58
+Tempo do jogo: 18:56:58
+Tempo do jogo: 18:56:58
+Tempo do jogo: 18:56:58
+Tempo do jogo: 18:56:58
+timer_test_int:timer_print_elapsed_time 128 s
+53Tempo do jogo: 18:56:58
+Tempo do jogo: 18:56:58
+Tempo do jogo: 18:56:58
+Tempo do jogo: 18:56:58
+Tempo do jogo: 18:56:59
+Tempo do jogo: 18:56:59
+Tempo do jogo: 18:56:59
+Tempo do jogo: 18:56:59
+Tempo do jogo: 18:56:59
+Tempo do jogo: 18:56:59
+timer_test_int:timer_print_elapsed_time 129 s
+52Tempo do jogo: 18:56:59
+Tempo do jogo: 18:57:00
+Tempo do jogo: 18:57:00
+Tempo do jogo: 18:57:00
+Tempo do jogo: 18:57:00
+Tempo do jogo: 18:57:00
+Tempo do jogo: 18:57:00
+Tempo do jogo: 18:57:01
+Tempo do jogo: 18:57:01
+Tempo do jogo: 18:57:01
+timer_test_int:timer_print_elapsed_time 130 s
+51
+>>>>>>> a755ad3bd6f4833bfd633114d4862fafb542a694

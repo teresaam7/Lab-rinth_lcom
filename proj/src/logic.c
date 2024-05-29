@@ -164,7 +164,7 @@ int (timerLogic) () {
     }
     update_life_bar(gameTime);
 
-    if (gameTime == 150) {
+    if (gameTime == 50) {
       gameState = WIN; 
       gameState_change = true; 
     }

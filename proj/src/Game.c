@@ -133,8 +133,8 @@ void (update_game)(Sprite * player) {
   uint8_t hours, minutes, seconds;
   get_game_time(&hours, &minutes, &seconds);
   display_game_time();
-  drawing_lantern(maze, player, 40);
-  drawing_lantern(maze, cursor, 40);
+  drawing_lantern(maze, player, 60);
+  drawing_lantern(maze, cursor, 60);
   drawing_sprite(player);
   drawing_sprite(life);
   draw_time_small(hours, minutes, 10, 575);
@@ -171,28 +171,36 @@ xpm_map_t (get_next_sprite)(uint8_t scancode) {
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
     switch (scancode) {
         case D_KEY_MK:
+          if (!check_collision(player, maze, 5, 0)) {
             player->x = player->x + 5;
             loading_xpm(get_next_sprite(D_KEY_MK), player);
             update_game(player);
-            break;
+          }
+          break;
 
         case A_KEY_MK:
+          if (!check_collision(player, maze, -5, 0)) {
             player->x = player->x - 5;
             loading_xpm(get_next_sprite(A_KEY_MK), player);
             update_game(player);
-            break;
+          }
+          break;
 
         case W_KEY_MK:
+          if (!check_collision(player, maze, 0, -5)) {
             player->y = player->y - 5;
             loading_xpm(get_next_sprite(W_KEY_MK), player);
             update_game(player);
-            break;
+          }
+          break;
         
         case S_KEY_MK:
+          if (!check_collision(player, maze, 0, 5)) {
             player->y = player->y + 5;
             loading_xpm(get_next_sprite(S_KEY_MK), player);
             update_game(player);
-            break;
+          }
+          break;
 
         case A_KEY_BRK:
             loading_xpm(get_next_sprite(A_KEY_BRK), player);
