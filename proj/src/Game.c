@@ -17,7 +17,7 @@ bool door1_open = false;
 bool door2_open = false;
 
 
-extern Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_quit, *cursor,
+extern Sprite *menu_bg, *title, *game_over, *win, *start, *hover_start, *quit, *hover_quit, *cursor,
  *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *button1, *button2, *door1, *door2, *player, *player2, *life;
 
 extern Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
@@ -118,8 +118,10 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze2, 0, 0, 0);
       }
-      button1 = create_sprite((xpm_map_t) button_up_, 25 , 25 , 0);
-      button2 = create_sprite((xpm_map_t) button_up_, 30 , 30 , 0);
+      button1 = create_sprite((xpm_map_t) button_up_, 90 , 497 , 0); /* mudar coordenadas*/
+      button2 = create_sprite((xpm_map_t) button_up_, 200 , 200 , 0);
+      door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
+      door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
       break;
 
     case 3:
@@ -130,8 +132,10 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze3, 0, 0, 0);
       }
-      button1 = create_sprite((xpm_map_t) button_up_, 25 , 25 , 0);
-      button2 = create_sprite((xpm_map_t) button_up_, 30 , 30 , 0);
+      button1 = create_sprite((xpm_map_t) button_up_, 90 , 497 , 0); /*mudar coordenadas*/
+      button2 = create_sprite((xpm_map_t) button_up_, 200 , 200 , 0);
+      door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
+      door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
       break;
 
     default:
@@ -416,7 +420,7 @@ void (draw_time_small)(uint8_t hours, uint8_t minutes, int x, int y) {
 /*Win*/
 void (draw_win)(int total_seconds) {
   drawing_bg(menu_bg);
-  drawing_sprite(game_over);
+  drawing_sprite(win);
   draw_time(total_seconds, 310, 305);
   update_flip_frames();
 }
