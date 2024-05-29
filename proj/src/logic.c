@@ -141,6 +141,7 @@ int (mouseLogic) () {
         gameState = GAME;
       }  
       if(collision(cursor, level3)){
+        send_byte(0x53);
         load_level(3);
         gameState_change = true;
         multi = true;

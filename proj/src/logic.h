@@ -5,6 +5,7 @@
 #include <lcom/lcf.h>
 
 #include "Game.h"
+#include "serialPort.h"
 
 int (loadSprites)();
 int (gameStateInit)(bool * running);

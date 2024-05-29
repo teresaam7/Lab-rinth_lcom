@@ -2,6 +2,7 @@
 
 int hook_id_sp = 6;
 extern GameState gameState;
+extern Sprite *player, *player2;
 static Queue * receiveQueue;
 extern bool multi;
 
@@ -42,7 +43,7 @@ int (send_byte)(uint8_t byte){
 
 int (receive_byte)(){
     uint8_t st, rbr;
-    // Read status/
+    // Read status
     if( util_sys_inb(BASE_COM1 + LSR, &st)!= 0) 
         return 1;
     if(st & LSR_DR){
@@ -81,16 +82,46 @@ void (sp_ih)(){
             while(receive_byte());
 }
 
-/*
+void (send_scancode)(uint8_t scancode){
+    uint8_t send_code = 0;
+    if(scancode == A_KEY_MK){
+        send_code |= BIT(0);
+    }else if(scancode == A_KEY_BRK){
+        send_code |= BIT(1);
+    }else if(scancode == D_KEY_MK){
+        send_code |= BIT(2);
+    }else if(scancode == D_KEY_BRK){
+        send_code |= BIT(3);
+    }else if(scancode == W_KEY_MK){
+        send_code |= BIT(4);
+    }else if(scancode == W_KEY_BRK){
+        send_code |= BIT(5);
+    }else if(scancode == S_KEY_MK){
+        send_code |= BIT(6);
+    }else if(scancode == S_KEY_BRK){
+        send_code |= BIT(7);
+    }
+    send_byte(send_code);
+}
 
-bool (handle_coop_start)(){
+void (manage_button)(uint8_t scancode, bool isPlayer1) {
+  if(isPlayer1) {
+    handle_ingame_scancode(scancode, player);
+  } 
+  else{
+    handle_ingame_scancode_multi(scancode, player2);
+    send_scancode(scancode);
+  } 
+}
+
+bool (handle_start_multi)(){
     if(frontQueue(receiveQueue) == 0x53){
         send_byte(0x54);
     }else if(frontQueue(receiveQueue) == 0x54){
         send_byte(0x55);
     }else if(frontQueue(receiveQueue) == 0x55){
         uint8_t srandByte = 0;
-        while(srandByte == ACK || srandByte == NACK || srandByte == ERROR || srandByte == 0){
+        while(srandByte == ACK || srandByte == NACK || srandByte == END || srandByte == 0){
             srandByte = rand();
         }
         send_byte(0x56);
@@ -100,28 +131,67 @@ bool (handle_coop_start)(){
         dequeue(receiveQueue);
         uint8_t srandByte = dequeue(receiveQueue);
         while(srandByte == 0){
-            read_byte();
+            receive_byte();
             srandByte = dequeue(receiveQueue);
         }
         srandom(srandByte);
-        swap_characters();
-        swapped = true;
         gameState = GAME;
-        set_power_up_alarm(1);
-        set_enemy_throw(0xF);
         multi =true;
         send_byte(0x57);
     }else if(frontQueue(receiveQueue) == 0x57){
         gameState = GAME;
-        set_power_up_alarm(1);
-        set_enemy_throw(0xF);
         multi = true;
     }
     dequeue(receiveQueue);
     return true;
 }
 
-*/
+void (sp_handler)(){
+  sp_ih();
+  if (gameState == GAME && multi) {
+    handle_start_multi();
+    handle_receive_info();
+  } 
+  else{
+     sp_out();
+  }
+}
 
+void (handle_receive_info)(){
+   if(queueIsEmpty(receiveQueue)) return;
+    while(!queueIsEmpty(receiveQueue)){
+        uint8_t curByte = dequeue(receiveQueue);
+
+        if(curByte == END){
+            gameState = LOSE;
+            return;
+        }
+        else{ 
+            uint8_t scancode;
+            bool invalid = false;
+            if(curByte & BIT(0)) 
+                scancode = A_KEY_MK;
+            else if(curByte & BIT(1)) 
+                scancode = A_KEY_BRK;
+            else if(curByte & BIT(2)) 
+                scancode = D_KEY_MK;
+            else if(curByte & BIT(3)) 
+                scancode = D_KEY_BRK;
+            else if(curByte & BIT(4)) 
+                scancode = W_KEY_MK;
+            else if(curByte & BIT(5))
+                scancode = W_KEY_BRK;
+            else if(curByte & BIT(6)) 
+                scancode = S_KEY_MK;
+            else if(curByte & BIT(7)) 
+                scancode = S_KEY_BRK;
+            else
+                invalid = true;
+
+            if(!invalid) 
+                manage_button(scancode, false);
+            }
+    }
+}
 
 

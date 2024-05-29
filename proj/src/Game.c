@@ -136,9 +136,7 @@ void (update_game)() {
   display_game_time();
   drawing_lantern(maze, player, 60);
   if (multi) {
-    printf("AAAAAAAAA");
     drawing_lantern(maze, player2, 60);
-    printf("BBBBBBBB");
     drawing_sprite(player2);
   }
   else{
