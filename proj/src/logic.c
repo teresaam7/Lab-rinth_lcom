@@ -5,13 +5,14 @@ extern uint8_t k_scancode;
 extern struct packet m_packet;
 
 extern bool gameState_change;
+extern bool multi;
 extern GameState gameState;
 
 extern int gameTime;
 extern int counter;
 
 Sprite *menu_bg, *title, *game_over,*win, *start, *hover_start, *quit, *hover_quit, *cursor, 
-*level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *button1, *button2, *door1, *door2,  *player, *player2, *life;
+*level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze,*waiting, *button1, *button2, *door1, *door2,  *player, *player2, *life, *arrow;
 
 Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
@@ -41,6 +42,8 @@ int (loadSprites)() {
 
   player2 = create_sprite((xpm_map_t)right1second, 60, 20, 0);
   life = create_sprite((xpm_map_t)life1, 610, 5, 0);
+  waiting = create_sprite((xpm_map_t)waiting_, 240, 100, 0);
+  arrow = create_sprite((xpm_map_t)arrow6, 745, 560, 0);
   
   num0 = create_sprite((xpm_map_t)num0_, 1, 1, 0);
   num1 = create_sprite((xpm_map_t)num1_, 1, 1, 0);
@@ -67,12 +70,12 @@ int (loadSprites)() {
   divisor = create_sprite((xpm_map_t)divisor_, 2, 2, 0);
  
   if (menu_bg == NULL || title == NULL ||game_over == NULL || win == NULL || start == NULL || hover_start == NULL ||
-      quit == NULL || hover_quit == NULL || cursor == NULL || level1 == NULL || hover_level1 == NULL || level2 == NULL || hover_level2 == NULL || 
-			level3 == NULL || hover_level3 == NULL || player == NULL || player2 == NULL || life == NULL || num0 == NULL ||
-      num1 == NULL ||num2 == NULL ||num3 == NULL ||num4 == NULL ||num5 == NULL ||num6 == NULL || 
+      quit == NULL || hover_quit == NULL || cursor == NULL || level1 == NULL || hover_level1 == NULL || level2 == NULL || 
+      hover_level2 == NULL || level3 == NULL || hover_level3 == NULL || player == NULL || player2 == NULL || life == NULL || 
+      num0 == NULL || num1 == NULL ||num2 == NULL ||num3 == NULL ||num4 == NULL ||num5 == NULL ||num6 == NULL || 
       num7 == NULL ||num8 == NULL ||num9 == NULL || dot == NULL || smallNum0 == NULL ||  smallNum1 == NULL ||
-       smallNum2 == NULL || smallNum3 == NULL || smallNum4 == NULL || smallNum5 == NULL || smallNum6 == NULL || 
-        smallNum7 == NULL || smallNum8 == NULL || smallNum9 == NULL ||  divisor == NULL )
+      smallNum2 == NULL || smallNum3 == NULL || smallNum4 == NULL || smallNum5 == NULL || smallNum6 == NULL || 
+      smallNum7 == NULL || smallNum8 == NULL || smallNum9 == NULL ||  divisor == NULL || arrow == NULL || waiting == NULL)
       return 1;
 
   loading_bg_sprite(menu_bg);
@@ -84,8 +87,9 @@ int (loadSprites)() {
 int (gameStateInit)(bool * running) {
 	if (gameState == MENU) {draw_menu();}
 	if (gameState == LEVELS) {draw_menu_levels();}
-	if (gameState == GAME) {update_game(player);}
-  if (gameState == WIN) {draw_win(180-gameTime);}
+	if (gameState == GAME) {update_game();}
+  if (gameState == MULTI) {draw_waiting();}
+  if (gameState == WIN) {draw_win(300-gameTime);}
   if (gameState == LOSE) {draw_lost();}
 	if (gameState == EXIT) {*running = false;}
 	gameState_change = false;
@@ -94,7 +98,7 @@ int (gameStateInit)(bool * running) {
 
 int (keyboardLogic)() {
 	if (gameState == GAME) {
-		handle_ingame_scancode(k_scancode, player);
+		manage_button(k_scancode, true);
 	}
   if((player->x == 790 ) && (player->y == 555)){
     gameState_change = true;
@@ -137,14 +141,18 @@ int (mouseLogic) () {
       if(collision(cursor, level3)){
         load_level(3);
         gameState_change = true;
-        gameState = GAME;
-      }                      
+        gameState = MULTI;
+      }   
+
+      if(gameState == MULTI){
+          send_byte(0x53);
+        }                   
     }
 	}
 
 	if (gameState == GAME){
 		handle_mouse_movement(cursor); 
-  	update_game(player);
+  	update_game();
 	}
 
 	return 0;
@@ -160,6 +168,7 @@ int (timerLogic) () {
       printf("%d",gameTime);
       gameTime--;
     }
+    update_arrow_sprite(gameTime);
     update_life_bar(gameTime);
 
     if (gameTime == 0) {

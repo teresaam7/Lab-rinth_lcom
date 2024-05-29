@@ -42,4 +42,10 @@
 
 #define FCR_CLEAR     BIT(0) | BIT(1) | BIT(2)
 
+#define SYNC1         0x53
+#define SYNC2         0x54
+#define SYNC3         0x55
+#define SYNC4         0x56
+#define SYNC5         0x57
+
 #endif

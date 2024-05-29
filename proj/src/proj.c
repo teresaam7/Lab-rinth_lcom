@@ -70,7 +70,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (loadSprites()) {
     return 1;
   }
-
+  initialize_sp();
   bool running = true;
 
   if (write_mouse(ENABLE_DATA_MODE) != 0)
@@ -91,6 +91,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (sp_subscribe_int(&irq_set_sp) != 0)
     return 1;
 
+  sp_ih();
   gameState = MENU;
   draw_menu();
 
@@ -130,6 +131,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
           if ( msg.m_notify.interrupts & irq_set_timer) {
             timer_int_handler(); 
             timerLogic();
+          }
+          if (msg.m_notify.interrupts & irq_set_sp) {
+            sp_handler();
           }
           break;
         default: break;

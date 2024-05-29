@@ -11,6 +11,7 @@ extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
 extern bool gameState_change;
+extern bool multi;
 extern GameState gameState;
 
 bool door1_open = false;
@@ -18,7 +19,7 @@ bool door2_open = false;
 
 
 extern Sprite *menu_bg, *title, *game_over, *win, *start, *hover_start, *quit, *hover_quit, *cursor,
- *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *button1, *button2, *door1, *door2, *player, *player2, *life;
+ *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *waiting, *button1, *button2, *door1, *door2, *player, *player2, *life, *arrow;
 
 extern Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 extern Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
@@ -146,12 +147,19 @@ void (load_level)(int level) {
 
 
 /* Game */
-void (update_game)(Sprite * player) {
+void (update_game)() {
   uint8_t hours, minutes, seconds;
   get_game_time(&hours, &minutes, &seconds);
   display_game_time();
   drawing_lantern(maze, player, 60);
-  drawing_lantern(maze, cursor, 60);
+  if (multi) {
+    drawing_lantern(maze, player2, 60);
+    drawing_sprite(player2);
+  }
+  else{
+    drawing_lantern(maze, cursor, 60);
+  }
+  drawing_sprite(arrow);
   drawing_sprite(player);
   drawing_sprite(life);
   /*
@@ -171,7 +179,7 @@ void (update_game)(Sprite * player) {
 }
 
 
-xpm_map_t (get_next_sprite)(uint8_t scancode) {
+xpm_map_t (get_next_sprite_player1)(uint8_t scancode) {
     switch (scancode) {
         case A_KEY_MK:
             return (xpm_map_t)left1;
@@ -195,59 +203,142 @@ xpm_map_t (get_next_sprite)(uint8_t scancode) {
     }
 }
 
+xpm_map_t (get_next_sprite_player2)(uint8_t scancode) {
+    switch (scancode) {
+        case A_KEY_MK:
+            return (xpm_map_t)left1second;
+        case D_KEY_MK:
+            return (xpm_map_t)right1second;
+        case W_KEY_MK:
+            return (xpm_map_t)up1second;
+        case S_KEY_MK:
+            return (xpm_map_t)down1second;
+        case A_KEY_BRK:
+            return (xpm_map_t)left2second;
+        case D_KEY_BRK:
+            return (xpm_map_t)right2second;
+        case W_KEY_BRK:
+            return (xpm_map_t)up2second;
+        case S_KEY_BRK:
+            return (xpm_map_t)down2second;
+
+        default:
+            return (xpm_map_t)right1second;
+    }
+}
+
 
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
     switch (scancode) {
         case D_KEY_MK:
           if (!check_collision(player, maze, 5, 0)) {
             player->x = player->x + 5;
-            loading_xpm(get_next_sprite(D_KEY_MK), player);
-            update_game(player);
+            loading_xpm(get_next_sprite_player1(D_KEY_MK), player);
+            update_game();
           }
           break;
 
         case A_KEY_MK:
           if (!check_collision(player, maze, -5, 0)) {
             player->x = player->x - 5;
-            loading_xpm(get_next_sprite(A_KEY_MK), player);
-            update_game(player);
+            loading_xpm(get_next_sprite_player1(A_KEY_MK), player);
+            update_game();
           }
           break;
 
         case W_KEY_MK:
           if (!check_collision(player, maze, 0, -5)) {
             player->y = player->y - 5;
-            loading_xpm(get_next_sprite(W_KEY_MK), player);
-            update_game(player);
+            loading_xpm(get_next_sprite_player1(W_KEY_MK), player);
+            update_game();
           }
           break;
         
         case S_KEY_MK:
           if (!check_collision(player, maze, 0, 5) ) {
             player->y = player->y + 5;
-            loading_xpm(get_next_sprite(S_KEY_MK), player);
-            update_game(player);
+            loading_xpm(get_next_sprite_player1(S_KEY_MK), player);
+            update_game();
           }
           break;
 
         case A_KEY_BRK:
-            loading_xpm(get_next_sprite(A_KEY_BRK), player);
-            update_game(player);
+            loading_xpm(get_next_sprite_player1(A_KEY_BRK), player);
+            update_game();
             break;
 
         case D_KEY_BRK:
-            loading_xpm(get_next_sprite(D_KEY_BRK), player);
-            update_game(player);
+            loading_xpm(get_next_sprite_player1(D_KEY_BRK), player);
+            update_game();
             break;
 
         case S_KEY_BRK:
-            loading_xpm(get_next_sprite(S_KEY_BRK), player);
-            update_game(player);
+            loading_xpm(get_next_sprite_player1(S_KEY_BRK), player);
+            update_game();
             break;
 
         case W_KEY_BRK:
-            loading_xpm(get_next_sprite(W_KEY_BRK), player);
-            update_game(player);
+            loading_xpm(get_next_sprite_player1(W_KEY_BRK), player);
+            update_game();
+            break;
+
+        default:
+            return;
+    }
+}
+
+void (handle_ingame_scancode_multi)(uint8_t scancode, Sprite *player2) {
+    switch (scancode) {
+        case D_KEY_MK:
+          if (!check_collision(player2, maze, 5, 0)) {
+            player2->x = player2->x + 5;
+            loading_xpm(get_next_sprite_player2(D_KEY_MK), player2);
+            update_game();
+          }
+          break;
+
+        case A_KEY_MK:
+          if (!check_collision(player2, maze, -5, 0)) {
+            player2->x = player2->x - 5;
+            loading_xpm(get_next_sprite_player2(A_KEY_MK), player2);
+            update_game();
+          }
+          break;
+
+        case W_KEY_MK:
+          if (!check_collision(player2, maze, 0, -5)) {
+            player2->y = player2->y - 5;
+            loading_xpm(get_next_sprite_player2(W_KEY_MK), player2);
+            update_game();
+          }
+          break;
+        
+        case S_KEY_MK:
+          if (!check_collision(player2, maze, 0, 5)) {
+            player2->y = player2->y + 5;
+            loading_xpm(get_next_sprite_player2(S_KEY_MK), player2);
+            update_game();
+          }
+          break;
+
+        case A_KEY_BRK:
+            loading_xpm(get_next_sprite_player2(A_KEY_BRK), player2);
+            update_game();
+            break;
+
+        case D_KEY_BRK:
+            loading_xpm(get_next_sprite_player2(D_KEY_BRK), player2);
+            update_game();
+            break;
+
+        case S_KEY_BRK:
+            loading_xpm(get_next_sprite_player2(S_KEY_BRK), player2);
+            update_game();
+            break;
+
+        case W_KEY_BRK:
+            loading_xpm(get_next_sprite_player2(W_KEY_BRK), player2);
+            update_game();
             break;
 
         default:
@@ -283,7 +374,36 @@ void (update_life_bar)(int total_seconds) {
         default:
             return;
     }
-    update_game(player);
+    update_game();
+}
+
+void (update_arrow_sprite)(int total_seconds) {
+    int total_milliseconds = (300 - total_seconds) * 1000; 
+    int frame = (total_milliseconds / 1000) % 6; 
+
+    switch(frame) {
+        case 0:
+            loading_xpm((xpm_map_t)arrow6, arrow);
+            break;
+        case 1:
+            loading_xpm((xpm_map_t)arrow5, arrow);
+            break;
+        case 2:
+            loading_xpm((xpm_map_t)arrow4, arrow);
+            break;
+        case 3:
+            loading_xpm((xpm_map_t)arrow3, arrow);
+            break;
+        case 4:
+            loading_xpm((xpm_map_t)arrow2, arrow);
+            break;
+        case 5:
+            loading_xpm((xpm_map_t)arrow1, arrow);
+            break;
+        default:
+            return;
+    }
+    update_game();
 }
 
 /*Drawing numbers in the game*/
@@ -419,6 +539,13 @@ void (draw_time_small)(uint8_t hours, uint8_t minutes, int x, int y) {
         case 8: draw_number(smallNum8, x_offset, y); break;
         case 9: draw_number(smallNum9, x_offset, y); break;
     }
+}
+
+/*Waiting menu*/
+void (draw_waiting)() {
+  drawing_bg(menu_bg);
+  drawing_sprite(waiting);
+  update_flip_frames();
 }
 
 

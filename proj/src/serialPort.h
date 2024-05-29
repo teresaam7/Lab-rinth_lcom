@@ -26,4 +26,15 @@ int (cleanInt_sp)();
 
 void (sp_ih)();
 
+void (send_scancode)(uint8_t scancode);
+
+void (manage_button)(uint8_t scancode, bool isPlayer1);
+
+bool (handle_start_multi)();
+
+void (handle_receive_info)();
+
+void (sp_handler)();
+
+
 #endif
