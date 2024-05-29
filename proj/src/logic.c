@@ -37,8 +37,7 @@ int (loadSprites)() {
 	hover_level3 = create_sprite((xpm_map_t)hover_level3_, 305, 490, 0);
 
 
-  //player = create_sprite((xpm_map_t)right1, 20, 20, 0);
-  player = create_sprite((xpm_map_t)right1, 740, 555, 0);
+  player = create_sprite((xpm_map_t)right1, 20, 20, 0);
 
   player2 = create_sprite((xpm_map_t)right1second, 60, 20, 0);
   life = create_sprite((xpm_map_t)life1, 610, 5, 0);

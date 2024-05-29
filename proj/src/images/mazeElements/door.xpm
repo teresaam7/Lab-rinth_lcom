@@ -1,9 +1,11 @@
 /* XPM */
 static char *door_[] = {
 /* columns rows colors chars-per-pixel */
-"20 16 1 1 ",
+"20 18 1 1 ",
 "  c #E61920",
 /* pixels */
+"                    ",
+"                    ",
 "                    ",
 "                    ",
 "                    ",

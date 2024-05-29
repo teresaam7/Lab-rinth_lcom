@@ -105,8 +105,8 @@ void (load_level)(int level) {
       }
       button1 = create_sprite((xpm_map_t) button_up_, 90 , 497 , 0);
       button2 = create_sprite((xpm_map_t) button_up_, 200 , 200 , 0);
-     // door1 = create_sprite((xpm_map_t) door_, 220 , 464 , 0);
-      door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
+      door1 = create_sprite((xpm_map_t) door_, 210 , 450 , 0);
+      //door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
       door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
       break;
 
@@ -154,10 +154,11 @@ void (update_game)(Sprite * player) {
   drawing_lantern(maze, cursor, 60);
   drawing_sprite(player);
   drawing_sprite(life);
+  /*
   printf("PLAYERX: ");
   printf("%d", player->x);
   printf(" ");
-  printf("%d", player->y);
+  printf("%d", player->y);*/
   draw_time_small(hours, minutes, 10, 575);
   if(collision(player,button1)){
     door1_open = true;
