@@ -51,8 +51,9 @@ void (update_menu)(){
 
 
 int (collision)(Sprite * sp1, Sprite * sp2) {
-  if (sp1->x + (sp1->width)/2 < sp2->x || sp1->x > sp2->x + sp2->width) return 0;
+  if (sp1->x + sp1->width < sp2->x || sp1->x > sp2->x + sp2->width) return 0;
   if (sp1->y + sp1->height < sp2->y || sp1->y > sp2->y + sp2->height) return 0;
+
   return 1;
 }
 
@@ -104,7 +105,8 @@ void (load_level)(int level) {
       }
       button1 = create_sprite((xpm_map_t) button_up_, 90 , 497 , 0);
       button2 = create_sprite((xpm_map_t) button_up_, 200 , 200 , 0);
-      door1 = create_sprite((xpm_map_t) door_, 220 , 464 , 0);
+     // door1 = create_sprite((xpm_map_t) door_, 220 , 464 , 0);
+      door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
       door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
       break;
 
@@ -196,7 +198,7 @@ xpm_map_t (get_next_sprite)(uint8_t scancode) {
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
     switch (scancode) {
         case D_KEY_MK:
-          if (!check_collision(player, maze, 5, 0)) {
+          if (!check_collision(player, maze, door1, door2, 5, 0)) {
             player->x = player->x + 5;
             loading_xpm(get_next_sprite(D_KEY_MK), player);
             update_game(player);
@@ -204,7 +206,7 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
           break;
 
         case A_KEY_MK:
-          if (!check_collision(player, maze, -5, 0)) {
+          if (!check_collision(player, maze, door1, door2, -5, 0)) {
             player->x = player->x - 5;
             loading_xpm(get_next_sprite(A_KEY_MK), player);
             update_game(player);
@@ -212,7 +214,7 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
           break;
 
         case W_KEY_MK:
-          if (!check_collision(player, maze, 0, -5)) {
+          if (!check_collision(player, maze, door1, door2, 0, -5)) {
             player->y = player->y - 5;
             loading_xpm(get_next_sprite(W_KEY_MK), player);
             update_game(player);
@@ -220,7 +222,7 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
           break;
         
         case S_KEY_MK:
-          if (!check_collision(player, maze, 0, 5)) {
+          if (!check_collision(player, maze, door1, door2, 0, 5) ) {
             player->y = player->y + 5;
             loading_xpm(get_next_sprite(S_KEY_MK), player);
             update_game(player);

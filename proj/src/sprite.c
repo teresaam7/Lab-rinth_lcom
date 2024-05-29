@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include "sprite.h"
 
+extern bool door1_open;
+extern bool door2_open;
+
 int (loading_xpm)(xpm_map_t xpm, Sprite *sp) {
     xpm_image_t image;
     sp->map = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
@@ -131,7 +134,7 @@ int (loading_bg_sprite)(Sprite *sp) {
   return 0;
 }
 
-bool (check_collision)(Sprite *player, Sprite *maze, int x_diff, int y_diff) {
+bool (check_collision)(Sprite *player, Sprite *maze, Sprite *door1, Sprite *door2, int x_diff, int y_diff) {
   int x_top = player->x;
   int y_top = player->y + player->height/2;
   uint32_t color = maze->map[30 * maze->width + 5];
@@ -154,6 +157,10 @@ bool (check_collision)(Sprite *player, Sprite *maze, int x_diff, int y_diff) {
     next_color1 = maze->map[(y_top + y_diff) * maze->width + (x_top)];
     next_color2 = maze->map[(y_top + y_diff) * maze->width + (x_top + player->width)];
 
+  }
+    if(!door1_open){
+    if((x_top + x_diff >= (door1->x - (door1->width/2)) && x_top + x_diff <= (door1->x + door1->width))
+    && (y_top + y_diff >= (door1->y - (door1->height/2)) && y_top + y_diff <= (door1->y + door1->height)) ) return true;
   }
 
   if ((color != next_color1) || (color != next_color2)) 
