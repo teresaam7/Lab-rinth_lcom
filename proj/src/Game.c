@@ -151,20 +151,12 @@ void (update_game)(Sprite * player) {
   drawing_sprite(player);
   drawing_sprite(life);
   draw_time_small(hours, minutes, 10, 575);
-  printf("PLAYERX");
-  printf("%d", player->x);
-  printf("PLAYERY");
-  printf("%d", player->y+player->height);
   if(collision(player,button1)){
     door1_open = true;
-    drawing_sprite(button1); // button1_down
     }
-    else drawing_sprite(button1);
-  if(!collision(player,button2)){
-    drawing_sprite(button2);  
-    //drawing_sprite(door2);
-    }
-  if(!door1_open){drawing_sprite(door1);}
+  if(collision(player,button2)){
+    door2_open = true;
+  }
   drawing_sprite(cursor);
   update_flip_frames();
 }
@@ -198,7 +190,7 @@ xpm_map_t (get_next_sprite)(uint8_t scancode) {
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
     switch (scancode) {
         case D_KEY_MK:
-          if (!check_collision(player, maze, door1, door2, 5, 0)) {
+          if (!check_collision(player, maze, 5, 0)) {
             player->x = player->x + 5;
             loading_xpm(get_next_sprite(D_KEY_MK), player);
             update_game(player);
@@ -206,7 +198,7 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
           break;
 
         case A_KEY_MK:
-          if (!check_collision(player, maze, door1, door2, -5, 0)) {
+          if (!check_collision(player, maze, -5, 0)) {
             player->x = player->x - 5;
             loading_xpm(get_next_sprite(A_KEY_MK), player);
             update_game(player);
@@ -214,7 +206,7 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
           break;
 
         case W_KEY_MK:
-          if (!check_collision(player, maze, door1, door2, 0, -5)) {
+          if (!check_collision(player, maze, 0, -5)) {
             player->y = player->y - 5;
             loading_xpm(get_next_sprite(W_KEY_MK), player);
             update_game(player);
@@ -222,7 +214,7 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
           break;
         
         case S_KEY_MK:
-          if (!check_collision(player, maze, door1, door2, 0, 5) ) {
+          if (!check_collision(player, maze, 0, 5) ) {
             player->y = player->y + 5;
             loading_xpm(get_next_sprite(S_KEY_MK), player);
             update_game(player);
