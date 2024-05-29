@@ -154,6 +154,10 @@ void (update_game)(Sprite * player) {
   drawing_lantern(maze, cursor, 60);
   drawing_sprite(player);
   drawing_sprite(life);
+  printf("PLAYERX: ");
+  printf("%d", player->x);
+  printf(" ");
+  printf("%d", player->y);
   draw_time_small(hours, minutes, 10, 575);
   if(collision(player,button1)){
     door1_open = true;

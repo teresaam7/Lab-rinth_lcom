@@ -6,8 +6,7 @@ extern struct packet m_packet;
 
 extern bool gameState_change;
 extern GameState gameState;
-extern uint8_t k_index;
-extern uint8_t k_bytes[2];
+
 extern int gameTime;
 extern int counter;
 
@@ -22,7 +21,7 @@ int (loadSprites)() {
 
   title = create_sprite((xpm_map_t)title_, 200, 100, 0);
   game_over = create_sprite((xpm_map_t)game_over_, 245, 200, 0);
-  win = create_sprite((xpm_map_t)win_, 245, 200, 0);
+  win = create_sprite((xpm_map_t)win_, 320, 200, 0);
 
   start = create_sprite((xpm_map_t)start_button, 315, 300, 0);
   hover_start = create_sprite((xpm_map_t)hover_start_, 295, 293, 0);
@@ -38,7 +37,9 @@ int (loadSprites)() {
 	hover_level3 = create_sprite((xpm_map_t)hover_level3_, 305, 490, 0);
 
 
-  player = create_sprite((xpm_map_t)right1, 20, 20, 0);
+  //player = create_sprite((xpm_map_t)right1, 20, 20, 0);
+  player = create_sprite((xpm_map_t)right1, 740, 555, 0);
+
   player2 = create_sprite((xpm_map_t)right1second, 60, 20, 0);
   life = create_sprite((xpm_map_t)life1, 610, 5, 0);
   
@@ -95,14 +96,11 @@ int (gameStateInit)(bool * running) {
 int (keyboardLogic)() {
 	if (gameState == GAME) {
 		handle_ingame_scancode(k_scancode, player);
-
-		if (k_scancode == SCAN_FIRST_TWO) {
-			k_bytes[k_index] = k_scancode; k_index++;
-		} else {
-			k_bytes[k_index] = k_scancode;
-			k_index = 0;
-		}
 	}
+  if((player->x == 790 ) && (player->y == 555)){
+    gameState_change = true;
+    gameState = WIN;
+  }
 
   return 0;
 }
@@ -165,10 +163,6 @@ int (timerLogic) () {
     }
     update_life_bar(gameTime);
 
-    if (gameTime == 50) {
-      gameState = WIN; 
-      gameState_change = true; 
-    }
     if (gameTime == 0) {
       gameState = LOSE;
       gameState_change = true; 
