@@ -58,6 +58,13 @@
 #include "images/lifeBar/life4.xpm"
 #include "images/lifeBar/life5.xpm"
 
+#include "images/arrows/arrow1.xpm"
+#include "images/arrows/arrow2.xpm"
+#include "images/arrows/arrow3.xpm"
+#include "images/arrows/arrow4.xpm"
+#include "images/arrows/arrow5.xpm"
+#include "images/arrows/arrow6.xpm"
+
 #include "images/numbers/num0.xpm"
 #include "images/numbers/num1.xpm"
 #include "images/numbers/num2.xpm"
@@ -99,7 +106,7 @@ typedef enum {
     EXIT
 } GameState;
 
-#define TIMER_MINUTES 3
+#define TIMER_MINUTES 5
 
 void (draw_menu)();
 void (update_menu)();
@@ -114,6 +121,7 @@ xpm_map_t (get_next_sprite)(uint8_t scancode);
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player);
 void (handle_mouse_movement)(Sprite * cursor);
 void (update_life_bar)(int total_seconds);
+void (update_arrow_sprite)(int total_seconds);
 
 void (draw_number)(Sprite *num_sprite, int x, int y);
 void (draw_time)(int total_seconds, int x, int y);

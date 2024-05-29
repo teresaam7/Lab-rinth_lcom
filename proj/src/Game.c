@@ -15,7 +15,7 @@ extern GameState gameState;
 
 
 extern Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_quit, *cursor,
- *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *player2, *life;
+ *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *player2, *life, *arrow;
 
 extern Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 extern Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
@@ -135,6 +135,7 @@ void (update_game)(Sprite * player) {
   display_game_time();
   drawing_lantern(maze, player, 60);
   drawing_lantern(maze, cursor, 60);
+  drawing_sprite(arrow);
   drawing_sprite(player);
   drawing_sprite(life);
   draw_time_small(hours, minutes, 10, 575);
@@ -251,6 +252,35 @@ void (update_life_bar)(int total_seconds) {
             break;
         case 140:
             loading_xpm((xpm_map_t)life2, life);
+            break;
+        default:
+            return;
+    }
+    update_game(player);
+}
+
+void (update_arrow_sprite)(int total_seconds) {
+    int total_milliseconds = (300 - total_seconds) * 1000; 
+    int frame = (total_milliseconds / 1000) % 6; 
+
+    switch(frame) {
+        case 0:
+            loading_xpm((xpm_map_t)arrow6, arrow);
+            break;
+        case 1:
+            loading_xpm((xpm_map_t)arrow5, arrow);
+            break;
+        case 2:
+            loading_xpm((xpm_map_t)arrow4, arrow);
+            break;
+        case 3:
+            loading_xpm((xpm_map_t)arrow3, arrow);
+            break;
+        case 4:
+            loading_xpm((xpm_map_t)arrow2, arrow);
+            break;
+        case 5:
+            loading_xpm((xpm_map_t)arrow1, arrow);
             break;
         default:
             return;
