@@ -74,7 +74,7 @@ void (set_display_start)(int buffer) {
         printf("sys_int86() failed for set display start\n");
     }
 }
-
+  \
 
 void (update_flip_frames)() { 
   if (display_buffer == 1) {

@@ -104,8 +104,8 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze1, 0, 0, 0);
       }
-      button1 = create_sprite((xpm_map_t) button_up_, 90 , 497 , 0);
-      button2 = create_sprite((xpm_map_t) button_up_, 200 , 200 , 0);
+      button1 = create_sprite((xpm_map_t) button_red_, 90 , 497 , 0);
+      button2 = create_sprite((xpm_map_t) button_green_, 200 , 200 , 0);
       door1 = create_sprite((xpm_map_t) door_, 210 , 450 , 0);
       //door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
       door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
@@ -119,8 +119,8 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze2, 0, 0, 0);
       }
-      button1 = create_sprite((xpm_map_t) button_up_, 90 , 497 , 0); /* mudar coordenadas*/
-      button2 = create_sprite((xpm_map_t) button_up_, 200 , 200 , 0);
+      button1 = create_sprite((xpm_map_t) button_red_, 90 , 497 , 0); /* mudar coordenadas*/
+      button2 = create_sprite((xpm_map_t) button_green_, 200 , 200 , 0);
       door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
       door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
       break;
@@ -133,8 +133,8 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze3, 0, 0, 0);
       }
-      button1 = create_sprite((xpm_map_t) button_up_, 90 , 497 , 0); /*mudar coordenadas*/
-      button2 = create_sprite((xpm_map_t) button_up_, 200 , 200 , 0);
+      button1 = create_sprite((xpm_map_t) button_red_, 90 , 497 , 0); /*mudar coordenadas*/
+      button2 = create_sprite((xpm_map_t) button_green_, 200 , 200 , 0);
       door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
       door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
       break;
