@@ -11,6 +11,7 @@ extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
 extern bool gameState_change;
+extern bool multi;
 extern GameState gameState;
 
 
@@ -137,6 +138,9 @@ void (update_game)(Sprite * player) {
   drawing_lantern(maze, cursor, 60);
   drawing_sprite(arrow);
   drawing_sprite(player);
+  if (multi) {
+    drawing_sprite(player2);
+  }
   drawing_sprite(life);
   draw_time_small(hours, minutes, 10, 575);
   drawing_sprite(cursor);

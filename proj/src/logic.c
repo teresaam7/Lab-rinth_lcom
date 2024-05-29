@@ -12,7 +12,7 @@ extern int gameTime;
 extern int counter;
 
 Sprite *menu_bg, *title, *game_over, *start, *hover_start, *quit, *hover_quit, *cursor, 
-*level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *player, *player2, *life, *arrow;
+*level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *level4, *hover_level4, *maze, *player, *player2, *life, *arrow;
 
 Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
@@ -35,6 +35,8 @@ int (loadSprites)() {
 	hover_level2 = create_sprite((xpm_map_t)hover_level2_, 295, 340, 0);
   level3 = create_sprite((xpm_map_t)level3_, 315, 420, 0);
 	hover_level3 = create_sprite((xpm_map_t)hover_level3_, 295, 420, 0);
+  level4 = create_sprite((xpm_map_t)level3_, 315, 500, 0);
+	hover_level4 = create_sprite((xpm_map_t)hover_level3_, 295, 500, 0);
 
 
   player = create_sprite((xpm_map_t)right1, 20, 20, 0);
@@ -141,7 +143,12 @@ int (mouseLogic) () {
         load_level(3);
         gameState_change = true;
         gameState = GAME;
-      }                      
+      }   
+      if(collision(cursor, level4)){
+        load_level(4);
+        gameState_change = true;
+        gameState = GAME;
+      }                    
     }
 	}
 
