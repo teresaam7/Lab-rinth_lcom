@@ -124,6 +124,7 @@ void (load_level)(int level) {
       door2 = create_sprite((xpm_map_t) door_green_, 580 , 197 , 0);
       break;
 
+
     case 3:
       if (hours >= 6 && hours < 14) {
         maze = create_sprite((xpm_map_t) mazeDay3, 0, 0, 0);
@@ -132,10 +133,10 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze3, 0, 0, 0);
       }
-      button1 = create_sprite((xpm_map_t) button_red_, 90 , 497 , 0); /*mudar coordenadas*/
-      button2 = create_sprite((xpm_map_t) button_green_, 200 , 200 , 0);
-      door1 = create_sprite((xpm_map_t) door_red_, 35 , 19 , 0);
-      door2 = create_sprite((xpm_map_t) door_green_, 100 , 100 , 0);
+      button1 = create_sprite((xpm_map_t) button_red_, 220 , 207 , 0); /*mudar coordenadas*/
+      button2 = create_sprite((xpm_map_t) button_green_, 522 , 350, 0);
+      door1 = create_sprite((xpm_map_t) door_red_, 219 , 160 , 0);
+      door2 = create_sprite((xpm_map_t) door_green_, 590 , 557 , 0);
       break;
 
     default:
