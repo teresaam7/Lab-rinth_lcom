@@ -18,6 +18,20 @@ int (sp_unsubscribe_int)(){
 }
 
 
+bool (sp_enable_int)(){
+    uint8_t reg;
+    reg = (BIT(0));
+    return sys_outb(BASE_COM1+ IER, reg);  
+}
+
+
+bool (sp_disable_int)(){
+    uint8_t reg;
+    util_sys_inb(IER + BASE_COM1, &reg);
+    reg &= ~(BIT(0) | BIT(1)| BIT(2) | BIT(3));
+    return sys_outb(BASE_COM1+ IER, reg); 
+}
+
 void (initialize_sp)(){
     uint8_t ier;
     if(util_sys_inb(BASE_COM1+ IER, &ier)!= 0) 
@@ -29,6 +43,7 @@ void (initialize_sp)(){
 }
 
 int (send_byte)(uint8_t byte){
+    
     uint8_t st, i = 10;
     while(i){
       --i;  
@@ -39,6 +54,7 @@ int (send_byte)(uint8_t byte){
         if (sys_outb(BASE_COM1 + THR, byte) != 0)
             return 1;
     }
+    enqueue(receiveQueue, byte);
     return 1;
 }
 
@@ -121,6 +137,7 @@ bool (handle_start_multi)(){
         printf("AAAAAAAA");
     }else if(frontQueue(receiveQueue) == 0x54){
         send_byte(0x55);
+        printf("BBBBBBBB");
     }else if(frontQueue(receiveQueue) == 0x55){
         uint8_t srandByte = 0;
         while(srandByte == ACK || srandByte == NACK || srandByte == END || srandByte == 0){
@@ -129,6 +146,7 @@ bool (handle_start_multi)(){
         send_byte(0x56);
         send_byte(srandByte);
         srandom(srandByte);
+        printf("CCCCCC");
     }else if(frontQueue(receiveQueue) == 0x56){
         dequeue(receiveQueue);
         uint8_t srandByte = dequeue(receiveQueue);
@@ -140,9 +158,11 @@ bool (handle_start_multi)(){
         gameState = GAME;
         multi =true;
         send_byte(0x57);
+        printf("DDDDDDDD");
     }else if(frontQueue(receiveQueue) == 0x57){
         gameState = GAME;
         multi = true;
+        printf("FFFFFFFFF");
     }
     dequeue(receiveQueue);
     return true;
@@ -150,6 +170,7 @@ bool (handle_start_multi)(){
 
 void (sp_handler)(){
   sp_ih();
+  printf("ZZZZZZZZZZ");
   if (gameState == MULTI)
     handle_start_multi();
   else if (gameState == GAME && multi) 

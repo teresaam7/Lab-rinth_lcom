@@ -57,6 +57,7 @@ extern vbe_mode_info_t mode_info;
 
 
 int (proj_main_loop)(int argc, char *argv[]) {
+  sp_enable_int();
   if (initialize_frame_buffer(0x115) != 0) {
     return 1;
   }
@@ -91,7 +92,8 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (sp_subscribe_int(&irq_set_sp) != 0)
     return 1;
 
-  sp_ih();
+  sp_enable_int();
+  //sp_ih();
   gameState = MENU;
   draw_menu();
 
@@ -133,6 +135,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
             timerLogic();
           }
           if (msg.m_notify.interrupts & irq_set_sp) {
+            printf("DONEE");
             sp_handler();
           }
           break;
@@ -164,6 +167,8 @@ int (proj_main_loop)(int argc, char *argv[]) {
   }
 
   free_buffers();
+
+  sp_disable_int();
 
   return 0;
 
