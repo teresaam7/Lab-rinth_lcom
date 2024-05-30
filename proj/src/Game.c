@@ -104,11 +104,10 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze1, 0, 0, 0);
       }
-      button1 = create_sprite((xpm_map_t) button_up_, 90 , 497 , 0);
-      button2 = create_sprite((xpm_map_t) button_up_, 200 , 200 , 0);
-      door1 = create_sprite((xpm_map_t) door_, 210 , 450 , 0);
-      //door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
-      door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
+      button1 = create_sprite((xpm_map_t) button_red_, 90 , 497 , 0);
+      button2 = create_sprite((xpm_map_t) button_green_, 774 , 170 , 0);
+      door1 = create_sprite((xpm_map_t) door_red_, 210 , 450 , 0);
+      door2 = create_sprite((xpm_map_t) door_green_, 760 , 340 , 0);
       break;
 
     case 2:
@@ -119,11 +118,12 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze2, 0, 0, 0);
       }
-      button1 = create_sprite((xpm_map_t) button_up_, 90 , 497 , 0); /* mudar coordenadas*/
-      button2 = create_sprite((xpm_map_t) button_up_, 200 , 200 , 0);
-      door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
-      door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
+      button1 = create_sprite((xpm_map_t) button_red_, 306 , 62 , 0); /* mudar coordenadas*/
+      button2 = create_sprite((xpm_map_t) button_green_, 450 , 170 , 0);
+      door1 = create_sprite((xpm_map_t) door_red_, 455 , 197 , 0);
+      door2 = create_sprite((xpm_map_t) door_green_, 580 , 197 , 0);
       break;
+
 
     case 3:
       if (hours >= 6 && hours < 14) {
@@ -133,10 +133,10 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze3, 0, 0, 0);
       }
-      button1 = create_sprite((xpm_map_t) button_up_, 90 , 497 , 0); /*mudar coordenadas*/
-      button2 = create_sprite((xpm_map_t) button_up_, 200 , 200 , 0);
-      door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
-      door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
+      button1 = create_sprite((xpm_map_t) button_red_, 220 , 207 , 0); /*mudar coordenadas*/
+      button2 = create_sprite((xpm_map_t) button_green_, 522 , 350, 0);
+      door1 = create_sprite((xpm_map_t) door_red_, 219 , 160 , 0);
+      door2 = create_sprite((xpm_map_t) door_green_, 590 , 557 , 0);
       break;
 
     default:
