@@ -191,7 +191,10 @@ int (drawing_lantern)(Sprite *bg, Sprite *sp, int lant_radius) {
   return 0;
 }
 
-
+/**
+ * @brief Draws the background with a global draw buffer.
+ * @return 0 if success and 1 if error.
+ */
 int (drawing_bg)() {
   if (draw_background() != 0) {
     printf("Drawing background failed \n");
@@ -201,7 +204,11 @@ int (drawing_bg)() {
   return 0;
 }
 
-
+/**
+ * @brief Loads the background sprite to a buffer.
+ * @param sp Pointer to the Sprite representing the background.
+ * @return 0 if success and 1 if error.
+ */
 int (loading_bg_sprite)(Sprite *sp) {
   if (drawing_to_buffer(sp, bg_buffer) != 0) {
     printf("Loading background failed \n");
@@ -211,6 +218,15 @@ int (loading_bg_sprite)(Sprite *sp) {
   return 0;
 }
 
+
+/**
+ * @brief Sees if there is a collision between the player sprite and the maze sprite.
+ * @param player Pointer to the player Sprite.
+ * @param maze Pointer to the maze Sprite.
+ * @param x_diff The coordinate x that the player will next move to.
+ * @param y_diff The coordinate y that the player will next move to.
+ * @return true if there is a collision and false if there isn't.
+ */
 bool (check_collision)(Sprite *player, Sprite *maze, int x_diff, int y_diff) {
   int x_top = player->x;
   int y_top = player->y + player->height/2;
