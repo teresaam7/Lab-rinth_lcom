@@ -12,6 +12,10 @@ int (sp_subscribe_int)(uint8_t* bitno);
 
 int (sp_unsubscribe_int)();
 
+bool (sp_enable_int)();
+
+bool (sp_disable_int)();
+
 void (initialize_sp)();
 
 int (send_byte)(uint8_t byte);
