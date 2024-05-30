@@ -25,7 +25,8 @@
 
 #include "images/mazeElements/button_red.xpm"
 #include "images/mazeElements/button_green.xpm"
-#include "images/mazeElements/door.xpm"
+#include "images/mazeElements/door_red.xpm"
+#include "images/mazeElements/door_green.xpm"
 
 #include "images/assets/menu.xpm"
 #include "images/assets/win.xpm"

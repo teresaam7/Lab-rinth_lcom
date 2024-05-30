@@ -106,9 +106,9 @@ void (load_level)(int level) {
       }
       button1 = create_sprite((xpm_map_t) button_red_, 90 , 497 , 0);
       button2 = create_sprite((xpm_map_t) button_green_, 200 , 200 , 0);
-      door1 = create_sprite((xpm_map_t) door_, 210 , 450 , 0);
+      door1 = create_sprite((xpm_map_t) door_red_, 210 , 450 , 0);
       //door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
-      door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
+      door2 = create_sprite((xpm_map_t) door_green_, 100 , 100 , 0);
       break;
 
     case 2:
@@ -121,8 +121,8 @@ void (load_level)(int level) {
       }
       button1 = create_sprite((xpm_map_t) button_red_, 90 , 497 , 0); /* mudar coordenadas*/
       button2 = create_sprite((xpm_map_t) button_green_, 200 , 200 , 0);
-      door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
-      door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
+      door1 = create_sprite((xpm_map_t) door_red_, 35 , 19 , 0);
+      door2 = create_sprite((xpm_map_t) door_green_, 100 , 100 , 0);
       break;
 
     case 3:
@@ -135,8 +135,8 @@ void (load_level)(int level) {
       }
       button1 = create_sprite((xpm_map_t) button_red_, 90 , 497 , 0); /*mudar coordenadas*/
       button2 = create_sprite((xpm_map_t) button_green_, 200 , 200 , 0);
-      door1 = create_sprite((xpm_map_t) door_, 35 , 19 , 0);
-      door2 = create_sprite((xpm_map_t) door_, 100 , 100 , 0);
+      door1 = create_sprite((xpm_map_t) door_red_, 35 , 19 , 0);
+      door2 = create_sprite((xpm_map_t) door_green_, 100 , 100 , 0);
       break;
 
     default:

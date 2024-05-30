@@ -1,5 +1,5 @@
 /* XPM */
-static char *door_[] = {
+static char *door_red_[] = {
 /* columns rows colors chars-per-pixel */
 "11 20 213 2 ",
 "   c #670D17",
