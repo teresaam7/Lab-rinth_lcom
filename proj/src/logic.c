@@ -146,7 +146,7 @@ int (mouseLogic) () {
 
       if(gameState == MULTI){
           send_byte(0x53);
-        }                   
+      }                   
     }
 	}
 

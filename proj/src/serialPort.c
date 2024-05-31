@@ -117,6 +117,7 @@ Queue* (get_send_queue)(){
 
 void (sp_out)(){
     clearQueue(receiveQueue);
+    clearQueue(sendQueue);
 }
 
 int (cleanInt_sp)(){
