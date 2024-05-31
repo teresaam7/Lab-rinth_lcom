@@ -16,6 +16,8 @@ bool (sp_enable_int)();
 
 bool (sp_disable_int)();
 
+void (sp_config)();
+
 void (initialize_sp)();
 
 int (send_byte)(uint8_t byte);
@@ -24,7 +26,9 @@ int (send_queue_bytes)();
 
 int (receive_byte)();
 
-Queue* (get_queue)();
+Queue* (get_receive_queue)();
+
+Queue* (get_send_queue)();
 
 void (sp_out)();
 
@@ -32,7 +36,7 @@ int (cleanInt_sp)();
 
 void (sp_ih)();
 
-void (send_scancode)(uint8_t scancode);
+void (send_scan)(uint8_t scancode);
 
 void (manage_button)(uint8_t scancode, bool isPlayer1);
 

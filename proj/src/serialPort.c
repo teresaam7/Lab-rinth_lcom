@@ -33,6 +33,10 @@ bool (sp_disable_int)(){
     return sys_outb(BASE_COM1+ IER, reg); 
 }
 
+void (sp_config) (){
+
+}
+
 void (initialize_sp)(){
     uint8_t ier;
     if(util_sys_inb(BASE_COM1+ IER, &ier)!= 0) 
@@ -103,8 +107,12 @@ int (receive_byte)(){
     return 1;
 }
 
-Queue* (get_queue)(){
+Queue* (get_receive_queue)(){
     return receiveQueue;
+}
+
+Queue* (get_send_queue)(){
+    return sendQueue;
 }
 
 void (sp_out)(){
@@ -134,7 +142,7 @@ void (sp_ih)(){
     }
 }
 
-void (send_scancode)(uint8_t scancode){
+void (send_scan)(uint8_t scancode){
     uint8_t send_code = 0;
     if(scancode == A_KEY_MK){
         send_code |= BIT(0);
@@ -159,17 +167,16 @@ void (send_scancode)(uint8_t scancode){
 void (manage_button)(uint8_t scancode, bool isPlayer1) {
   if(isPlayer1) {
     handle_ingame_scancode(scancode, player);
-    send_scancode(scancode);
   } 
   else{
     handle_ingame_scancode_multi(scancode, player2);
+    send_scan(scancode);
   } 
 }
 
 bool (handle_start_multi)(){
     if(frontQueue(receiveQueue) == 0x53){
         send_byte(0x54);
-        printf("AAAAAAAA");
     }else if(frontQueue(receiveQueue) == 0x54){
         send_byte(0x55);
     }else if(frontQueue(receiveQueue) == 0x55){
@@ -212,39 +219,40 @@ void (sp_handler)(){
 }
 
 void (handle_receive_info)(){
+    printf("AAAAAAA");
    if(queueIsEmpty(receiveQueue)) return;
+    printf("BBBBBBB");
     while(!queueIsEmpty(receiveQueue)){
+        printf("CCCCCCC");
         uint8_t curByte = dequeue(receiveQueue);
 
         if(curByte == END){
             gameState = LOSE;
             return;
         }
-        else{ 
-            uint8_t scancode;
-            bool invalid = false;
-            if(curByte & BIT(0)) 
-                scancode = A_KEY_MK;
-            else if(curByte & BIT(1)) 
-                scancode = A_KEY_BRK;
-            else if(curByte & BIT(2)) 
-                scancode = D_KEY_MK;
-            else if(curByte & BIT(3)) 
-                scancode = D_KEY_BRK;
-            else if(curByte & BIT(4)) 
-                scancode = W_KEY_MK;
-            else if(curByte & BIT(5))
-                scancode = W_KEY_BRK;
-            else if(curByte & BIT(6)) 
-                scancode = S_KEY_MK;
-            else if(curByte & BIT(7)) 
-                scancode = S_KEY_BRK;
-            else
-                invalid = true;
-
-            if(!invalid) 
-                manage_button(scancode, false);
-            }
+      
+        uint8_t scancode;
+        bool invalid = false;
+        if(curByte & BIT(0)) 
+            scancode = A_KEY_MK;
+        else if(curByte & BIT(1)) 
+            scancode = A_KEY_BRK;
+        else if(curByte & BIT(2)) 
+            scancode = D_KEY_MK;
+        else if(curByte & BIT(3)) 
+            scancode = D_KEY_BRK;
+        else if(curByte & BIT(4)) 
+            scancode = W_KEY_MK;
+        else if(curByte & BIT(5))
+            scancode = W_KEY_BRK;
+        else if(curByte & BIT(6)) 
+            scancode = S_KEY_MK;
+        else if(curByte & BIT(7)) 
+            scancode = S_KEY_BRK;
+        else
+            invalid = true;
+        if(!invalid) 
+            manage_button(scancode, false);
     }
 }
 
