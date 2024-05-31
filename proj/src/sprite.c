@@ -166,26 +166,26 @@ int (loading_bg_sprite)(Sprite *sp) {
 
 bool (check_collision)(Sprite *player, Sprite *maze, int x_diff, int y_diff) {
   int x_top = player->x;
-  int y_top = player->y + player->height/2;
+  int y_top = player->y + 17/2;
   uint32_t color = maze->map[30 * maze->width + 5];
 
   uint32_t next_color1 = color, next_color2 = color;
 
   if (x_diff > 0) {   // Right
-    next_color1 = maze->map[(y_top) * maze->width + (x_top + player->width + x_diff)];
-    next_color2 = maze->map[(y_top + player->height/2) * maze->width + (x_top + player->width + x_diff)];
+    next_color1 = maze->map[(y_top) * maze->width + (x_top +13 + x_diff)];
+    next_color2 = maze->map[(y_top + 17/2) * maze->width + (x_top +13 + x_diff)];
 
   } else if (x_diff < 0) {    // Left
     next_color1 = maze->map[(y_top) * maze->width + (x_top + x_diff)];
-    next_color2 = maze->map[(y_top + player->height/2) * maze->width + (x_top + x_diff)];
+    next_color2 = maze->map[(y_top + 17/2) * maze->width + (x_top + x_diff)];
   
   } else if (y_diff > 0) {    // Bottom
-    next_color1 = maze->map[(y_top + player->height/2 + y_diff) * maze->width + (x_top)];
-    next_color2 = maze->map[(y_top + player->height/2 + y_diff) * maze->width + (x_top + player->width)];
+    next_color1 = maze->map[(y_top + 17/2 + y_diff) * maze->width + (x_top)];
+    next_color2 = maze->map[(y_top + 17/2 + y_diff) * maze->width + (x_top +13)];
 
   } else if (y_diff < 0) {    // Top
     next_color1 = maze->map[(y_top + y_diff) * maze->width + (x_top)];
-    next_color2 = maze->map[(y_top + y_diff) * maze->width + (x_top + player->width)];
+    next_color2 = maze->map[(y_top + y_diff) * maze->width + (x_top +13)];
 
   }
     if(!door1_open){
@@ -196,7 +196,6 @@ bool (check_collision)(Sprite *player, Sprite *maze, int x_diff, int y_diff) {
     if((x_top + x_diff >= (door2->x - (door2->width/2)) && x_top + x_diff <= (door2->x + door2->width))
     && (y_top + y_diff >= (door2->y - (door2->height/2)) && y_top + y_diff <= (door2->y + door2->height)) ) return true;
   }
-
   if ((color != next_color1) || (color != next_color2)) 
     return true;
   return false;

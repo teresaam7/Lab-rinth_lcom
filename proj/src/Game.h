@@ -115,6 +115,7 @@ typedef enum {
 
 #define TIMER_MINUTES 5
 
+
 void (draw_menu)();
 void (update_menu)();
 void (update_menu_levels)();
