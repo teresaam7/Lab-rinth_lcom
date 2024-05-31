@@ -3,9 +3,8 @@
 #include <stdio.h>
 #include "sprite.h"
 
-extern bool door1_open;
-extern bool door2_open;
-extern Sprite *door1, *door2, *button1, *button2;
+extern bool door1_open, door2_open;
+extern Sprite *door1, *door2, *button1, *button1_down, *button2, *button2_down;
 
 /**
  * @brief Loads XPM image data to a sprite.
@@ -148,10 +147,12 @@ int (drawing_to_buffer_lantern)(Sprite *bg, Sprite *sp, uint8_t *buffer, int lan
       }
     }
     if (is_sprite_inside_radius(sp, button1, lant_radius)) {
-      drawing_sprite(button1);
+      if (!door1_open) drawing_sprite(button1);
+      else drawing_sprite(button1_down);
     }
     if (is_sprite_inside_radius(sp, button2, lant_radius)) {
-      drawing_sprite(button2);
+      if (!door2_open) drawing_sprite(button2);
+      else drawing_sprite(button2_down);
     }    
   
     return 0;
