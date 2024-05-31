@@ -7,6 +7,12 @@ extern bool door1_open;
 extern bool door2_open;
 extern Sprite *door1, *door2, *button1, *button2;
 
+/**
+ * @brief Loads XPM image data to a sprite.
+ * @param xpm The XPM.
+ * @param sp Pointer to the Sprite that will be initialized.
+ * @return 0 on success and non-zero on error.
+ */
 int (loading_xpm)(xpm_map_t xpm, Sprite *sp) {
     xpm_image_t image;
     sp->map = (uint32_t *) xpm_load(xpm, XPM_8_8_8_8, &image);
@@ -16,7 +22,14 @@ int (loading_xpm)(xpm_map_t xpm, Sprite *sp) {
     return 0; 
 }
 
-
+/**
+ * @brief Creates a sprite and initializes its position and speed.
+ * @param xpm The XPM.
+ * @param x The initial coordinate x.
+ * @param y The initial coordinate y.
+ * @param speed The speed.
+ * @return Pointer to the created Sprite and NULL if it failed.
+ */
 Sprite* (create_sprite)(xpm_map_t xpm, int x, int y, int speed) {
   Sprite *sp = (Sprite *) malloc (sizeof(Sprite));
   if (sp == NULL )
@@ -36,6 +49,10 @@ Sprite* (create_sprite)(xpm_map_t xpm, int x, int y, int speed) {
 }
 
 
+/**
+ * @brief Frees the memory allocated for a sprite and its map.
+ * @param sp Pointer to the Sprite that will be destroyed.
+ */
 void destroy_sprite(Sprite *sp) {
   if ( sp == NULL )
     return;
@@ -45,7 +62,12 @@ void destroy_sprite(Sprite *sp) {
 }
 
 
-
+/**
+ * @brief Draws a sprite to a buffer skipping transparent pixels.
+ * @param sp Pointer to the Sprite that will be drawn.
+ * @param buffer The buffer to draw the sprite.
+ * @return 0 if success and 1 if error.
+ */
 int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer) {
   uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
 
@@ -66,6 +88,11 @@ int (drawing_to_buffer)(Sprite *sp, uint8_t *buffer) {
 }
 
 
+/**
+ * @brief Draws a sprite using the global draw buffer.
+ * @param sp Pointer to the Sprite that will be drawn.
+ * @return 0 if success and 1 if error.
+ */
 int (drawing_sprite)(Sprite *sp) {
   if (drawing_to_buffer(sp, draw_buffer) != 0) {
     printf("Drawing sprite failed \n");
@@ -76,6 +103,14 @@ int (drawing_sprite)(Sprite *sp) {
 }
 
 
+/**
+ * @brief Draws a lantern around a sprite to a buffer.
+ * @param bg Pointer to the background Sprite.
+ * @param sp Pointer to the lantern Sprite.
+ * @param buffer The buffer to draw to.
+ * @param lant_radius The radius of the lantern.
+ * @return 0 if success and 1 if error.
+ */
 int (drawing_to_buffer_lantern)(Sprite *bg, Sprite *sp, uint8_t *buffer, int lant_radius) {
   uint32_t transparent_color = xpm_transparency_color(XPM_8_8_8_8); 
 
@@ -123,7 +158,13 @@ int (drawing_to_buffer_lantern)(Sprite *bg, Sprite *sp, uint8_t *buffer, int lan
 }
 
 
-
+/**
+ * @brief Sees if a sprite ('sp') is in a certain radius of the center of another sprite ('center').
+ * @param center Pointer to the center Sprite.
+ * @param sp Pointer to the Sprite to check.
+ * @param lant_radius The radius to check.
+ * @return true if the sprite is in the radius and false if it isn't.
+ */
 bool is_sprite_inside_radius(Sprite *center, Sprite *sp, int lant_radius) {
   int center_x = center->x + center->width / 2;
   int center_y = center->y + center->height / 2;
@@ -134,7 +175,13 @@ bool is_sprite_inside_radius(Sprite *center, Sprite *sp, int lant_radius) {
 }
 
 
-
+/**
+ * @brief Draws a lantern in the background.
+ * @param bg Pointer to the background Sprite.
+ * @param sp Pointer to the Sprite that the lantern will be drawn to.
+ * @param lant_radius The radius of the lantern.
+ * @return 0 if success and 1 if error.
+ */
 int (drawing_lantern)(Sprite *bg, Sprite *sp, int lant_radius) {
   if (drawing_to_buffer_lantern(bg, sp, draw_buffer, lant_radius) != 0) {
     printf("Drawing background failed \n");
@@ -144,7 +191,10 @@ int (drawing_lantern)(Sprite *bg, Sprite *sp, int lant_radius) {
   return 0;
 }
 
-
+/**
+ * @brief Draws the background with a global draw buffer.
+ * @return 0 if success and 1 if error.
+ */
 int (drawing_bg)() {
   if (draw_background() != 0) {
     printf("Drawing background failed \n");
@@ -154,7 +204,11 @@ int (drawing_bg)() {
   return 0;
 }
 
-
+/**
+ * @brief Loads the background sprite to a buffer.
+ * @param sp Pointer to the Sprite representing the background.
+ * @return 0 if success and 1 if error.
+ */
 int (loading_bg_sprite)(Sprite *sp) {
   if (drawing_to_buffer(sp, bg_buffer) != 0) {
     printf("Loading background failed \n");
@@ -164,6 +218,15 @@ int (loading_bg_sprite)(Sprite *sp) {
   return 0;
 }
 
+
+/**
+ * @brief Sees if there is a collision between the player sprite and the maze sprite.
+ * @param player Pointer to the player Sprite.
+ * @param maze Pointer to the maze Sprite.
+ * @param x_diff The coordinate x that the player will next move to.
+ * @param y_diff The coordinate y that the player will next move to.
+ * @return true if there is a collision and false if there isn't.
+ */
 bool (check_collision)(Sprite *player, Sprite *maze, int x_diff, int y_diff) {
   int x_top = player->x;
   int y_top = player->y + 17/2;
