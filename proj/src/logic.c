@@ -12,7 +12,7 @@ extern int gameTime;
 extern int counter;
 
 Sprite *menu_bg, *title, *game_over,*win, *start, *hover_start, *quit, *hover_quit, *cursor, 
-*level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze,*waiting, *button1, *button2, *door1, *door2,  *player, *player2, *life, *arrow;
+*level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze,*waiting, *button1, *button1_down, *button2, *button2_down, *door1, *door2,  *player, *player2, *life, *arrow;
 
 Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
