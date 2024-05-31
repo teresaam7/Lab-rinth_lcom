@@ -1,30 +1,34 @@
-DONEEZZZZZZZZZZB1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+DONEEB1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
 B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
-B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
-B1=0x28 B2=0x00 B3=0xfd LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-3
-B1=0x38 B2=0xff B3=0xf9 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=-7
-B1=0x28 B2=0x00 B3=0xfd LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-3
-B1=0x28 B2=0x00 B3=0xfd LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-3
-B1=0x38 B2=0xff B3=0xfb LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=-5
-B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
-B1=0x28 B2=0x01 B3=0xfd LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-3
-B1=0x28 B2=0x03 B3=0xfd LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=-3
-B1=0x28 B2=0x01 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-2
-B1=0x28 B2=0x05 B3=0xf9 LB=0 MB=0 RB=0 XOV=0 X=5 YOV=0 Y=-7
-B1=0x28 B2=0x02 B3=0xfc LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-4
-B1=0x28 B2=0x03 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=-2
-B1=0x28 B2=0x03 B3=0xfc LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=-4
-B1=0x28 B2=0x03 B3=0xfc LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=-4
-B1=0x28 B2=0x01 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-2
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
-B1=0x28 B2=0x01 B3=0xfd LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-3
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
@@ -32,110 +36,946 @@ B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
-B1=0x28 B2=0x01 B3=0xfc LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-4
-B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
-B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
-B1=0x28 B2=0x00 B3=0xfa LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-6
-B1=0x28 B2=0x00 B3=0xfd LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-3
-B1=0x28 B2=0x00 B3=0xfd LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-3
-B1=0x28 B2=0x01 B3=0xfa LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-6
-B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
-B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
-B1=0x18 B2=0xff B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=1
-B1=0x18 B2=0xff B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=1
-B1=0x18 B2=0xff B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=1
 B1=0x18 B2=0xff B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=0
-B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
-B1=0x18 B2=0xff B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=1
-B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
 B1=0x09 B2=0x00 B3=0x00 LB=1 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
 B1=0x08 B2=0x00 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
+B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
+B1=0x28 B2=0x01 B3=0xfd LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-3
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xfc LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-4
+B1=0x28 B2=0x01 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-2
+B1=0x28 B2=0x01 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-2
+B1=0x28 B2=0x01 B3=0xfd LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-3
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
-B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
-B1=0x28 B2=0x01 B3=0xf6 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-10
-B1=0x28 B2=0x01 B3=0xf8 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-8
-B1=0x28 B2=0x01 B3=0xf4 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-12
-B1=0x28 B2=0x02 B3=0xf4 LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-12
-B1=0x28 B2=0x07 B3=0xe6 LB=0 MB=0 RB=0 XOV=0 X=7 YOV=0 Y=-26
-B1=0x28 B2=0x03 B3=0xf4 LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=-12
-B1=0x28 B2=0x05 B3=0xf2 LB=0 MB=0 RB=0 XOV=0 X=5 YOV=0 Y=-14
-B1=0x28 B2=0x09 B3=0xe9 LB=0 MB=0 RB=0 XOV=0 X=9 YOV=0 Y=-23
-B1=0x28 B2=0x04 B3=0xf5 LB=0 MB=0 RB=0 XOV=0 X=4 YOV=0 Y=-11
-B1=0x28 B2=0x03 B3=0xf8 LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=-8
-B1=0x28 B2=0x02 B3=0xfb LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-5
-B1=0x28 B2=0x03 B3=0xfb LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=-5
-B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
-B1=0x28 B2=0x02 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-2
-B1=0x28 B2=0x02 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-2
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
-B1=0x28 B2=0x01 B3=0xfc LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-4
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
-B1=0x18 B2=0xff B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x38 B2=0xff B3=0xff LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
-B1=0x38 B2=0xff B3=0xff LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=-1
-B1=0x38 B2=0xff B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=-2
-B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
-B1=0x38 B2=0xff B3=0xff LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
-B1=0x09 B2=0x00 B3=0x00 LB=1 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
-DONEEZZZZZZZZZZAAAAAAAAB1=0x08 B2=0x00 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
 B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x01 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0DONEEAAAAAAAADONEEDONEETempo do jogo: 01:53:51
+Tempo do jogo: 01:53:51
+Tempo do jogo: 01:53:52
+Tempo do jogo: 01:53:52
+Tempo do jogo: 01:53:52
+Tempo do jogo: 01:53:52
+Tempo do jogo: 01:53:52
+Tempo do jogo: 01:53:53
+Tempo do jogo: 01:53:53
+Tempo do jogo: 01:53:53
+Tempo do jogo: 01:53:53
+Tempo do jogo: 01:53:53
+Tempo do jogo: 01:53:53
+Tempo do jogo: 01:53:53
+timer_test_int:timer_print_elapsed_time 1 s
+300Tempo do jogo: 01:53:54
+Tempo do jogo: 01:53:54
+Tempo do jogo: 01:53:54
+Tempo do jogo: 01:53:54
+Tempo do jogo: 01:53:54
+Tempo do jogo: 01:53:54
+Tempo do jogo: 01:53:55
+Tempo do jogo: 01:53:55
+Tempo do jogo: 01:53:55
+Tempo do jogo: 01:53:55
+DONEETempo do jogo: 01:53:55
+Tempo do jogo: 01:53:55
+DONEETempo do jogo: 01:53:56
+Tempo do jogo: 01:53:56
+Tempo do jogo: 01:53:56
+Tempo do jogo: 01:53:56
+Tempo do jogo: 01:53:57
+Tempo do jogo: 01:53:57
+Tempo do jogo: 01:53:57
+DONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEB1=0x18 B2=0xfa B3=0x0e LB=0 MB=0 RB=0 XOV=0 X=-6 YOV=0 Y=14
+B1=0x18 B2=0xf6 B3=0x14 LB=0 MB=0 RB=0 XOV=0 X=-10 YOV=0 Y=20
+B1=0x18 B2=0xf8 B3=0x0f LB=0 MB=0 RB=0 XOV=0 X=-8 YOV=0 Y=15
+B1=0x18 B2=0xf4 B3=0x16 LB=0 MB=0 RB=0 XOV=0 X=-12 YOV=0 Y=22
+B1=0x18 B2=0xf9 B3=0x0a LB=0 MB=0 RB=0 XOV=0 X=-7 YOV=0 Y=10
+B1=0x18 B2=0xf8 B3=0x0c LB=0 MB=0 RB=0 XOV=0 X=-8 YOV=0 Y=12
+B1=0x18 B2=0xfd B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=4
+B1=0x18 B2=0xfc B3=0x08 LB=0 MB=0 RB=0 XOV=0 X=-4 YOV=0 Y=8
+B1=0x18 B2=0xfe B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=2
+B1=0x18 B2=0xfc B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-4 YOV=0 Y=4
+B1=0x18 B2=0xfe B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=3
+B1=0x18 B2=0xfb B3=0x05 LB=0 MB=0 RB=0 XOV=0 X=-5 YOV=0 Y=5
+B1=0x18 B2=0xfe B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=3
+B1=0x18 B2=0xfa B3=0x05 LB=0 MB=0 RB=0 XOV=0 X=-6 YOV=0 Y=5
+B1=0x18 B2=0xfd B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=3
+B1=0x18 B2=0xfa B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-6 YOV=0 Y=4
+B1=0x18 B2=0xfe B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=3
+B1=0x18 B2=0xfc B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-4 YOV=0 Y=3
+B1=0x18 B2=0xfd B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=3
+B1=0x18 B2=0xff B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=1
+B1=0x18 B2=0xfe B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=3
+B1=0x18 B2=0xfe B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=1
+B1=0x18 B2=0xff B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=3
+B1=0x18 B2=0xff B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=2
+B1=0x18 B2=0xff B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=2
+B1=0x18 B2=0xfe B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=4
+B1=0x08 B2=0x00 B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=4
 B1=0x08 B2=0x00 B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=2
 B1=0x08 B2=0x00 B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=3
-B1=0x18 B2=0xfd B3=0x06 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=6
-B1=0x18 B2=0xfd B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=2
-B1=0x18 B2=0xfa B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=-6 YOV=0 Y=2
-B1=0x18 B2=0xf9 B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-7 YOV=0 Y=3
-B1=0x18 B2=0xfd B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=2
-B1=0x18 B2=0xfe B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=0
-B1=0x08 B2=0x02 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=1
-B1=0x08 B2=0x03 B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=3
-B1=0x08 B2=0x04 B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=4 YOV=0 Y=4
-B1=0x08 B2=0x04 B3=0x06 LB=0 MB=0 RB=0 XOV=0 X=4 YOV=0 Y=6
-B1=0x08 B2=0x0b B3=0x1a LB=0 MB=0 RB=0 XOV=0 X=11 YOV=0 Y=26
-B1=0x08 B2=0x0c B3=0x1c LB=0 MB=0 RB=0 XOV=0 X=12 YOV=0 Y=28
-B1=0x08 B2=0x0e B3=0x20 LB=0 MB=0 RB=0 XOV=0 X=14 YOV=0 Y=32
-B1=0x08 B2=0x10 B3=0x22 LB=0 MB=0 RB=0 XOV=0 X=16 YOV=0 Y=34
-B1=0x08 B2=0x21 B3=0x4e LB=0 MB=0 RB=0 XOV=0 X=33 YOV=0 Y=78
-B1=0x08 B2=0x14 B3=0x2c LB=0 MB=0 RB=0 XOV=0 X=20 YOV=0 Y=44
-B1=0x08 B2=0x13 B3=0x2f LB=0 MB=0 RB=0 XOV=0 X=19 YOV=0 Y=47
-B1=0x08 B2=0x2d B3=0x71 LB=0 MB=0 RB=0 XOV=0 X=45 YOV=0 Y=113
-B1=0x08 B2=0x12 B3=0x31 LB=0 MB=0 RB=0 XOV=0 X=18 YOV=0 Y=49
-3=0x00 LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=0
+B1=0x08 B2=0x00 B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=2
+B1=0x08 B2=0x00 B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=2
 B1=0x08 B2=0x01 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=1
-B1=0x08 B2=0x02 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=0
-B1=0x08 B2=0x05 B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=5 YOV=0 Y=3
-B1=0x08 B2=0x02 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=0
-B1=0x08 B2=0x02 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=1
+B1=0x08 B2=0x01 B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=2
+B1=0x08 B2=0x02 B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=3
+B1=0x08 B2=0x01 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=1
 B1=0x08 B2=0x03 B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=2
-B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+B1=0x08 B2=0x02 B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=2
+B1=0x08 B2=0x0b B3=0x0a LB=0 MB=0 RB=0 XOV=0 X=11 YOV=0 Y=10
+B1=0x08 B2=0x10 B3=0x0d LB=0 MB=0 RB=0 XOV=0 X=16 YOV=0 Y=13
 B1=0x08 B2=0x01 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=1
+DONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEEDONEE0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:00
+Tempo do jogo: 01:54:00
+Tempo do jogo: 01:54:00
+Tempo do jogo: 01:54:00
+Tempo do jogo: 01:54:00
+Tempo do jogo: 01:54:00
+Tempo do jogo: 01:54:01
+Tempo do jogo: 01:54:01
+B1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
+Tempo do jogo: 01:54:01
+Tempo do jogo: 01:54:01
+timer_test_int:timer_print_elapsed_time 1 s
+300Tempo do jogo: 01:54:01
+Tempo do jogo: 01:54:01
+Tempo do jogo: 01:54:02
+Tempo do jogo: 01:54:02
+Tempo do jogo: 01:54:02
+Tempo do jogo: 01:54:02
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:02
+Tempo do jogo: 01:54:03
+Tempo do jogo: 01:54:03
+Tempo do jogo: 01:54:03
+Tempo do jogo: 01:54:03
+Tempo do jogo: 01:54:03
+Tempo do jogo: 01:54:03
+Tempo do jogo: 01:54:03
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:03
+Tempo do jogo: 01:54:03
+Tempo do jogo: 01:54:04
+Tempo do jogo: 01:54:04
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:04
+Tempo do jogo: 01:54:04
+Tempo do jogo: 01:54:04
+Tempo do jogo: 01:54:04
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:04
+Tempo do jogo: 01:54:05
+Tempo do jogo: 01:54:05
+Tempo do jogo: 01:54:05
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:05
+Tempo do jogo: 01:54:05
+Tempo do jogo: 01:54:05
+Tempo do jogo: 01:54:05
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:05
+Tempo do jogo: 01:54:05
+Tempo do jogo: 01:54:06
+Tempo do jogo: 01:54:06
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:06
+Tempo do jogo: 01:54:06
+Tempo do jogo: 01:54:06
+Tempo do jogo: 01:54:06
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:06
+Tempo do jogo: 01:54:06
+Tempo do jogo: 01:54:07
+Tempo do jogo: 01:54:07
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:07
+Tempo do jogo: 01:54:07
+Tempo do jogo: 01:54:07
+Tempo do jogo: 01:54:07
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:08
+Tempo do jogo: 01:54:08
+Tempo do jogo: 01:54:08
+Tempo do jogo: 01:54:08
 B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
+Tempo do jogo: 01:54:08
+Tempo do jogo: 01:54:08
+Tempo do jogo: 01:54:08
+Tempo do jogo: 01:54:09
+Tempo do jogo: 01:54:09
+Tempo do jogo: 01:54:09
+Tempo do jogo: 01:54:09
+Tempo do jogo: 01:54:09
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:09
+Tempo do jogo: 01:54:09
+Tempo do jogo: 01:54:09
+Tempo do jogo: 01:54:09
+Tempo do jogo: 01:54:10
+Tempo do jogo: 01:54:10
+Tempo do jogo: 01:54:10
+Tempo do jogo: 01:54:10
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:10
+Tempo do jogo: 01:54:10
+Tempo do jogo: 01:54:10
+Tempo do jogo: 01:54:10
+Tempo do jogo: 01:54:10
+Tempo do jogo: 01:54:11
+Tempo do jogo: 01:54:11
+Tempo do jogo: 01:54:11
+Tempo do jogo: 01:54:11
+Tempo do jogo: 01:54:11
+B1=0x28 B2=0x00 B3=0xff LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-1
+Tempo do jogo: 01:54:11
+Tempo do jogo: 01:54:11
+Tempo do jogo: 01:54:11
+Tempo do jogo: 01:54:11
+Tempo do jogo: 01:54:12
+Tempo do jogo: 01:54:12
+Tempo do jogo: 01:54:12
+B1=0x38 B2=0xff B3=0xff LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=-1
+Tempo do jogo: 01:54:12
+Tempo do jogo: 01:54:12
+Tempo do jogo: 01:54:12
+Tempo do jogo: 01:54:12
+Tempo do jogo: 01:54:12
+timer_test_int:timer_print_elapsed_time 2 s
+299Tempo do jogo: 01:54:12
+B1=0x09 B2=0x00 B3=0x00 LB=1 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:13
+Tempo do jogo: 01:54:13
+Tempo do jogo: 01:54:13
+Tempo do jogo: 01:54:13
+Tempo do jogo: 01:54:13
+Tempo do jogo: 01:54:13
+Tempo do jogo: 01:54:13
+B1=0x08 B2=0x00 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:14
+Tempo do jogo: 01:54:14
+Tempo do jogo: 01:54:14
+Tempo do jogo: 01:54:14
+Tempo do jogo: 01:54:14
+Tempo do jogo: 01:54:15
+Tempo do jogo: 01:54:15
+Tempo do jogo: 01:54:15
+Tempo do jogo: 01:54:15
+Tempo do jogo: 01:54:15
+Tempo do jogo: 01:54:15
+Tempo do jogo: 01:54:15
+Tempo do jogo: 01:54:16
+Tempo do jogo: 01:54:16
+Tempo do jogo: 01:54:16
+Tempo do jogo: 01:54:16
+B1=0x09 B2=0x00 B3=0x00 LB=1 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:16
+Tempo do jogo: 01:54:16
+Tempo do jogo: 01:54:16
+Tempo do jogo: 01:54:16
+B1=0x08 B2=0x00 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:17
+Tempo do jogo: 01:54:17
+Tempo do jogo: 01:54:17
+Tempo do jogo: 01:54:17
+B1=0x09 B2=0x00 B3=0x00 LB=1 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:17
+Tempo do jogo: 01:54:17
+Tempo do jogo: 01:54:17
+Tempo do jogo: 01:54:17
+B1=0x08 B2=0x00 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:17
+Tempo do jogo: 01:54:18
+Tempo do jogo: 01:54:18
+Tempo do jogo: 01:54:18
+B1=0x09 B2=0x00 B3=0x00 LB=1 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:18
+Tempo do jogo: 01:54:18
+Tempo do jogo: 01:54:18
+Tempo do jogo: 01:54:18
+B1=0x08 B2=0x00 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:19
+Tempo do jogo: 01:54:19
+Tempo do jogo: 01:54:19
+Tempo do jogo: 01:54:19
+B1=0x09 B2=0x00 B3=0x00 LB=1 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:19
+Tempo do jogo: 01:54:19
+Tempo do jogo: 01:54:19
+Tempo do jogo: 01:54:20
+B1=0x08 B2=0x00 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:20
+Tempo do jogo: 01:54:20
+Tempo do jogo: 01:54:20
+Tempo do jogo: 01:54:20
+B1=0x09 B2=0x00 B3=0x00 LB=1 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:20
+Tempo do jogo: 01:54:20
+Tempo do jogo: 01:54:21
+Tempo do jogo: 01:54:21
+B1=0x08 B2=0x00 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:21
+Tempo do jogo: 01:54:21
+Tempo do jogo: 01:54:21
+Tempo do jogo: 01:54:21
+B1=0x18 B2=0xfe B3=0x05 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=5
+Tempo do jogo: 01:54:21
+Tempo do jogo: 01:54:21
+Tempo do jogo: 01:54:21
+Tempo do jogo: 01:54:22
+B1=0x18 B2=0xfd B3=0x09 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=9
+Tempo do jogo: 01:54:22
+Tempo do jogo: 01:54:22
+Tempo do jogo: 01:54:22
+Tempo do jogo: 01:54:22
+B1=0x18 B2=0xfe B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=3
+Tempo do jogo: 01:54:22
+Tempo do jogo: 01:54:22
+Tempo do jogo: 01:54:22
+Tempo do jogo: 01:54:22
+B1=0x18 B2=0xff B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=4
+Tempo do jogo: 01:54:22
+Tempo do jogo: 01:54:23
+Tempo do jogo: 01:54:23
+Tempo do jogo: 01:54:23
+B1=0x18 B2=0xfe B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=2
+Tempo do jogo: 01:54:23
+Tempo do jogo: 01:54:23
+Tempo do jogo: 01:54:23
+Tempo do jogo: 01:54:23
+B1=0x18 B2=0xfe B3=0x05 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=5
+Tempo do jogo: 01:54:23
+timer_test_int:timer_print_elapsed_time 3 s
+298Tempo do jogo: 01:54:23
+Tempo do jogo: 01:54:24
+Tempo do jogo: 01:54:24
+B1=0x18 B2=0xff B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=3
+Tempo do jogo: 01:54:24
+Tempo do jogo: 01:54:24
+Tempo do jogo: 01:54:24
+Tempo do jogo: 01:54:24
+B1=0x18 B2=0xfd B3=0x05 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=5
+Tempo do jogo: 01:54:24
+Tempo do jogo: 01:54:25
+Tempo do jogo: 01:54:25
+Tempo do jogo: 01:54:25
+B1=0x18 B2=0xfe B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=2
+Tempo do jogo: 01:54:25
+Tempo do jogo: 01:54:25
+Tempo do jogo: 01:54:25
+Tempo do jogo: 01:54:26
+B1=0x18 B2=0xfe B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=4
+Tempo do jogo: 01:54:26
+Tempo do jogo: 01:54:26
+Tempo do jogo: 01:54:26
+Tempo do jogo: 01:54:26
+B1=0x18 B2=0xfd B3=0x06 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=6
+Tempo do jogo: 01:54:26
+Tempo do jogo: 01:54:26
+Tempo do jogo: 01:54:27
+Tempo do jogo: 01:54:27
+B1=0x18 B2=0xfe B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=4
+Tempo do jogo: 01:54:27
+Tempo do jogo: 01:54:27
+Tempo do jogo: 01:54:27
+Tempo do jogo: 01:54:27
+B1=0x18 B2=0xfc B3=0x09 LB=0 MB=0 RB=0 XOV=0 X=-4 YOV=0 Y=9
+Tempo do jogo: 01:54:27
+Tempo do jogo: 01:54:27
+Tempo do jogo: 01:54:28
+Tempo do jogo: 01:54:28
+B1=0x18 B2=0xfe B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=4
+Tempo do jogo: 01:54:28
+Tempo do jogo: 01:54:28
+Tempo do jogo: 01:54:28
+Tempo do jogo: 01:54:28
+B1=0x18 B2=0xfb B3=0x09 LB=0 MB=0 RB=0 XOV=0 X=-5 YOV=0 Y=9
+Tempo do jogo: 01:54:28
+Tempo do jogo: 01:54:28
+Tempo do jogo: 01:54:29
+Tempo do jogo: 01:54:29
+B1=0x18 B2=0xfc B3=0x09 LB=0 MB=0 RB=0 XOV=0 X=-4 YOV=0 Y=9
+Tempo do jogo: 01:54:29
+Tempo do jogo: 01:54:29
+Tempo do jogo: 01:54:29
+Tempo do jogo: 01:54:29
+B1=0x18 B2=0xfe B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=4
+Tempo do jogo: 01:54:29
+Tempo do jogo: 01:54:29
+Tempo do jogo: 01:54:30
+Tempo do jogo: 01:54:30
+B1=0x18 B2=0xfe B3=0x06 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=6
+Tempo do jogo: 01:54:30
+Tempo do jogo: 01:54:30
+Tempo do jogo: 01:54:30
+Tempo do jogo: 01:54:30
+B1=0x18 B2=0xfc B3=0x07 LB=0 MB=0 RB=0 XOV=0 X=-4 YOV=0 Y=7
+Tempo do jogo: 01:54:30
+Tempo do jogo: 01:54:30
+Tempo do jogo: 01:54:31
+Tempo do jogo: 01:54:31
+B1=0x18 B2=0xfe B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=4
+Tempo do jogo: 01:54:31
+Tempo do jogo: 01:54:31
+Tempo do jogo: 01:54:31
+Tempo do jogo: 01:54:31
+B1=0x18 B2=0xfe B3=0x05 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=5
+Tempo do jogo: 01:54:31
+Tempo do jogo: 01:54:31
+Tempo do jogo: 01:54:31
+Tempo do jogo: 01:54:32
+B1=0x18 B2=0xff B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=3
+Tempo do jogo: 01:54:32
+Tempo do jogo: 01:54:32
+Tempo do jogo: 01:54:32
+Tempo do jogo: 01:54:32
+B1=0x18 B2=0xfb B3=0x0c LB=0 MB=0 RB=0 XOV=0 X=-5 YOV=0 Y=12
+Tempo do jogo: 01:54:32
+Tempo do jogo: 01:54:32
+Tempo do jogo: 01:54:32
+Tempo do jogo: 01:54:32
+B1=0x18 B2=0xfe B3=0x07 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=7
+Tempo do jogo: 01:54:32
+Tempo do jogo: 01:54:32
+Tempo do jogo: 01:54:33
+Tempo do jogo: 01:54:33
+B1=0x18 B2=0xff B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=4
+Tempo do jogo: 01:54:33
+Tempo do jogo: 01:54:33
+Tempo do jogo: 01:54:33
+Tempo do jogo: 01:54:33
+B1=0x18 B2=0xfe B3=0x07 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=7
+Tempo do jogo: 01:54:33
+timer_test_int:timer_print_elapsed_time 4 s
+297Tempo do jogo: 01:54:33
+Tempo do jogo: 01:54:33
+Tempo do jogo: 01:54:33
+B1=0x08 B2=0x00 B3=0x07 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=7
+Tempo do jogo: 01:54:33
+Tempo do jogo: 01:54:34
+Tempo do jogo: 01:54:34
+Tempo do jogo: 01:54:34
+B1=0x18 B2=0xfd B3=0x0f LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=15
+Tempo do jogo: 01:54:34
+Tempo do jogo: 01:54:34
+Tempo do jogo: 01:54:34
+Tempo do jogo: 01:54:34
+B1=0x18 B2=0xfd B3=0x12 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=18
+Tempo do jogo: 01:54:34
+Tempo do jogo: 01:54:35
+Tempo do jogo: 01:54:35
+Tempo do jogo: 01:54:35
+B1=0x18 B2=0xff B3=0x0f LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=15
+Tempo do jogo: 01:54:35
+Tempo do jogo: 01:54:35
+Tempo do jogo: 01:54:35
+Tempo do jogo: 01:54:35
+B1=0x18 B2=0xff B3=0x05 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=5
+Tempo do jogo: 01:54:35
+Tempo do jogo: 01:54:36
+Tempo do jogo: 01:54:36
+Tempo do jogo: 01:54:36
+B1=0x08 B2=0x00 B3=0x09 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=9
+Tempo do jogo: 01:54:36
+Tempo do jogo: 01:54:36
+Tempo do jogo: 01:54:36
+Tempo do jogo: 01:54:36
+B1=0x18 B2=0xff B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=4
+Tempo do jogo: 01:54:36
+Tempo do jogo: 01:54:37
+Tempo do jogo: 01:54:37
+Tempo do jogo: 01:54:37
+B1=0x08 B2=0x00 B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=4
+Tempo do jogo: 01:54:37
+Tempo do jogo: 01:54:37
+Tempo do jogo: 01:54:37
+Tempo do jogo: 01:54:37
+B1=0x18 B2=0xff B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=4
+Tempo do jogo: 01:54:37
+Tempo do jogo: 01:54:37
+Tempo do jogo: 01:54:38
+Tempo do jogo: 01:54:38
 B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
-B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
-B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
-B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
-B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
-B1=0x08 B2=0x01 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=0
-B1=0x08 B2=0x02 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=0
-B1=0x08 B2=0x03 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=3 YOV=0 Y=0
-B1=0x08 B2=0x06 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=6 YOV=0 Y=0
-B1=0x08 B2=0x0a B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=10 YOV=0 Y=1
-DONEEZZZZZZZZZZAAAAAAAA
+Tempo do jogo: 01:54:38
+Tempo do jogo: 01:54:38
+Tempo do jogo: 01:54:38
+Tempo do jogo: 01:54:38
+B1=0x08 B2=0x00 B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=2
+Tempo do jogo: 01:54:38
+Tempo do jogo: 01:54:38
+Tempo do jogo: 01:54:39
+Tempo do jogo: 01:54:39
+B1=0x18 B2=0xff B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=1
+Tempo do jogo: 01:54:39
+Tempo do jogo: 01:54:39
+Tempo do jogo: 01:54:39
+Tempo do jogo: 01:54:39
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 01:54:39
+Tempo do jogo: 01:54:39
+Tempo do jogo: 01:54:39
+Tempo do jogo: 01:54:40
+B1=0x18 B2=0xff B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=0
+Tempo do jogo: 01:54:40
+Tempo do jogo: 01:54:40
+Tempo do jogo: 01:54:40
+Tempo do jogo: 01:54:40
+B1=0x08 B2=0x00 B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=1
+Tempo do jogo: 01:54:40
+Tempo do jogo: 01:54:40
+Tempo do jogo: 01:54:40
+Tempo do jogo: 01:54:41
+B1=0x09 B2=0x00 B3=0x00 LB=1 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:41
+Tempo do jogo: 01:54:41
+Tempo do jogo: 01:54:41
+Tempo do jogo: 01:54:41
+B1=0x08 B2=0x00 B3=0x00 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=0
+Tempo do jogo: 01:54:41
+Tempo do jogo: 01:54:41
+Tempo do jogo: 01:54:42
+Tempo do jogo: 01:54:42
+B1=0x18 B2=0xff B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=4
+Tempo do jogo: 01:54:42
+Tempo do jogo: 01:54:42
+Tempo do jogo: 01:54:42
+Tempo do jogo: 01:54:42
+B1=0x18 B2=0xfe B3=0x06 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=6
+Tempo do jogo: 01:54:42
+Tempo do jogo: 01:54:42
+Tempo do jogo: 01:54:43
+Tempo do jogo: 01:54:43
+B1=0x18 B2=0xfa B3=0x0d LB=0 MB=0 RB=0 XOV=0 X=-6 YOV=0 Y=13
+Tempo do jogo: 01:54:43
+timer_test_int:timer_print_elapsed_time 5 s
+296Tempo do jogo: 01:54:43
+Tempo do jogo: 01:54:43
+Tempo do jogo: 01:54:43
+B1=0x18 B2=0xfd B3=0x06 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=6
+Tempo do jogo: 01:54:43
+Tempo do jogo: 01:54:43
+Tempo do jogo: 01:54:43
+Tempo do jogo: 01:54:43
+Tempo do jogo: 01:54:43
+Tempo do jogo: 01:54:44
+Tempo do jogo: 01:54:44
+Tempo do jogo: 01:54:44
+Tempo do jogo: 01:54:44
+Tempo do jogo: 01:54:44
+Tempo do jogo: 01:54:44
+B1=0x18 B2=0xf9 B3=0x0b LB=0 MB=0 RB=0 XOV=0 X=-7 YOV=0 Y=11
+Tempo do jogo: 01:54:44
+Tempo do jogo: 01:54:44
+Tempo do jogo: 01:54:44
+Tempo do jogo: 01:54:44
+Tempo do jogo: 01:54:45
+Tempo do jogo: 01:54:45
+Tempo do jogo: 01:54:45
+Tempo do jogo: 01:54:45
+Tempo do jogo: 01:54:45
+Tempo do jogo: 01:54:45
+Tempo do jogo: 01:54:45
+Tempo do jogo: 01:54:45
+Tempo do jogo: 01:54:45
+Tempo do jogo: 01:54:46
+Tempo do jogo: 01:54:46
+Tempo do jogo: 01:54:46
+Tempo do jogo: 01:54:46
+Tempo do jogo: 01:54:46
+Tempo do jogo: 01:54:46
+Tempo do jogo: 01:54:46
+Tempo do jogo: 01:54:47
+Tempo do jogo: 01:54:47
+Tempo do jogo: 01:54:47
+Tempo do jogo: 01:54:47
+Tempo do jogo: 01:54:48
+Tempo do jogo: 01:54:48
+Tempo do jogo: 01:54:48
+Tempo do jogo: 01:54:48
+Tempo do jogo: 01:54:48
+Tempo do jogo: 01:54:48
+Tempo do jogo: 01:54:48
+Tempo do jogo: 01:54:48
+Tempo do jogo: 01:54:48
+Tempo do jogo: 01:54:49
+Tempo do jogo: 01:54:49
+Tempo do jogo: 01:54:49
+Tempo do jogo: 01:54:49
+Tempo do jogo: 01:54:49
+Tempo do jogo: 01:54:49
+Tempo do jogo: 01:54:49
+Tempo do jogo: 01:54:49
+Tempo do jogo: 01:54:49
+Tempo do jogo: 01:54:50
+Tempo do jogo: 01:54:50
+Tempo do jogo: 01:54:50
+Tempo do jogo: 01:54:50
+Tempo do jogo: 01:54:50
+Tempo do jogo: 01:54:50
+Tempo do jogo: 01:54:50
+Tempo do jogo: 01:54:50
+Tempo do jogo: 01:54:50
+Tempo do jogo: 01:54:51
+Tempo do jogo: 01:54:51
+Tempo do jogo: 01:54:51
+Tempo do jogo: 01:54:51
+Tempo do jogo: 01:54:51
+Tempo do jogo: 01:54:51
+Tempo do jogo: 01:54:51
+Tempo do jogo: 01:54:52
+Tempo do jogo: 01:54:52
+B1=0x18 B2=0xfa B3=0x0a LB=0 MB=0 RB=0 XOV=0 X=-6 YOV=0 Y=10
+Tempo do jogo: 01:54:52
+Tempo do jogo: 01:54:52
+Tempo do jogo: 01:54:52
+Tempo do jogo: 01:54:52
+B1=0x18 B2=0xfe B3=0x05 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=5
+Tempo do jogo: 01:54:52
+Tempo do jogo: 01:54:53
+Tempo do jogo: 01:54:53
+Tempo do jogo: 01:54:53
+B1=0x18 B2=0xfb B3=0x0a LB=0 MB=0 RB=0 XOV=0 X=-5 YOV=0 Y=10
+Tempo do jogo: 01:54:53
+Tempo do jogo: 01:54:53
+Tempo do jogo: 01:54:53
+Tempo do jogo: 01:54:53
+B1=0x18 B2=0xff B3=0x05 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=5
+Tempo do jogo: 01:54:54
+Tempo do jogo: 01:54:54
+Tempo do jogo: 01:54:54
+Tempo do jogo: 01:54:54
+B1=0x18 B2=0xfd B3=0x08 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=8
+Tempo do jogo: 01:54:54
+Tempo do jogo: 01:54:54
+Tempo do jogo: 01:54:54
+Tempo do jogo: 01:54:54
+B1=0x18 B2=0xfe B3=0x09 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=9
+Tempo do jogo: 01:54:55
+Tempo do jogo: 01:54:55
+Tempo do jogo: 01:54:55
+Tempo do jogo: 01:54:55
+B1=0x08 B2=0x00 B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=2
+Tempo do jogo: 01:54:55
+Tempo do jogo: 01:54:55
+timer_test_int:timer_print_elapsed_time 6 s
+295Tempo do jogo: 01:54:55
+Tempo do jogo: 01:54:55
+B1=0x18 B2=0xff B3=0x06 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=6
+Tempo do jogo: 01:54:55
+Tempo do jogo: 01:54:56
+Tempo do jogo: 01:54:56
+Tempo do jogo: 01:54:56
+B1=0x18 B2=0xff B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-1 YOV=0 Y=3
+Tempo do jogo: 01:54:56
+Tempo do jogo: 01:54:56
+Tempo do jogo: 01:54:56
+Tempo do jogo: 01:54:56
+B1=0x18 B2=0xfe B3=0x0b LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=11
+Tempo do jogo: 01:54:56
+Tempo do jogo: 01:54:56
+Tempo do jogo: 01:54:57
+Tempo do jogo: 01:54:57
+B1=0x08 B2=0x00 B3=0x06 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=6
+Tempo do jogo: 01:54:57
+Tempo do jogo: 01:54:57
+Tempo do jogo: 01:54:57
+Tempo do jogo: 01:54:57
+B1=0x18 B2=0xfe B3=0x0a LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=10
+Tempo do jogo: 01:54:57
+Tempo do jogo: 01:54:57
+Tempo do jogo: 01:54:58
+Tempo do jogo: 01:54:58
+B1=0x08 B2=0x00 B3=0x04 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=4
+Tempo do jogo: 01:54:58
+Tempo do jogo: 01:54:58
+Tempo do jogo: 01:54:58
+Tempo do jogo: 01:54:58
+B1=0x08 B2=0x00 B3=0x08 LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=8
+Tempo do jogo: 01:54:58
+Tempo do jogo: 01:54:58
+Tempo do jogo: 01:54:59
+Tempo do jogo: 01:54:59
+B1=0x18 B2=0xfd B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=1
+Tempo do jogo: 01:54:59
+Tempo do jogo: 01:54:59
+Tempo do jogo: 01:54:59
+Tempo do jogo: 01:54:59
+B1=0x18 B2=0xfd B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=1
+Tempo do jogo: 01:54:59
+Tempo do jogo: 01:54:59
+Tempo do jogo: 01:55:00
+Tempo do jogo: 01:55:00
+B1=0x18 B2=0xf9 B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-7 YOV=0 Y=3
+Tempo do jogo: 01:55:00
+Tempo do jogo: 01:55:00
+Tempo do jogo: 01:55:00
+Tempo do jogo: 01:55:00
+B1=0x18 B2=0xfd B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=1
+Tempo do jogo: 01:55:01
+Tempo do jogo: 01:55:01
+Tempo do jogo: 01:55:01
+Tempo do jogo: 01:55:01
+B1=0x18 B2=0xf9 B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-7 YOV=0 Y=3
+Tempo do jogo: 01:55:01
+Tempo do jogo: 01:55:01
+Tempo do jogo: 01:55:01
+Tempo do jogo: 01:55:02
+B1=0x18 B2=0xfe B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-2 YOV=0 Y=1
+Tempo do jogo: 01:55:02
+Tempo do jogo: 01:55:02
+Tempo do jogo: 01:55:02
+Tempo do jogo: 01:55:02
+B1=0x18 B2=0xf9 B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=-7 YOV=0 Y=2
+Tempo do jogo: 01:55:02
+Tempo do jogo: 01:55:03
+Tempo do jogo: 01:55:03
+Tempo do jogo: 01:55:03
+B1=0x18 B2=0xfd B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=1
+Tempo do jogo: 01:55:03
+Tempo do jogo: 01:55:03
+Tempo do jogo: 01:55:04
+Tempo do jogo: 01:55:04
+B1=0x18 B2=0xfc B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-4 YOV=0 Y=1
+Tempo do jogo: 01:55:04
+Tempo do jogo: 01:55:04
+Tempo do jogo: 01:55:04
+Tempo do jogo: 01:55:04
+B1=0x18 B2=0xfa B3=0x02 LB=0 MB=0 RB=0 XOV=0 X=-6 YOV=0 Y=2
+Tempo do jogo: 01:55:05
+Tempo do jogo: 01:55:05
+Tempo do jogo: 01:55:05
+Tempo do jogo: 01:55:05
+B1=0x18 B2=0xf8 B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-8 YOV=0 Y=3
+Tempo do jogo: 01:55:05
+Tempo do jogo: 01:55:05
+Tempo do jogo: 01:55:05
+Tempo do jogo: 01:55:05
+B1=0x18 B2=0xfd B3=0x01 LB=0 MB=0 RB=0 XOV=0 X=-3 YOV=0 Y=1
+Tempo do jogo: 01:55:06
+Tempo do jogo: 01:55:06
+Tempo do jogo: 01:55:06
+Tempo do jogo: 01:55:06
+B1=0x18 B2=0xf6 B3=0x03 LB=0 MB=0 RB=0 XOV=0 X=-10 YOV=0 Y=3
+Tempo do jogo: 01:55:06
+Tempo do jogo: 01:55:06
+timer_test_int:timer_print_elapsed_time 7 s
+294Tempo do jogo: 01:55:06
+Tempo do jogo: 01:55:06

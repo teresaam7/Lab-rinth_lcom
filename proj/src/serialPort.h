@@ -20,6 +20,8 @@ void (initialize_sp)();
 
 int (send_byte)(uint8_t byte);
 
+int (send_queue_bytes)();
+
 int (receive_byte)();
 
 Queue* (get_queue)();

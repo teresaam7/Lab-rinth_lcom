@@ -3,8 +3,9 @@
 int hook_id_sp = 6;
 extern GameState gameState;
 extern Sprite *player, *player2;
-static Queue * receiveQueue;
+static Queue * receiveQueue, *sendQueue;
 extern bool multi;
+static bool hold_reg_empty = true;
 
 int (sp_subscribe_int)(uint8_t* bitno){
     *bitno = BIT(hook_id_sp);
@@ -40,8 +41,9 @@ void (initialize_sp)(){
     if(sys_outb(BASE_COM1+ IER,ier | IER_ERBFI)!= 0) 
         return;
     receiveQueue = newQueue(20);
+    sendQueue = newQueue(20);
 }
-
+/*
 int (send_byte)(uint8_t byte){
     
     uint8_t st, i = 10;
@@ -56,6 +58,33 @@ int (send_byte)(uint8_t byte){
     }
     enqueue(receiveQueue, byte);
     return 1;
+}
+*/
+
+int (send_byte)(uint8_t byte){
+    int pushed = enqueue(sendQueue,byte);
+    if(hold_reg_empty){
+        return send_queue_bytes();
+    }else return pushed;
+}
+
+int (send_queue_bytes)(){
+    if(queueIsEmpty(sendQueue)){
+        hold_reg_empty = true;
+        return 1;
+    }
+
+    uint8_t empty_transmitter;
+
+    while(!queueIsEmpty(sendQueue)){
+        sys_outb(BASE_COM1 + THR,frontQueue(sendQueue));
+        dequeue(sendQueue);
+        util_sys_inb(BASE_COM1+LSR, &empty_transmitter);
+        empty_transmitter &= LSR_THRE ;
+        hold_reg_empty = empty_transmitter;
+        if(!empty_transmitter) return 1;
+    }
+    return 0;
 }
 
 int (receive_byte)(){
@@ -91,12 +120,18 @@ int (cleanInt_sp)(){
 }
 
 void (sp_ih)(){
-    uint8_t iir;
-    if(util_sys_inb(BASE_COM1+ IIR, &iir) != 0) 
-        return;
-    if(!(iir & IIR_NIP))
-        if(iir & IIR_IP == IIR_CT)
-            while(receive_byte());
+    uint8_t reg;
+    util_sys_inb(BASE_COM1+IIR, &reg);
+    while(!(reg & IIR_NIP)) {
+        if(reg & IIR_RDA){
+            while(0 == receive_byte());
+            util_sys_inb(BASE_COM1+IIR, &reg);
+        }
+        if(reg & IIR_THRE){
+            send_queue_bytes();
+            util_sys_inb(BASE_COM1+IIR, &reg);
+        }
+    }
 }
 
 void (send_scancode)(uint8_t scancode){
@@ -124,10 +159,10 @@ void (send_scancode)(uint8_t scancode){
 void (manage_button)(uint8_t scancode, bool isPlayer1) {
   if(isPlayer1) {
     handle_ingame_scancode(scancode, player);
+    send_scancode(scancode);
   } 
   else{
     handle_ingame_scancode_multi(scancode, player2);
-    send_scancode(scancode);
   } 
 }
 
@@ -137,7 +172,6 @@ bool (handle_start_multi)(){
         printf("AAAAAAAA");
     }else if(frontQueue(receiveQueue) == 0x54){
         send_byte(0x55);
-        printf("BBBBBBBB");
     }else if(frontQueue(receiveQueue) == 0x55){
         uint8_t srandByte = 0;
         while(srandByte == ACK || srandByte == NACK || srandByte == END || srandByte == 0){
@@ -146,7 +180,6 @@ bool (handle_start_multi)(){
         send_byte(0x56);
         send_byte(srandByte);
         srandom(srandByte);
-        printf("CCCCCC");
     }else if(frontQueue(receiveQueue) == 0x56){
         dequeue(receiveQueue);
         uint8_t srandByte = dequeue(receiveQueue);
@@ -158,19 +191,17 @@ bool (handle_start_multi)(){
         gameState = GAME;
         multi =true;
         send_byte(0x57);
-        printf("DDDDDDDD");
     }else if(frontQueue(receiveQueue) == 0x57){
         gameState = GAME;
         multi = true;
-        printf("FFFFFFFFF");
     }
     dequeue(receiveQueue);
     return true;
 }
 
+
 void (sp_handler)(){
   sp_ih();
-  printf("ZZZZZZZZZZ");
   if (gameState == MULTI)
     handle_start_multi();
   else if (gameState == GAME && multi) 
