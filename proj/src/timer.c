@@ -9,6 +9,13 @@
 int hookId = 0;
 int counter = 0;
 
+/**
+ * @brief Sets the frequency of a given timer.
+ * This function sets the frequency of the given timer by contructing its control word and initial value.
+ * @param timer Timer to configure (0, 1 or 2).
+ * @param freq Wanted frequency.
+ * @return 0 if success and 1 if error.
+ */
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   if (freq > TIMER_FREQ || freq < 19) {
      return 1;
@@ -50,6 +57,12 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   return 0;
 }
 
+/**
+ * @brief Subscribes timer interrupts.
+ * This function subscribes timer interrupts by setting the IRQ policy.
+ * @param bit_no Pointer to store the bit mask for the interrupt.
+ * @return 0 if success and 1 if error.
+ */
 int (timer_subscribe_int)(uint8_t *bit_no) {
   if (!bit_no) {
     return 1;
@@ -62,6 +75,11 @@ int (timer_subscribe_int)(uint8_t *bit_no) {
   return 0;
 }
 
+/**
+ * @brief Unsubscribes timer interrupts.
+ * This function unsubscribes timer interrupts by removing the IRQ policy.
+ * @return 0 if success and 1 if error.
+ */
 int (timer_unsubscribe_int)() {
   if (sys_irqrmpolicy( &hookId) != 0) {
     return 1;
@@ -70,10 +88,21 @@ int (timer_unsubscribe_int)() {
   return 0;
 }
 
+/**
+ * @brief Timer interrupt handler.
+ * This function handles timer interrupts by incrementing the counter.
+ */
 void (timer_int_handler)() {
   counter++;
 }
 
+/**
+ * @brief Gets the configuration of a given timer.
+ * This function returns the configuration of the given timer by reading its status byte.
+ * @param timer Timer (0, 1 or 2).
+ * @param st Pointer to store the status byte.
+ * @return 0 if success and 1 if error.
+ */
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
   if (st == NULL || timer < 0 || timer > 2) {
     return 1;
@@ -93,7 +122,14 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
   return 0; 
 }
 
-
+/**
+ * @brief Displays the configuration of a given timer.
+ * This function displays the configuration of the given timer and on the given field.
+ * @param timer Timer to display configuration (0, 1 or 2).
+ * @param st Status byte of the timer.
+ * @param field Field to display (tsf_all, tsf_initial, tsf_mode, tsf_base).
+ * @return 0 if success and 1 if error.
+ */
 int (timer_display_conf)(uint8_t timer, uint8_t st,
                         enum timer_status_field field) {
   union  timer_status_field_val controlWord;
