@@ -16,8 +16,6 @@ bool (sp_enable_int)();
 
 bool (sp_disable_int)();
 
-void (sp_config)();
-
 void (initialize_sp)();
 
 int (send_byte)(uint8_t byte);

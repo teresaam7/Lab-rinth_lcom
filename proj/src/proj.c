@@ -57,7 +57,6 @@ extern vbe_mode_info_t mode_info;
 
 
 int (proj_main_loop)(int argc, char *argv[]) {
-  sp_enable_int();
   if (initialize_frame_buffer(0x115) != 0) {
     return 1;
   }
@@ -71,6 +70,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (loadSprites()) {
     return 1;
   }
+  sp_enable_int();
   initialize_sp();
   bool running = true;
 
@@ -92,8 +92,8 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (sp_subscribe_int(&irq_set_sp) != 0)
     return 1;
 
-  sp_enable_int();
-  //sp_ih();
+ 
+  sp_ih();
   gameState = MENU;
   draw_menu();
 

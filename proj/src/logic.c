@@ -6,6 +6,7 @@ extern struct packet m_packet;
 
 extern bool gameState_change;
 extern bool multi;
+extern bool isPlayer1;
 extern GameState gameState;
 
 extern int gameTime;
@@ -97,8 +98,20 @@ int (gameStateInit)(bool * running) {
 }
 
 int (keyboardLogic)() {
+  if (gameState == MULTI) {
+    if (k_scancode == 0x2D) {isPlayer1 = true; printf("PLAYER1");} // X
+    if (k_scancode == 0x2C) {isPlayer1 = false; printf("PLAYER2");} // Z
+
+		send_byte(0x53);
+	}
 	if (gameState == GAME) {
-		manage_button(k_scancode, true);
+    if (!multi) {
+      handle_ingame_scancode(k_scancode, player);
+    } else {
+      if (isPlayer1) {manage_button(k_scancode, true); }
+      else { manage_button(k_scancode, false);}
+      
+    }
 	}
   if((player->x == 790 ) && (player->y == 555)){
     gameState_change = true;
@@ -144,9 +157,9 @@ int (mouseLogic) () {
         gameState = MULTI;
       }   
 
-      if(gameState == MULTI){
+      /*if(gameState == MULTI){
           send_byte(0x53);
-      }                   
+        }  */                 
     }
 	}
 
