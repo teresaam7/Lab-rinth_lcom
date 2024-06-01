@@ -1,5 +1,5 @@
 
-#include "Game.h"
+#include "game.h"
 
 uint8_t k_index = 0;
 uint8_t k_bytes[2];
@@ -106,8 +106,8 @@ void (load_level)(int level) {
       }
       button1 = create_sprite((xpm_map_t) button_red_, 90 , 497 , 0);
       button2 = create_sprite((xpm_map_t) button_green_, 774 , 170 , 0);
-      button1_down = create_sprite((xpm_map_t) button_red_down_, 90 , 497 , 0);
-      button2_down = create_sprite((xpm_map_t) button_green_down_, 774 , 170 , 0);
+      button1_down = create_sprite((xpm_map_t) button_red_down_, 89 , 499 , 0);
+      button2_down = create_sprite((xpm_map_t) button_green_down_, 773 , 172 , 0);
       door1 = create_sprite((xpm_map_t) door_red_, 210 , 450 , 0);
       door2 = create_sprite((xpm_map_t) door_green_, 760 , 340 , 0);
       break;
@@ -122,8 +122,8 @@ void (load_level)(int level) {
       }
       button1 = create_sprite((xpm_map_t) button_red_, 306 , 62 , 0);
       button2 = create_sprite((xpm_map_t) button_green_, 450 , 170 , 0);
-      button1_down = create_sprite((xpm_map_t) button_red_down_, 306 , 62 , 0);
-      button2_down = create_sprite((xpm_map_t) button_green_down_, 450 , 170 , 0);
+      button1_down = create_sprite((xpm_map_t) button_red_down_, 305 , 64 , 0);
+      button2_down = create_sprite((xpm_map_t) button_green_down_, 449 , 172 , 0);
       door1 = create_sprite((xpm_map_t) door_red_, 455 , 197 , 0);
       door2 = create_sprite((xpm_map_t) door_green_, 580 , 197 , 0);
       break;
@@ -139,8 +139,8 @@ void (load_level)(int level) {
       }
       button1 = create_sprite((xpm_map_t) button_red_, 220 , 207 , 0); 
       button2 = create_sprite((xpm_map_t) button_green_, 522 , 350, 0);
-      button1_down = create_sprite((xpm_map_t) button_red_down_, 220 , 207 , 0); 
-      button2_down = create_sprite((xpm_map_t) button_green_down_, 522 , 350, 0);
+      button1_down = create_sprite((xpm_map_t) button_red_down_, 219 , 209 , 0); 
+      button2_down = create_sprite((xpm_map_t) button_green_down_, 521 , 352, 0);
       door1 = create_sprite((xpm_map_t) door_red_, 219 , 160 , 0);
       door2 = create_sprite((xpm_map_t) door_green_, 590 , 557 , 0);
       break;
@@ -353,8 +353,8 @@ void (handle_mouse_movement)(Sprite * cursor){
   if(!(cursor->y - m_packet.delta_y <= 0)) cursor->y -= m_packet.delta_y;
   if(cursor->x + cursor->width >= mode_info.XResolution)cursor->x = mode_info.XResolution - cursor->width;
   if(cursor->y + cursor->height >= mode_info.YResolution)cursor->y = mode_info.YResolution - cursor->height;
-  if(cursor->x + cursor->width >= 785)cursor->x = 785 - cursor->width;
-  if(cursor->y + cursor->height >= 575)cursor->y = 575 - cursor->height;
+  if(cursor->x + cursor->width >= MOUSE_LIMIT_X)cursor->x = MOUSE_LIMIT_X - cursor->width;
+  if(cursor->y + cursor->height >= MOUSE_LIMIT_Y)cursor->y = MOUSE_LIMIT_Y - cursor->height;
 }
 
 

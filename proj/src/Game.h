@@ -116,6 +116,8 @@ typedef enum {
 } GameState;
 
 #define TIMER_MINUTES 5
+#define MOUSE_LIMIT_X 785
+#define MOUSE_LIMIT_Y 575
 
 
 void (draw_menu)();
