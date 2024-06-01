@@ -42,7 +42,7 @@ int ser_config(){
 
 bool (sp_enable_int)(){
     uint8_t reg;
-    reg = (BIT(0));
+    reg = (0x01 | 0x02);
     return sys_outb(BASE_COM1+ IER, reg);  
 }
 

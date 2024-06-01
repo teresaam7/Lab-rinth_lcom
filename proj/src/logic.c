@@ -101,9 +101,9 @@ int (gameStateInit)(bool * running) {
 int (keyboardLogic)() {
   if (gameState == MULTI) {
     if (k_scancode == 0x2D) {isPlayer1 = true; printf("PLAYER1");} // X
-    if (k_scancode == 0x2C) {isPlayer1 = false; printf("PLAYER2");} // Z
+    if (k_scancode == 0x2C) {send_byte(0x53); isPlayer1 = false; printf("PLAYER2");} // Z
 
-		send_byte(0x53);
+		
 	}
 	if (gameState == GAME) {
     if (!multi) {

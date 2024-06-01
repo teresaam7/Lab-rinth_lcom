@@ -94,6 +94,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
   sp_enable_int();
   //sp_ih();
+  cleanInt_sp();
   gameState = MENU;
   draw_menu();
 
