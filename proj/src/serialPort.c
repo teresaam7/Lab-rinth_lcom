@@ -132,35 +132,20 @@ int (cleanInt_sp)(){
     return 0;
 }
 
-void sp_ih(){
-    printf("CHEGUEI\n");
+void (sp_ih)(){
+    printf("CHEGUEII");
     uint8_t reg;
-    if(util_sys_inb(BASE_COM1 + IIR, &reg) != 0) {
-        printf("Erro ao ler o IIR\n");
-        return;
-    }
-
-    printf("IIR Reg: %x\n", reg);
-
+    util_sys_inb(BASE_COM1+IIR, &reg);
     while(!(reg & IIR_NIP)) {
         if(reg & IIR_RDA){
-            printf("Recebendo dados\n");
-            while(receive_byte() != 1);
-            if(util_sys_inb(BASE_COM1 + IIR, &reg) != 0) {
-                printf("Erro ao ler o IIR\n");
-                return;
-            }
-            printf("AQUI1\n");
+            while(0 == receive_byte());
+            util_sys_inb(BASE_COM1+IIR, &reg);
+            printf("AQUI1");
         }
-
         if(reg & IIR_THRE){
-            printf("Enviando dados\n");
             send_queue_bytes();
-            if(util_sys_inb(BASE_COM1 + IIR, &reg) != 0) {
-                printf("Erro ao ler o IIR\n");
-                return;
-            }
-            printf("AQUI2\n");
+            util_sys_inb(BASE_COM1+IIR, &reg);
+            printf("AQUI2");
         }
     }
 }
@@ -222,13 +207,13 @@ bool (handle_start_multi)(){
             srandByte = dequeue(receiveQueue);
         }
         srandom(srandByte);
-        gameState = GAME;
-        multi =true;
         send_byte(0x57);
     }else if(frontQueue(receiveQueue) == 0x57){
         gameState = GAME;
         multi = true;
     }
+    gameState = GAME;
+        multi =true;
     while(!queueIsEmpty(receiveQueue))
         dequeue(receiveQueue);
     //send_queue_bytes();
@@ -237,7 +222,7 @@ bool (handle_start_multi)(){
 
 
 void (sp_handler)(){
-  printf("TEEEEEE");
+    printf("TEEEEEE");
   sp_ih();
   if (gameState == MULTI)
     handle_start_multi();
@@ -286,10 +271,14 @@ void (handle_receive_info)(){
             invalid = true;
         if(!invalid) {
             printf("ZZZZZZZZZZZZZZZZ");
-            if (isPlayer1) manage_button(scancode, false);
-            else manage_button(scancode, true);
+            if (!isPlayer1) {
+                printf("COOOO");
+                handle_ingame_scancode(scancode, player);
+            } 
+            else {
+                printf("ROOOOOO");
+                handle_ingame_scancode_multi(scancode, player2);
+            } 
         }
     }
 }
-
-

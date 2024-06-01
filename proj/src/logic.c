@@ -14,15 +14,11 @@ extern int counter;
 static bool sentP1 = false;
 
 Sprite *menu_bg, *title, *game_over,*win, *start, *hover_start, *quit, *hover_quit, *cursor, 
-*level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze,*waiting, *button1, *button1_down, *button2, *button2_down, *door1, *door2,  *player, *player2, *life, *arrow;
+*level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze,*waiting, *button1, *button2, *door1, *door2,  *player, *player2, *life, *arrow;
 
 Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
 
-/**
- * @brief Loads all the sprites used in the game.
- * @return 0 if success and 1 if any sprite fails to load.
- */
 int (loadSprites)() {
   menu_bg =  create_sprite((xpm_map_t)menu, 1, 1, 0);
 
@@ -89,13 +85,7 @@ int (loadSprites)() {
   return 0;
 }
 
-/**
- * @brief Initializes the game state.
- * This function handles the initialization of different game states and draws the screen or updates the game.
- * If the game state is EXIT the running flag is set to false which shows that the game will terminate.
- * @param running Pointer to the running state of the game.
- * @return 0 if success.
- */
+
 int (gameStateInit)(bool * running) {
 	if (gameState == MENU) {draw_menu();}
 	if (gameState == LEVELS) {draw_menu_levels();}
@@ -108,18 +98,12 @@ int (gameStateInit)(bool * running) {
 	return 0;
 }
 
-/**
- * @brief Handles keyboard input logic.
- * This function manages button presses based on the current keyboard scancode and sees 
- * if the player has arrived at the winning position. Then, it updates the game state.
- * @return 0 if success.
- */
 int (keyboardLogic)() {
   if (gameState == MULTI) {
     if (k_scancode == 0x2D) {isPlayer1 = true; printf("PLAYER1");} // X
-    if (k_scancode == 0x2C) {isPlayer1 = false; printf("PLAYER2");} // Z
+    if (k_scancode == 0x2C) {send_byte(0x53); isPlayer1 = false; printf("PLAYER2");} // Z
 
-		send_byte(0x53);
+		
 	}
 	if (gameState == GAME) {
     if (!multi) {
@@ -127,7 +111,8 @@ int (keyboardLogic)() {
     } else  {
       if (isPlayer1 && !sentP1) {printf("OLAAA"); manage_button(k_scancode, true); }
       else {printf("OIIIIII"); manage_button(k_scancode, false);}
-      //send_scan(k_scancode); //sp_ih();
+      handle_receive_info();
+      //send_scan(k_scancode); //sp_ih(); 
     }
 	}
   if((player->x == 790 ) && (player->y == 555)){
@@ -138,12 +123,6 @@ int (keyboardLogic)() {
   return 0;
 }
 
-/**
- * @brief Handles mouse input logic.
- * This function handles mouse movement and updates the game state based on mouse interactions.
- * It sees if there are collisions between the cursor and buttons/levels to change the game state.
- * @return 0 if success.
- */
 int (mouseLogic) () {
 	if (gameState == MENU){
 		handle_mouse_movement(cursor);
@@ -195,13 +174,6 @@ int (mouseLogic) () {
 }
 
 
-/**
- * @brief Handles timer logic.
- * This function processes timer events during the game state. It updates the game clock, 
- * manages the game timer, and handles game over conditions. Also, it updates the arrow 
- * sprite and life bar based on the time that the user still has to complete the level.
- * @return 0 if success.
- */
 int (timerLogic) () {
 	if (gameState == GAME){
     int clock = counter % 60;
