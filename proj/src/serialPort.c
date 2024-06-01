@@ -207,13 +207,13 @@ bool (handle_start_multi)(){
             srandByte = dequeue(receiveQueue);
         }
         srandom(srandByte);
-        gameState = GAME;
-        multi =true;
         send_byte(0x57);
     }else if(frontQueue(receiveQueue) == 0x57){
         gameState = GAME;
         multi = true;
     }
+    gameState = GAME;
+        multi =true;
     while(!queueIsEmpty(receiveQueue))
         dequeue(receiveQueue);
     //send_queue_bytes();
@@ -271,8 +271,14 @@ void (handle_receive_info)(){
             invalid = true;
         if(!invalid) {
             printf("ZZZZZZZZZZZZZZZZ");
-            if (isPlayer1) manage_button(scancode, false);
-            else manage_button(scancode, true);
+            if (!isPlayer1) {
+                printf("COOOO");
+                handle_ingame_scancode(scancode, player);
+            } 
+            else {
+                printf("ROOOOOO");
+                handle_ingame_scancode_multi(scancode, player2);
+            } 
         }
     }
 }

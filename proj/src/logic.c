@@ -111,7 +111,8 @@ int (keyboardLogic)() {
     } else  {
       if (isPlayer1 && !sentP1) {printf("OLAAA"); manage_button(k_scancode, true); }
       else {printf("OIIIIII"); manage_button(k_scancode, false);}
-      //send_scan(k_scancode); //sp_ih();
+      handle_receive_info();
+      //send_scan(k_scancode); //sp_ih(); 
     }
 	}
   if((player->x == 790 ) && (player->y == 555)){
