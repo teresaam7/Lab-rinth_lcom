@@ -63,8 +63,8 @@ void (initialize_sp)(){
     ier &= 0xF0;
     if(sys_outb(BASE_COM1+ IER,ier | IER_ERBFI)!= 0) 
         return;
-    receiveQueue = newQueue(20);
-    sendQueue = newQueue(20);
+    receiveQueue = newQueue(100);
+    sendQueue = newQueue(100);
     ser_config();
 }
 
@@ -105,6 +105,7 @@ int (receive_byte)(){
         return 1;
       if(!(st & (LSR_OE| LSR_PE| LSR_FE))){
           enqueue(receiveQueue,rbr);
+          //printf("ENQUEUE: %u", rbr);
           return 0;
       }
     }
@@ -121,7 +122,6 @@ Queue* (get_send_queue)(){
 
 void (sp_out)(){
     clearQueue(receiveQueue);
-    clearQueue(sendQueue);
 }
 
 int (cleanInt_sp)(){
@@ -132,21 +132,37 @@ int (cleanInt_sp)(){
     return 0;
 }
 
-void (sp_ih)(){
+void sp_ih(){
+    printf("CHEGUEI\n");
     uint8_t reg;
-    util_sys_inb(BASE_COM1+IIR, &reg);
-    while(!(reg & IIR_NIP)) {
-        if(reg & IIR_RDA){
-            while(0 == receive_byte());
-            util_sys_inb(BASE_COM1+IIR, &reg);
-        }
-        if(reg & IIR_THRE){
-            send_queue_bytes();
-            util_sys_inb(BASE_COM1+IIR, &reg);
-        }
+    if(util_sys_inb(BASE_COM1 + IIR, &reg) != 0) {
+        printf("Erro ao ler o IIR\n");
+        return;
     }
 
-    
+    printf("IIR Reg: %x\n", reg);
+
+    while(!(reg & IIR_NIP)) {
+        if(reg & IIR_RDA){
+            printf("Recebendo dados\n");
+            while(receive_byte() != 1);
+            if(util_sys_inb(BASE_COM1 + IIR, &reg) != 0) {
+                printf("Erro ao ler o IIR\n");
+                return;
+            }
+            printf("AQUI1\n");
+        }
+
+        if(reg & IIR_THRE){
+            printf("Enviando dados\n");
+            send_queue_bytes();
+            if(util_sys_inb(BASE_COM1 + IIR, &reg) != 0) {
+                printf("Erro ao ler o IIR\n");
+                return;
+            }
+            printf("AQUI2\n");
+        }
+    }
 }
 
 void (send_scan)(uint8_t scancode){
@@ -169,16 +185,20 @@ void (send_scan)(uint8_t scancode){
         send_code |= BIT(7);
     }
     send_byte(send_code);
+    printf("SEND_SCAN:  %u\n", send_code);
 }
 
 void (manage_button)(uint8_t scancode, bool isPlay1) {
+    printf("SOOOOO");
   if (isPlay1) {
+    printf("COOOO");
     handle_ingame_scancode(scancode, player);
   } 
   else {
+    printf("ROOOOOO");
     handle_ingame_scancode_multi(scancode, player2);
   } 
-  
+  send_scan(scancode);
 }
 
 bool (handle_start_multi)(){
@@ -209,24 +229,32 @@ bool (handle_start_multi)(){
         gameState = GAME;
         multi = true;
     }
-    dequeue(receiveQueue);
+    while(!queueIsEmpty(receiveQueue))
+        dequeue(receiveQueue);
+    //send_queue_bytes();
     return true;
 }
 
 
 void (sp_handler)(){
+  printf("TEEEEEE");
   sp_ih();
   if (gameState == MULTI)
     handle_start_multi();
-  else if (gameState == GAME && multi) 
+  else if (gameState == GAME && multi) {
     handle_receive_info();
+    printf("RIZA");
+  }
   else
     cleanInt_sp();
 }
 
 void (handle_receive_info)(){
+    printf("AAAAAAA");
     if(queueIsEmpty(receiveQueue)) return;
+    printf("BBBBBBB");
     while(!queueIsEmpty(receiveQueue)){
+        printf("CCCCCCC");
         uint8_t curByte = dequeue(receiveQueue);
 
         if(curByte == END){
@@ -234,7 +262,9 @@ void (handle_receive_info)(){
             return;
         }
       
-        uint8_t scancode;
+        printf("XXXXXXXXXX\n");
+        printf("SCAN: %u\n", curByte);
+        uint8_t scancode = 0x00;
         bool invalid = false;
         if(curByte & BIT(0)) 
             scancode = A_KEY_MK;
@@ -255,7 +285,7 @@ void (handle_receive_info)(){
         else
             invalid = true;
         if(!invalid) {
-            printf("Scancode: %u\n", scancode);
+            printf("ZZZZZZZZZZZZZZZZ");
             if (isPlayer1) manage_button(scancode, false);
             else manage_button(scancode, true);
         }

@@ -11,6 +11,7 @@ extern GameState gameState;
 
 extern int gameTime;
 extern int counter;
+static bool sentP1 = false;
 
 Sprite *menu_bg, *title, *game_over,*win, *start, *hover_start, *quit, *hover_quit, *cursor, 
 *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze,*waiting, *button1, *button1_down, *button2, *button2_down, *door1, *door2,  *player, *player2, *life, *arrow;
@@ -123,10 +124,10 @@ int (keyboardLogic)() {
 	if (gameState == GAME) {
     if (!multi) {
       handle_ingame_scancode(k_scancode, player);
-    } else {
-      if (isPlayer1) {manage_button(k_scancode, true); }
-      else { manage_button(k_scancode, false);}
-      
+    } else  {
+      if (isPlayer1 && !sentP1) {printf("OLAAA"); manage_button(k_scancode, true); }
+      else {printf("OIIIIII"); manage_button(k_scancode, false);}
+      //send_scan(k_scancode); //sp_ih();
     }
 	}
   if((player->x == 790 ) && (player->y == 555)){
