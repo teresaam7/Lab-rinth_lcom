@@ -178,6 +178,7 @@ void (manage_button)(uint8_t scancode, bool isPlay1) {
   else {
     handle_ingame_scancode_multi(scancode, player2);
   } 
+  
 }
 
 bool (handle_start_multi)(){

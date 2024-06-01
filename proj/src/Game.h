@@ -24,7 +24,9 @@
 #include "images/mazes/mazeDark3.xpm"
 
 #include "images/mazeElements/button_red.xpm"
+#include "images/mazeElements/button_red_down.xpm"
 #include "images/mazeElements/button_green.xpm"
+#include "images/mazeElements/button_green_down.xpm"
 #include "images/mazeElements/door_red.xpm"
 #include "images/mazeElements/door_green.xpm"
 
@@ -114,6 +116,7 @@ typedef enum {
 } GameState;
 
 #define TIMER_MINUTES 5
+
 
 void (draw_menu)();
 void (update_menu)();

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 B1=0xB1=0x28 B2=0x00 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=0 YOV=0 Y=-2
 B1=0x28 B2=0x01 B3=0xfe LB=0 MB=0 RB=0 XOV=0 X=1 YOV=0 Y=-2
 B1=0x28 B2=0x02 B3=0xfd LB=0 MB=0 RB=0 XOV=0 X=2 YOV=0 Y=-3
@@ -117,3 +118,5 @@ PLAYER1DONEEDONEEtimer_test_int:timer_print_elapsed_time 1 s
 293timer_test_int:timer_print_elapsed_time 9 s
 292timer_test_int:timer_print_elapsed_time 10 s
 291
+=======
+>>>>>>> 792c658824cdce5966bac17c88239f3d116c9572
