@@ -230,26 +230,26 @@ int (loading_bg_sprite)(Sprite *sp) {
  */
 bool (check_collision)(Sprite *player, Sprite *maze, int x_diff, int y_diff) {
   int x_top = player->x;
-  int y_top = player->y + 17/2;
+  int y_top = player->y + PLAYER_HEIGHT/2;
   uint32_t color = maze->map[30 * maze->width + 5];
 
   uint32_t next_color1 = color, next_color2 = color;
 
   if (x_diff > 0) {   // Right
-    next_color1 = maze->map[(y_top) * maze->width + (x_top +13 + x_diff)];
-    next_color2 = maze->map[(y_top + 17/2) * maze->width + (x_top +13 + x_diff)];
+    next_color1 = maze->map[(y_top) * maze->width + (x_top + PLAYER_WIDTH + x_diff)];
+    next_color2 = maze->map[(y_top + PLAYER_HEIGHT/2) * maze->width + (x_top + PLAYER_WIDTH + x_diff)];
 
   } else if (x_diff < 0) {    // Left
     next_color1 = maze->map[(y_top) * maze->width + (x_top + x_diff)];
-    next_color2 = maze->map[(y_top + 17/2) * maze->width + (x_top + x_diff)];
+    next_color2 = maze->map[(y_top + PLAYER_HEIGHT/2) * maze->width + (x_top + x_diff)];
   
   } else if (y_diff > 0) {    // Bottom
-    next_color1 = maze->map[(y_top + 17/2 + y_diff) * maze->width + (x_top)];
-    next_color2 = maze->map[(y_top + 17/2 + y_diff) * maze->width + (x_top +13)];
+    next_color1 = maze->map[(y_top + PLAYER_HEIGHT/2 + y_diff) * maze->width + (x_top)];
+    next_color2 = maze->map[(y_top + PLAYER_HEIGHT/2 + y_diff) * maze->width + (x_top + PLAYER_WIDTH)];
 
   } else if (y_diff < 0) {    // Top
     next_color1 = maze->map[(y_top + y_diff) * maze->width + (x_top)];
-    next_color2 = maze->map[(y_top + y_diff) * maze->width + (x_top +13)];
+    next_color2 = maze->map[(y_top + y_diff) * maze->width + (x_top + PLAYER_WIDTH)];
 
   }
     if(!door1_open){

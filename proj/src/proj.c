@@ -56,6 +56,18 @@ extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
 
+/**
+ * @brief Main loop of the project.
+ * 
+ * Configures the necessary graphical and hardware environment for the game,
+ * executes the main loop to handle events and game state updates,
+ * and finally cleans up and releases all used resources.
+ * 
+ * @param argc Number of command line arguments
+ * @param argv Array of command line arguments
+ * @return int Returns 0 upon success, 1 otherwise
+ */
+
 int (proj_main_loop)(int argc, char *argv[]) {
   if (initialize_frame_buffer(0x115) != 0) {
     return 1;

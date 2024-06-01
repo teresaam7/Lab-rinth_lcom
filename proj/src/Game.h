@@ -116,12 +116,14 @@ typedef enum {
 } GameState;
 
 #define TIMER_MINUTES 5
+#define MOUSE_LIMIT_X 785
+#define MOUSE_LIMIT_Y 575
 
 
 void (draw_menu)();
 void (update_menu)();
 void (update_menu_levels)();
-int (collision)(Sprite * sp1, Sprite * sp2);
+bool (collision)(Sprite * sp1, Sprite * sp2);
 
 void (draw_menu_levels)();
 void (load_level)();
