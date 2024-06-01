@@ -123,7 +123,7 @@ typedef enum {
 void (draw_menu)();
 void (update_menu)();
 void (update_menu_levels)();
-int (collision)(Sprite * sp1, Sprite * sp2);
+bool (collision)(Sprite * sp1, Sprite * sp2);
 
 void (draw_menu_levels)();
 void (load_level)();

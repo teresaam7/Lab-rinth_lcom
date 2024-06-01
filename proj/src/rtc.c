@@ -116,6 +116,6 @@ void (display_game_time)() {
     uint8_t hours, minutes, seconds;
     get_game_time(&hours, &minutes, &seconds);
 
-    printf("Tempo do jogo: %02d:%02d:%02d\n", hours, minutes, seconds);
+    printf("Game time: %02d:%02d:%02d\n", hours, minutes, seconds);
 }
 
