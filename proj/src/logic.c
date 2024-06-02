@@ -115,7 +115,7 @@ int (keyboardLogic)() {
       //send_scan(k_scancode); //sp_ih(); 
     }
 	}
-  if((player->x == 790 ) && (player->y == 555)){
+  if((player->x == WIN_POS_X ) && (player->y == WIN_POS_Y)){
     gameState_change = true;
     gameState = WIN;
   }

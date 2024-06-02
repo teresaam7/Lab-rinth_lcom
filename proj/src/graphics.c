@@ -1,6 +1,12 @@
 #include "graphics.h"
 
 
+/**
+ * @brief Sets the graphics mode using VBE.
+ * 
+ * @param mode The graphics mode to set.
+ * @return int Returns 0 on success, 1 on failure.
+ */
 int (graphic_mode)(uint16_t mode) {
   reg86_t r;
   memset(&r, 0, sizeof(r));
@@ -17,7 +23,12 @@ int (graphic_mode)(uint16_t mode) {
   return 0;
 }
 
-
+/**
+ * @brief Initializes the frame buffer for graphics mode.
+ * 
+ * @param mode The graphics mode to initialize.
+ * @return int Returns 0 on success, 1 on failure.
+ */
 int (initialize_frame_buffer)(uint16_t mode) {
   if (vbe_get_mode_info(mode, &mode_info) != 0) 
     return 1;
@@ -54,7 +65,11 @@ int (initialize_frame_buffer)(uint16_t mode) {
 }
 
 
-
+/**
+ * @brief Sets the display start address for double buffering.
+ * 
+ * @param buffer The buffer to set as the active display.
+ */
 void (set_display_start)(int buffer) {
     reg86_t r;
     memset(&r, 0, sizeof(r));
@@ -75,7 +90,9 @@ void (set_display_start)(int buffer) {
     }
 }
 
-
+/**
+ * @brief Updates the double buffering mechanism by flipping frames.
+ */
 void (update_flip_frames)() { 
   if (display_buffer == 1) {
     set_display_start(2);
@@ -90,13 +107,24 @@ void (update_flip_frames)() {
   clear_drawing();
 }
 
-
+/**
+ * @brief Clears the drawing buffer.
+ */
 void (clear_drawing)() {
   memset(draw_buffer, 0, frame.size);
 }
 
 
 
+/**
+ * @brief Draws a pixel of a specified color at the given coordinates.
+ * 
+ * @param x The x-coordinate of the pixel.
+ * @param y The y-coordinate of the pixel.
+ * @param color The color of the pixel.
+ * @param buffer The buffer to draw the pixel on.
+ * @return int Returns 0 on success, 1 if the coordinates are out of bounds.
+ */
 int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color, uint8_t* buffer) {
   if (x < 0 || y < 0 || x >= frame.res_x || y >= frame.res_y) return 0;
 
@@ -108,7 +136,11 @@ int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color, uint8_t* buffer) {
   return 0;
 }
 
-
+/**
+ * @brief Draws the background onto the drawing buffer.
+ * 
+ * @return int Returns 0 on success, 1 on failure.
+ */
 int (draw_background)() {
   if (memcpy(draw_buffer, bg_buffer, frame.size) == NULL)
     return 1;
@@ -116,12 +148,16 @@ int (draw_background)() {
   return 0;
 }
 
-
+/**
+ * @brief Initializes the background buffers.
+ */
 void (initialize_buffers)() {
   bg_buffer = malloc(frame.size);
 }
 
-
+/**
+ * @brief Frees the allocated background buffers.
+ */
 void (free_buffers)() {
   free(bg_buffer);
 }
