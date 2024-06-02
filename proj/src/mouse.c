@@ -13,7 +13,12 @@ uint8_t m_byte;
 uint8_t m_bytes[3];
 struct packet m_packet;
 
-
+/**
+ * @brief Writes a command to the mouse.
+ * 
+ * @param command The command to be sent to the mouse.
+ * @return int Returns 0 on success, 1 on failure.
+ */
 int (write_mouse) (uint8_t command) {
     int attemps_count = 10;
     uint8_t received_byte = NACK;
@@ -39,6 +44,12 @@ int (write_mouse) (uint8_t command) {
 }
 
 
+/**
+ * @brief Subscribes and enables mouse interrupts.
+ * 
+ * @param irq_set Pointer to the memory where the IRQ bit mask will be stored.
+ * @return int Returns 0 on success, 1 on failure.
+ */
 int (mouse_subscribe_int)(uint8_t* irq_set) {
     if (irq_set == NULL)
         return 1;
@@ -51,14 +62,20 @@ int (mouse_subscribe_int)(uint8_t* irq_set) {
     return 0;
 }
 
-
+/**
+ * @brief Unsubscribes mouse interrupts.
+ * 
+ * @return int Returns 0 on success, 1 on failure.
+ */
 int (mouse_unsubscribe_int)() {
     if (sys_irqrmpolicy(&hook_id_mouse) != 0)
         return 1;
     return 0;
 }
 
-
+/**
+ * @brief Stores the byte received from the mouse.
+ */
 void (store_byte_mouse)() {
     if ((m_index == 0 && (m_byte & M_BYTE_1))     
                 || (m_index > 0 && m_index < 3)) {        // Bit 3 of byte 1 is always 1
@@ -67,7 +84,11 @@ void (store_byte_mouse)() {
     }
 }
 
-
+/**
+ * @brief Mouse interrupt handler.
+ * 
+ * Reads the byte from the mouse and stores it.
+ */
 void (mouse_ih)() {
     if (read_kbc(OUT_BUF, &m_byte, 1) != 0)
         printf("Error reading a byte from mouse\n");
@@ -75,7 +96,9 @@ void (mouse_ih)() {
         store_byte_mouse();
 }
 
-
+/**
+ * @brief Stores the bytes received from the mouse in a packet structure.
+ */
 void (store_bytes_packet)() {
     for (int i = 0; i < 3; i++)
         m_packet.bytes[i] = m_bytes[i];

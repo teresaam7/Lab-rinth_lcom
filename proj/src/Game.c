@@ -1,5 +1,5 @@
 
-#include "Game.h"
+#include "game.h"
 
 uint8_t k_index = 0;
 uint8_t k_bytes[2];
@@ -19,11 +19,14 @@ bool door2_open = false;
 
 
 extern Sprite *menu_bg, *title, *game_over, *win, *start, *hover_start, *quit, *hover_quit, *cursor,
- *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *waiting, *button1, *button2, *door1, *door2, *player, *player2, *life, *arrow;
+ *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *waiting, *button1, *button1_down, *button2, *button2_down, *door1, *door2, *player, *player2, *life, *arrow;
 
 extern Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 extern Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
 
+/** 
+ * @brief Draws all the sprites corresponding to the the menu.
+ */
 /* Menu */
 void (draw_menu)(){
   drawing_bg(menu_bg);
@@ -34,7 +37,9 @@ void (draw_menu)(){
   update_flip_frames(); 
 }
 
-
+/** 
+ * @brief Updates the menu based on cursor position.
+ */
 void (update_menu)(){
   drawing_bg(menu_bg);
   drawing_sprite(title);
@@ -51,14 +56,24 @@ void (update_menu)(){
 }
 
 
-int (collision)(Sprite * sp1, Sprite * sp2) {
-  if (sp1->x + sp1->width < sp2->x || sp1->x > sp2->x + sp2->width) return 0;
-  if (sp1->y + sp1->height < sp2->y || sp1->y > sp2->y + sp2->height) return 0;
+/** 
+ * @brief Checks if two sprites collide.
+ * 
+ * @param sp1 Pointer to the first sprite.
+ * @param sp2 Pointer to the second sprite.
+ * 
+ * @return true if the sprites collide, false otherwise.
+ */
+bool (collision)(Sprite * sp1, Sprite * sp2) {
+  if (sp1->x + sp1->width < sp2->x || sp1->x > sp2->x + sp2->width) return false;
+  if (sp1->y + sp1->height < sp2->y || sp1->y > sp2->y + sp2->height) return false;
 
-  return 1;
+  return true;
 }
 
-
+/** 
+ * @brief Draws all the sprites corresponding to the levels menu.
+ */
 /* Levels */
 void (draw_menu_levels)() {
   drawing_sprite(menu_bg);
@@ -69,6 +84,9 @@ void (draw_menu_levels)() {
   update_flip_frames();
 }
 
+/** 
+ * @brief Updates the levels menu based on cursor position.
+ */
 void (update_menu_levels)(){
   drawing_bg(menu_bg);
   drawing_sprite(title);
@@ -87,7 +105,14 @@ void (update_menu_levels)(){
   update_flip_frames();
 }
 
-
+/** 
+ * @brief Loads the specified level.
+ * If there's an existing sprite maze, it destroys it to clear the screen before loading the new maze.
+ * It selects the appropriate maze and associated sprites.
+ * It retrieves the current game time in order to change the level sprites according to the time.
+ * 
+ * @param level The level number to load.
+ */
 void (load_level)(int level) {
   uint8_t hours, minutes, seconds;
   get_game_time(&hours, &minutes, &seconds);
@@ -106,6 +131,8 @@ void (load_level)(int level) {
       }
       button1 = create_sprite((xpm_map_t) button_red_, 90 , 497 , 0);
       button2 = create_sprite((xpm_map_t) button_green_, 774 , 170 , 0);
+      button1_down = create_sprite((xpm_map_t) button_red_down_, 89 , 499 , 0);
+      button2_down = create_sprite((xpm_map_t) button_green_down_, 773 , 172 , 0);
       door1 = create_sprite((xpm_map_t) door_red_, 210 , 450 , 0);
       door2 = create_sprite((xpm_map_t) door_green_, 760 , 340 , 0);
       break;
@@ -118,8 +145,10 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze2, 0, 0, 0);
       }
-      button1 = create_sprite((xpm_map_t) button_red_, 306 , 62 , 0); /* mudar coordenadas*/
+      button1 = create_sprite((xpm_map_t) button_red_, 306 , 62 , 0);
       button2 = create_sprite((xpm_map_t) button_green_, 450 , 170 , 0);
+      button1_down = create_sprite((xpm_map_t) button_red_down_, 305 , 64 , 0);
+      button2_down = create_sprite((xpm_map_t) button_green_down_, 449 , 172 , 0);
       door1 = create_sprite((xpm_map_t) door_red_, 455 , 197 , 0);
       door2 = create_sprite((xpm_map_t) door_green_, 580 , 197 , 0);
       break;
@@ -133,8 +162,10 @@ void (load_level)(int level) {
       } else {
         maze = create_sprite((xpm_map_t) maze3, 0, 0, 0);
       }
-      button1 = create_sprite((xpm_map_t) button_red_, 220 , 207 , 0); /*mudar coordenadas*/
+      button1 = create_sprite((xpm_map_t) button_red_, 220 , 207 , 0); 
       button2 = create_sprite((xpm_map_t) button_green_, 522 , 350, 0);
+      button1_down = create_sprite((xpm_map_t) button_red_down_, 219 , 209 , 0); 
+      button2_down = create_sprite((xpm_map_t) button_green_down_, 521 , 352, 0);
       door1 = create_sprite((xpm_map_t) door_red_, 219 , 160 , 0);
       door2 = create_sprite((xpm_map_t) door_green_, 590 , 557 , 0);
       break;
@@ -146,6 +177,9 @@ void (load_level)(int level) {
 
 
 
+/** 
+ * @brief Updates the game depending on the time, cursor position and player position.
+ */
 
 /* Game */
 void (update_game)() {
@@ -175,6 +209,13 @@ void (update_game)() {
 }
 
 
+/** 
+ * @brief Gets the next sprite for player 1 based on the scancode.
+ * 
+ * @param scancode The keyboard scancode.
+ * 
+ * @return The corresponding sprite.
+ */
 xpm_map_t (get_next_sprite_player1)(uint8_t scancode) {
     switch (scancode) {
         case A_KEY_MK:
@@ -199,6 +240,13 @@ xpm_map_t (get_next_sprite_player1)(uint8_t scancode) {
     }
 }
 
+/** 
+ * @brief Gets the next sprite for player 2 based on the scancode.
+ * 
+ * @param scancode The keyboard scancode.
+ * 
+ * @return The corresponding sprite.
+ */
 xpm_map_t (get_next_sprite_player2)(uint8_t scancode) {
     switch (scancode) {
         case A_KEY_MK:
@@ -223,7 +271,15 @@ xpm_map_t (get_next_sprite_player2)(uint8_t scancode) {
     }
 }
 
-
+/**
+ * @brief Handles the in-game keyboard scancode for a specific player. 
+ * It checks if the player can move in the specified direction without colliding with the maze.
+ *  If there's no collision, it updates the player's position accordingly by modifying the x and y coordinates of the player's sprite.
+ *  It then loads the appropriate sprite for the player's movement direction.
+ * 
+ * @param scancode The scancode received from the keyboard.
+ * @param player Pointer to the player's sprite.
+ */
 void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
     switch (scancode) {
         case D_KEY_MK:
@@ -283,6 +339,15 @@ void (handle_ingame_scancode)(uint8_t scancode, Sprite *player) {
     }
 }
 
+/**
+ * @brief Handles the in-game keyboard scancode for multiplayer mode.
+ *  It checks if the player can move in the specified direction without colliding with the maze.
+ *  If there's no collision, it updates the player's position accordingly by modifying the x and y coordinates of the player's sprite.
+ *  It then loads the appropriate sprite for the player's movement direction.
+ * 
+ * @param scancode The scancode received from the keyboard.
+ * @param player2 Pointer to the second player's sprite.
+ */
 void (handle_ingame_scancode_multi)(uint8_t scancode, Sprite *player2) {
     switch (scancode) {
         case D_KEY_MK:
@@ -342,17 +407,25 @@ void (handle_ingame_scancode_multi)(uint8_t scancode, Sprite *player2) {
     }
 }
 
-
+/**
+ * @brief Handles mouse movement within the game window.
+ * 
+ * @param cursor Pointer to the sprite representing the mouse cursor.
+ */
 void (handle_mouse_movement)(Sprite * cursor){
   if(!(cursor->x + m_packet.delta_x <= 0)) cursor->x += m_packet.delta_x;
   if(!(cursor->y - m_packet.delta_y <= 0)) cursor->y -= m_packet.delta_y;
   if(cursor->x + cursor->width >= mode_info.XResolution)cursor->x = mode_info.XResolution - cursor->width;
   if(cursor->y + cursor->height >= mode_info.YResolution)cursor->y = mode_info.YResolution - cursor->height;
-  if(cursor->x + cursor->width >= 785)cursor->x = 785 - cursor->width;
-  if(cursor->y + cursor->height >= 575)cursor->y = 575 - cursor->height;
+  if(cursor->x + cursor->width >= MOUSE_LIMIT_X)cursor->x = MOUSE_LIMIT_X - cursor->width;
+  if(cursor->y + cursor->height >= MOUSE_LIMIT_Y)cursor->y = MOUSE_LIMIT_Y - cursor->height;
 }
 
-
+/**
+ * @brief Updates the life bar based on the total game time.
+ * 
+ * @param total_seconds Total seconds elapsed in the game.
+ */
 void (update_life_bar)(int total_seconds) {
     switch(total_seconds){
         case 30:
@@ -373,6 +446,11 @@ void (update_life_bar)(int total_seconds) {
     update_game();
 }
 
+/**
+ * @brief Loops the arrow sprite based on the total game time.
+ * 
+ * @param total_seconds Total seconds elapsed in the game.
+ */
 void (update_arrow_sprite)(int total_seconds) {
     int total_milliseconds = (300 - total_seconds) * 1000; 
     int frame = (total_milliseconds / 1000) % 6; 
@@ -402,13 +480,26 @@ void (update_arrow_sprite)(int total_seconds) {
     update_game();
 }
 
-/*Drawing numbers in the game*/
+/**
+ * @brief Draws the number sprite in the game at a specified position on the screen.
+ * 
+ * @param num_sprite Pointer to the sprite representing the number.
+ * @param x X-coordinate of the position to draw the number.
+ * @param y Y-coordinate of the position to draw the number.
+ */
 void (draw_number)(Sprite *num_sprite, int x, int y) {
     num_sprite->x = x;
     num_sprite->y = y;
     drawing_sprite(num_sprite);
 }
 
+/**
+ * @brief Draws the current game time on the screen.
+ * 
+ * @param total_seconds Total seconds elapsed in the game.
+ * @param x X-coordinate of the position to draw the time.
+ * @param y Y-coordinate of the position to draw the time.
+ */
 void (draw_time)(int total_seconds, int x, int y) {
     uint8_t minutes = total_seconds / 60;
     uint8_t seconds = total_seconds % 60;
@@ -474,6 +565,14 @@ void (draw_time)(int total_seconds, int x, int y) {
     }
 }
 
+/**
+ * @brief Draws the current game time (in small format) on the screen.
+ * 
+ * @param hours Hours component of the time.
+ * @param minutes Minutes component of the time.
+ * @param x X-coordinate of the position to draw the time.
+ * @param y Y-coordinate of the position to draw the time.
+ */
 void (draw_time_small)(uint8_t hours, uint8_t minutes, int x, int y) {
   int x_offset = x;
     int spacing = 2;
@@ -537,6 +636,9 @@ void (draw_time_small)(uint8_t hours, uint8_t minutes, int x, int y) {
     }
 }
 
+/**
+ * @brief Draws all the sprites corresponding to the waiting menu screen.
+ */
 /*Waiting menu*/
 void (draw_waiting)() {
   drawing_bg(menu_bg);
@@ -545,6 +647,11 @@ void (draw_waiting)() {
 }
 
 
+/**
+ * @brief Draws all the sprites corresponding to the win screen, (including the time the player took to finish the level).
+ * 
+ * @param total_seconds Total seconds elapsed in the game.
+ */
 /*Win*/
 void (draw_win)(int total_seconds) {
   drawing_bg(menu_bg);
@@ -553,6 +660,10 @@ void (draw_win)(int total_seconds) {
   update_flip_frames();
 }
 
+
+/**
+ * @brief Draws all the sprites corresponding to the game over screen.
+ */
 /*Lose*/
 void (draw_lost)() {
   drawing_bg(menu_bg);
