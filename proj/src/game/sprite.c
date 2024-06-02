@@ -4,7 +4,7 @@
 #include "sprite.h"
 
 extern bool door1_open, door2_open;
-extern Sprite *door1, *door2, *button1, *button1_down, *button2, *button2_down;
+extern Sprite *door1, *door2, *button1, *button1_down, *button2, *button2_down, *player2;
 
 /**
  * @brief Loads XPM image data to a sprite.
@@ -229,27 +229,36 @@ int (loading_bg_sprite)(Sprite *sp) {
  * @return true if there is a collision and false if there isn't.
  */
 bool (check_collision)(Sprite *player, Sprite *maze, int x_diff, int y_diff) {
+  int player_h, player_w;
+  if(player == player2){
+    player_h = PLAYER2_HEIGHT;
+    player_w = PLAYER2_WIDTH;
+    }
+  else{
+    player_h = PLAYER1_HEIGHT;
+    player_w = PLAYER1_WIDTH;
+    }
   int x_top = player->x;
-  int y_top = player->y + PLAYER_HEIGHT/2;
+  int y_top = player->y + player_h/2;
   uint32_t color = maze->map[30 * maze->width + 5];
 
   uint32_t next_color1 = color, next_color2 = color;
 
   if (x_diff > 0) {   // Right
-    next_color1 = maze->map[(y_top) * maze->width + (x_top + PLAYER_WIDTH + x_diff)];
-    next_color2 = maze->map[(y_top + PLAYER_HEIGHT/2) * maze->width + (x_top + PLAYER_WIDTH + x_diff)];
+    next_color1 = maze->map[(y_top) * maze->width + (x_top + player_w + x_diff)];
+    next_color2 = maze->map[(y_top + player_h/2) * maze->width + (x_top + player_w + x_diff)];
 
   } else if (x_diff < 0) {    // Left
     next_color1 = maze->map[(y_top) * maze->width + (x_top + x_diff)];
-    next_color2 = maze->map[(y_top + PLAYER_HEIGHT/2) * maze->width + (x_top + x_diff)];
+    next_color2 = maze->map[(y_top + player_h/2) * maze->width + (x_top + x_diff)];
   
   } else if (y_diff > 0) {    // Bottom
-    next_color1 = maze->map[(y_top + PLAYER_HEIGHT/2 + y_diff) * maze->width + (x_top)];
-    next_color2 = maze->map[(y_top + PLAYER_HEIGHT/2 + y_diff) * maze->width + (x_top + PLAYER_WIDTH)];
+    next_color1 = maze->map[(y_top + player_h/2 + y_diff) * maze->width + (x_top)];
+    next_color2 = maze->map[(y_top + player_h/2 + y_diff) * maze->width + (x_top + player_w)];
 
   } else if (y_diff < 0) {    // Top
     next_color1 = maze->map[(y_top + y_diff) * maze->width + (x_top)];
-    next_color2 = maze->map[(y_top + y_diff) * maze->width + (x_top + PLAYER_WIDTH)];
+    next_color2 = maze->map[(y_top + y_diff) * maze->width + (x_top + player_w)];
 
   }
     if(!door1_open){

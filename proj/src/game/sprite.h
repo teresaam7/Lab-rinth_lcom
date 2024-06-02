@@ -3,8 +3,13 @@
 #include <lcom/lcf.h>
 #include "devices/graphics.h"
 
-#define PLAYER_WIDTH 13
-#define PLAYER_HEIGHT 17
+
+#define PLAYER1_HEIGHT 17
+#define PLAYER1_WIDTH 13
+
+#define PLAYER2_HEIGHT 18
+#define PLAYER2_WIDTH 12
+
 
 typedef struct {
 	int x, y, width, height, speed;
