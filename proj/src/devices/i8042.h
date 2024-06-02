@@ -33,6 +33,9 @@
 #define SCAN_BREAK_ESC     0x81
 #define SCAN_FIRST_TWO     0xE0    // Scancode of first byte of two bytes
 
+#define SCAN_MAKE_X        0x2D
+#define SCAN_MAKE_Z        0x2C
+
 #define ENABLE_INT_KEYBOARD     BIT(0)
 
 #define ENTER_MK        0x1C 

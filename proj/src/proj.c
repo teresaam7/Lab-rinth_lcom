@@ -31,16 +31,13 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-extern uint8_t k_scancode; 
 
 int r;
 message msg;
 int ipc_status;
-int gameTime = 60 * TIMER_MINUTES;
-bool gameState_change = true;
-GameState gameState;
-bool multi = false;
 
+GameState gameState;
+bool gameState_change = true;
 
 uint8_t irq_set_keyboard;
 uint8_t irq_set_mouse;
@@ -48,12 +45,12 @@ uint8_t irq_set_timer;
 uint8_t irq_set_rtc;
 uint8_t irq_set_sp;
 
-extern int m_index;
-extern uint8_t m_bytes[3];
 extern uint8_t k_index;
 extern uint8_t k_bytes[2];
+extern uint8_t k_scancode; 
+extern int m_index;
+extern uint8_t m_bytes[3];
 extern struct packet m_packet;
-extern vbe_mode_info_t mode_info;
 
 
 /**
@@ -69,22 +66,21 @@ extern vbe_mode_info_t mode_info;
  */
 
 int (proj_main_loop)(int argc, char *argv[]) {
-  sp_enable_int();
-  if (initialize_frame_buffer(0x115) != 0) {
-    return 1;
-  }
+  sp_enable_int(); 
 
-  if (graphic_mode(0x115) != 0) {
+  if (initialize_frame_buffer(0x115) != 0) 
     return 1;
-  }
-
+  
+  if (graphic_mode(0x115) != 0) 
+    return 1;
+  
   initialize_buffers();
 
-  if (loadSprites()) {
+  if (loadSprites()) 
     return 1;
-  }
+  
+
   initialize_sp();
-  bool running = true;
 
   if (write_mouse(ENABLE_DATA_MODE) != 0)
     return 1;
@@ -104,21 +100,23 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (sp_subscribe_int(&irq_set_sp) != 0)
     return 1;
 
-  sp_enable_int();
-  //sp_ih();
   cleanInt_sp();
+
+
+  bool running = true;
   gameState = MENU;
   draw_menu();
 
-  while(k_scancode != SCAN_BREAK_ESC && running){
-    if(gameState_change){
+  while (k_scancode != SCAN_BREAK_ESC && running) {
+    if (gameState_change) {
       gameStateInit(&running);
     }
 
-    if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+    if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
         printf("driver_receive failed with: %d", r);
         continue;
     }
+
     if (is_ipc_notify(ipc_status)) {      
       switch (_ENDPOINT_P(msg.m_source)) {
         case HARDWARE:   
@@ -126,13 +124,13 @@ int (proj_main_loop)(int argc, char *argv[]) {
             kbc_ih();
             if (k_scancode == SCAN_FIRST_TWO) {
               k_bytes[k_index] = k_scancode; k_index++;
-            } else {
+            } 
+            else {
               k_bytes[k_index] = k_scancode;
               k_index = 0;
               keyboardLogic();
-              printf("SCANCODE: %u\n", k_scancode);
+              //printf("SCANCODE: %u\n", k_scancode);
             }
-            
           }
 
           if (msg.m_notify.interrupts & irq_set_mouse) {
@@ -140,51 +138,53 @@ int (proj_main_loop)(int argc, char *argv[]) {
             if (m_index == 3) {
               store_bytes_packet();
               m_index = 0;
-              //mouse_print_packet(&m_packet);
               mouseLogic();
+              //mouse_print_packet(&m_packet);
             }
           }
 
-          if ( msg.m_notify.interrupts & irq_set_timer) {
+          if (msg.m_notify.interrupts & irq_set_timer) {
             timer_int_handler(); 
             timerLogic();
           }
+
           if (msg.m_notify.interrupts & irq_set_sp) {
-            printf("DONEE");
             sp_handler();
           }
+
           break;
-        default: break;
+        default: 
+          break;
       } 
     } 
   }
+
       
-    if (keyboard_unsubscribe_int() != 0)
-      return 1;
-
-    if (mouse_unsubscribe_int() != 0)
-      return 1;
-
-    if (timer_unsubscribe_int() != 0)
-      return 1;
-
-    if (rtc_unsubscribe_int() != 0)
-      return 1;
-
-    if (sp_unsubscribe_int() != 0)
-      return 1;
-
-    if (write_mouse(DISABLE_DATA_MODE) != 0)
-      return 1;
-
-  if (vg_exit() != 0) {
+  if (keyboard_unsubscribe_int() != 0)
     return 1;
-  }
 
+  if (mouse_unsubscribe_int() != 0)
+    return 1;
+
+  if (timer_unsubscribe_int() != 0)
+    return 1;
+
+  if (rtc_unsubscribe_int() != 0)
+    return 1;
+
+  if (sp_unsubscribe_int() != 0)
+    return 1;
+
+
+  if (write_mouse(DISABLE_DATA_MODE) != 0)
+    return 1;
+
+  if (vg_exit() != 0) 
+    return 1;
+  
   free_buffers();
 
   sp_disable_int();
 
   return 0;
-
 }
