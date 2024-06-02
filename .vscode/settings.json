@@ -1,6 +1,13 @@
 {
   "C_Cpp_Runner.msvcBatchPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvarsall.bat",
   "files.associations": {
-    "*.xpm": "c"
+    "*.xpm": "c",
+    "serialport.h": "c",
+    "mouse.h": "c",
+    "rtc.h": "c",
+    "graphics.h": "c",
+    "sprite.h": "c",
+    "i8042.h": "c",
+    "queue.h": "c"
   }
 }
