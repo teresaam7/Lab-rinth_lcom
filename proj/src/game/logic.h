@@ -7,8 +7,8 @@
 #include "Game.h"
 #include "devices/serialPort.h"
 
-#define WIN_POS_X 790
-#define WIN_POS_Y 555
+#define WIN_POS_X 785
+#define WIN_POS_Y 550
 
 int (loadSprites)();
 int (gameStateInit)(bool * running);

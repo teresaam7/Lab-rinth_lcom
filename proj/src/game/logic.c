@@ -147,7 +147,7 @@ int (keyboardLogic)() {
         else manage_button(scancode, false);
       }
 
-      if ((player->x == WIN_POS_X ) && (player->y == WIN_POS_Y)) {
+        if (((player->x >= WIN_POS_X ) && (player->y >= WIN_POS_Y)) || ((player2->x >= WIN_POS_X ) && (player2->y >= WIN_POS_Y))) {
         gameState_change = true;
         gameState = WIN;
       }
