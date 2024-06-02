@@ -8,14 +8,15 @@ extern struct packet m_packet;
 extern GameState gameState;
 extern bool gameState_change;
 
-extern int counter;
+extern int counter, waitCount;
 extern bool isPlayer1;
 
 bool multi = false;
+int num = 0;
 int gameTime = 60 * TIMER_MINUTES;
 
 Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, 
-        *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *waiting, *wait,
+        *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *waiting, *wait, *energy,
         *maze, *player, *player2, *life, *arrow, *button1, *button1_down, *button2, *button2_down, *door1, *door2,
         *game_over, *win;
 
@@ -50,6 +51,7 @@ int (loadSprites)() {
   player = create_sprite((xpm_map_t)right1, 20, 20, 0);
   player2 = create_sprite((xpm_map_t)right1second, 60, 20, 0);
   life = create_sprite((xpm_map_t)life1, 610, 5, 0);
+  energy = create_sprite((xpm_map_t)energy1_, 200, 100, 0);
   arrow = create_sprite((xpm_map_t)arrow6, 745, 560, 0);
 
   win = create_sprite((xpm_map_t)win_, 320, 200, 0);
@@ -83,7 +85,7 @@ int (loadSprites)() {
       quit == NULL || hover_quit == NULL || cursor == NULL || level1 == NULL || hover_level1 == NULL || level2 == NULL || 
       hover_level2 == NULL || level3 == NULL || hover_level3 == NULL || player == NULL || player2 == NULL || life == NULL || 
       num0 == NULL || num1 == NULL ||num2 == NULL ||num3 == NULL ||num4 == NULL ||num5 == NULL ||num6 == NULL || 
-      num7 == NULL ||num8 == NULL ||num9 == NULL || dot == NULL || smallNum0 == NULL ||  smallNum1 == NULL ||
+      num7 == NULL ||num8 == NULL ||num9 == NULL || dot == NULL || smallNum0 == NULL ||  smallNum1 == NULL || energy == NULL ||
       smallNum2 == NULL || smallNum3 == NULL || smallNum4 == NULL || smallNum5 == NULL || smallNum6 == NULL || wait == NULL ||
       smallNum7 == NULL || smallNum8 == NULL || smallNum9 == NULL ||  divisor == NULL || arrow == NULL || waiting == NULL)
       return 1;

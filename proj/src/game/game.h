@@ -67,6 +67,12 @@
 #include "images/lifeBar/life4.xpm"
 #include "images/lifeBar/life5.xpm"
 
+#include "images/energy/energy1.xpm"
+#include "images/energy/energy2.xpm"
+#include "images/energy/energy3.xpm"
+#include "images/energy/energy4.xpm"
+#include "images/energy/energy5.xpm"
+
 #include "images/arrows/arrow1.xpm"
 #include "images/arrows/arrow2.xpm"
 #include "images/arrows/arrow3.xpm"
@@ -137,6 +143,7 @@ void (handle_ingame_scancode_multi)(uint8_t scancode, Sprite *player2);
 void (handle_mouse_movement)(Sprite * cursor);
 void (update_life_bar)(int total_seconds);
 void (update_arrow_sprite)(int total_seconds);
+void (update_energy_sprite)(int total_seconds);
 
 void (draw_number)(Sprite *num_sprite, int x, int y);
 void (draw_time)(int total_seconds, int x, int y);

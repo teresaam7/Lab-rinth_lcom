@@ -18,7 +18,7 @@ bool door1_open = false;
 bool door2_open = false;
 
 extern Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, 
-        *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *waiting, *wait,
+        *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *waiting, *wait,*energy,
         *maze, *player, *player2, *life, *arrow, *button1, *button1_down, *button2, *button2_down, *door1, *door2,
         *game_over, *win;
 
@@ -484,6 +484,39 @@ void (update_arrow_sprite)(int total_seconds) {
 }
 
 /**
+ * @brief Loops the energy sprite based on the total waiting time.
+ * 
+ * @param total_seconds Total seconds elapsed in the waiting frame.
+ */
+
+void (update_energy_sprite)(int total_seconds) {
+    int total_milliseconds = (300 - total_seconds) * 1000; 
+    int frame = (total_milliseconds / 1000) % 6; 
+
+    switch(frame) {
+        case 0:
+            loading_xpm((xpm_map_t)energy1_, energy);
+            break;
+        case 1:
+            loading_xpm((xpm_map_t)energy2_, energy);
+            break;
+        case 2:
+            loading_xpm((xpm_map_t)energy3_, energy);
+            break;
+        case 3:
+            loading_xpm((xpm_map_t)energy4_, energy);
+            break;
+        case 4:
+            loading_xpm((xpm_map_t)energy5_, energy);
+            break;
+        default:
+            return;
+    }
+    update_game();
+}
+
+
+/**
  * @brief Draws the number sprite in the game at a specified position on the screen.
  * 
  * @param num_sprite Pointer to the sprite representing the number.
@@ -647,6 +680,7 @@ void (draw_waiting)() {
   drawing_bg(menu_bg);
   drawing_sprite(waiting);
   drawing_sprite(wait);
+  drawing_sprite(energy);
   update_flip_frames();
 }
 

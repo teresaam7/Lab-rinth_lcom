@@ -101,6 +101,11 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (sp_subscribe_int(&irq_set_sp) != 0)
     return 1;
 
+  if (timer_set_frequency(0, 60) != 0) {
+    printf("Failed to set timer frequency.\n");
+    return 1;
+  }
+
   sp_clean_int();
 
 
@@ -145,7 +150,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
           }
 
           if (msg.m_notify.interrupts & irq_set_timer) {
-            timer_int_handler(); 
+            timer_int_handler();
             timerLogic();
           }
 

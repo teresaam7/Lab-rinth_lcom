@@ -7,6 +7,7 @@ static Queue * receiveQueue, *sendQueue;
 
 bool isPlayer1;
 extern bool multi;
+extern int num;
 static bool valEmpty = true;
 
 /**
@@ -285,6 +286,8 @@ void (sp_handle_start_multi)() {
  */
 void (sp_handler)(){
   sp_ih();
+  num++;
+  update_energy_sprite(num); 
 
   if (gameState == MULTI)
     sp_handle_start_multi();
