@@ -78,9 +78,10 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
   if (loadSprites()) 
     return 1;
-  
 
-  initialize_sp();
+
+  if (sp_initialize() != 0)
+    return 1;
 
   if (write_mouse(ENABLE_DATA_MODE) != 0)
     return 1;
@@ -100,7 +101,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
   if (sp_subscribe_int(&irq_set_sp) != 0)
     return 1;
 
-  cleanInt_sp();
+  sp_clean_int();
 
 
   bool running = true;

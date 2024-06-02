@@ -10,24 +10,26 @@ extern uint8_t m_bytes[3];
 extern struct packet m_packet;
 extern vbe_mode_info_t mode_info;
 
+extern GameState gameState;
 extern bool gameState_change;
 extern bool multi;
-extern GameState gameState;
 
 bool door1_open = false;
 bool door2_open = false;
 
-
-extern Sprite *menu_bg, *title, *game_over, *win, *start, *hover_start, *quit, *hover_quit, *cursor,
- *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze, *waiting, *button1, *button1_down, *button2, *button2_down, *door1, *door2, *player, *player2, *life, *arrow;
+extern Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, 
+        *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *waiting, 
+        *maze, *player, *player2, *life, *arrow, *button1, *button1_down, *button2, *button2_down, *door1, *door2,
+        *game_over, *win;
 
 extern Sprite *num0, *num1,*num2, *num3, *num4, *num5, *num6, *num7, *num8, *num9, *dot;
 extern Sprite *smallNum0, *smallNum1,*smallNum2, *smallNum3, *smallNum4, *smallNum5, *smallNum6, *smallNum7, *smallNum8, *smallNum9, *divisor;
 
+
+/* Menu */
 /** 
  * @brief Draws all the sprites corresponding to the the menu.
  */
-/* Menu */
 void (draw_menu)(){
   drawing_bg(menu_bg);
   drawing_sprite(start);
@@ -55,7 +57,6 @@ void (update_menu)(){
   update_flip_frames();
 }
 
-
 /** 
  * @brief Checks if two sprites collide.
  * 
@@ -71,10 +72,11 @@ bool (collision)(Sprite * sp1, Sprite * sp2) {
   return true;
 }
 
+
+/* Levels */
 /** 
  * @brief Draws all the sprites corresponding to the levels menu.
  */
-/* Levels */
 void (draw_menu_levels)() {
   drawing_sprite(menu_bg);
   drawing_sprite(title);
@@ -153,7 +155,6 @@ void (load_level)(int level) {
       door2 = create_sprite((xpm_map_t) door_green_, 580 , 197 , 0);
       break;
 
-
     case 3:
       if (hours >= 6 && hours < 14) {
         maze = create_sprite((xpm_map_t) mazeDay3, 0, 0, 0);
@@ -176,38 +177,40 @@ void (load_level)(int level) {
 }
 
 
-
+/* Game */
 /** 
  * @brief Updates the game depending on the time, cursor position and player position.
  */
-
-/* Game */
 void (update_game)() {
   uint8_t hours, minutes, seconds;
   get_game_time(&hours, &minutes, &seconds);
   drawing_lantern(maze, player, 60);
+
   if (multi) {
     drawing_lantern(maze, player2, 60);
     drawing_sprite(player2);
   }
-  else{
+  else {
     drawing_lantern(maze, cursor, 60);
   }
+
   drawing_sprite(arrow);
   drawing_sprite(player);
   drawing_sprite(life);
   draw_time_small(hours, minutes, 10, 575);
-  if(collision(player,button1)){
+
+  if (collision(player,button1)){
     door1_open = true;
-    }
-  if(collision(player,button2)){
+  }
+  if (collision(player,button2)){
     door2_open = true;
   }
+
   if (!multi)
     drawing_sprite(cursor);
+
   update_flip_frames();
 }
-
 
 /** 
  * @brief Gets the next sprite for player 1 based on the scancode.
@@ -639,20 +642,19 @@ void (draw_time_small)(uint8_t hours, uint8_t minutes, int x, int y) {
 /**
  * @brief Draws all the sprites corresponding to the waiting menu screen.
  */
-/*Waiting menu*/
+/* Waiting menu */
 void (draw_waiting)() {
   drawing_bg(menu_bg);
   drawing_sprite(waiting);
   update_flip_frames();
 }
 
-
 /**
  * @brief Draws all the sprites corresponding to the win screen, (including the time the player took to finish the level).
  * 
  * @param total_seconds Total seconds elapsed in the game.
  */
-/*Win*/
+/* Win */
 void (draw_win)(int total_seconds) {
   drawing_bg(menu_bg);
   drawing_sprite(win);
@@ -660,11 +662,10 @@ void (draw_win)(int total_seconds) {
   update_flip_frames();
 }
 
-
 /**
  * @brief Draws all the sprites corresponding to the game over screen.
  */
-/*Lose*/
+/* Lose */
 void (draw_lost)() {
   drawing_bg(menu_bg);
   drawing_sprite(game_over);

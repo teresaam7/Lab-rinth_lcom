@@ -7,8 +7,8 @@
 #include "devices/mouse.h"
 #include "devices/rtc.h"
 #include "devices/graphics.h"
-#include "sprite.h"
 #include "devices/serialPort.h"
+#include "sprite.h"
 
 
 #include "images/mazes/maze1.xpm"
@@ -141,8 +141,8 @@ void (draw_number)(Sprite *num_sprite, int x, int y);
 void (draw_time)(int total_seconds, int x, int y);
 void (draw_time_small)(uint8_t hours, uint8_t minutes, int x, int y);
 
-void (draw_win)(int total_seconds);
 void (draw_waiting)();
+void (draw_win)(int total_seconds);
 void (draw_lost)();
 
 
