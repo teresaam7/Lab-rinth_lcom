@@ -242,10 +242,10 @@ void (handle_receive_info)(){
         printf("CCCCCCC");
         uint8_t curByte = dequeue(receiveQueue);
 
-        if(curByte == END){
+        /*if(curByte == END){
             gameState = LOSE;
             return;
-        }
+        }*/
       
         printf("XXXXXXXXXX\n");
         printf("SCAN: %u\n", curByte);

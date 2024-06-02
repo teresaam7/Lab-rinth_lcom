@@ -117,8 +117,10 @@ int (proj_main_loop)(int argc, char *argv[]) {
             } else {
               k_bytes[k_index] = k_scancode;
               k_index = 0;
+              keyboardLogic();
+              printf("SCANCODE: %u\n", k_scancode);
             }
-            keyboardLogic();
+            
           }
 
           if (msg.m_notify.interrupts & irq_set_mouse) {
@@ -126,7 +128,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
             if (m_index == 3) {
               store_bytes_packet();
               m_index = 0;
-              mouse_print_packet(&m_packet);
+              //mouse_print_packet(&m_packet);
               mouseLogic();
             }
           }

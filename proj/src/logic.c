@@ -7,11 +7,11 @@ extern struct packet m_packet;
 extern bool gameState_change;
 extern bool multi;
 extern bool isPlayer1;
+extern bool send;
 extern GameState gameState;
 
 extern int gameTime;
 extern int counter;
-static bool sentP1 = false;
 
 Sprite *menu_bg, *title, *game_over,*win, *start, *hover_start, *quit, *hover_quit, *cursor, 
 *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *maze,*waiting, *button1, *button2, *door1, *door2,  *player, *player2, *life, *arrow;
@@ -99,19 +99,21 @@ int (gameStateInit)(bool * running) {
 }
 
 int (keyboardLogic)() {
+  printf("ENTROU");
   if (gameState == MULTI) {
     if (k_scancode == 0x2D) {isPlayer1 = true; printf("PLAYER1");} // X
     if (k_scancode == 0x2C) {send_byte(0x53); isPlayer1 = false; printf("PLAYER2");} // Z
 
-		
 	}
 	if (gameState == GAME) {
+    printf("Di");
     if (!multi) {
       handle_ingame_scancode(k_scancode, player);
     } else  {
-      if (isPlayer1 && !sentP1) {printf("OLAAA"); manage_button(k_scancode, true); }
+      printf("ANA");
+      if (isPlayer1) {printf("OLAAA"); manage_button(k_scancode, true); }
       else {printf("OIIIIII"); manage_button(k_scancode, false);}
-      handle_receive_info();
+      //handle_receive_info();
       //send_scan(k_scancode); //sp_ih(); 
     }
 	}
