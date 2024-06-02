@@ -9,6 +9,12 @@ bool isPlayer1;
 extern bool multi;
 static bool valEmpty = true;
 
+/**
+ * @brief Subscribes to serial port interrupts.
+ * 
+ * @param irq_set Pointer to store the IRQ set.
+ * @return 0 on success, 1 otherwise.
+ */
 int (sp_subscribe_int)(uint8_t* irq_set){
     *irq_set = BIT(hook_id_sp);
     if (sys_irqsetpolicy(IRQ_COM1 , IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_sp)) 
@@ -16,17 +22,33 @@ int (sp_subscribe_int)(uint8_t* irq_set){
     return 0;
 }
 
+/**
+ * @brief Unsubscribes from serial port interrupts.
+ * 
+ * @return 0 on success, 1 otherwise.
+ */
 int (sp_unsubscribe_int)(){
     if(sys_irqrmpolicy(&hook_id_sp)) return 1;
     return 0;
 }
 
+/**
+ * @brief Enables serial port interrupts.
+ * 
+ * @return true on success, false otherwise.
+ */
 bool (sp_enable_int)(){
     uint8_t val;
     val = (IER_ERBFI | IER_ETBEI);
     return sys_outb(BASE_COM1 + IER, val);
 }
 
+
+/**
+ * @brief Disables serial port interrupts.
+ * 
+ * @return true on success, false otherwise.
+ */
 bool (sp_disable_int)(){
     uint8_t val;
     util_sys_inb(IER + BASE_COM1, &val);
@@ -35,7 +57,11 @@ bool (sp_disable_int)(){
     return sys_outb(BASE_COM1+ IER, val); 
 }
 
-
+/**
+ * @brief Initializes the serial port.
+ * 
+ * @return 0 on success, 1 otherwise.
+ */
 int (sp_initialize)(){
     uint8_t val_ier;
     if (util_sys_inb(BASE_COM1+ IER, &val_ier)!= 0) 
@@ -65,6 +91,11 @@ int (sp_initialize)(){
 }
 
 
+/**
+ * @brief Receives a byte from the serial port.
+ * 
+ * @return 0 on success, 1 otherwise.
+ */
 int (receive_byte)(){
     uint8_t st;
     // Read status
@@ -84,7 +115,12 @@ int (receive_byte)(){
     return 1;
 }
 
-
+/**
+ * @brief Sends a byte to the serial port.
+ * 
+ * @param byte Byte to send.
+ * @return 0 on success, 1 otherwise.
+ */
 int (send_byte)(uint8_t byte){
     int cond = enqueue(sendQueue,byte);
     if (valEmpty)
@@ -93,6 +129,11 @@ int (send_byte)(uint8_t byte){
         return cond;
 }
 
+/**
+ * @brief Sends bytes from the send queue.
+ * 
+ * @return 0 on success, 1 otherwise.
+ */
 int (send_queue_bytes)(){
     if (queueIsEmpty(sendQueue)){
         valEmpty = true;
@@ -115,6 +156,11 @@ int (send_queue_bytes)(){
 }
 
 
+/**
+ * @brief Sends a scan code.
+ * 
+ * @param scancode Scan code to send.
+ */
 void (send_scan)(uint8_t scancode){
     uint8_t send_code = 0;
     if (scancode == A_KEY_MK) {
@@ -145,13 +191,24 @@ void (send_scan)(uint8_t scancode){
     send_byte(send_code);
 }
 
+
+/**
+ * @brief Manages the button press.
+ * 
+ * @param scancode Scan code of the button press.
+ * @param isPlay1 Boolean indicating if it is player 1.
+ */
 void (manage_button)(uint8_t scancode, bool isPlay1) {
   if (isPlay1) handle_ingame_scancode(scancode, player);
   else handle_ingame_scancode_multi(scancode, player2); 
   send_scan(scancode);
 }
 
-
+/**
+ * @brief Cleans the serial port interrupts.
+ * 
+ * @return 0 on success, 1 otherwise.
+ */
 int (sp_clean_int)(){
     if (sys_outb(BASE_COM1 + FCR, FCR_CLEAR)!= 0) 
         return 1;
@@ -161,6 +218,9 @@ int (sp_clean_int)(){
     return 0;
 }
 
+/**
+ * @brief Interrupt handler for the serial port.
+ */
 void (sp_ih)(){
     uint8_t val;
     util_sys_inb(BASE_COM1 + IIR, &val);
@@ -178,6 +238,9 @@ void (sp_ih)(){
 }
 
 
+/**
+ * @brief Handles the start of multiplayer.
+ */
 void (sp_handle_start_multi)() {
     if(frontQueue(receiveQueue) == 0x53) {
         send_byte(0x54);
@@ -217,6 +280,9 @@ void (sp_handle_start_multi)() {
 }
 
 
+/**
+ * @brief Main handler for the serial port.
+ */
 void (sp_handler)(){
   sp_ih();
 
@@ -228,7 +294,9 @@ void (sp_handler)(){
     sp_clean_int();
 }
 
-
+/**
+ * @brief Handles receiving information from the serial port.
+ */
 void (sp_handle_receive_info)(){
     while (!queueIsEmpty(receiveQueue)) {
         uint8_t receivedByte = dequeue(receiveQueue);

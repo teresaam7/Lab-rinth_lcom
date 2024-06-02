@@ -199,10 +199,10 @@ void (update_game)() {
   drawing_sprite(life);
   draw_time_small(hours, minutes, 10, 575);
 
-  if (collision(player,button1)){
+  if (collision(player,button1) || (collision(player2, button1))){
     door1_open = true;
   }
-  if (collision(player,button2)){
+  if (collision(player,button2) || (collision(player2,button2))){
     door2_open = true;
   }
 
