@@ -60,7 +60,7 @@ int (loadSprites)() {
   energy = create_sprite((xpm_map_t)energy1_, 200, 100, 0);
   arrow = create_sprite((xpm_map_t)arrow6, 745, 560, 0);
 
-  win = create_sprite((xpm_map_t)win_, 320, 200, 0);
+  win = create_sprite((xpm_map_t)win_, 325, 200, 0);
   game_over = create_sprite((xpm_map_t)game_over_, 245, 200, 0);
   
   num0 = create_sprite((xpm_map_t)num0_, 1, 1, 0);
@@ -208,6 +208,19 @@ int (mouseLogic) () {
 		handle_mouse_movement(cursor); 
   	update_game();
 	}
+
+  if (gameState == WIN || gameState == LOSE) {
+    handle_mouse_movement(cursor);
+    if (gameState == WIN) draw_win(300-gameTime);
+    else draw_lost();
+                    
+    if (m_packet.lb) {
+      if(collision(cursor, quit)){
+        gameState_change = true;
+        gameState = EXIT;
+      }                      
+    }
+  }
 
 	return 0;
 }

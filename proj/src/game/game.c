@@ -441,13 +441,13 @@ void (update_life_bar)(int total_seconds) {
         case 30:
             loading_xpm((xpm_map_t)life5, life);
             break;
-        case 60:
+        case 70:
             loading_xpm((xpm_map_t)life4, life);
             break;
-        case 90:
+        case 120:
             loading_xpm((xpm_map_t)life3, life);
             break;
-        case 140:
+        case 180:
             loading_xpm((xpm_map_t)life2, life);
             break;
         default:
@@ -700,7 +700,12 @@ void (draw_waiting)() {
 void (draw_win)(int total_seconds) {
   drawing_bg(menu_bg);
   drawing_sprite(win);
-  draw_time(total_seconds, 310, 305);
+  draw_time(total_seconds, 300, 305);
+
+  if (collision(cursor,quit)) drawing_sprite(hover_quit);
+  else drawing_sprite(quit);
+
+  drawing_sprite(cursor);
   update_flip_frames();
 }
 
@@ -711,6 +716,11 @@ void (draw_win)(int total_seconds) {
 void (draw_lost)() {
   drawing_bg(menu_bg);
   drawing_sprite(game_over);
+  
+  if (collision(cursor,quit)) drawing_sprite(hover_quit);
+  else drawing_sprite(quit);
+  
+  drawing_sprite(cursor);
   update_flip_frames();
 }
 
