@@ -5,7 +5,7 @@
 #include <lcom/lcf.h>
 
 #include "Game.h"
-#include "serialPort.h"
+#include "devices/serialPort.h"
 
 #define WIN_POS_X 790
 #define WIN_POS_Y 555

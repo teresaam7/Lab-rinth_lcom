@@ -1,7 +1,7 @@
 #ifndef _LCOM_SPRITE_H_
 #define _LCOM_SPRITE_H_
 #include <lcom/lcf.h>
-#include "graphics.h"
+#include "devices/graphics.h"
 
 #define PLAYER_WIDTH 13
 #define PLAYER_HEIGHT 17

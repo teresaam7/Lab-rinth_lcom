@@ -3,12 +3,12 @@
 
 #include <lcom/lcf.h>
 
-#include "keyboard.h"
-#include "mouse.h"
-#include "rtc.h"
-#include "graphics.h"
+#include "devices/keyboard.h"
+#include "devices/mouse.h"
+#include "devices/rtc.h"
+#include "devices/graphics.h"
 #include "sprite.h"
-#include "serialPort.h"
+#include "devices/serialPort.h"
 
 
 #include "images/mazes/maze1.xpm"
