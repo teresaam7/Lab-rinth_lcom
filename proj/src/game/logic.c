@@ -1,6 +1,12 @@
 
 #include "logic.h"
 
+/** @defgroup logic logic
+ * @{
+ *
+ * Functions that deals with the game logic
+ */
+
 extern uint8_t k_scancode;
 extern uint8_t k_bytes[2];
 extern struct packet m_packet;

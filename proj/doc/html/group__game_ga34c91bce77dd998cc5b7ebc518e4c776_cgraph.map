@@ -1,0 +1,19 @@
+<map id="draw_lost" name="draw_lost">
+<area shape="rect" id="Node000001" title="Draws all the sprites corresponding to the game over screen." alt="" coords="5,55,83,80"/>
+<area shape="rect" id="Node000002" href="$group__sprite.html#ga8236d4082c8f189eda72c9c02cce510a" title="Draws the background with a global draw buffer." alt="" coords="153,5,239,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,52,139,33,141,38,84,57"/>
+<area shape="rect" id="Node000004" href="$group__sprite.html#ga9964c22c38876bc2273ec5c08ee853b8" title="Draws a sprite using the global draw buffer." alt="" coords="143,55,249,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="83,65,128,65,128,70,83,70"/>
+<area shape="rect" id="Node000007" href="$group__graphics.html#ga1e11833bc501338718d48d6e274a89f6" title="Updates the double buffering mechanism by flipping frames." alt="" coords="131,104,261,129"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="84,77,141,96,139,101,82,82"/>
+<area shape="rect" id="Node000003" href="$group__graphics.html#gac1c6ce37e7c8a21f9289c973a8aadf64" title="Draws the background onto the drawing buffer." alt="" coords="309,5,432,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="240,15,294,15,294,21,240,21"/>
+<area shape="rect" id="Node000005" href="$group__sprite.html#gae268ac0f53f2fab6550f84eb95a87bcb" title="Draws a sprite to a buffer skipping transparent pixels." alt="" coords="309,55,432,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="249,65,294,65,294,70,249,70"/>
+<area shape="rect" id="Node000006" href="$group__graphics.html#gaac0e6c0ef6d9620a1998ef2ceae31389" title="Draws a pixel of a specified color at the given coordinates." alt="" coords="480,55,563,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="433,65,464,65,464,70,433,70"/>
+<area shape="rect" id="Node000008" href="$group__graphics.html#ga28e73c94946bb96540ab78b739fb3b1f" title="Clears the drawing buffer." alt="" coords="320,104,421,129"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="262,114,304,114,304,119,262,119"/>
+<area shape="rect" id="Node000009" href="$group__graphics.html#ga6046c23215bf35eedd817340bfe301b6" title="Sets the display start address for double buffering." alt="" coords="310,153,431,179"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="244,127,309,146,308,151,243,132"/>
+</map>

@@ -1,5 +1,11 @@
 #include "graphics.h"
 
+/** @defgroup graphics graphics
+ * @{
+ *
+ * Functions for using the MINIX graphic card
+
+ */
 
 /**
  * @brief Sets the graphics mode using VBE.

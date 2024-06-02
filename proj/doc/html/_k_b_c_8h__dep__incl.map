@@ -1,0 +1,30 @@
+<map id="C:/Users/teres/Documents/lcom/shared/proj/src/devices/KBC.h" name="C:/Users/teres/Documents/lcom/shared/proj/src/devices/KBC.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="241,5,475,45"/>
+<area shape="rect" id="Node000002" href="$_k_b_c_8c.html" title=" " alt="" coords="5,101,239,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="296,54,172,103,170,98,294,49"/>
+<area shape="rect" id="Node000003" href="$keyboard_8h.html" title=" " alt="" coords="263,93,453,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="361,61,361,93,355,93,355,61"/>
+<area shape="rect" id="Node000012" href="$mouse_8h.html" title=" " alt="" coords="477,93,668,148"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="417,49,512,90,510,95,415,54"/>
+<area shape="rect" id="Node000004" href="$keyboard_8c.html" title=" " alt="" coords="136,196,327,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="315,160,266,198,263,193,311,155"/>
+<area shape="rect" id="Node000005" href="$game_8h.html" title=" " alt="" coords="351,203,578,243"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="399,156,446,201,442,205,395,160"/>
+<area shape="rect" id="Node000006" href="$serial_port_8h.html" title=" " alt="" coords="303,299,493,353"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="437,258,410,300,405,297,433,255"/>
+<area shape="rect" id="Node000008" href="$logic_8h.html" title=" " alt="" coords="441,401,621,456"/>
+<area shape="poly" id="edge12_Node000005_Node000008" title=" " alt="" coords="488,255,508,298,523,352,531,401,526,401,518,353,504,300,483,258"/>
+<area shape="rect" id="Node000011" href="$game_8c.html" title=" " alt="" coords="569,306,795,346"/>
+<area shape="poly" id="edge11_Node000005_Node000011" title=" " alt="" coords="521,248,641,303,639,308,519,253"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="430,285,457,243,461,245,435,287"/>
+<area shape="rect" id="Node000007" href="$serial_port_8c.html" title=" " alt="" coords="227,401,417,456"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="371,367,344,403,340,399,367,364"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="447,361,497,399,494,403,444,365"/>
+<area shape="rect" id="Node000009" href="$logic_8c.html" title=" " alt="" coords="339,504,519,559"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="496,469,458,505,454,502,492,465"/>
+<area shape="rect" id="Node000010" href="$proj_8c.html" title=" " alt="" coords="543,511,723,551"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="570,465,615,509,611,513,567,469"/>
+<area shape="poly" id="edge15_Node000012_Node000005" title=" " alt="" coords="535,160,487,205,484,201,532,156"/>
+<area shape="rect" id="Node000013" href="$mouse_8c.html" title=" " alt="" coords="603,196,793,251"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="619,155,667,193,663,198,616,160"/>
+</map>

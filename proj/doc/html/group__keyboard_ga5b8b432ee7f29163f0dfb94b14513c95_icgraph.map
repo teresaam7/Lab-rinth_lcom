@@ -1,0 +1,5 @@
+<map id="keyboard_subscribe_int" name="keyboard_subscribe_int">
+<area shape="rect" id="Node000001" title="Subscribes keyboard interrupts. This function subscribes keyboard interrupts by having the correct IR..." alt="" coords="163,5,321,31"/>
+<area shape="rect" id="Node000002" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,5,115,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,21,115,21,115,15,147,15"/>
+</map>

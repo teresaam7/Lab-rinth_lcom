@@ -1,0 +1,14 @@
+<map id="C:/Users/teres/Documents/lcom/shared/proj/src/devices/mouse.h" name="C:/Users/teres/Documents/lcom/shared/proj/src/devices/mouse.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="54,5,245,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,181,112,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,62,109,109,75,169,70,167,104,107,132,59"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="179,255,258,280"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,59,227,111,249,144,265,181,267,198,263,216,244,245,239,242,258,214,262,198,260,182,244,147,223,115,177,62"/>
+<area shape="rect" id="Node000004" href="$_k_b_c_8h.html" title=" " alt="" coords="119,108,179,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="152,61,152,92,147,92,147,61"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="136,136,87,174,84,170,132,132"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="154,133,162,167,177,205,200,241,196,244,172,208,157,168,149,135"/>
+<area shape="rect" id="Node000005" href="$i8042_8h.html" title=" " alt="" coords="187,181,251,207"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="163,132,198,168,195,172,159,136"/>
+<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="221,207,221,239,216,239,216,207"/>
+</map>

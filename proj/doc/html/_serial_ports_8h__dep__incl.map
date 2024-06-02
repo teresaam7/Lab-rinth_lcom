@@ -1,0 +1,19 @@
+<map id="C:/Users/teres/Documents/lcom/shared/proj/src/devices/SerialPorts.h" name="C:/Users/teres/Documents/lcom/shared/proj/src/devices/SerialPorts.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="239,5,429,60"/>
+<area shape="rect" id="Node000002" href="$serial_port_8h.html" title=" " alt="" coords="239,108,429,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="337,76,337,108,331,108,331,76"/>
+<area shape="rect" id="Node000003" href="$serial_port_8c.html" title=" " alt="" coords="5,211,196,265"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="259,172,164,212,162,208,257,167"/>
+<area shape="rect" id="Node000004" href="$game_8h.html" title=" " alt="" coords="221,218,447,258"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="328,178,329,217,324,218,322,178"/>
+<area shape="rect" id="Node000006" href="$logic_8h.html" title=" " alt="" coords="395,313,575,368"/>
+<area shape="poly" id="edge9_Node000002_Node000006" title=" " alt="" coords="416,168,441,186,462,209,475,234,483,262,488,312,483,313,478,263,470,236,457,212,437,190,413,173"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="340,202,339,163,345,163,345,202"/>
+<area shape="rect" id="Node000005" href="$game_8c.html" title=" " alt="" coords="143,321,370,361"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="312,272,274,322,269,318,308,269"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="377,265,446,311,443,315,374,269"/>
+<area shape="rect" id="Node000007" href="$logic_8c.html" title=" " alt="" coords="293,416,473,471"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="449,381,412,417,408,414,445,377"/>
+<area shape="rect" id="Node000008" href="$proj_8c.html" title=" " alt="" coords="497,423,677,463"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="524,377,570,421,566,425,521,381"/>
+</map>

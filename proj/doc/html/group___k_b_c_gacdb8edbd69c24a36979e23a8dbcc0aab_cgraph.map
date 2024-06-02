@@ -1,0 +1,5 @@
+<map id="read_kbc" name="read_kbc">
+<area shape="rect" id="Node000001" title="Reads a byte from the keyboard controller." alt="" coords="5,5,80,31"/>
+<area shape="rect" id="Node000002" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="128,5,219,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,15,112,15,112,21,80,21"/>
+</map>

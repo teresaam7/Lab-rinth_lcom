@@ -1,0 +1,5 @@
+<map id="backQueue" name="backQueue">
+<area shape="rect" id="Node000001" title="Gets the back element of the queue without removing it. This function returns the back element of the..." alt="" coords="5,5,93,31"/>
+<area shape="rect" id="Node000002" href="$queue_8c.html#a2faad87ea78b874d4d1dbf94992a69d7" title="Sees if the queue is empty. This function sees if the queue doesn&#39;t have elements." alt="" coords="141,5,247,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,15,126,15,126,21,94,21"/>
+</map>

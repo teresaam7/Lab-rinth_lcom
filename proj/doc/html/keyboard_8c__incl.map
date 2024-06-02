@@ -1,0 +1,18 @@
+<map id="C:/Users/teres/Documents/lcom/shared/proj/src/devices/keyboard.c" name="C:/Users/teres/Documents/lcom/shared/proj/src/devices/keyboard.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,196,60"/>
+<area shape="rect" id="Node000002" href="$keyboard_8h.html" title=" " alt="" coords="57,108,144,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,61,103,92,98,92,98,61"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="53,255,159,280"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="100,134,95,167,94,206,101,239,95,240,89,207,89,166,95,133"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="157,328,236,353"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="91,135,68,163,45,200,37,220,33,241,35,260,43,279,63,299,88,314,115,325,143,331,141,337,114,330,85,319,59,303,38,281,29,261,28,240,32,219,40,198,64,160,87,132"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="104,181,169,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="109,132,126,166,121,169,104,135"/>
+<area shape="rect" id="Node000006" href="$_k_b_c_8h.html" title=" " alt="" coords="193,181,253,207"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="123,132,191,171,189,176,120,136"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="205,210,140,249,137,244,202,205"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="224,208,204,313,199,312,219,207"/>
+<area shape="rect" id="Node000007" href="$i8042_8h.html" title=" " alt="" coords="234,255,298,280"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="233,206,253,240,249,242,228,208"/>
+<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="256,282,221,319,217,315,253,278"/>
+</map>

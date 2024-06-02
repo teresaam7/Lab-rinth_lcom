@@ -1,0 +1,12 @@
+<map id="receive_byte" name="receive_byte">
+<area shape="rect" id="Node000001" title="Receives a byte from the serial port." alt="" coords="493,31,588,56"/>
+<area shape="rect" id="Node000002" href="$serial_port_8c.html#a893e344b09045669371c2fb888474bd2" title="Handles the start of multiplayer." alt="" coords="296,5,445,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="477,37,446,32,446,27,478,31"/>
+<area shape="rect" id="Node000005" href="$serial_port_8c.html#af36885f3a76f83885f4562feb8d4bd74" title="Interrupt handler for the serial port." alt="" coords="344,55,397,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="478,55,398,66,397,61,477,50"/>
+<area shape="rect" id="Node000003" href="$serial_port_8c.html#a566c39ba3c551839abddb24c42e2965c" title="Main handler for the serial port." alt="" coords="163,31,248,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="281,34,249,39,248,34,280,29"/>
+<area shape="rect" id="Node000004" href="$proj_8c.html#a2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,31,115,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="147,46,115,46,115,41,147,41"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="328,64,248,52,249,47,329,59"/>
+</map>

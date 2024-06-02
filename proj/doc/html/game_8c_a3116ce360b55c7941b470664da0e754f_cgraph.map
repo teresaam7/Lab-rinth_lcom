@@ -1,0 +1,15 @@
+<map id="draw_menu_levels" name="draw_menu_levels">
+<area shape="rect" id="Node000001" title="Draws all the sprites corresponding to the levels menu." alt="" coords="5,31,132,56"/>
+<area shape="rect" id="Node000002" href="$sprite_8c.html#a9964c22c38876bc2273ec5c08ee853b8" title="Draws a sprite using the global draw buffer." alt="" coords="193,5,298,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,32,177,25,178,30,133,37"/>
+<area shape="rect" id="Node000005" href="$graphics_8c.html#a1e11833bc501338718d48d6e274a89f6" title="Updates the double buffering mechanism by flipping frames." alt="" coords="180,55,311,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="133,49,165,54,164,59,132,55"/>
+<area shape="rect" id="Node000003" href="$sprite_8c.html#ae268ac0f53f2fab6550f84eb95a87bcb" title="Draws a sprite to a buffer skipping transparent pixels." alt="" coords="359,5,481,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="298,15,343,15,343,21,298,21"/>
+<area shape="rect" id="Node000004" href="$graphics_8c.html#aac0e6c0ef6d9620a1998ef2ceae31389" title="Draws a pixel of a specified color at the given coordinates." alt="" coords="529,5,612,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="482,15,514,15,514,21,482,21"/>
+<area shape="rect" id="Node000006" href="$graphics_8c.html#a28e73c94946bb96540ab78b739fb3b1f" title="Clears the drawing buffer." alt="" coords="369,55,471,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="311,65,354,65,354,70,311,70"/>
+<area shape="rect" id="Node000007" href="$graphics_8c.html#a6046c23215bf35eedd817340bfe301b6" title="Sets the display start address for double buffering." alt="" coords="359,104,481,129"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="293,78,359,97,357,102,292,83"/>
+</map>

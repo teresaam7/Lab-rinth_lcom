@@ -1,0 +1,21 @@
+<map id="send_scan" name="send_scan">
+<area shape="rect" id="Node000001" title="Sends a scan code." alt="" coords="5,81,91,107"/>
+<area shape="rect" id="Node000002" href="$serial_port_8c.html#ae05d7c53a1ba2b4c1482c846280521a0" title="Sends a byte to the serial port." alt="" coords="139,81,221,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,91,123,91,123,97,91,97"/>
+<area shape="rect" id="Node000003" href="$queue_8c.html#a3520b115723ab8f75dff263c08cba0a9" title="Adds an element to the queue. This function adds an element to the back of the queue if it is not ful..." alt="" coords="299,31,370,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="220,78,284,57,285,62,222,83"/>
+<area shape="rect" id="Node000005" href="$serial_port_8c.html#a21c12f5befe5d4b94a300e2f9f29dd28" title="Sends bytes from the send queue." alt="" coords="269,105,400,131"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="222,98,254,103,253,108,221,103"/>
+<area shape="rect" id="Node000004" href="$queue_8c.html#ac6af8ce04382dd831afef4f582ba67e7" title="Sees if the queue is full. This function sees if the queue has its maximum capacity occupied." alt="" coords="449,5,537,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="370,35,434,25,434,30,371,40"/>
+<area shape="rect" id="Node000006" href="$queue_8c.html#a11477bdc59380d11c8d0cdb0c320134d" title="Removes an element from the queue. This function removes an element from the front of the queue if it..." alt="" coords="458,55,529,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="376,102,443,81,444,86,378,107"/>
+<area shape="rect" id="Node000007" href="$queue_8c.html#a2faad87ea78b874d4d1dbf94992a69d7" title="Sees if the queue is empty. This function sees if the queue doesn&#39;t have elements." alt="" coords="587,105,692,131"/>
+<area shape="poly" id="edge9_Node000005_Node000007" title=" " alt="" coords="400,115,571,115,571,121,400,121"/>
+<area shape="rect" id="Node000008" href="$queue_8c.html#affc22e1fd942d84abce2f4396e0686a8" title="Gets the front element of the queue without removing it. This function returns the front element of t..." alt="" coords="451,156,536,181"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="378,129,438,148,436,153,376,134"/>
+<area shape="rect" id="Node000009" href="$utils_8c.html#a79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="448,205,539,231"/>
+<area shape="poly" id="edge10_Node000005_Node000009" title=" " alt="" coords="356,129,449,190,457,195,454,200,447,195,353,133"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="530,77,587,97,585,102,528,82"/>
+<area shape="poly" id="edge8_Node000008_Node000007" title=" " alt="" coords="531,153,585,134,587,139,533,158"/>
+</map>

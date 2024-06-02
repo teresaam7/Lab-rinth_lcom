@@ -1,0 +1,7 @@
+<map id="update_flip_frames" name="update_flip_frames">
+<area shape="rect" id="Node000001" title="Updates the double buffering mechanism by flipping frames." alt="" coords="5,31,136,56"/>
+<area shape="rect" id="Node000002" href="$graphics_8c.html#a28e73c94946bb96540ab78b739fb3b1f" title="Clears the drawing buffer." alt="" coords="194,5,295,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,31,179,25,179,30,137,36"/>
+<area shape="rect" id="Node000003" href="$graphics_8c.html#a6046c23215bf35eedd817340bfe301b6" title="Sets the display start address for double buffering." alt="" coords="184,55,305,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="137,50,169,54,168,60,136,55"/>
+</map>

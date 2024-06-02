@@ -1,0 +1,11 @@
+<map id="draw_time" name="draw_time">
+<area shape="rect" id="Node000001" title="Draws the current game time on the screen." alt="" coords="5,5,87,31"/>
+<area shape="rect" id="Node000002" href="$game_8c.html#a9151773e527752aad6b13408e80c70b9" title="Draws the number sprite in the game at a specified position on the screen." alt="" coords="135,5,233,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,15,119,15,119,21,87,21"/>
+<area shape="rect" id="Node000003" href="$sprite_8c.html#a9964c22c38876bc2273ec5c08ee853b8" title="Draws a sprite using the global draw buffer." alt="" coords="281,5,387,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="234,15,266,15,266,21,234,21"/>
+<area shape="rect" id="Node000004" href="$sprite_8c.html#ae268ac0f53f2fab6550f84eb95a87bcb" title="Draws a sprite to a buffer skipping transparent pixels." alt="" coords="435,5,557,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="387,15,419,15,419,21,387,21"/>
+<area shape="rect" id="Node000005" href="$graphics_8c.html#aac0e6c0ef6d9620a1998ef2ceae31389" title="Draws a pixel of a specified color at the given coordinates." alt="" coords="605,5,688,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="558,15,590,15,590,21,558,21"/>
+</map>

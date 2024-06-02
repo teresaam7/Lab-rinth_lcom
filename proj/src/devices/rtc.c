@@ -1,5 +1,11 @@
 #include "rtc.h"
 
+/** @defgroup rtc rtc
+ * @{
+ *
+ * Functions for real time clock
+ */
+
 rtc_info time_info; 
 int hook_id_rtc = 5;
 

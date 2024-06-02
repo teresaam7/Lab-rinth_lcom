@@ -1,0 +1,105 @@
+<map id="sp_handler" name="sp_handler">
+<area shape="rect" id="Node000001" title="Main handler for the serial port." alt="" coords="5,507,91,532"/>
+<area shape="rect" id="Node000002" href="$group__serail_port.html#gafea6589c6e04629a3faf737fded74f17" title="Cleans the serial port interrupts." alt="" coords="594,456,689,481"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,513,578,471,579,477,91,518"/>
+<area shape="rect" id="Node000005" href="$group__serail_port.html#gade40d390d656235c6efd1830db04195e" title="Handles receiving information from the serial port." alt="" coords="139,355,293,380"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="62,504,188,389,191,393,65,508"/>
+<area shape="rect" id="Node000031" href="$group__serail_port.html#ga893e344b09045669371c2fb888474bd2" title="Handles the start of multiplayer." alt="" coords="141,684,291,709"/>
+<area shape="poly" id="edge42_Node000001_Node000031" title=" " alt="" coords="62,530,141,619,192,671,189,675,137,622,58,534"/>
+<area shape="rect" id="Node000038" href="$group__serail_port.html#gaf36885f3a76f83885f4562feb8d4bd74" title="Interrupt handler for the serial port." alt="" coords="189,583,243,608"/>
+<area shape="poly" id="edge58_Node000001_Node000038" title=" " alt="" coords="79,530,176,575,174,580,77,535"/>
+<area shape="rect" id="Node000039" href="$group__game.html#gad53cafa549c62ad62cc99744cf47b418" title="Loops the energy sprite based on the total waiting time." alt="" coords="354,148,501,173"/>
+<area shape="poly" id="edge62_Node000001_Node000039" title=" " alt="" coords="51,505,81,432,106,386,137,342,185,287,228,249,276,218,340,184,356,177,358,181,343,188,278,223,231,253,189,291,141,345,111,388,86,434,56,507"/>
+<area shape="rect" id="Node000003" href="$group__queue.html#ga11477bdc59380d11c8d0cdb0c320134d" title="Removes an element from the queue. This function removes an element from the front of the queue if it..." alt="" coords="799,557,870,583"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="682,480,723,498,747,517,771,536,792,548,789,552,768,540,744,521,720,503,680,484"/>
+<area shape="rect" id="Node000004" href="$group__queue.html#ga2faad87ea78b874d4d1dbf94992a69d7" title="Sees if the queue is empty. This function sees if the queue doesn&#39;t have elements." alt="" coords="979,583,1085,608"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="690,479,901,543,984,574,983,579,899,549,688,484"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="871,572,964,584,963,589,870,577"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="252,378,387,430,562,491,682,527,785,555,783,560,680,532,561,497,385,435,250,383"/>
+<area shape="poly" id="edge41_Node000005_Node000004" title=" " alt="" coords="294,368,415,378,570,401,654,419,739,441,822,470,901,505,957,538,1004,571,1001,575,954,542,899,510,820,475,737,447,653,424,569,406,415,383,294,373"/>
+<area shape="rect" id="Node000006" href="$group__game.html#ga3acc255255b6075a1e1fb5b2e7b8612a" title="Handles the in&#45;game keyboard scancode for a specific player. It checks if the player can move in the ..." alt="" coords="341,263,513,288"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="246,352,381,292,383,297,248,357"/>
+<area shape="rect" id="Node000029" href="$group__game.html#ga8241254351ecd0ff4d320a93b28b8c2a" title="Handles the in&#45;game keyboard scancode for multiplayer mode. It checks if the player can move in the s..." alt="" coords="341,198,513,238"/>
+<area shape="poly" id="edge36_Node000005_Node000029" title=" " alt="" coords="226,352,273,303,305,275,340,249,351,243,353,248,343,254,308,279,277,307,230,356"/>
+<area shape="rect" id="Node000007" href="$group__sprite.html#ga50671d940c6cb1c4b3f4c198d45ad0a6" title="Sees if there is a collision between the player sprite and the maze sprite." alt="" coords="586,255,697,280"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="513,269,571,267,571,273,514,275"/>
+<area shape="rect" id="Node000008" href="$group__game.html#gaa66b9aeb500b83ba89e68a91297c799c" title="Gets the next sprite for player 1 based on the scancode." alt="" coords="561,304,721,329"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="497,286,558,298,557,303,496,291"/>
+<area shape="rect" id="Node000009" href="$group__sprite.html#ga1266035d07f78576936f1e1bcd63a465" title="Loads XPM image data to a sprite." alt="" coords="594,107,689,132"/>
+<area shape="poly" id="edge10_Node000006_Node000009" title=" " alt="" coords="493,260,512,248,523,236,529,223,535,197,541,170,548,156,560,143,578,131,581,135,563,147,552,159,546,172,540,198,534,225,527,239,515,252,496,264"/>
+<area shape="rect" id="Node000010" href="$group__game.html#gafa78e5aaba39415561b6962e871300f6" title="Updates the game depending on the time, cursor position and player position." alt="" coords="591,156,691,181"/>
+<area shape="poly" id="edge11_Node000006_Node000010" title=" " alt="" coords="488,260,512,248,527,235,535,221,544,206,560,192,576,183,578,188,563,196,548,210,540,224,531,238,515,252,490,264"/>
+<area shape="rect" id="Node000011" href="$group__game.html#gaf1ec419de7da320a2a454f01d23eddf5" title="Checks if two sprites collide." alt="" coords="800,55,869,80"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="691,156,720,142,734,130,743,118,753,104,768,91,784,81,787,86,771,95,757,108,748,121,738,134,723,147,693,160"/>
+<area shape="rect" id="Node000012" href="$group__game.html#gab0def5c2780652897e0eda60024d6a18" title="Draws the current game time (in small format) on the screen." alt="" coords="775,205,894,231"/>
+<area shape="poly" id="edge13_Node000010_Node000012" title=" " alt="" coords="692,179,768,198,767,204,691,184"/>
+<area shape="rect" id="Node000014" href="$group__sprite.html#ga9964c22c38876bc2273ec5c08ee853b8" title="Draws a sprite using the global draw buffer." alt="" coords="1189,149,1294,175"/>
+<area shape="poly" id="edge23_Node000010_Node000014" title=" " alt="" coords="692,165,1173,160,1173,165,692,171"/>
+<area shape="rect" id="Node000017" href="$group__sprite.html#gaf7b5f014ccc3f2f9cdf770d8defbfae0" title="Draws a lantern in the background." alt="" coords="779,5,891,31"/>
+<area shape="poly" id="edge18_Node000010_Node000017" title=" " alt="" coords="690,158,720,143,731,131,737,119,743,94,749,68,756,55,767,41,773,37,776,41,771,45,761,58,754,70,748,95,742,121,735,134,723,147,693,163"/>
+<area shape="rect" id="Node000020" href="$group__rtc.html#ga212dab5526aa577b0c33bc7a695ae39a" title="Retrieves the current game time." alt="" coords="779,256,890,281"/>
+<area shape="poly" id="edge24_Node000010_Node000020" title=" " alt="" coords="693,178,723,192,738,204,748,217,757,229,771,241,780,247,777,251,768,245,753,233,743,220,734,208,720,196,691,183"/>
+<area shape="rect" id="Node000026" href="$group__graphics.html#ga1e11833bc501338718d48d6e274a89f6" title="Updates the double buffering mechanism by flipping frames." alt="" coords="769,104,900,129"/>
+<area shape="poly" id="edge33_Node000010_Node000026" title=" " alt="" coords="691,153,769,131,771,136,692,158"/>
+<area shape="rect" id="Node000013" href="$group__game.html#ga9151773e527752aad6b13408e80c70b9" title="Draws the number sprite in the game at a specified position on the screen." alt="" coords="983,205,1081,231"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="894,215,967,215,967,221,894,221"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="1081,202,1176,177,1177,182,1082,207"/>
+<area shape="rect" id="Node000015" href="$group__sprite.html#gae268ac0f53f2fab6550f84eb95a87bcb" title="Draws a sprite to a buffer skipping transparent pixels." alt="" coords="1367,137,1489,163"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="1294,156,1351,152,1351,158,1295,161"/>
+<area shape="rect" id="Node000016" href="$group__graphics.html#gaac0e6c0ef6d9620a1998ef2ceae31389" title="Draws a pixel of a specified color at the given coordinates." alt="" coords="1541,100,1624,125"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="1483,134,1526,124,1527,129,1484,139"/>
+<area shape="rect" id="Node000018" href="$group__sprite.html#ga009025ba82c1fb8491b95982817d30a4" title="Draws a lantern around a sprite to a buffer." alt="" coords="948,5,1116,31"/>
+<area shape="poly" id="edge19_Node000017_Node000018" title=" " alt="" coords="891,15,932,15,932,21,891,21"/>
+<area shape="poly" id="edge21_Node000018_Node000014" title=" " alt="" coords="1092,29,1117,41,1133,53,1144,65,1166,92,1215,137,1211,141,1162,96,1140,68,1130,57,1115,46,1089,34"/>
+<area shape="poly" id="edge20_Node000018_Node000016" title=" " alt="" coords="1101,29,1164,41,1526,101,1526,107,1164,46,1100,34"/>
+<area shape="rect" id="Node000019" href="$group__sprite.html#gacf356221f598bf1d84b0efc512f55b17" title="Sees if a sprite (&#39;sp&#39;) is in a certain radius of the center of another sprite (&#39;center&#39;)." alt="" coords="1164,5,1319,31"/>
+<area shape="poly" id="edge22_Node000018_Node000019" title=" " alt="" coords="1116,15,1149,15,1149,21,1116,21"/>
+<area shape="rect" id="Node000021" href="$group__rtc.html#ga4b875007a380c083c1c0aadf40bc7ac4" title="Sees if RTC is in binary counting mode." alt="" coords="1182,255,1301,280"/>
+<area shape="poly" id="edge25_Node000020_Node000021" title=" " alt="" coords="890,266,1167,265,1167,270,890,271"/>
+<area shape="rect" id="Node000024" href="$group__rtc.html#gacbdc3d9886f064d572714ecea9e77b2a" title="Updates the rtc_info variable time_info with the current time from the RTC." alt="" coords="961,307,1103,332"/>
+<area shape="poly" id="edge28_Node000020_Node000024" title=" " alt="" coords="888,279,966,300,964,305,886,285"/>
+<area shape="rect" id="Node000022" href="$group__rtc.html#gaa49afb4ddf768fd61244632faa9b45a5" title="Reads a value from the RTC." alt="" coords="1393,331,1463,356"/>
+<area shape="poly" id="edge26_Node000021_Node000022" title=" " alt="" coords="1276,278,1382,322,1380,327,1274,283"/>
+<area shape="rect" id="Node000023" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="1537,559,1628,584"/>
+<area shape="poly" id="edge27_Node000022_Node000023" title=" " alt="" coords="1447,354,1469,374,1491,399,1539,475,1572,543,1567,545,1535,478,1487,402,1465,378,1444,358"/>
+<area shape="poly" id="edge29_Node000024_Node000021" title=" " alt="" coords="1085,303,1172,282,1173,287,1087,309"/>
+<area shape="poly" id="edge32_Node000024_Node000022" title=" " alt="" coords="1104,321,1378,338,1378,343,1103,326"/>
+<area shape="rect" id="Node000025" href="$group__rtc.html#ga31cda63ea594c3acb39647e9adceb398" title="Sees if an RTC update is in progress or not." alt="" coords="1186,356,1297,381"/>
+<area shape="poly" id="edge30_Node000024_Node000025" title=" " alt="" coords="1089,330,1171,350,1170,355,1088,335"/>
+<area shape="poly" id="edge31_Node000025_Node000022" title=" " alt="" coords="1297,359,1378,347,1378,353,1297,364"/>
+<area shape="rect" id="Node000027" href="$group__graphics.html#ga28e73c94946bb96540ab78b739fb3b1f" title="Clears the drawing buffer." alt="" coords="981,55,1083,80"/>
+<area shape="poly" id="edge34_Node000026_Node000027" title=" " alt="" coords="888,101,965,81,967,86,889,106"/>
+<area shape="rect" id="Node000028" href="$group__graphics.html#ga6046c23215bf35eedd817340bfe301b6" title="Sets the display start address for double buffering." alt="" coords="971,104,1093,129"/>
+<area shape="poly" id="edge35_Node000026_Node000028" title=" " alt="" coords="900,114,956,114,956,119,900,119"/>
+<area shape="poly" id="edge37_Node000029_Node000007" title=" " alt="" coords="514,235,571,249,570,254,513,240"/>
+<area shape="poly" id="edge39_Node000029_Node000009" title=" " alt="" coords="490,195,512,184,535,163,545,153,560,142,578,134,580,139,563,147,549,157,539,167,515,188,492,200"/>
+<area shape="poly" id="edge40_Node000029_Node000010" title=" " alt="" coords="513,196,576,181,577,186,514,201"/>
+<area shape="rect" id="Node000030" href="$group__game.html#ga39d1a2203e3ecdceccf30e5323cc59e4" title="Gets the next sprite for player 2 based on the scancode." alt="" coords="561,205,721,231"/>
+<area shape="poly" id="edge38_Node000029_Node000030" title=" " alt="" coords="513,215,546,215,546,221,513,221"/>
+<area shape="poly" id="edge43_Node000031_Node000003" title=" " alt="" coords="244,681,289,662,341,645,464,616,588,595,783,571,784,577,589,600,465,621,342,650,291,667,246,686"/>
+<area shape="poly" id="edge46_Node000031_Node000004" title=" " alt="" coords="279,707,397,726,472,734,554,738,640,738,728,732,815,718,899,694,931,679,961,659,1007,617,1011,621,964,664,934,684,901,699,816,723,729,737,640,743,554,743,472,739,397,731,279,713"/>
+<area shape="rect" id="Node000032" href="$group__queue.html#gaffc22e1fd942d84abce2f4396e0686a8" title="Gets the front element of the queue without removing it. This function returns the front element of t..." alt="" coords="792,659,877,684"/>
+<area shape="poly" id="edge44_Node000031_Node000032" title=" " alt="" coords="291,696,513,694,655,685,776,675,777,680,656,691,513,699,291,701"/>
+<area shape="rect" id="Node000033" href="$group__serail_port.html#gad75d0a9e9624f1c9231bfc163dec3a8a" title="Receives a byte from the serial port." alt="" coords="380,811,475,836"/>
+<area shape="poly" id="edge47_Node000031_Node000033" title=" " alt="" coords="233,708,280,747,343,789,370,802,368,807,340,794,277,751,230,712"/>
+<area shape="rect" id="Node000036" href="$group__serail_port.html#gae05d7c53a1ba2b4c1482c846280521a0" title="Sends a byte to the serial port." alt="" coords="386,659,469,684"/>
+<area shape="poly" id="edge51_Node000031_Node000036" title=" " alt="" coords="291,685,371,675,371,681,291,690"/>
+<area shape="poly" id="edge45_Node000032_Node000004" title=" " alt="" coords="869,656,982,611,984,616,871,661"/>
+<area shape="poly" id="edge50_Node000033_Node000023" title=" " alt="" coords="476,831,562,846,697,865,757,870,833,871,1243,871,1273,869,1302,863,1357,839,1406,804,1451,762,1490,716,1522,670,1566,596,1571,599,1527,673,1494,719,1455,765,1410,808,1359,843,1303,868,1274,874,1243,877,833,877,756,875,697,870,561,851,475,836"/>
+<area shape="rect" id="Node000034" href="$group__queue.html#ga3520b115723ab8f75dff263c08cba0a9" title="Adds an element to the queue. This function adds an element to the back of the queue if it is not ful..." alt="" coords="606,811,677,836"/>
+<area shape="poly" id="edge48_Node000033_Node000034" title=" " alt="" coords="475,821,590,821,590,826,475,826"/>
+<area shape="rect" id="Node000035" href="$group__queue.html#gac6af8ce04382dd831afef4f582ba67e7" title="Sees if the queue is full. This function sees if the queue has its maximum capacity occupied." alt="" coords="791,811,879,836"/>
+<area shape="poly" id="edge49_Node000034_Node000035" title=" " alt="" coords="677,821,775,821,775,826,677,826"/>
+<area shape="poly" id="edge52_Node000036_Node000034" title=" " alt="" coords="449,682,611,799,608,804,445,687"/>
+<area shape="rect" id="Node000037" href="$group__serail_port.html#ga21c12f5befe5d4b94a300e2f9f29dd28" title="Sends bytes from the send queue." alt="" coords="576,633,707,659"/>
+<area shape="poly" id="edge53_Node000036_Node000037" title=" " alt="" coords="469,664,560,653,561,658,469,669"/>
+<area shape="poly" id="edge54_Node000037_Node000003" title=" " alt="" coords="675,630,786,586,788,591,677,635"/>
+<area shape="poly" id="edge56_Node000037_Node000004" title=" " alt="" coords="707,635,964,601,964,607,708,640"/>
+<area shape="poly" id="edge57_Node000037_Node000023" title=" " alt="" coords="670,657,716,677,770,694,842,710,899,717,1031,719,1243,719,1289,716,1335,705,1380,690,1423,671,1497,629,1552,591,1555,596,1500,634,1425,676,1382,695,1337,710,1290,721,1243,725,1031,725,899,722,841,715,769,699,714,682,668,662"/>
+<area shape="poly" id="edge55_Node000037_Node000032" title=" " alt="" coords="708,652,777,661,776,666,707,657"/>
+<area shape="poly" id="edge61_Node000038_Node000023" title=" " alt="" coords="237,580,292,549,370,509,463,471,561,442,631,430,702,423,846,419,990,429,1127,448,1255,474,1368,501,1531,551,1529,556,1366,507,1254,479,1126,454,989,434,846,425,702,428,631,435,562,447,465,476,372,514,294,554,240,584"/>
+<area shape="poly" id="edge59_Node000038_Node000033" title=" " alt="" coords="232,606,295,671,407,797,403,801,291,674,229,610"/>
+<area shape="poly" id="edge60_Node000038_Node000037" title=" " alt="" coords="243,596,561,634,560,639,243,601"/>
+<area shape="poly" id="edge63_Node000039_Node000009" title=" " alt="" coords="496,145,578,129,579,134,497,150"/>
+<area shape="poly" id="edge64_Node000039_Node000010" title=" " alt="" coords="501,161,576,164,576,169,501,166"/>
+</map>

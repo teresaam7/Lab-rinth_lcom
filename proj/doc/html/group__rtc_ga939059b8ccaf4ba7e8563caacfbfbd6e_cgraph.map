@@ -1,0 +1,18 @@
+<map id="display_game_time" name="display_game_time">
+<area shape="rect" id="Node000001" title="Shows the current game time." alt="" coords="5,31,140,56"/>
+<area shape="rect" id="Node000002" href="$group__rtc.html#ga212dab5526aa577b0c33bc7a695ae39a" title="Retrieves the current game time." alt="" coords="188,31,299,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,41,172,41,172,46,140,46"/>
+<area shape="rect" id="Node000003" href="$group__rtc.html#ga4b875007a380c083c1c0aadf40bc7ac4" title="Sees if RTC is in binary counting mode." alt="" coords="537,5,656,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="299,37,522,21,522,26,299,42"/>
+<area shape="rect" id="Node000006" href="$group__rtc.html#gacbdc3d9886f064d572714ecea9e77b2a" title="Updates the rtc_info variable time_info with the current time from the RTC." alt="" coords="347,56,489,81"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="299,49,332,53,331,59,299,54"/>
+<area shape="rect" id="Node000004" href="$group__rtc.html#gaa49afb4ddf768fd61244632faa9b45a5" title="Reads a value from the RTC." alt="" coords="704,56,773,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="636,29,690,49,688,54,634,34"/>
+<area shape="rect" id="Node000005" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="821,56,912,81"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="774,66,806,66,806,71,774,71"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="465,53,534,33,536,38,466,58"/>
+<area shape="poly" id="edge9_Node000006_Node000004" title=" " alt="" coords="490,66,689,66,689,71,490,71"/>
+<area shape="rect" id="Node000007" href="$group__rtc.html#ga31cda63ea594c3acb39647e9adceb398" title="Sees if an RTC update is in progress or not." alt="" coords="541,107,652,132"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="466,79,536,99,534,105,465,85"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="634,104,688,84,690,89,636,109"/>
+</map>

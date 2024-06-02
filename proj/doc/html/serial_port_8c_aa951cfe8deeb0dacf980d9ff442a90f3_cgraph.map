@@ -1,0 +1,5 @@
+<map id="sp_disable_int" name="sp_disable_int">
+<area shape="rect" id="Node000001" title="Disables serial port interrupts." alt="" coords="5,5,111,31"/>
+<area shape="rect" id="Node000002" href="$utils_8c.html#a79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="159,5,249,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,15,143,15,143,21,111,21"/>
+</map>

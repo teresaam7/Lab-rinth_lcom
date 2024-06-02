@@ -1,0 +1,21 @@
+<map id="C:/Users/teres/Documents/lcom/shared/proj/src/devices/mouse.h" name="C:/Users/teres/Documents/lcom/shared/proj/src/devices/mouse.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="121,5,312,60"/>
+<area shape="rect" id="Node000002" href="$mouse_8c.html" title=" " alt="" coords="5,108,196,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,72,133,110,130,106,173,68"/>
+<area shape="rect" id="Node000003" href="$game_8h.html" title=" " alt="" coords="221,115,447,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="261,68,313,113,310,117,257,72"/>
+<area shape="rect" id="Node000004" href="$serial_port_8h.html" title=" " alt="" coords="172,211,363,265"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="307,170,279,212,275,209,302,167"/>
+<area shape="rect" id="Node000006" href="$logic_8h.html" title=" " alt="" coords="311,313,491,368"/>
+<area shape="poly" id="edge10_Node000003_Node000006" title=" " alt="" coords="356,167,376,210,392,264,400,313,395,314,386,265,372,212,352,170"/>
+<area shape="rect" id="Node000009" href="$game_8c.html" title=" " alt="" coords="438,218,665,258"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="391,160,511,215,508,220,389,165"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="300,197,326,155,331,157,304,199"/>
+<area shape="rect" id="Node000005" href="$serial_port_8c.html" title=" " alt="" coords="96,313,287,368"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="240,279,214,315,209,311,236,276"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="317,273,367,311,364,315,313,277"/>
+<area shape="rect" id="Node000007" href="$logic_8c.html" title=" " alt="" coords="209,416,389,471"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="365,381,328,417,324,414,361,377"/>
+<area shape="rect" id="Node000008" href="$proj_8c.html" title=" " alt="" coords="413,423,593,463"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="440,377,486,421,482,425,437,381"/>
+</map>

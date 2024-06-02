@@ -1,0 +1,14 @@
+<map id="drawing_lantern" name="drawing_lantern">
+<area shape="rect" id="Node000001" title="Draws a lantern in the background." alt="" coords="5,31,117,56"/>
+<area shape="rect" id="Node000002" href="$sprite_8c.html#a009025ba82c1fb8491b95982817d30a4" title="Draws a lantern around a sprite to a buffer." alt="" coords="165,31,333,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,41,150,41,150,46,118,46"/>
+<area shape="rect" id="Node000003" href="$graphics_8c.html#aac0e6c0ef6d9620a1998ef2ceae31389" title="Draws a pixel of a specified color at the given coordinates." alt="" coords="755,5,837,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="310,27,381,17,480,11,578,9,739,12,739,18,578,14,480,16,382,22,311,33"/>
+<area shape="rect" id="Node000004" href="$sprite_8c.html#a9964c22c38876bc2273ec5c08ee853b8" title="Draws a sprite using the global draw buffer." alt="" coords="406,31,511,56"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="334,41,390,41,390,46,334,46"/>
+<area shape="rect" id="Node000006" href="$sprite_8c.html#acf356221f598bf1d84b0efc512f55b17" title="Sees if a sprite (&#39;sp&#39;) is in a certain radius of the center of another sprite (&#39;center&#39;)." alt="" coords="381,80,536,105"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="307,54,388,73,386,78,305,59"/>
+<area shape="rect" id="Node000005" href="$sprite_8c.html#ae268ac0f53f2fab6550f84eb95a87bcb" title="Draws a sprite to a buffer skipping transparent pixels." alt="" coords="584,31,707,56"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="512,41,569,41,569,46,512,46"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="707,30,739,25,740,30,708,36"/>
+</map>

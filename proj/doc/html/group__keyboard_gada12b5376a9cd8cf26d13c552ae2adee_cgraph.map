@@ -1,0 +1,10 @@
+<map id="restore_interrupts" name="restore_interrupts">
+<area shape="rect" id="Node000001" title="Restores keyboard interrupts. This function restores keyboard interrupts by changing the command byte..." alt="" coords="5,31,128,56"/>
+<area shape="rect" id="Node000002" href="$group___k_b_c.html#gacdb8edbd69c24a36979e23a8dbcc0aab" title="Reads a byte from the keyboard controller." alt="" coords="177,5,252,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,30,162,24,163,30,129,35"/>
+<area shape="rect" id="Node000004" href="$group___k_b_c.html#gad1d9ff0c607d0288c54124f526627922" title="Writes a command to the keyboard controller." alt="" coords="176,55,253,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="129,51,161,56,160,61,128,56"/>
+<area shape="rect" id="Node000003" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="301,31,392,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="253,23,287,29,286,34,252,28"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="253,58,286,52,287,57,254,63"/>
+</map>

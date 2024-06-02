@@ -1,0 +1,8 @@
+<map id="write_mouse" name="write_mouse">
+<area shape="rect" id="Node000001" title="Writes a command to the mouse." alt="" coords="5,5,100,31"/>
+<area shape="rect" id="Node000002" href="$utils_8c.html#a79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="273,5,364,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,15,258,15,258,21,100,21"/>
+<area shape="rect" id="Node000003" href="$_k_b_c_8c.html#ad1d9ff0c607d0288c54124f526627922" title="Writes a command to the keyboard controller." alt="" coords="148,31,225,56"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="101,24,133,31,132,36,100,30"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="225,33,258,27,259,32,226,39"/>
+</map>

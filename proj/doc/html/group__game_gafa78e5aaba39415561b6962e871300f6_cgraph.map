@@ -1,0 +1,45 @@
+<map id="update_game" name="update_game">
+<area shape="rect" id="Node000001" title="Updates the game depending on the time, cursor position and player position." alt="" coords="5,131,105,156"/>
+<area shape="rect" id="Node000002" href="$group__game.html#gaf1ec419de7da320a2a454f01d23eddf5" title="Checks if two sprites collide." alt="" coords="184,5,253,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,129,99,86,124,61,152,40,168,31,171,36,155,44,128,65,103,89,68,132"/>
+<area shape="rect" id="Node000003" href="$group__game.html#gab0def5c2780652897e0eda60024d6a18" title="Draws the current game time (in small format) on the screen." alt="" coords="159,55,278,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="84,128,175,84,177,89,86,133"/>
+<area shape="rect" id="Node000005" href="$group__sprite.html#ga9964c22c38876bc2273ec5c08ee853b8" title="Draws a sprite using the global draw buffer." alt="" coords="573,56,678,81"/>
+<area shape="poly" id="edge12_Node000001_Node000005" title=" " alt="" coords="105,136,279,117,500,89,557,79,558,84,500,94,280,123,106,141"/>
+<area shape="rect" id="Node000008" href="$group__sprite.html#gaf7b5f014ccc3f2f9cdf770d8defbfae0" title="Draws a lantern in the background." alt="" coords="163,156,275,181"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="106,148,148,155,147,160,105,154"/>
+<area shape="rect" id="Node000011" href="$group__rtc.html#ga212dab5526aa577b0c33bc7a695ae39a" title="Retrieves the current game time." alt="" coords="163,207,274,232"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="83,154,154,190,172,198,169,203,152,195,80,159"/>
+<area shape="rect" id="Node000017" href="$group__graphics.html#ga1e11833bc501338718d48d6e274a89f6" title="Updates the double buffering mechanism by flipping frames." alt="" coords="153,307,284,332"/>
+<area shape="poly" id="edge22_Node000001_Node000017" title=" " alt="" coords="71,155,198,294,194,297,67,158"/>
+<area shape="rect" id="Node000004" href="$group__game.html#ga9151773e527752aad6b13408e80c70b9" title="Draws the number sprite in the game at a specified position on the screen." alt="" coords="367,55,465,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="278,65,351,65,351,70,278,70"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="466,65,557,66,557,71,466,70"/>
+<area shape="rect" id="Node000006" href="$group__sprite.html#gae268ac0f53f2fab6550f84eb95a87bcb" title="Draws a sprite to a buffer skipping transparent pixels." alt="" coords="751,56,873,81"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="678,66,735,66,735,71,678,71"/>
+<area shape="rect" id="Node000007" href="$group__graphics.html#gaac0e6c0ef6d9620a1998ef2ceae31389" title="Draws a pixel of a specified color at the given coordinates." alt="" coords="925,81,1008,107"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="874,76,911,82,910,87,873,81"/>
+<area shape="rect" id="Node000009" href="$group__sprite.html#ga009025ba82c1fb8491b95982817d30a4" title="Draws a lantern around a sprite to a buffer." alt="" coords="332,156,500,181"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="275,166,316,166,316,171,275,171"/>
+<area shape="poly" id="edge10_Node000009_Node000005" title=" " alt="" coords="457,153,499,134,522,117,547,98,573,85,575,90,549,103,526,121,501,139,459,158"/>
+<area shape="poly" id="edge9_Node000009_Node000007" title=" " alt="" coords="485,153,548,142,747,115,910,97,910,102,748,121,548,147,486,158"/>
+<area shape="rect" id="Node000010" href="$group__sprite.html#gacf356221f598bf1d84b0efc512f55b17" title="Sees if a sprite (&#39;sp&#39;) is in a certain radius of the center of another sprite (&#39;center&#39;)." alt="" coords="548,157,703,183"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="500,167,533,167,533,172,500,172"/>
+<area shape="rect" id="Node000012" href="$group__rtc.html#ga4b875007a380c083c1c0aadf40bc7ac4" title="Sees if RTC is in binary counting mode." alt="" coords="566,207,685,232"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="274,217,551,217,551,222,274,222"/>
+<area shape="rect" id="Node000015" href="$group__rtc.html#gacbdc3d9886f064d572714ecea9e77b2a" title="Updates the rtc_info variable time_info with the current time from the RTC." alt="" coords="345,257,487,283"/>
+<area shape="poly" id="edge17_Node000011_Node000015" title=" " alt="" coords="272,230,350,250,348,255,270,235"/>
+<area shape="rect" id="Node000013" href="$group__rtc.html#gaa49afb4ddf768fd61244632faa9b45a5" title="Reads a value from the RTC." alt="" coords="777,257,847,283"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="676,230,763,254,762,259,674,235"/>
+<area shape="rect" id="Node000014" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="921,257,1012,283"/>
+<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="847,267,906,267,906,273,847,273"/>
+<area shape="poly" id="edge18_Node000015_Node000012" title=" " alt="" coords="471,254,554,234,556,239,472,259"/>
+<area shape="poly" id="edge21_Node000015_Node000013" title=" " alt="" coords="488,267,762,267,762,273,488,273"/>
+<area shape="rect" id="Node000016" href="$group__rtc.html#ga31cda63ea594c3acb39647e9adceb398" title="Sees if an RTC update is in progress or not." alt="" coords="570,308,681,333"/>
+<area shape="poly" id="edge19_Node000015_Node000016" title=" " alt="" coords="472,281,556,301,554,306,471,286"/>
+<area shape="poly" id="edge20_Node000016_Node000013" title=" " alt="" coords="674,305,762,281,763,286,676,310"/>
+<area shape="rect" id="Node000018" href="$group__graphics.html#ga28e73c94946bb96540ab78b739fb3b1f" title="Clears the drawing buffer." alt="" coords="365,307,467,332"/>
+<area shape="poly" id="edge23_Node000017_Node000018" title=" " alt="" coords="284,317,350,317,350,322,284,322"/>
+<area shape="rect" id="Node000019" href="$group__graphics.html#ga6046c23215bf35eedd817340bfe301b6" title="Sets the display start address for double buffering." alt="" coords="355,356,477,381"/>
+<area shape="poly" id="edge24_Node000017_Node000019" title=" " alt="" coords="273,330,348,349,347,354,272,335"/>
+</map>

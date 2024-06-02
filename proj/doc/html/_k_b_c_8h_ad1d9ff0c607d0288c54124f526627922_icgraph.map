@@ -1,0 +1,9 @@
+<map id="write_kbc" name="write_kbc">
+<area shape="rect" id="Node000001" title="Writes a command to the keyboard controller." alt="" coords="333,31,411,56"/>
+<area shape="rect" id="Node000002" href="$keyboard_8c.html#ada12b5376a9cd8cf26d13c552ae2adee" title="Restores keyboard interrupts. This function restores keyboard interrupts by changing the command byte..." alt="" coords="163,5,285,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="317,37,285,31,286,26,318,32"/>
+<area shape="rect" id="Node000003" href="$mouse_8c.html#a561d5f8fd681fbc326b212375b65fa3b" title="Writes a command to the mouse." alt="" coords="177,55,271,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="318,55,272,62,271,57,317,49"/>
+<area shape="rect" id="Node000004" href="$proj_8c.html#a2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,55,115,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="161,70,115,70,115,65,161,65"/>
+</map>

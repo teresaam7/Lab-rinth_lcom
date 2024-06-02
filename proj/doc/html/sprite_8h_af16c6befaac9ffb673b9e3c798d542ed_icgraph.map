@@ -1,0 +1,5 @@
+<map id="destroy_sprite" name="destroy_sprite">
+<area shape="rect" id="Node000001" title="Frees the memory allocated for a sprite and its map." alt="" coords="132,5,236,31"/>
+<area shape="rect" id="Node000002" href="$game_8c.html#ad08cad0d3be928869822187c7744f3dd" title="Loads the specified level. If there&#39;s an existing sprite maze, it destroys it to clear the screen bef..." alt="" coords="5,5,84,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,21,84,21,84,15,116,15"/>
+</map>

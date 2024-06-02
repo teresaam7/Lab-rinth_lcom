@@ -1,0 +1,24 @@
+<map id="draw_win" name="draw_win">
+<area shape="rect" id="Node000001" title="Draws all the sprites corresponding to the win screen, (including the time the player took to finish ..." alt="" coords="5,81,80,107"/>
+<area shape="rect" id="Node000002" href="$game_8c.html#a74d933692a81d102537cbb68f26c4ae1" title="Draws the current game time on the screen." alt="" coords="153,5,234,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,78,127,48,150,36,153,40,129,52,70,83"/>
+<area shape="rect" id="Node000004" href="$sprite_8c.html#a9964c22c38876bc2273ec5c08ee853b8" title="Draws a sprite using the global draw buffer." alt="" coords="477,31,583,56"/>
+<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="80,88,461,48,462,53,81,93"/>
+<area shape="rect" id="Node000007" href="$sprite_8c.html#a8236d4082c8f189eda72c9c02cce510a" title="Draws the background with a global draw buffer." alt="" coords="150,107,237,132"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="81,98,135,107,134,112,80,103"/>
+<area shape="rect" id="Node000009" href="$graphics_8c.html#a1e11833bc501338718d48d6e274a89f6" title="Updates the double buffering mechanism by flipping frames." alt="" coords="128,156,259,181"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="66,105,129,141,143,147,141,152,127,146,63,110"/>
+<area shape="rect" id="Node000003" href="$game_8c.html#a9151773e527752aad6b13408e80c70b9" title="Draws the number sprite in the game at a specified position on the screen." alt="" coords="319,5,417,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="235,15,304,15,304,21,235,21"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="418,23,462,30,461,35,417,28"/>
+<area shape="rect" id="Node000005" href="$sprite_8c.html#ae268ac0f53f2fab6550f84eb95a87bcb" title="Draws a sprite to a buffer skipping transparent pixels." alt="" coords="631,31,753,56"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="583,41,615,41,615,46,583,46"/>
+<area shape="rect" id="Node000006" href="$graphics_8c.html#aac0e6c0ef6d9620a1998ef2ceae31389" title="Draws a pixel of a specified color at the given coordinates." alt="" coords="801,31,884,56"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="754,41,786,41,786,46,754,46"/>
+<area shape="rect" id="Node000008" href="$graphics_8c.html#ac1c6ce37e7c8a21f9289c973a8aadf64" title="Draws the background onto the drawing buffer." alt="" coords="307,107,429,132"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="237,117,291,117,291,122,237,122"/>
+<area shape="rect" id="Node000010" href="$graphics_8c.html#a28e73c94946bb96540ab78b739fb3b1f" title="Clears the drawing buffer." alt="" coords="317,156,419,181"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="259,166,302,166,302,171,259,171"/>
+<area shape="rect" id="Node000011" href="$graphics_8c.html#a6046c23215bf35eedd817340bfe301b6" title="Sets the display start address for double buffering." alt="" coords="307,205,429,231"/>
+<area shape="poly" id="edge11_Node000009_Node000011" title=" " alt="" coords="241,179,307,198,305,203,240,184"/>
+</map>

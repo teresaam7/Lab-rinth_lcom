@@ -1,5 +1,11 @@
 #include "serialPort.h"
 
+/** @defgroup serialPort serialPort
+ * @{
+ *
+ * Functions for serialPort
+ */
+
 int hook_id_sp = 6;
 extern GameState gameState;
 extern Sprite *player, *player2;

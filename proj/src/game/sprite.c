@@ -3,6 +3,12 @@
 #include <stdio.h>
 #include "sprite.h"
 
+/** @defgroup sprite sprite
+ * @{
+ *
+ * Functions for the sprites
+ */
+
 extern bool door1_open, door2_open;
 extern Sprite *door1, *door2, *button1, *button1_down, *button2, *button2_down, *player2;
 

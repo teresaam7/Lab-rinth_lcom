@@ -1,0 +1,14 @@
+<map id="handle_ingame_scancode_multi" name="handle_ingame_scancode_multi">
+<area shape="rect" id="Node000001" title="Handles the in&#45;game keyboard scancode for multiplayer mode. It checks if the player can move in the s..." alt="" coords="520,23,692,63"/>
+<area shape="rect" id="Node000002" href="$serial_port_8c.html#abe9d02f4720eb7d5dde57fd560184d12" title="Manages the button press." alt="" coords="339,5,450,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="504,34,450,27,451,22,505,29"/>
+<area shape="rect" id="Node000005" href="$serial_port_8c.html#ade40d390d656235c6efd1830db04195e" title="Handles receiving information from the serial port." alt="" coords="317,55,472,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="505,57,472,61,472,56,505,52"/>
+<area shape="rect" id="Node000003" href="$logic_8c.html#a22101cd0f7efb6b75d79b9709465b9a4" title="Handles keyboard input logic. This function manages button presses based on the current keyboard scan..." alt="" coords="163,5,269,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="324,21,270,21,270,15,324,15"/>
+<area shape="rect" id="Node000004" href="$proj_8c.html#a2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,31,115,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="148,32,115,37,115,32,147,26"/>
+<area shape="rect" id="Node000006" href="$serial_port_8c.html#a566c39ba3c551839abddb24c42e2965c" title="Main handler for the serial port." alt="" coords="173,55,259,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="302,70,259,70,259,65,302,65"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="157,61,115,54,116,49,158,56"/>
+</map>

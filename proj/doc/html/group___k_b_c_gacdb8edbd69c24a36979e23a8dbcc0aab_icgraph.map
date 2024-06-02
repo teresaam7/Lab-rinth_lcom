@@ -1,0 +1,12 @@
+<map id="read_kbc" name="read_kbc">
+<area shape="rect" id="Node000001" title="Reads a byte from the keyboard controller." alt="" coords="333,55,408,80"/>
+<area shape="rect" id="Node000002" href="$group__keyboard.html#gaea970a154161a35f6894898a092ed70a" title="Keyboard interrupt handler. This function is the interrupt handler for keyboard interrupts...." alt="" coords="194,5,254,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="318,52,254,30,255,25,320,47"/>
+<area shape="rect" id="Node000004" href="$group__mouse.html#ga210374b50462acdedab00df64d5cea3c" title="Mouse interrupt handler." alt="" coords="185,55,263,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="318,70,264,70,264,65,318,65"/>
+<area shape="rect" id="Node000005" href="$group__keyboard.html#gada12b5376a9cd8cf26d13c552ae2adee" title="Restores keyboard interrupts. This function restores keyboard interrupts by changing the command byte..." alt="" coords="163,104,285,129"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="319,87,265,106,263,101,318,82"/>
+<area shape="rect" id="Node000003" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,31,115,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="179,28,116,38,115,32,178,22"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="169,62,115,54,115,49,170,57"/>
+</map>

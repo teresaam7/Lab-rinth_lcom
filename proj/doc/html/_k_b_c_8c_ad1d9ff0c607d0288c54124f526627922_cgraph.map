@@ -1,0 +1,5 @@
+<map id="write_kbc" name="write_kbc">
+<area shape="rect" id="Node000001" title="Writes a command to the keyboard controller." alt="" coords="5,5,83,31"/>
+<area shape="rect" id="Node000002" href="$utils_8c.html#a79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="131,5,221,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,15,115,15,115,21,83,21"/>
+</map>

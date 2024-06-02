@@ -1,0 +1,7 @@
+<map id="sp_initialize" name="sp_initialize">
+<area shape="rect" id="Node000001" title="Initializes the serial port." alt="" coords="5,31,96,56"/>
+<area shape="rect" id="Node000002" href="$group__queue.html#ga502b5d2d075b91c94bb1eaba63c46c13" title="Creates a new queue with the given capacity. This function initializes a new queue with the given cap..." alt="" coords="148,5,231,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,32,132,26,133,31,97,38"/>
+<area shape="rect" id="Node000003" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="144,55,235,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="97,49,129,54,128,59,96,54"/>
+</map>

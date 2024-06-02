@@ -1,5 +1,11 @@
 #include "keyboard.h"
 
+/** @defgroup keyboard keyboard
+ * @{
+ *
+ * Functions for using the keyboard.
+ */
+
 uint8_t k_scancode;
 int hook_id_keyboard = 1;
 

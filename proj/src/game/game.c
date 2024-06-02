@@ -1,6 +1,13 @@
 
 #include "game.h"
 
+/** @defgroup game game
+ * @{
+ *
+ * Functions that draw the UI of the game
+ */
+
+
 uint8_t k_index = 0;
 uint8_t k_bytes[2];
 extern uint8_t k_scancode;

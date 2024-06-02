@@ -1,0 +1,22 @@
+<map id="send_queue_bytes" name="send_queue_bytes">
+<area shape="rect" id="Node000001" title="Sends bytes from the send queue." alt="" coords="804,89,935,114"/>
+<area shape="rect" id="Node000002" href="$serial_port_8c.html#ae05d7c53a1ba2b4c1482c846280521a0" title="Sends a byte to the serial port." alt="" coords="673,64,756,89"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="788,91,756,86,757,81,789,86"/>
+<area shape="rect" id="Node000009" href="$serial_port_8c.html#af36885f3a76f83885f4562feb8d4bd74" title="Interrupt handler for the serial port." alt="" coords="688,113,741,138"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="789,117,742,124,742,119,788,112"/>
+<area shape="rect" id="Node000003" href="$logic_8c.html#a22101cd0f7efb6b75d79b9709465b9a4" title="Handles keyboard input logic. This function manages button presses based on the current keyboard scan..." alt="" coords="163,37,269,62"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="683,57,656,41,625,28,540,11,473,9,405,17,318,28,263,39,262,34,317,23,404,11,473,4,541,6,626,23,658,36,686,52"/>
+<area shape="rect" id="Node000005" href="$serial_port_8c.html#aba767befb4b8fbbb58347a33f6175476" title="Sends a scan code." alt="" coords="508,38,593,64"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="658,70,593,60,594,55,659,65"/>
+<area shape="rect" id="Node000007" href="$serial_port_8c.html#a893e344b09045669371c2fb888474bd2" title="Handles the start of multiplayer." alt="" coords="476,88,625,113"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="658,87,626,92,625,87,657,82"/>
+<area shape="rect" id="Node000004" href="$proj_8c.html#a2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,62,115,88"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="148,64,115,69,115,64,147,58"/>
+<area shape="rect" id="Node000006" href="$serial_port_8c.html#abe9d02f4720eb7d5dde57fd560184d12" title="Manages the button press." alt="" coords="317,38,428,64"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="492,54,428,54,428,48,492,48"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="302,53,270,53,270,48,302,48"/>
+<area shape="rect" id="Node000008" href="$serial_port_8c.html#a566c39ba3c551839abddb24c42e2965c" title="Main handler for the serial port." alt="" coords="330,88,415,113"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="461,103,416,103,416,98,461,98"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="314,98,115,82,115,77,315,93"/>
+<area shape="poly" id="edge11_Node000009_Node000008" title=" " alt="" coords="673,131,582,134,476,128,415,116,416,111,476,123,582,129,673,126"/>
+</map>

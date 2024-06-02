@@ -1,0 +1,28 @@
+<map id="sp_handle_start_multi" name="sp_handle_start_multi">
+<area shape="rect" id="Node000001" title="Handles the start of multiplayer." alt="" coords="5,82,155,107"/>
+<area shape="rect" id="Node000002" href="$group__queue.html#ga11477bdc59380d11c8d0cdb0c320134d" title="Removes an element from the queue. This function removes an element from the front of the queue if it..." alt="" coords="534,82,605,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,92,519,92,519,97,155,97"/>
+<area shape="rect" id="Node000003" href="$group__queue.html#ga2faad87ea78b874d4d1dbf94992a69d7" title="Sees if the queue is empty. This function sees if the queue doesn&#39;t have elements." alt="" coords="663,58,768,83"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="114,79,202,49,326,19,397,8,470,3,544,5,615,17,652,30,684,47,681,52,649,35,614,22,543,11,470,9,397,14,327,24,203,54,116,84"/>
+<area shape="rect" id="Node000004" href="$group__queue.html#gaffc22e1fd942d84abce2f4396e0686a8" title="Gets the front element of the queue without removing it. This function returns the front element of t..." alt="" coords="527,32,612,58"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="155,79,202,73,371,56,511,46,512,51,371,62,203,78,155,85"/>
+<area shape="rect" id="Node000005" href="$group__serial_port.html#gad75d0a9e9624f1c9231bfc163dec3a8a" title="Receives a byte from the serial port." alt="" coords="203,182,297,207"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="103,105,204,168,211,172,208,176,201,173,100,110"/>
+<area shape="rect" id="Node000009" href="$group__serial_port.html#gae05d7c53a1ba2b4c1482c846280521a0" title="Sends a byte to the serial port." alt="" coords="209,132,291,158"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="126,105,195,126,194,131,125,110"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="605,86,647,79,647,84,605,91"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="613,50,648,56,647,61,612,55"/>
+<area shape="rect" id="Node000006" href="$group__queue.html#ga3520b115723ab8f75dff263c08cba0a9" title="Adds an element to the queue. This function adds an element to the back of the queue if it is not ful..." alt="" coords="375,182,446,207"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="298,192,360,192,360,197,298,197"/>
+<area shape="rect" id="Node000008" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="524,232,615,258"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="296,205,346,217,431,230,508,238,508,243,430,235,345,222,294,210"/>
+<area shape="rect" id="Node000007" href="$group__queue.html#gac6af8ce04382dd831afef4f582ba67e7" title="Sees if the queue is full. This function sees if the queue has its maximum capacity occupied." alt="" coords="525,183,613,208"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="447,192,510,192,510,198,447,197"/>
+<area shape="poly" id="edge11_Node000009_Node000006" title=" " alt="" coords="292,155,361,176,360,182,291,160"/>
+<area shape="rect" id="Node000010" href="$group__serial_port.html#ga21c12f5befe5d4b94a300e2f9f29dd28" title="Sends bytes from the send queue." alt="" coords="345,132,476,158"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="292,142,330,142,330,148,292,148"/>
+<area shape="poly" id="edge13_Node000010_Node000002" title=" " alt="" coords="452,129,519,108,520,113,454,134"/>
+<area shape="poly" id="edge15_Node000010_Node000003" title=" " alt="" coords="476,139,543,131,614,116,647,103,678,88,680,93,649,108,615,121,544,136,477,144"/>
+<area shape="poly" id="edge14_Node000010_Node000004" title=" " alt="" coords="429,130,523,67,528,63,531,68,525,71,432,134"/>
+<area shape="poly" id="edge16_Node000010_Node000008" title=" " alt="" coords="455,156,477,168,493,181,503,193,512,206,526,219,530,222,526,226,522,223,508,209,498,197,489,185,475,173,452,161"/>
+</map>

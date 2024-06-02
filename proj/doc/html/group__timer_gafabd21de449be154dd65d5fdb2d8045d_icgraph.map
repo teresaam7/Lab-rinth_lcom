@@ -1,0 +1,5 @@
+<map id="timer_unsubscribe_int" name="timer_unsubscribe_int">
+<area shape="rect" id="Node000001" title="Unsubscribes timer interrupts. This function unsubscribes timer interrupts by removing the IRQ policy..." alt="" coords="163,5,312,31"/>
+<area shape="rect" id="Node000002" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,5,115,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,21,115,21,115,15,147,15"/>
+</map>

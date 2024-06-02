@@ -1,0 +1,7 @@
+<map id="loading_bg_sprite" name="loading_bg_sprite">
+<area shape="rect" id="Node000001" title="Loads the background sprite to a buffer." alt="" coords="5,5,128,31"/>
+<area shape="rect" id="Node000002" href="$sprite_8c.html#ae268ac0f53f2fab6550f84eb95a87bcb" title="Draws a sprite to a buffer skipping transparent pixels." alt="" coords="176,5,299,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,15,160,15,160,21,129,21"/>
+<area shape="rect" id="Node000003" href="$graphics_8c.html#aac0e6c0ef6d9620a1998ef2ceae31389" title="Draws a pixel of a specified color at the given coordinates." alt="" coords="347,5,429,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="299,15,331,15,331,21,299,21"/>
+</map>

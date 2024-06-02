@@ -1,0 +1,7 @@
+<map id="rtc_binary_count" name="rtc_binary_count">
+<area shape="rect" id="Node000001" title="Sees if RTC is in binary counting mode." alt="" coords="5,5,124,31"/>
+<area shape="rect" id="Node000002" href="$group__rtc.html#gaa49afb4ddf768fd61244632faa9b45a5" title="Reads a value from the RTC." alt="" coords="172,5,241,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,15,156,15,156,21,124,21"/>
+<area shape="rect" id="Node000003" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="289,5,380,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="242,15,274,15,274,21,242,21"/>
+</map>

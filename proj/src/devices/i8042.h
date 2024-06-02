@@ -3,6 +3,12 @@
 
 #include <lcom/lcf.h>
 
+/** @defgroup i8042 i8042
+ * @{
+ *
+ * Constants for programming the i8042 Keyboard.
+ */
+
 #define DELAY          20000     // 20ms
 
 

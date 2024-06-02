@@ -1,0 +1,12 @@
+<map id="C:/Users/teres/Documents/lcom/shared/proj/src/game/sprite.h" name="C:/Users/teres/Documents/lcom/shared/proj/src/game/sprite.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,185,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="8,181,87,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,61,73,109,56,167,51,166,67,107,83,60"/>
+<area shape="rect" id="Node000003" href="$graphics_8h.html" title=" " alt="" coords="83,108,212,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="114,59,135,94,130,96,109,62"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="132,136,78,174,75,170,129,132"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="112,181,177,207"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="150,134,148,166,143,165,144,134"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="202,181,263,207"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="164,132,209,169,205,173,160,136"/>
+</map>

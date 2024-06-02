@@ -1,0 +1,44 @@
+<map id="queueIsEmpty" name="queueIsEmpty">
+<area shape="rect" id="Node000001" title="Sees if the queue is empty. This function sees if the queue doesn&#39;t have elements." alt="" coords="1155,195,1260,220"/>
+<area shape="rect" id="Node000002" href="$queue_8c.html#a43d664783ba9c94827bf4e0e11caf50b" title="Gets the back element of the queue without removing it. This function returns the back element of the..." alt="" coords="1019,19,1107,44"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1189,183,1154,126,1105,65,1082,46,1086,42,1109,61,1158,123,1194,180"/>
+<area shape="rect" id="Node000003" href="$queue_8c.html#a11477bdc59380d11c8d0cdb0c320134d" title="Removes an element from the queue. This function removes an element from the front of the queue if it..." alt="" coords="1027,195,1098,220"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1139,210,1099,210,1099,205,1139,205"/>
+<area shape="rect" id="Node000004" href="$serial_port_8c.html#a21c12f5befe5d4b94a300e2f9f29dd28" title="Sends bytes from the send queue." alt="" coords="828,56,959,81"/>
+<area shape="poly" id="edge24_Node000001_Node000004" title=" " alt="" coords="1186,184,1151,144,1130,125,1105,110,1070,94,1032,84,959,73,960,68,1033,79,1071,89,1108,105,1133,121,1155,141,1190,180"/>
+<area shape="rect" id="Node000010" href="$serial_port_8c.html#a893e344b09045669371c2fb888474bd2" title="Handles the start of multiplayer." alt="" coords="476,157,625,183"/>
+<area shape="poly" id="edge27_Node000001_Node000010" title=" " alt="" coords="1147,227,1107,234,1063,237,1018,234,845,219,673,194,623,186,624,181,674,189,846,214,1019,229,1063,231,1106,229,1146,222"/>
+<area shape="rect" id="Node000013" href="$serial_port_8c.html#afea6589c6e04629a3faf737fded74f17" title="Cleans the serial port interrupts." alt="" coords="673,360,768,385"/>
+<area shape="poly" id="edge25_Node000001_Node000013" title=" " alt="" coords="1192,235,1158,280,1134,303,1108,322,1065,342,1019,358,972,369,926,376,838,381,768,380,768,374,838,376,925,371,971,364,1018,353,1063,338,1105,317,1131,299,1154,276,1188,232"/>
+<area shape="rect" id="Node000014" href="$serial_port_8c.html#ade40d390d656235c6efd1830db04195e" title="Handles receiving information from the serial port." alt="" coords="816,309,971,335"/>
+<area shape="poly" id="edge26_Node000001_Node000014" title=" " alt="" coords="1186,233,1152,265,1108,292,1074,305,1039,314,971,323,971,318,1038,309,1073,300,1105,288,1148,261,1183,229"/>
+<area shape="rect" id="Node000015" href="$queue_8c.html#affc22e1fd942d84abce2f4396e0686a8" title="Gets the front element of the queue without removing it. This function returns the front element of t..." alt="" coords="1020,120,1105,145"/>
+<area shape="poly" id="edge21_Node000001_Node000015" title=" " alt="" coords="1167,190,1088,148,1090,143,1169,185"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1032,186,909,84,912,80,1035,182"/>
+<area shape="poly" id="edge20_Node000003_Node000010" title=" " alt="" coords="1011,206,626,178,626,173,1012,201"/>
+<area shape="poly" id="edge15_Node000003_Node000013" title=" " alt="" coords="1014,223,920,254,868,275,817,300,772,331,737,362,734,357,769,327,815,296,866,270,918,249,1012,218"/>
+<area shape="poly" id="edge18_Node000003_Node000014" title=" " alt="" coords="1031,231,915,311,912,307,1028,227"/>
+<area shape="rect" id="Node000005" href="$serial_port_8c.html#ae05d7c53a1ba2b4c1482c846280521a0" title="Sends a byte to the serial port." alt="" coords="679,5,762,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="832,54,762,33,763,27,834,49"/>
+<area shape="rect" id="Node000012" href="$serial_port_8c.html#af36885f3a76f83885f4562feb8d4bd74" title="Interrupt handler for the serial port." alt="" coords="524,107,577,132"/>
+<area shape="poly" id="edge13_Node000004_Node000012" title=" " alt="" coords="813,83,674,103,578,118,577,113,673,98,812,78"/>
+<area shape="rect" id="Node000006" href="$logic_8c.html#a22101cd0f7efb6b75d79b9709465b9a4" title="Handles keyboard input logic. This function manages button presses based on the current keyboard scan..." alt="" coords="163,56,269,81"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="664,21,508,27,413,34,318,46,263,58,262,53,317,41,412,29,507,21,664,16"/>
+<area shape="rect" id="Node000008" href="$serial_port_8c.html#aba767befb4b8fbbb58347a33f6175476" title="Sends a scan code." alt="" coords="508,56,593,81"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="665,37,595,59,593,53,664,32"/>
+<area shape="poly" id="edge10_Node000005_Node000010" title=" " alt="" coords="708,46,675,96,653,122,627,146,602,159,600,154,624,141,649,119,671,93,703,43"/>
+<area shape="rect" id="Node000007" href="$proj_8c.html#a2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,233,115,259"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="195,95,75,235,71,231,191,92"/>
+<area shape="rect" id="Node000009" href="$serial_port_8c.html#abe9d02f4720eb7d5dde57fd560184d12" title="Manages the button press." alt="" coords="317,56,428,81"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="492,71,428,71,428,66,492,66"/>
+<area shape="poly" id="edge9_Node000009_Node000006" title=" " alt="" coords="302,71,270,71,270,66,302,66"/>
+<area shape="rect" id="Node000011" href="$serial_port_8c.html#a566c39ba3c551839abddb24c42e2965c" title="Main handler for the serial port." alt="" coords="330,233,415,259"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="506,192,405,235,403,230,504,187"/>
+<area shape="poly" id="edge12_Node000011_Node000007" title=" " alt="" coords="314,249,115,249,115,243,314,243"/>
+<area shape="poly" id="edge14_Node000012_Node000011" title=" " alt="" coords="510,132,477,147,449,168,423,192,386,235,382,231,420,188,446,164,475,142,508,127"/>
+<area shape="poly" id="edge16_Node000013_Node000007" title=" " alt="" coords="658,383,571,387,523,386,476,381,362,356,253,323,158,289,91,262,93,257,160,284,254,318,363,351,476,375,523,380,571,382,657,377"/>
+<area shape="poly" id="edge17_Node000013_Node000011" title=" " alt="" coords="658,377,569,370,521,360,475,343,445,325,419,303,382,261,386,257,423,299,448,321,477,338,522,355,570,365,658,372"/>
+<area shape="poly" id="edge19_Node000014_Node000011" title=" " alt="" coords="800,311,673,293,415,255,416,249,674,287,801,306"/>
+<area shape="poly" id="edge22_Node000015_Node000004" title=" " alt="" coords="1012,116,928,84,930,79,1014,111"/>
+<area shape="poly" id="edge23_Node000015_Node000010" title=" " alt="" coords="1005,139,626,167,626,162,1004,134"/>
+</map>

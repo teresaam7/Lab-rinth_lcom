@@ -1,6 +1,12 @@
 #ifndef __SERIALPORTS_H_
 #define __SERIALPORTS_H_
 
+/** @defgroup SerailPorts SerialPorts
+ * @{
+ *
+ * Constants for programming the serial port.
+ */
+
 #define IRQ_COM1      4
 #define BASE_COM1     0x3F8
 

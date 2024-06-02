@@ -31,6 +31,12 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
+/** @defgroup proj proj
+ * @{
+ *
+ * Project main loop
+ */
+
 
 int r;
 message msg;

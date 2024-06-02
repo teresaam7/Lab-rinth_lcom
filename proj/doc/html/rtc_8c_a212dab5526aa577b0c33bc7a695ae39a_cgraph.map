@@ -1,0 +1,16 @@
+<map id="get_game_time" name="get_game_time">
+<area shape="rect" id="Node000001" title="Retrieves the current game time." alt="" coords="5,31,116,56"/>
+<area shape="rect" id="Node000002" href="$rtc_8c.html#a4b875007a380c083c1c0aadf40bc7ac4" title="Sees if RTC is in binary counting mode." alt="" coords="355,5,473,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,37,339,21,339,26,117,42"/>
+<area shape="rect" id="Node000005" href="$rtc_8c.html#acbdc3d9886f064d572714ecea9e77b2a" title="Updates the rtc_info variable time_info with the current time from the RTC." alt="" coords="164,56,307,81"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="117,49,149,53,148,59,116,54"/>
+<area shape="rect" id="Node000003" href="$rtc_8c.html#aa49afb4ddf768fd61244632faa9b45a5" title="Reads a value from the RTC." alt="" coords="521,56,591,81"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="453,29,507,49,505,54,451,34"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#a79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="639,56,729,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="591,66,623,66,623,71,591,71"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="282,53,352,33,353,38,284,58"/>
+<area shape="poly" id="edge8_Node000005_Node000003" title=" " alt="" coords="307,66,506,66,506,71,307,71"/>
+<area shape="rect" id="Node000006" href="$rtc_8c.html#a31cda63ea594c3acb39647e9adceb398" title="Sees if an RTC update is in progress or not." alt="" coords="359,107,469,132"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="284,79,353,99,352,105,282,85"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="451,104,505,84,507,89,453,109"/>
+</map>

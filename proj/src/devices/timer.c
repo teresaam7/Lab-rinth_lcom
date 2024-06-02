@@ -5,6 +5,11 @@
 
 #include "i8254.h"
 
+/** @defgroup timer timer
+ * @{
+ *
+ * Functions for using the i8254 timers
+ */
 
 int hookId = 0;
 int counter = 0;

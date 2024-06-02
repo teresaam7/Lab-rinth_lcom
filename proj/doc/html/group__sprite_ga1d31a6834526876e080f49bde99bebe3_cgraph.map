@@ -1,0 +1,5 @@
+<map id="create_sprite" name="create_sprite">
+<area shape="rect" id="Node000001" title="Creates a sprite and initializes its position and speed." alt="" coords="5,5,103,31"/>
+<area shape="rect" id="Node000002" href="$group__sprite.html#ga1266035d07f78576936f1e1bcd63a465" title="Loads XPM image data to a sprite." alt="" coords="151,5,245,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,15,135,15,135,21,103,21"/>
+</map>

@@ -1,5 +1,11 @@
 #include "KBC.h"
 
+/** @defgroup KBC KBC
+ * @{
+ *
+ * Functions for the Keyboard controller.
+ */
+
 /**
  * @brief Writes a command to the keyboard controller.
  * 

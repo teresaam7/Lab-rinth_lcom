@@ -1,5 +1,12 @@
 #include "queue.h"
 
+/** @defgroup queue queue
+ * @{
+ *
+ * Functions that simulate the queue data structure.
+ */
+
+
 /**
  * @brief Creates a new queue with the given capacity.
  * This function initializes a new queue with the given capacity and puts its

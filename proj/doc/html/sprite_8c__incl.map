@@ -1,0 +1,17 @@
+<map id="C:/Users/teres/Documents/lcom/shared/proj/src/game/sprite.c" name="C:/Users/teres/Documents/lcom/shared/proj/src/game/sprite.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="108,5,288,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,255,84,280"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,63,129,85,100,113,74,145,55,182,49,211,47,239,41,239,43,210,50,180,69,143,96,109,126,81,155,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="131,255,196,280"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="213,59,224,90,232,128,235,168,226,208,212,229,195,247,191,243,208,226,221,206,229,168,227,129,219,92,208,61"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="253,255,314,280"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="221,59,250,107,272,177,283,239,278,240,267,179,245,109,217,62"/>
+<area shape="rect" id="Node000005" href="$sprite_8h.html" title=" " alt="" coords="115,108,180,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="185,62,164,96,160,93,180,59"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="126,136,98,156,72,183,58,211,51,240,46,238,53,209,68,180,94,152,123,132"/>
+<area shape="rect" id="Node000006" href="$graphics_8h.html" title=" " alt="" coords="83,181,212,207"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="150,134,150,165,145,165,145,134"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="131,210,76,248,73,244,128,205"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="153,206,160,239,155,240,147,208"/>
+<area shape="poly" id="edge9_Node000006_Node000004" title=" " alt="" coords="172,205,248,245,246,250,169,210"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="draw_win" name="draw_win">
+<area shape="rect" id="Node000001" title="Draws all the sprites corresponding to the win screen, (including the time the player took to finish ..." alt="" coords="313,5,388,31"/>
+<area shape="rect" id="Node000002" href="$group__logic.html#ga51c56b06a1a968d6c09944c68adee1d2" title="Initializes the game state. This function handles the initialization of different game states and dra..." alt="" coords="163,5,265,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="298,21,266,21,266,15,298,15"/>
+<area shape="rect" id="Node000003" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,5,115,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="147,21,115,21,115,15,147,15"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="store_byte_mouse" name="store_byte_mouse">
+<area shape="rect" id="Node000001" title="Stores the byte received from the mouse." alt="" coords="289,5,419,31"/>
+<area shape="rect" id="Node000002" href="$mouse_8c.html#a210374b50462acdedab00df64d5cea3c" title="Mouse interrupt handler." alt="" coords="163,5,241,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="274,21,242,21,242,15,274,15"/>
+<area shape="rect" id="Node000003" href="$proj_8c.html#a2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,5,115,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="147,21,115,21,115,15,147,15"/>
+</map>

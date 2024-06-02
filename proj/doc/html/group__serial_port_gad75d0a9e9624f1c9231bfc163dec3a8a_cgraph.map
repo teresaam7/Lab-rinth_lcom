@@ -1,0 +1,9 @@
+<map id="receive_byte" name="receive_byte">
+<area shape="rect" id="Node000001" title="Receives a byte from the serial port." alt="" coords="5,31,100,56"/>
+<area shape="rect" id="Node000002" href="$group__queue.html#ga3520b115723ab8f75dff263c08cba0a9" title="Adds an element to the queue. This function adds an element to the back of the queue if it is not ful..." alt="" coords="158,5,229,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,32,142,24,143,30,101,37"/>
+<area shape="rect" id="Node000004" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="148,55,239,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="101,49,133,54,132,60,100,54"/>
+<area shape="rect" id="Node000003" href="$group__queue.html#gac6af8ce04382dd831afef4f582ba67e7" title="Sees if the queue is full. This function sees if the queue has its maximum capacity occupied." alt="" coords="287,5,375,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="229,15,271,15,271,21,229,21"/>
+</map>

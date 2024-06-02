@@ -1,0 +1,27 @@
+<map id="queueIsFull" name="queueIsFull">
+<area shape="rect" id="Node000001" title="Sees if the queue is full. This function sees if the queue has its maximum capacity occupied." alt="" coords="935,80,1023,105"/>
+<area shape="rect" id="Node000002" href="$group__queue.html#ga3520b115723ab8f75dff263c08cba0a9" title="Adds an element to the queue. This function adds an element to the back of the queue if it is not ful..." alt="" coords="816,80,887,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="919,95,887,95,887,90,919,90"/>
+<area shape="rect" id="Node000003" href="$group__serial_port.html#gad75d0a9e9624f1c9231bfc163dec3a8a" title="Receives a byte from the serial port." alt="" coords="673,55,768,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="800,85,768,79,769,74,801,80"/>
+<area shape="rect" id="Node000008" href="$group__serial_port.html#gae05d7c53a1ba2b4c1482c846280521a0" title="Sends a byte to the serial port." alt="" coords="679,104,762,129"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="801,105,763,112,762,106,800,99"/>
+<area shape="rect" id="Node000004" href="$group__serial_port.html#ga893e344b09045669371c2fb888474bd2" title="Handles the start of multiplayer." alt="" coords="476,55,625,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="658,70,626,70,626,65,658,65"/>
+<area shape="rect" id="Node000007" href="$group__serial_port.html#gaf36885f3a76f83885f4562feb8d4bd74" title="Interrupt handler for the serial port." alt="" coords="524,5,577,31"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="659,52,577,28,578,23,661,47"/>
+<area shape="rect" id="Node000005" href="$group__serial_port.html#ga566c39ba3c551839abddb24c42e2965c" title="Main handler for the serial port." alt="" coords="330,55,415,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="461,70,416,70,416,65,461,65"/>
+<area shape="rect" id="Node000006" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,80,115,105"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="315,75,115,91,115,86,314,69"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="510,32,417,58,415,53,508,27"/>
+<area shape="poly" id="edge14_Node000008_Node000004" title=" " alt="" coords="663,103,596,83,598,78,665,98"/>
+<area shape="rect" id="Node000009" href="$group__logic.html#ga22101cd0f7efb6b75d79b9709465b9a4" title="Handles keyboard input logic. This function manages button presses based on the current keyboard scan..." alt="" coords="163,105,269,131"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="663,119,270,121,270,115,663,114"/>
+<area shape="rect" id="Node000010" href="$group__serial_port.html#gaba767befb4b8fbbb58347a33f6175476" title="Sends a scan code." alt="" coords="508,156,593,181"/>
+<area shape="poly" id="edge11_Node000008_Node000010" title=" " alt="" coords="665,136,595,158,593,153,664,131"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="147,110,115,104,115,99,148,104"/>
+<area shape="rect" id="Node000011" href="$group__serial_port.html#gabe9d02f4720eb7d5dde57fd560184d12" title="Manages the button press." alt="" coords="317,156,428,181"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="492,171,428,171,428,166,492,166"/>
+<area shape="poly" id="edge13_Node000011_Node000009" title=" " alt="" coords="316,153,257,134,258,129,317,148"/>
+</map>

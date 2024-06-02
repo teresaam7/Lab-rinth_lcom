@@ -1,0 +1,21 @@
+<map id="C:/Users/teres/Documents/lcom/shared/proj/src/devices/rtc.h" name="C:/Users/teres/Documents/lcom/shared/proj/src/devices/rtc.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="129,5,351,45"/>
+<area shape="rect" id="Node000002" href="$rtc_8c.html" title=" " alt="" coords="5,93,227,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,56,145,95,142,91,199,52"/>
+<area shape="rect" id="Node000003" href="$game_8h.html" title=" " alt="" coords="251,93,477,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="281,52,338,91,335,95,278,56"/>
+<area shape="rect" id="Node000004" href="$serial_port_8h.html" title=" " alt="" coords="202,181,393,236"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="335,147,310,182,306,179,331,144"/>
+<area shape="rect" id="Node000006" href="$logic_8h.html" title=" " alt="" coords="341,284,521,339"/>
+<area shape="poly" id="edge10_Node000003_Node000006" title=" " alt="" coords="388,145,406,180,422,235,430,283,425,284,417,236,402,182,384,147"/>
+<area shape="rect" id="Node000009" href="$game_8c.html" title=" " alt="" coords="468,189,695,229"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="424,137,537,186,535,191,422,142"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="332,167,355,132,360,135,336,170"/>
+<area shape="rect" id="Node000005" href="$serial_port_8c.html" title=" " alt="" coords="126,284,317,339"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="270,250,244,285,239,282,266,247"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="347,244,397,281,394,285,343,248"/>
+<area shape="rect" id="Node000007" href="$logic_8c.html" title=" " alt="" coords="239,387,419,441"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="395,352,358,388,354,384,391,348"/>
+<area shape="rect" id="Node000008" href="$proj_8c.html" title=" " alt="" coords="443,394,623,434"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="470,348,516,392,512,395,467,351"/>
+</map>

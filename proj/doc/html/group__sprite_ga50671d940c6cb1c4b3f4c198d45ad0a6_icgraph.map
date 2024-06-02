@@ -1,0 +1,21 @@
+<map id="check_collision" name="check_collision">
+<area shape="rect" id="Node000001" title="Sees if there is a collision between the player sprite and the maze sprite." alt="" coords="740,44,851,69"/>
+<area shape="rect" id="Node000002" href="$group__game.html#ga3acc255255b6075a1e1fb5b2e7b8612a" title="Handles the in&#45;game keyboard scancode for a specific player. It checks if the player can move in the ..." alt="" coords="520,15,692,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="724,49,692,43,693,38,725,43"/>
+<area shape="rect" id="Node000008" href="$group__game.html#ga8241254351ecd0ff4d320a93b28b8c2a" title="Handles the in&#45;game keyboard scancode for multiplayer mode. It checks if the player can move in the s..." alt="" coords="520,65,692,105"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="725,70,693,75,692,69,724,65"/>
+<area shape="rect" id="Node000003" href="$group__logic.html#ga22101cd0f7efb6b75d79b9709465b9a4" title="Handles keyboard input logic. This function manages button presses based on the current keyboard scan..." alt="" coords="163,23,269,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="504,15,413,9,318,13,260,25,259,20,317,7,413,3,505,10"/>
+<area shape="rect" id="Node000005" href="$group__serial_port.html#gabe9d02f4720eb7d5dde57fd560184d12" title="Manages the button press." alt="" coords="339,23,450,48"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="505,34,450,36,450,31,505,29"/>
+<area shape="rect" id="Node000006" href="$group__serial_port.html#gade40d390d656235c6efd1830db04195e" title="Handles receiving information from the serial port." alt="" coords="317,72,472,97"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="542,47,445,74,444,69,541,42"/>
+<area shape="rect" id="Node000004" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,48,115,73"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="148,49,115,55,115,49,147,44"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="324,38,270,38,270,33,324,33"/>
+<area shape="rect" id="Node000007" href="$group__serial_port.html#ga566c39ba3c551839abddb24c42e2965c" title="Main handler for the serial port." alt="" coords="173,72,259,97"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="302,87,259,87,259,82,302,82"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="157,79,115,72,116,67,158,73"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="505,64,450,51,451,46,506,59"/>
+<area shape="poly" id="edge11_Node000008_Node000006" title=" " alt="" coords="504,87,472,87,472,82,504,82"/>
+</map>

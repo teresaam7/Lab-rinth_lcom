@@ -1,0 +1,47 @@
+<map id="draw_number" name="draw_number">
+<area shape="rect" id="Node000001" title="Draws the number sprite in the game at a specified position on the screen." alt="" coords="1055,108,1153,133"/>
+<area shape="rect" id="Node000002" href="$group__game.html#ga74d933692a81d102537cbb68f26c4ae1" title="Draws the current game time on the screen." alt="" coords="907,83,988,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1039,113,988,105,989,99,1040,108"/>
+<area shape="rect" id="Node000006" href="$group__game.html#gab0def5c2780652897e0eda60024d6a18" title="Draws the current game time (in small format) on the screen." alt="" coords="888,132,1007,157"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1040,133,1007,138,1007,133,1039,128"/>
+<area shape="rect" id="Node000003" href="$group__game.html#gadf765d2515e4ba0c75df3dae933b2e62" title="Draws all the sprites corresponding to the win screen, (including the time the player took to finish ..." alt="" coords="753,44,827,69"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="891,84,827,68,828,63,892,79"/>
+<area shape="rect" id="Node000004" href="$group__logic.html#ga51c56b06a1a968d6c09944c68adee1d2" title="Initializes the game state. This function handles the initialization of different game states and dra..." alt="" coords="555,5,657,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="737,48,657,31,659,26,738,43"/>
+<area shape="rect" id="Node000005" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,111,115,136"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="539,14,461,10,365,12,263,24,212,35,164,50,137,63,113,79,75,112,72,108,109,75,134,58,162,45,211,29,262,18,365,6,461,4,539,8"/>
+<area shape="rect" id="Node000007" href="$group__game.html#gafa78e5aaba39415561b6962e871300f6" title="Updates the game depending on the time, cursor position and player position." alt="" coords="740,132,840,157"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="872,147,840,147,840,142,872,142"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="767,122,733,87,691,52,652,34,654,29,693,48,737,83,771,119"/>
+<area shape="rect" id="Node000008" href="$group__game.html#ga3acc255255b6075a1e1fb5b2e7b8612a" title="Handles the in&#45;game keyboard scancode for a specific player. It checks if the player can move in the ..." alt="" coords="520,205,692,231"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="754,168,693,196,661,207,659,202,691,192,751,163"/>
+<area shape="rect" id="Node000013" href="$group__game.html#ga8241254351ecd0ff4d320a93b28b8c2a" title="Handles the in&#45;game keyboard scancode for multiplayer mode. It checks if the player can move in the s..." alt="" coords="520,255,692,295"/>
+<area shape="poly" id="edge16_Node000007_Node000013" title=" " alt="" coords="771,171,737,209,693,246,672,257,670,253,691,241,734,205,768,168"/>
+<area shape="rect" id="Node000014" href="$group__logic.html#gad5f6cd33506155eadf61f6d5e3a9dcce" title="Handles mouse input logic. This function handles mouse movement and updates the game state based on m..." alt="" coords="170,59,262,84"/>
+<area shape="poly" id="edge19_Node000007_Node000014" title=" " alt="" coords="755,126,725,110,691,98,632,85,572,75,451,66,344,66,262,70,262,65,344,61,452,61,572,70,633,79,693,93,727,105,757,121"/>
+<area shape="rect" id="Node000015" href="$group__game.html#ga4ed654019a4250017efdb5c0df0662c9" title="Loops the arrow sprite based on the total game time." alt="" coords="537,107,675,132"/>
+<area shape="poly" id="edge21_Node000007_Node000015" title=" " alt="" coords="724,138,675,132,676,126,725,133"/>
+<area shape="rect" id="Node000017" href="$group__game.html#gad53cafa549c62ad62cc99744cf47b418" title="Loops the energy sprite based on the total waiting time." alt="" coords="321,316,468,341"/>
+<area shape="poly" id="edge24_Node000007_Node000017" title=" " alt="" coords="784,173,771,206,753,244,727,280,693,310,667,323,638,334,579,345,521,347,468,344,469,339,521,342,579,340,637,329,665,319,691,305,723,277,748,241,767,204,779,171"/>
+<area shape="rect" id="Node000018" href="$group__game.html#ga53cbcfa464b5db76116a55bffe27bba3" title="Updates the life bar based on the total game time." alt="" coords="551,156,661,181"/>
+<area shape="poly" id="edge26_Node000007_Node000018" title=" " alt="" coords="725,156,661,164,661,159,724,150"/>
+<area shape="rect" id="Node000009" href="$group__logic.html#ga22101cd0f7efb6b75d79b9709465b9a4" title="Handles keyboard input logic. This function manages button presses based on the current keyboard scan..." alt="" coords="163,161,269,187"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="504,207,472,203,269,182,270,176,472,198,505,202"/>
+<area shape="rect" id="Node000010" href="$group__serial_port.html#gabe9d02f4720eb7d5dde57fd560184d12" title="Manages the button press." alt="" coords="339,212,450,237"/>
+<area shape="poly" id="edge11_Node000008_Node000010" title=" " alt="" coords="505,224,450,226,450,220,505,219"/>
+<area shape="rect" id="Node000011" href="$group__serial_port.html#gade40d390d656235c6efd1830db04195e" title="Handles receiving information from the serial port." alt="" coords="317,263,472,288"/>
+<area shape="poly" id="edge13_Node000008_Node000011" title=" " alt="" coords="542,238,445,265,444,259,541,233"/>
+<area shape="poly" id="edge10_Node000009_Node000005" title=" " alt="" coords="159,158,101,139,102,134,161,153"/>
+<area shape="poly" id="edge12_Node000010_Node000009" title=" " alt="" coords="332,210,263,190,264,185,333,205"/>
+<area shape="rect" id="Node000012" href="$group__serial_port.html#ga566c39ba3c551839abddb24c42e2965c" title="Main handler for the serial port." alt="" coords="173,263,259,288"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="302,278,259,278,259,273,302,273"/>
+<area shape="poly" id="edge15_Node000012_Node000005" title=" " alt="" coords="189,254,72,138,76,134,193,250"/>
+<area shape="poly" id="edge17_Node000013_Node000010" title=" " alt="" coords="505,254,450,240,451,235,506,249"/>
+<area shape="poly" id="edge18_Node000013_Node000011" title=" " alt="" coords="504,278,472,278,472,273,504,273"/>
+<area shape="poly" id="edge20_Node000014_Node000005" title=" " alt="" coords="162,92,101,113,99,108,161,87"/>
+<area shape="rect" id="Node000016" href="$group__logic.html#ga75aab4a81a39fa206eb1c5918b6494af" title="Handles timer logic. This function processes timer events during the game state. It updates the game ..." alt="" coords="353,111,436,136"/>
+<area shape="poly" id="edge22_Node000015_Node000016" title=" " alt="" coords="521,124,436,125,436,120,521,118"/>
+<area shape="poly" id="edge23_Node000016_Node000005" title=" " alt="" coords="338,126,115,126,115,121,338,121"/>
+<area shape="poly" id="edge25_Node000017_Node000012" title=" " alt="" coords="334,313,258,290,260,285,336,308"/>
+<area shape="poly" id="edge27_Node000018_Node000016" title=" " alt="" coords="536,156,436,135,437,129,537,151"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="timer_set_frequency" name="timer_set_frequency">
+<area shape="rect" id="Node000001" title="Sets the frequency of a given timer. This function sets the frequency of the given timer by contructi..." alt="" coords="163,5,301,31"/>
+<area shape="rect" id="Node000002" href="$proj_8c.html#a2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,5,115,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,21,115,21,115,15,147,15"/>
+</map>

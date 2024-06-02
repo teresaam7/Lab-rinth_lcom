@@ -1,0 +1,13 @@
+<map id="loadSprites" name="loadSprites">
+<area shape="rect" id="Node000001" title="Loads all the sprites used in the game." alt="" coords="5,31,92,56"/>
+<area shape="rect" id="Node000002" href="$group__sprite.html#ga1d31a6834526876e080f49bde99bebe3" title="Creates a sprite and initializes its position and speed." alt="" coords="153,5,250,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,34,137,26,138,31,93,39"/>
+<area shape="rect" id="Node000004" href="$group__sprite.html#ga0cf7590a8989ac4e03a88f7b3b470b51" title="Loads the background sprite to a buffer." alt="" coords="140,55,263,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="93,48,125,53,124,58,92,53"/>
+<area shape="rect" id="Node000003" href="$group__sprite.html#ga1266035d07f78576936f1e1bcd63a465" title="Loads XPM image data to a sprite." alt="" coords="325,5,419,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="250,15,309,15,309,21,250,21"/>
+<area shape="rect" id="Node000005" href="$group__sprite.html#gae268ac0f53f2fab6550f84eb95a87bcb" title="Draws a sprite to a buffer skipping transparent pixels." alt="" coords="311,55,433,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="263,65,295,65,295,70,263,70"/>
+<area shape="rect" id="Node000006" href="$group__graphics.html#gaac0e6c0ef6d9620a1998ef2ceae31389" title="Draws a pixel of a specified color at the given coordinates." alt="" coords="481,55,564,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="434,65,466,65,466,70,434,70"/>
+</map>

@@ -2,6 +2,13 @@
 
 #include <stdint.h>
 
+/** @defgroup utils utils
+ * @{
+ *
+ * Auxiliar functions for the program.
+ */
+
+
 /**
  * @brief Gets the least significant byte (LSB) from a 16-bit value.
  * This function gets the LSB from a 16-bit value and stores it in the given pointer.

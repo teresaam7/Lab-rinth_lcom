@@ -1,0 +1,24 @@
+<map id="load_level" name="load_level">
+<area shape="rect" id="Node000001" title="Loads the specified level. If there&#39;s an existing sprite maze, it destroys it to clear the screen bef..." alt="" coords="5,55,84,80"/>
+<area shape="rect" id="Node000002" href="$group__sprite.html#ga1d31a6834526876e080f49bde99bebe3" title="Creates a sprite and initializes its position and speed." alt="" coords="139,5,236,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,52,133,34,135,39,84,57"/>
+<area shape="rect" id="Node000004" href="$group__sprite.html#gaf16c6befaac9ffb673b9e3c798d542ed" title="Frees the memory allocated for a sprite and its map." alt="" coords="135,55,239,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="85,65,120,65,120,70,85,70"/>
+<area shape="rect" id="Node000005" href="$group__rtc.html#ga212dab5526aa577b0c33bc7a695ae39a" title="Retrieves the current game time." alt="" coords="132,104,243,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="84,78,135,96,133,101,83,83"/>
+<area shape="rect" id="Node000003" href="$group__sprite.html#ga1266035d07f78576936f1e1bcd63a465" title="Loads XPM image data to a sprite." alt="" coords="315,5,409,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="237,15,299,15,299,21,237,21"/>
+<area shape="rect" id="Node000006" href="$group__rtc.html#ga4b875007a380c083c1c0aadf40bc7ac4" title="Sees if RTC is in binary counting mode." alt="" coords="481,80,600,105"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="243,110,466,95,466,100,243,116"/>
+<area shape="rect" id="Node000009" href="$group__rtc.html#gacbdc3d9886f064d572714ecea9e77b2a" title="Updates the rtc_info variable time_info with the current time from the RTC." alt="" coords="291,131,433,156"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="243,122,276,127,275,133,243,128"/>
+<area shape="rect" id="Node000007" href="$group__rtc.html#gaa49afb4ddf768fd61244632faa9b45a5" title="Reads a value from the RTC." alt="" coords="648,131,717,156"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="580,103,634,123,632,128,578,108"/>
+<area shape="rect" id="Node000008" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="765,131,856,156"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="718,141,750,141,750,146,718,146"/>
+<area shape="poly" id="edge9_Node000009_Node000006" title=" " alt="" coords="409,127,478,107,480,113,410,133"/>
+<area shape="poly" id="edge12_Node000009_Node000007" title=" " alt="" coords="434,141,633,141,633,146,434,146"/>
+<area shape="rect" id="Node000010" href="$group__rtc.html#ga31cda63ea594c3acb39647e9adceb398" title="Sees if an RTC update is in progress or not." alt="" coords="485,181,596,207"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="410,154,480,174,478,179,409,159"/>
+<area shape="poly" id="edge11_Node000010_Node000007" title=" " alt="" coords="578,178,632,158,634,163,580,183"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="send_byte" name="send_byte">
+<area shape="rect" id="Node000001" title="Sends a byte to the serial port." alt="" coords="673,32,756,57"/>
+<area shape="rect" id="Node000002" href="$logic_8c.html#a22101cd0f7efb6b75d79b9709465b9a4" title="Handles keyboard input logic. This function manages button presses based on the current keyboard scan..." alt="" coords="163,32,269,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="661,29,625,22,539,11,471,8,404,12,318,22,260,34,259,29,317,16,403,7,471,3,539,6,626,16,662,24"/>
+<area shape="rect" id="Node000004" href="$serial_port_8c.html#aba767befb4b8fbbb58347a33f6175476" title="Sends a scan code." alt="" coords="508,32,593,57"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="658,47,593,47,593,42,658,42"/>
+<area shape="rect" id="Node000006" href="$serial_port_8c.html#a893e344b09045669371c2fb888474bd2" title="Handles the start of multiplayer." alt="" coords="476,81,625,106"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="659,64,596,83,594,78,658,59"/>
+<area shape="rect" id="Node000003" href="$proj_8c.html#a2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project." alt="" coords="5,57,115,82"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="148,58,115,63,115,58,147,53"/>
+<area shape="rect" id="Node000005" href="$serial_port_8c.html#abe9d02f4720eb7d5dde57fd560184d12" title="Manages the button press." alt="" coords="317,32,428,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="492,47,428,47,428,42,492,42"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="302,47,270,47,270,42,302,42"/>
+<area shape="rect" id="Node000007" href="$serial_port_8c.html#a566c39ba3c551839abddb24c42e2965c" title="Main handler for the serial port." alt="" coords="173,81,259,106"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="460,96,259,96,259,91,460,91"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="157,87,115,81,116,75,158,82"/>
+</map>

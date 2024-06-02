@@ -1,0 +1,5 @@
+<map id="rtc_read" name="rtc_read">
+<area shape="rect" id="Node000001" title="Reads a value from the RTC." alt="" coords="5,5,75,31"/>
+<area shape="rect" id="Node000002" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Reads a byte from the given I/O port. This function reads a byte from the given I/O port and stores i..." alt="" coords="123,5,213,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,15,107,15,107,21,75,21"/>
+</map>

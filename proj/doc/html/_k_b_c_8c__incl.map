@@ -1,0 +1,12 @@
+<map id="C:/Users/teres/Documents/lcom/shared/proj/src/devices/KBC.c" name="C:/Users/teres/Documents/lcom/shared/proj/src/devices/KBC.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="33,5,266,45"/>
+<area shape="rect" id="Node000002" href="$_k_b_c_8h.html" title=" " alt="" coords="119,93,179,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,46,152,78,147,78,147,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,112,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="136,121,87,159,84,155,132,117"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="145,240,223,265"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="155,118,180,224,175,225,150,120"/>
+<area shape="rect" id="Node000005" href="$i8042_8h.html" title=" " alt="" coords="187,167,251,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="163,117,198,154,195,157,159,121"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="215,194,199,227,194,225,211,191"/>
+</map>

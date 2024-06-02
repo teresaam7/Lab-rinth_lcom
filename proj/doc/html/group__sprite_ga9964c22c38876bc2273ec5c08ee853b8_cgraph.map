@@ -1,0 +1,7 @@
+<map id="drawing_sprite" name="drawing_sprite">
+<area shape="rect" id="Node000001" title="Draws a sprite using the global draw buffer." alt="" coords="5,5,111,31"/>
+<area shape="rect" id="Node000002" href="$group__sprite.html#gae268ac0f53f2fab6550f84eb95a87bcb" title="Draws a sprite to a buffer skipping transparent pixels." alt="" coords="159,5,281,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,15,143,15,143,21,111,21"/>
+<area shape="rect" id="Node000003" href="$group__graphics.html#gaac0e6c0ef6d9620a1998ef2ceae31389" title="Draws a pixel of a specified color at the given coordinates." alt="" coords="329,5,412,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="282,15,314,15,314,21,282,21"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="drawing_bg" name="drawing_bg">
+<area shape="rect" id="Node000001" title="Draws the background with a global draw buffer." alt="" coords="5,5,92,31"/>
+<area shape="rect" id="Node000002" href="$graphics_8c.html#ac1c6ce37e7c8a21f9289c973a8aadf64" title="Draws the background onto the drawing buffer." alt="" coords="140,5,263,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,15,124,15,124,21,93,21"/>
+</map>
