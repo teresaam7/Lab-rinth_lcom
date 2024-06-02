@@ -15,7 +15,7 @@ bool multi = false;
 int gameTime = 60 * TIMER_MINUTES;
 
 Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, 
-        *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *waiting, 
+        *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *waiting, *wait,
         *maze, *player, *player2, *life, *arrow, *button1, *button1_down, *button2, *button2_down, *door1, *door2,
         *game_over, *win;
 
@@ -45,6 +45,7 @@ int (loadSprites)() {
 	hover_level3 = create_sprite((xpm_map_t)hover_level3_, 305, 490, 0);
 
   waiting = create_sprite((xpm_map_t)waiting_, 240, 100, 0);
+  wait = create_sprite((xpm_map_t)wait_, 1, 200, 0);
 
   player = create_sprite((xpm_map_t)right1, 20, 20, 0);
   player2 = create_sprite((xpm_map_t)right1second, 60, 20, 0);
@@ -83,7 +84,7 @@ int (loadSprites)() {
       hover_level2 == NULL || level3 == NULL || hover_level3 == NULL || player == NULL || player2 == NULL || life == NULL || 
       num0 == NULL || num1 == NULL ||num2 == NULL ||num3 == NULL ||num4 == NULL ||num5 == NULL ||num6 == NULL || 
       num7 == NULL ||num8 == NULL ||num9 == NULL || dot == NULL || smallNum0 == NULL ||  smallNum1 == NULL ||
-      smallNum2 == NULL || smallNum3 == NULL || smallNum4 == NULL || smallNum5 == NULL || smallNum6 == NULL || 
+      smallNum2 == NULL || smallNum3 == NULL || smallNum4 == NULL || smallNum5 == NULL || smallNum6 == NULL || wait == NULL ||
       smallNum7 == NULL || smallNum8 == NULL || smallNum9 == NULL ||  divisor == NULL || arrow == NULL || waiting == NULL)
       return 1;
 

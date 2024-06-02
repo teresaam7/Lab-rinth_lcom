@@ -18,7 +18,7 @@ bool door1_open = false;
 bool door2_open = false;
 
 extern Sprite *menu_bg, *title, *start, *hover_start, *quit, *hover_quit, *cursor, 
-        *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *waiting, 
+        *level1, *hover_level1, *level2, *hover_level2, *level3, *hover_level3, *waiting, *wait,
         *maze, *player, *player2, *life, *arrow, *button1, *button1_down, *button2, *button2_down, *door1, *door2,
         *game_over, *win;
 
@@ -646,6 +646,7 @@ void (draw_time_small)(uint8_t hours, uint8_t minutes, int x, int y) {
 void (draw_waiting)() {
   drawing_bg(menu_bg);
   drawing_sprite(waiting);
+  drawing_sprite(wait);
   update_flip_frames();
 }
 

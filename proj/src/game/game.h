@@ -34,6 +34,7 @@
 #include "images/assets/win.xpm"
 #include "images/assets/game_over.xpm"
 #include "images/assets/waiting.xpm"
+#include "images/assets/wait2.xpm"
 
 #include "images/levels/level1.xpm"
 #include "images/levels/level2.xpm"
