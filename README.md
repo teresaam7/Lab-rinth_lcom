@@ -39,6 +39,6 @@ To run the game:
 
 ## 🎮 GamePlay
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=RCV5oaa0E18?si=S53u7MjcdoHDvqmO)
+[![IMAGE ALT TEXT HERE](proj/doc.jpg)](https://www.youtube.com/watch?v=RCV5oaa0E18?si=S53u7MjcdoHDvqmO)
 
 **Enjoy escaping the maze!** 🌌🔦
